@@ -1,0 +1,66 @@
+% This file adds functionality for glossaries related to Tjarnberg PhD thesis 
+%
+% documentation: file:///usr/share/doc/texlive-doc/latex/glossaries/glossaries-user.html
+% or if running emacs: C-c ? glossaries-user RET
+%
+%:-------------------------- Glossary/Abbrev./Symbols -----------------------
+\usepackage[toc,acronym,style=long]{glossaries} % https://en.wikibooks.org/wiki/LaTeX/Glossary
+% \renewcommand{\nomlabel}[1]{\textbf{#1}} % make abbreviations bold
+\makeglossaries
+\newcommand{\g}{\footnote{For all abbreviations see the glossary on page \pageref{nom}.}} % type "\g" to refer to glossary
+
+% Dual entries with reference to a glosssary entry from an acronym
+\usepackage{xparse} % for dual entry simplification
+\DeclareDocumentCommand{\newdualentry}{ O{} O{} m m m m } {
+  \newglossaryentry{gls-#3}{name={#5},text={#5\glsadd{#3}},
+    description={#6},#1
+  }
+  \newacronym[see={[Glossary:]{gls-#3}},#2]{#3}{#4}{#5\glsadd{gls-#3}}
+}
+
+%% Template for dual entry
+% \newdualentry{OWD} % label
+% {OWD}              % abbreviation
+% {One-Way Delay}    % long form
+% {The time a packet uses through a network from one host to another} % description
+
+% Acronyms
+\newacronym{grn}{GRN}{Gene Regulatory Network}
+\newacronym{snr}{SNR}{Signal to Noise Ratio}
+\newacronym{bic}{BIC}{Bayesian information criterion}
+\newacronym{aic}{AIC}{Akaike information criterion}
+\newacronym{rss}{RSS}{residual sum of squares}
+\newacronym{cls}{CLS}{constrained least squares}
+
+
+% Glossaries
+\newglossaryentry{glmnet}
+{
+  name=Glmnet,
+  description={A fast implementation of the algorithms \gls{lasso}, \emph{ridge regression} and the combination of the previous called \emph{elastic net}},
+}
+
+% Dual entries
+\newdualentry{lasso}
+{LASSO}
+{Least Absolute Shrinkage and Selection Operator}
+{A regression method that penalizes the absolute values of the model parameters.\cite{Tibshirani1996}}
+
+\newdualentry{rni}
+{RNI}
+{Robust Network Inference}
+{A conservative network inference approach that tests all possible networks and selects parameters based on if the parameter is included in all networks that can explain the data with a given confidence.\cite{Nordling2013phdthesis}}
+
+% Symbols
+\newglossaryentry{chi2}
+{
+  name={\ensuremath{\chi^2}},
+  description={the chi-square distribution},
+  sort=chi2
+}
+\newglossaryentry{k}
+{
+  name={\ensuremath{\kappa}},
+  description={the condition number},
+  sort=k
+}

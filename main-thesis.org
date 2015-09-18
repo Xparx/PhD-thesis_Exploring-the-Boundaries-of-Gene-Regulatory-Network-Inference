@@ -1,0 +1,550 @@
+# Time-stamp: <2015-09-18 02:32:55 andreas>
+#+OPTIONS: title:t toc:nil todo:t |:t email:nil
+#+TITLE: my thesis title
+#+DATE: \today
+#+AUTHOR: Andreas Tjärnberg
+#+EMAIL: andreas.tjarnberg@scilifelab.se
+#+KEYWORDS:
+#+LANGUAGE: GB_en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 25.0.50.1 (Org mode 8.3)
+#+LATEX_CMD: mkbibtex
+#+LATEX_CLASS: thesis-book-SU
+#+LATEX_CLASS_OPTIONS: [twoside,11pt]
+#+DESCRIPTION:
+#+LATEX_HEADER: \subtitle{this is important}
+#+LATEX_HEADER_EXTRA: \hbadness=10000
+#+LATEX_HEADER_EXTRA: \hfuzz=50pt
+#+LATEX_HEADER_EXTRA: \input{glossaries-thesis}
+
+* Empty page                                                        :notitle:
+#+begin_src latex :exports results :results latex
+%: ----------------------- Cover page back side ------------------------
+\newpage
+\thispagestyle{empty}
+#+end_src
+
+* Abstract                                                          :notitle:
+#+begin_abstracts
+Biological systems
+#+end_abstracts
+
+* Document info                                                     :notitle:
+#+begin_src latex :exports results :results latex
+\phantom{.}
+
+\vspace{\stretch{1}}
+
+{\fontfamily{verdana}\selectfont
+{\scriptsize
+\noindent
+\copyright Andreas Tjärnberg, Stockholm 2015 % Name of author, location year
+
+\vspace{5mm}
+\noindent
+ISBN XXX-XX-XXXX-XXX-X % Provided by the library
+
+\vspace{5mm}
+\noindent
+Printed in Sweden by XXXX, Stockholm 2011 % name of printing company
+
+\noindent
+Distributor: Department of XX, Stockholm University % name of department
+}
+}
+\cleardoublepage
+#+end_src
+
+* Dedication                                                        :notitle:
+
+#+begin_dedication
+#+BEGIN_LaTeX
+{\fontfamily{calligra}\selectfont
+{\Large
+
+This thesis is dedicated to...
+
+}
+}
+#+END_LaTeX
+#+end_dedication
+
+* List of Papers
+
+#+begin_src latex :exports results :results latex
+\vspace{-5pt} % Increase to have a larger space.
+
+The following papers, referred to in the text by their Roman numerals, are included in this thesis.
+
+\vspace{0pt} % Increase to have a larger space before the list is started.
+
+
+\begin{enumerate}[P{A}PER I: ]
+%\begin{enumerate}[I]
+
+\setlength{\itemsep}{3.3mm} % Set the vertical distance between the items
+
+% Suggested order
+% Author 1 surname, Author 2 first name initial., Author 1 surname, Author 2 first name
+% initial. etc. (Year of publication) Paper main title.
+% Paper subtitle. Name of journal in italics, volume(number):page rage
+% Example
+
+
+\item\textbf{Titel}\\
+Author1, Author2, \emph{paper}, \textbf{issue}, page (YEAR).\\
+DOI: \href{}{}
+
+\end{enumerate}
+
+\noindent
+\rule{\linewidth}{0.5mm}
+
+\vspace{2mm}
+
+\noindent
+Reprints were made with permission from the publishers.
+#+end_src
+
+* Table of content                                                  :notitle:
+#+begin_src latex :exports results :results latex
+%: ----------------------- Table of contents ------------------------
+
+\setcounter{secnumdepth}{2} % organisational level that receives a numbers
+\setcounter{tocdepth}{2}    % print table of contents for level 2
+\tableofcontents            % print the table of contents
+% levels are: 0 - chapter, 1 - section, 2 - subsection, 3 - subsubsection
+#+end_src
+
+* Abbreviations                                                     :notitle:
+#+begin_src latex :exports results :results latex
+% To create the glossary run the command
+% $ makeglossaries main-thesis
+
+%\nomrefpage % to include page numbers after abbrevations
+
+% In the text type "\g" to refer to glossary
+
+% \markboth{\MakeUppercase{\nomname}}{\MakeUppercase{\nomname}}
+
+\begin{footnotesize} % scriptsize(7) < footnotesize(8) < small (9) < normal (10)
+\printacronyms[title=Abbreviations]
+% \printglossary[type=\acronymtype,title=Abbreviations]
+\label{nom} % target name for links to glossary
+\end{footnotesize}
+#+end_src
+
+* Figures and tables                                                :notitle:
+#+begin_src latex :exports results :results latex
+\listoffigures	% print list of figures
+\listoftables     % print list of tables
+#+end_src
+
+* Acknowledgments
+
+I would like to acknowledge...
+
+* Mainmatter                                                        :notitle:
+#+begin_src latex :exports results :results latex
+\mainmatterSU
+#+end_src
+
+* Introduction
+It was clear from early on, when the famous physicist Erwin Schrödinger asked the question "What is life"[[cite:Schrodinger1944]] that the field of biological research would gain attention from not only biologist and biochemists and could benefit from input from a diverse array of fields.
+
+# General what is systems
+Understanding biological systems is in part motivated by the need to predict or modify the behaviour of these systems.
+Whether it is the patterns of whole societies, the interactions of individual
+organisms or the cellular internal and external machinery,
+understanding theses systems may help prevent the outbrake of a disease or the optimal course of action when something within the system breaks down and needs intervening.
+One example would be if we consider cancer to be an unwanted state or breakdown of the cellular functions,
+we would wish to be able to intervene and return the system to its natural functioning mode.
+
+# Why do we need to look at things as systems of interactions
+One of the common features of the above mentioned systems is that they change over time and
+they respond to internal and external changes in non random ways.
+Information is transferred and advanced in space and over time to other current and future "younger" individuals or compeonents of the systems,
+\ie the system evolves over time.
+Another common feature among these systems is that the behaviour of the system can not be trivially understood or predicted by knowing any single "unit" alone,
+and often an emergent behaviour can be observed as a result of putting several units in a specific context.
+A unit is here a cell, an organism, or a population of organisms or cells.
+A human cell, for example, can not be grown in isolation without modifying its internal machinery.
+Often to a state that would be concidered faulty if it existed in its original environment.
+That is, the compenents the that system is built on is not the complete picture without also incorporating the interactions that they exerts with each other.
+
+# Focus on the cell
+The focus of this thesis and the work herein is mainly in the context of trying to understand the intracellular system.
+
+# Motivation for this work
+As explained above, the intracellullar system can not be viewed as being isolated from the invironment, and if it were to be isolated, we could not assume that its behaviour would be the same as in its natural context.
+This observation makes the study if this system non trivial.
+Changes to the system is not easily induced and isolated or even measured.
+# without the introduction of noise or unknown effects.
+
+# While a few components could be studied in detail by traditional biochemical and biophysical approaches, to study all the components that built up the cellular machinery both computational and new theoretical tools would be needed.
+
+# the "The Path Forward" section in
+[[cite:Rao2001]]
+# has some nice notes
+
+# Schrodinger what is life [[cite:Schrodinger1944]]
+
+# What is systems biology?
+[[cite:Vidal2009]]
+
+* Background
+
+** Biological systems
+:PROPERTIES:
+:CUSTOM_ID: sec:bio_sys
+:END:
+
+# Medical implications and motivation
+[[cite:Wolkenhauer2009]]
+
+# Drug discovery
+
+*** Regulation
+
+# Abstraction levels of regulation
+# metabolic protein RNA
+[[cite:Crampin2006]]
+#
+# gene expression
+#
+# regularization
+
+# Discussing pitfalls related to inferring interactions based on the genetic interaction properties, section 4.
+[[cite:He2009]]
+
+# Different type of regulatory models
+[[cite:Rao2001]]
+# MODELS OF CELLULAR REGULATION
+
+# bioloigcal functions
+[[cite:Sontag2005]]
+# specifically section 4 as a starting point.
+# in section 3.1 stability is discussed. and in section 3.2 a motivation why other experts are interested in studying these systems.
+
+# biological networks
+#
+
+# [[cite:Kremling2007]] A small note about biologically motived criteria
+
+*** Regulatory networks
+[[cite:Rao2001]]
+
+** Systems theory concepts
+*** Dynamical Systems
+
+# Discuss ODEs and feedback
+[[cite:Wolkenhauer2005]]
+
+# Linear vs non linear?
+
+*** Systems properties perspective
+
+# Identifiability
+#
+# Experimental design
+# Fisher information matrix
+#
+[[cite:Kremling2007]]
+
+# Strong irrepresentable condition
+
+# Robust network inference
+
+# 5.4. Time scale hierarchies [[cite:Kremling2007]]
+
+# Observability and controllability  [[cite:Kremling2007]]
+# May be in relation to experimental design
+
+# stability
+[[cite:Zavlanos2011]]
+
+*** The inverse problem
+
+#
+[[cite:Aster2005]]
+# Typically this includes the network inference.
+# There is also a nice general mathematical picture of a "sytem" in the first pages.
+# discrete inverse problem = parameter estimation problem NOT model identification problem.(maybe only indirectly)
+
+** Systems biology
+
+# Network medicine
+[[cite:Barabasi2011]]
+
+# [[cite:Schreiber2000]]
+# Might be relevant as he comments on pathway drug effects without a specific target.
+
+# Different aspects of systems biology
+[[cite:Vidal2009]]
+
+# An engeneering perspective
+[[cite:Kremling2007]]
+# Bottom up vs top down
+
+*** Network inference
+
+
+# see: Zavlanos et al for the quote "The ensemble of both classes form the so-called genetic network identification problem." first section. The following text is interesting as a reference.
+
+# General system and statistical learning
+[[cite:Hastie2009]]
+
+# Parameter estimation
+[[cite:Aster2005]]
+#
+#
+
+# reconstruction
+[[cite:Goncalves2008]]
+
+# reverse engineering
+[[cite:Gardner2005]]
+
+# Model selection
+# RSS, Goodness of fit test
+# BIC
+# AIC
+[[cite:Umezu2015]]
+[[cite:Bonneau2008]]
+
+*** Model formalism
+
+# Model formalism
+[[cite:Crampin2006]]
+# Near steady state linear system.
+
+# Details several kinds of modeling appraoches
+[[cite:Yaghoobi2012]]
+
+*** Linear model specifically
+# Model formalism,
+[[cite:Crampin2006]]
+# Near steady state linear system.
+
+
+*** Penalized linear models
+# \eg LASSO
+# LASSO
+[[cite:Tibshirani1996]]
+
+# Condtions for correct Inference using $\ell_1$ regularization
+[[cite:Candes2009,Zhao2006]]
+# Quote from Zhao2006 "Lasso (Tibshi-rani, 1996) is now being used as a computationally feasible alternative to model selection. Therefore it is important to study Lasso for model selection purposes.
+
+
+# NIR also used for real data here. Might be good
+[[citet:Gardner2003]]
+# also en example of a steady state assumption
+
+# linear system with steady state data. Might fit better in another section
+[[cite:Julius2009]]
+
+# linear system with steady state data. Might fit better in another section
+[[cite:Tegner2003]]
+
+** Network Inference Community Efforts
+
+*** Benchmarks
+
+#
+[[cite:Bansal2007]]
+
+[[cite:Penfold2011]]
+
+#
+[[cite:Marbach2012]]
+
+*** Data and experiments, \insilico vs \invivo
+#
+[[cite:Cantone2009]]
+
+[[cite:Lorenz2009]]
+
+*** Tools of systems biology
+
+# GNW
+[[cite:Schaffter2011]]
+
+# Tools and formats for systems biology
+[[cite:Kremling2007]]
+
+# inferrelator
+[[cite:Bonneau2006]]
+
+
+[[cite:Bonneau2008]]
+# MATLAB
+
+* Present investigations
+
+** Model selection based on minimum prediction error (PAPER I)
+:PROPERTIES:
+:CUSTOM_ID: sec:paper1
+:END:
+
+# [[cite:Tjarnberg2013]]
+Optimal model selection problem is as of yet an open problem.
+How to properly choose a specific set of parameters for the network inference algorithms,
+to determine the sparsity, has not been solved and no optimal method has been put farward.
+
+Some classical alternatives propesed are the [[gls:bic]] and [[gls:aic]] which both trade-of prediction and complexity to find an optimal model.
+as well as cross validation and select based on minimization of the [[gls:rss]].
+
+All these methods for model selection are motivated by the fact that data is recorded with noise and that overfitting the model then is always a risk.
+They have been shown to performe well asymptotically with \eg the number of samples[[cite:Stoica2004]]
+
+In this paper we studied the effects on model selection when the data had a varying degree of informativeness.
+Informativeness was defined based on the optimal peformance of the inference method on the data when compared to a gold standard.
+If the performance was matched the gold standard optimal then the data set was considered informative,
+if the performance was non optimal but better then random the data set was deemed partly informative and if the performance was no better than random the data was labeled uninformative. We used a specific method, [[gls:rni]],
+to determine informativeness of the data.
+The informativeness was varied based on two factors, (i) the properties of the network and experimental design, (ii) the [[gls:snr]].
+
+The data used was generated \insilico as this had been utilised with success previousl and been shown to be an good indication of how a method would beform on other data [[cite:Menendez2010,Bansal2007]].
+
+We determined two additional steps that should be utilised when solving a network inference problem.
+
+First we showed that to be able to utilise a leave out cross validation approach, or as we employ it here, a leave one out cross optimisation (LOOCO), one needs to test for dependence of the sample on the rest of the data and only include the sample in the left out group if it is sufficiently described by the data that is going to be used to infer a network.
+The reason for this is that a network inferred from data that has know description of a sample can not make any predictions about that data.
+
+Secondly we introduced a step of reestimating the paramters returned from an inference algorithm.
+Here we argued that because the consequence of introducing a bias due to the peanalty used in many inference method,
+to be able to combine model selection and data fitting,
+the parameters of the model are not the maximum likelihood estimate anymore which may skew the [[gls:rss]] for the predictions.
+The algorithm for reestimating the parameters is a [[gls:cls]] algorithm.
+[[gls:cls]] preserves the structure of the network while refitting the parameters.
+
+We showed that if the data was uninformative we can not make a useful model selection,
+while if the data was partly informative or informative,
+the model selection based on the [[gls:rss]] would maximise the true positive (TP) while minimising the false positive (FP).
+Giving our selection method a bound where the minimum [[gls:rss]] would not be achieved when any TP link would be removed.
+
+*** Future perspective
+We showed that conceptually our approach worked. However we did not investegate the performance in general and what the behaviour of our apprach would be for a wide variety of data properties.
+Several technical additions to a new studie would greatly benefit this investigation.
+
+We do not test the [[gls:bic]] and [[gls:aic]] selection methods.
+Both of these methods are dependent on the likelihood function and should therefore also have their performance influenced by our additional steps. Specifically the introduction of [[gls:cls]].
+
+The [[gls:rss]] was calculated as the mean [[gls:rss]] over all the selected leave out samples.
+A new study would greatly benefit from utilising the statistical properties of the [[gls:rss]], such as the fact that if the error of the measurements are assumed to be normal, the [[gls:rss]] will follow a [[gls:chi2]] distribution.
+With some care when estimating the degrees of freedom for each model[[cite:Andrae2010]] an exclusion step would then be done where all models not passing a goodness of fit test would be excluded as candidate networks. 
+The result would be a set of candidate networks in which we could in theory pick any of them.
+We would expect, though, that we would pick the sparsest candidate with the argument that [[glspl:grn]] are, in general, sparse.
+
+** Practical workarounds for the pitfalls of L_1 penalized regression methods (PAPER II)
+:PROPERTIES:
+:CUSTOM_ID: sec:paper2
+:END:
+
+COMMENT [[cite:Tjarnberg2014]]
+
+It is know that performance of penalised regression methods, specifically the $L_1$ [[gls:lasso]] penalised perform poorly under some conditions. Commonly referred to as the predictors having a high colinearity, which we quantify by calculating the [[gls:kappa]] of the data set. An ill conditioned matrix has in general a high degree of co-linearity.
+
+*** Future perspective
+
+** Including prior information to enhance network inference accuracy (PAPER III)
+
+# [[cite:Studham2014]]
+
+
+*** Future perspective
+
+** GeneSPIDER, a software package for a simplified network inference pipeline (PAPER IV)
+# [[cite:Tjarnberg2015-unpublished]]
+
+*** Future perspective
+
+* Backmatter                                                        :notitle:
+#+LATEX: \backmatterSU
+
+* Sammanfattning
+#+LATEX: \selectlanguage{swedish}
+En kort summering av avhandlingen p\r{a} svenska om avhandlingen \"ar skriven p\r{a}  ett annat spr\r{a}k.
+
+\r{a} \"a \"o
+#+LATEX: \selectlanguage{english}
+* References                                                        :notitle:
+#+LATEX: \renewcommand{\bibname}{References} % changes the header from Bibliography to References
+#+LATEX: \begin{scriptsize} % tiny(5) < scriptsize(7) < footnotesize(8) < small (9)
+
+[[bibliographystyle:plainnat]]
+[[bibliography:~/research/bibliography.bib,./references.bib]]
+
+#+LATEX: \end{scriptsize}
+
+* Glossaries                                                        :notitle:
+#+begin_src latex :exports results :results latex
+\printglossary
+#+end_src
+
+* COMMENT Ideas and structure
+
+** As of yet unplaced citations,
+
+[[cite:Tegner2007]]
+
+** DONE Check the GeneSPIDER for the network generation reference
+To answer the question; what is small world networks.
+[[citet:Prettejohn2011]], section 2.6 specifically sais it's not clear what small world mean.
+
+** TODO Comments from [[cite:Zavlanos2011]] about causal models, specifically differential models, should be viewed and incorporated.
+- as well as this:
+  steady-state measurements (Gardner et al., 2003; Julius et al., 2009; Tegner et al.,2003) or dynamic time-series (Amato et al., 2007; August & Papachristodoulou, 2009; Bansal et al., 2006; Cinquemani et al., 2009; Papachristodoulou & Recht, 2007; Porreca et al., 2008; Sontag et al., 2004; Srividhy et al., 2007)
+
+
+* Setup code                                                       :noexport:
+Code used when exporting to latex
+#+name: setup
+#+begin_src emacs-lisp :results silent :exports none
+(unless (find "thesis-book-SU" org-latex-classes :key 'car
+              :test 'equal)
+  (setq org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle")
+  (add-to-list 'org-latex-classes '("thesis-book-SU" "\\documentclass[11pt]{book}
+\\usepackage{thesisStyleSU}
+[NO-DEFAULT-PACKAGES]
+[PACKAGES]
+[EXTRA]"
+  ("\\chapter{%s}" . "\\chapter*{%s}")
+  ("\\section{%s}" . "\\section*{%s}")
+  ("\\subsection{%s}" . "\\subsection*{%s}")
+  ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
+#+end_src
+
+[[https://emacs.stackexchange.com/questions/9492/is-it-possible-to-export-content-of-subtrees-without-their-headings][source]]. This is currently incompatible with the latest org-mode
+#+begin_src emacs-lisp :results silent :exports none
+(defun org-remove-headlines (backend)
+  "Remove headlines with :notitle: tag."
+  (org-map-entries (lambda () (let ((beg (point)))
+                                (outline-next-visible-heading 1)
+                                (backward-char)
+                                (delete-region beg (point))))
+                   "noexport" tree)
+  (org-map-entries (lambda () (delete-region (point-at-bol) (point-at-eol)))
+                   "notitle"))
+
+(add-hook 'org-export-before-processing-hook #'org-remove-headlines)
+#+end_src
+
+This is untested.
+#+begin_src emacs-lisp :results silent :exports none
+(defun sa-ignore-headline (contents backend info)
+  "Ignore headlines with tag `ignoreheading'."
+  (when (and (org-export-derived-backend-p backend 'latex 'html 'ascii)
+          (string-match "\\`.*nononotitle.*\n"
+                (downcase contents)))
+    (replace-match "" nil nil contents)))
+
+(add-to-list 'org-export-filter-headline-functions 'sa-ignore-headline)
+#+end_src
+
+** File Local variables                                            :noexport:
+### Local Variables:
+### ispell-local-dictionary: "british"
+### End:
