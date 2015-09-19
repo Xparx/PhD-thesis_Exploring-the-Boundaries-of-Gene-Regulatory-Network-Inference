@@ -1,4 +1,4 @@
-# Time-stamp: <2015-09-18 02:32:55 andreas>
+# Time-stamp: <2015-09-19 15:29:30 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil
 #+TITLE: my thesis title
 #+DATE: \today
@@ -17,6 +17,7 @@
 #+LATEX_HEADER_EXTRA: \hbadness=10000
 #+LATEX_HEADER_EXTRA: \hfuzz=50pt
 #+LATEX_HEADER_EXTRA: \input{glossaries-thesis}
+
 
 * Empty page                                                        :notitle:
 #+begin_src latex :exports results :results latex
@@ -337,6 +338,8 @@ Changes to the system is not easily induced and isolated or even measured.
 [[cite:Candes2009,Zhao2006]]
 # Quote from Zhao2006 "Lasso (Tibshi-rani, 1996) is now being used as a computationally feasible alternative to model selection. Therefore it is important to study Lasso for model selection purposes.
 
+# consistensy of lasso
+cite:Zou2006
 
 # NIR also used for real data here. Might be good
 [[citet:Gardner2003]]
@@ -388,7 +391,7 @@ Changes to the system is not easily induced and isolated or even measured.
 :CUSTOM_ID: sec:paper1
 :END:
 
-# [[cite:Tjarnberg2013]]
+COMMENT: [[cite:Tjarnberg2013]]
 Optimal model selection problem is as of yet an open problem.
 How to properly choose a specific set of parameters for the network inference algorithms,
 to determine the sparsity, has not been solved and no optimal method has been put farward.
@@ -434,7 +437,7 @@ Both of these methods are dependent on the likelihood function and should theref
 
 The [[gls:rss]] was calculated as the mean [[gls:rss]] over all the selected leave out samples.
 A new study would greatly benefit from utilising the statistical properties of the [[gls:rss]], such as the fact that if the error of the measurements are assumed to be normal, the [[gls:rss]] will follow a [[gls:chi2]] distribution.
-With some care when estimating the degrees of freedom for each model[[cite:Andrae2010]] an exclusion step would then be done where all models not passing a goodness of fit test would be excluded as candidate networks. 
+With some care when estimating the degrees of freedom for each model[[cite:Andrae2010]] an exclusion step would then be done where all models not passing a goodness of fit test would be excluded as candidate networks.
 The result would be a set of candidate networks in which we could in theory pick any of them.
 We would expect, though, that we would pick the sparsest candidate with the argument that [[glspl:grn]] are, in general, sparse.
 
@@ -445,19 +448,46 @@ We would expect, though, that we would pick the sparsest candidate with the argu
 
 COMMENT [[cite:Tjarnberg2014]]
 
-It is know that performance of penalised regression methods, specifically the $L_1$ [[gls:lasso]] penalised perform poorly under some conditions. Commonly referred to as the predictors having a high colinearity, which we quantify by calculating the [[gls:kappa]] of the data set. An ill conditioned matrix has in general a high degree of co-linearity.
+It is know that performance of penalised regression methods, specifically the $L_1$ [[gls:lasso]] penalised perform poorly under some conditions [[cite:dummyXXXX]].
+Commonly referred to as the predictors having a high co-linearity, which we quantify by calculating the condtion number [[gls:k]] of the data set.
+An ill conditioned matrix has in general a high degree of co-linearity.
+
+The observation here is that even when the data is informative, defined as in PAPER I [[ref:sec:paper1]], the $L_1$ penalised methods performes as if the data was only partly informative.
+This is even when we act as if we had expert knowledge when selecting the optimal network produced by the inference method.
+
+The performance of these types of inference method have been investigated and been shown to be a function of the data and network[[cite:SIC,others,gnw_and_dream_motif,fisher_inf_matrix]].
+The issue with these results is that they are impractical in reality as we don't know the network structure beforehand and in some cases we would arive at the wrong conclusions if we would use the wrong network structure.
+
+We show that a proxy for predicting the performance of an inference method is investigating the properties of the data, specifically the condition number [[gls:k]] and the [[gls:snr]].
+
+We use synthetic data to vary the properties of both network and \insilico  expression data.
+We constructed the data so that the properties ranged over known values of properties for real biologicl data sets.
+The properties of the expression data is highly dependant on the network properties but the data properties can be tuned depending on the experimental design[[cite:Nordling2009]].
+This is demonstrated with 3 different experimental designs.
+Two of the appraches could easily be employed in practise and showed that these designs made the data properties highly dependent on the network properties.
+The third approach would be more invloved to implement in practise and aimed at minimising the [[gls:k]] for the expression matrix.
+It demonstrated clearly that decoupling the data and network properties and tune the input so that the data properties would approach more desired states would greatly enhance the performance of the inference and network construction.
 
 *** Future perspective
 
-** Including prior information to enhance network inference accuracy (PAPER III)
+# TLS
 
-# [[cite:Studham2014]]
+** Including prior information to enhance network inference accuracy (PAPER III)
+:PROPERTIES:
+:CUSTOM_ID: sec:paper3
+:END:
+
+COMMENT: [[cite:Studham2014]]
 
 
 *** Future perspective
 
 ** GeneSPIDER, a software package for a simplified network inference pipeline (PAPER IV)
-# [[cite:Tjarnberg2015-unpublished]]
+:PROPERTIES:
+:CUSTOM_ID: sec:paper4
+:END:
+
+COMMENT: [[cite:Tjarnberg2015-unpublished]]
 
 *** Future perspective
 
