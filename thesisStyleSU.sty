@@ -19,6 +19,7 @@
 \usepackage[margin=10pt,font=small,labelfont=bf]{caption} % for improved layout of figure captions with extra margin, smaller font than text
 \usepackage{longtable}
 \usepackage{lscape}
+\usepackage{adjustbox}
 
 \usepackage{easySymbols}
 \usepackage{enumerate}
@@ -26,7 +27,7 @@
 \usepackage{ifpdf}
 \ifpdf
 \usepackage{epstopdf} % converts eps figures to pdf
-\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
 \usepackage[pdftex, plainpages = false, pdfpagelabels,
 pdfpagelayout = useoutlines,
 bookmarks,
@@ -44,7 +45,7 @@ hyperindex = true,
 hyperfigures
 ]{hyperref}
 
-\DeclareGraphicsExtensions{.png, .jpg, .jpeg, .pdf} %GIF doesn't work
+\DeclareGraphicsExtensions{.png, .jpg, .jpeg, .pdf} % GIF doesn't work
 \else
 \usepackage{graphicx}
 \usepackage[plainpages = false,
