@@ -1,7 +1,7 @@
-# Time-stamp: <2015-10-12 02:12:49 andreas>
+# Time-stamp: <2015-10-14 13:58:42 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
-#+TITLE: my thesis title
+#+TITLE: Dynamics and Networks
 #+DATE: \today
 #+AUTHOR: Andreas Tjärnberg
 #+EMAIL: andreas.tjarnberg@scilifelab.se
@@ -14,7 +14,7 @@
 #+LATEX_CLASS: thesis-book-SU
 #+LATEX_CLASS_OPTIONS: [twoside,11pt]
 #+DESCRIPTION:
-#+LATEX_HEADER: \subtitle{this is important}
+#+LATEX_HEADER: \subtitle{Exploring the bounderies of the inference process}
 #+LATEX_HEADER_EXTRA: \hbadness=10000
 #+LATEX_HEADER_EXTRA: \hfuzz=50pt
 #+LATEX_HEADER_EXTRA: \input{glossaries-thesis}
@@ -254,21 +254,30 @@ A protein complex formation would constitute such a case, where the proteins mig
 [[file:img/abstract_network.pdf]]
 
 Figure [[ref:fig:net-hierarchy]] shows an hierarchical separation of different regulatory networks in the cell.
-This differentiation cannot be well defined in a real cell but is here separated by concepts, and in some regards, measuring techniques. We have the metabolic layer which in the figure depicts the path of different metabolites or transformations of metabolites, modelled often by mass action kinetics[[cite:Jamshidi2010]].
-The protein layer which deals the protein protein interaction networks. Here we also have to deal with protein complexes which is an example of an interaction that might not be influencing the rate or change of any of the proteins involved but is still considered an interaction.
-Or it may be the case that the complex regulates something else and both proteins needs to be present for a regulatory interaction to occur, much like an =AND= operator in a boolean operation. The third layer is the gene layer. Here specific genes are transcribed to RNA products that may have regulatory effects or themselves getting translated in to proteins.
-The arrows indicated direction of regulation, if the head of the link is an arrow it means the interaction is activating and if the head of the link is T shaped it means the interaction is suppressing.
+This differentiation cannot be well defined in a real cell but is here separated by concepts, and in some regards, measuring techniques.
+We have the metabolic layer in the figure depicting the path of different metabolites or transformations of metabolites, modelled often by mass action kinetics[[cite:Jamshidi2010]].
+The protein layer that details the protein to protein interaction network.
+Here we also have to deal with protein complexes.
+Protein-protein interactions are an example of a type of an interaction that might not be influencing the rate or change of any of the proteins involved but is still be an interaction.
+It can be the case that the complex regulates something else and both proteins needs to be present for a regulatory interaction to occur, much like an =AND= operator in a boolean operation.
+The third layer is the gene layer.
+Here specific genes are transcribed to RNA.
+The RNA themselves have regulatory effects or they get translated in to proteins.
+The arrows indicates direction of regulation, if the head of the link is an arrow it means the interaction is activating and if the head of the link is T shaped it means the interaction is suppressing.
 
-The dashed lines on the bottom layer is the interactions you would observe if you could only observe the behaviour of the gene layer. It is clear that not all interactions in this layer is directly influencing the genes but is indirectly mediated through other layers of the network.
+The dashed lines on the bottom layer is the interactions you would observe if you could only observe the behaviour of the gene layer.
+It is clear that not all interactions in this layer is directly influencing the gene itself but is indirectly mediated through different layers of the network.
 In the following part of this thesis, when referring to \acrlongpl{grn}, this abstract layers is what is referred to if not stated otherwise.
 
-Discussing the [[gls:grn]] in these terms is partly made for practical reasons. All nodes of the "true" [[gls:grn]] as depicted in the figure might not be observable. For example, the experimental setup for measuring mRNA versus protein or metabolites are very different and is not easily combined on a large scale.
-The time scales of reactions for different layers or sub-networks might be substantially different as well.
+Discussing the [[gls:grn]] in these terms is partly made for practical reasons.
+All nodes of the "true" [[gls:grn]] as depicted in the figure might not be observable under specific experimental setups.
+For example, the experimental setup for measuring mRNA versus protein or metabolites is very different and is not easily combined on a large scale.
+The time scales of reactions for different layers or sub-networks might be substantially different.
 Some interactions might not be observed if measuring the system over several days or under just a few seconds[[cite:Elf2007]].
 
-Its also common that the different layers of networks are separated in different databases.
-
-For simpler organisms the [[gls:tf]] network is constructed from curated data and contains a large number of interactions. /RegulonDB/[[cite:Salgado2013]] has a large set of [[gls:tf]] binding interactions collected in a regulatory network of \coli. Correspondingly for \yeast one can turn to Yeastract[[cite:Teixeira2013]].
+It is also common that the different layers of the networks are separated in different databases.
+For simpler organisms the [[gls:tf]] network is constructed from curated data and contains a large number of interactions. /RegulonDB/[[cite:Salgado2013]] has a large set of [[gls:tf]] binding interactions collected in a regulatory network of \coli.
+Correspondingly for \yeast there is the database Yeastract[[cite:Teixeira2013]].
 These networks aims at mapping direct binding interactions between gene and gene products, specifically [[glspl:tf]] and binding sites.
 It has also been shown that mRNA expression data can be used to construct these networks
 [[cite:Faith2007]], and that it can be used to validate or extract knowledge.
@@ -277,10 +286,10 @@ It has also been shown that mRNA expression data can be used to construct these 
 One of the main areas of practical application for network view based biology is in medicine.
 Around $10\%$ of human genes is disease associated.
 With the vast amount of interactors and interactions it is implied that the effect of the disease associations are not isolated to those $10\%$.
-The effect of /comorbidity/, for example, is an indication that a specific decease is not isolated in its effects. Comorbidity is the ability of a disease to enhance other diseases if some specific disease is already present.
-
-By building a network of interactions and influences of cellular components a bigger picture can emerge of a deices effect.
-By overlaying implicated disease genes on the this network one can draw conclusions of other would be disease associated genes.
+The effect of /comorbidity/ is an indication that a specific decease is not isolated in its effects.
+Comorbidity is the ability of a disease to enhance other diseases if some specific disease is already present.
+By building a network of interactions and influences of cellular components a bigger picture can emerge of a disease effects on the regulatory system.
+By overlaying implicated disease genes on the network one can draw conclusions of other would be disease associated genes.
 The more complete this picture the better the conclusions of such a study[[cite:Barabasi2011]].
 # Network medicine see notes
 
@@ -289,14 +298,14 @@ The more complete this picture the better the conclusions of such a study[[cite:
 # [[cite:Morel2004]]
 
 One of the main goals of drug discovery is to find compounds with specific properties that can target and effect pathways with high accuracy[[cite:Schreiber2000]].
-Generating reliable models that can both predict and explain the effect of a specific perturbation generated from a drug compound will aid in creating more specific and effective drug treatments.
+Generating reliable models that both predict and explain the effect of a specific perturbation generated from a drug compound will aid in creating more specific and effective drug treatments.
 
 Cancer treatments are usually highly invasive, and cancer itself effects the operation of the cell.
 The signalling pathways and behaviour is altered[[cite:Weinberg1996]].
 The effects of the cancer are multi-factorial, many times different for each cancer, and related to the regulatory system of the cell.
-An accurate model of healthy cells could serve as a basis for finding alterations in the regulatory system on a very detailed level.
+An accurate model of healthy cells would serve as a basis for finding alterations in the regulatory system on a very detailed level.
 
-Systems biology and elucidating the context specific regulatory networks of the cell will aid in creating a medical approach that is, predictive, personalised and preventive[[cite:Flores2013]].
+Systems biology approaches and elucidating the context specific regulatory networks of the cell will aid in creating a medical approach that is, predictive, personalised and preventive[[cite:Flores2013]].
 
 # Medical implications and motivation [[cite:Wolkenhauer2009]]
 
@@ -312,8 +321,11 @@ and finally this section will give a brief description of properties associated 
 :PROPERTIES:
 :CUSTOM_ID: sec:system_description
 :END:
+Representation of a systems is as important as learning about the system itself.
+Whether it is a mathematical description a chemical reaction description or a graphical overview, this can help fuel insight about what is being observed.
+This is especially important as the assumptions of the representation will confer information that could be inaccurate or misleading.
 
-In general we can setup a systems description as the mathematical model
+In general we describe a system mathematically as
 #+begin_src latex :exports results :results latex
 \begin{equation}
   \Phi(a) = \xi
@@ -326,12 +338,13 @@ which vectorised becomes
 \noindent
 for a multivariate problem where $\ba$ is the model parameters of the model and $\Phi$ is the function that maps the independent variables,
 to the dependent variables, $\bxi$[[cite:Aster2005]].
-For a discrete linear system ([[ref:eq:system]]) becomes a system of equations to be solved
+For a discrete linear system ([[ref:eq:system]]) becomes a set of equations to be solved
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:sys_equ}
   \mPhi\ba = \bxi
 \end{equation}
-where independent variables $\phi_{ij}$ is mapped with parameter $a_j$ to the data $xi_i$. For $n=3$ variables and $m$ data points or samples recorded or measured, this becomes
+where independent variables $\phi_{ij}$ is mapped with parameter $a_j$ to the data $xi_i$.
+For $n=3$ variables and $m$ data points recorded, this becomes
 \begin{equation}
   \begin{bmatrix}
     \phi_{11} & \phi_{21} & \phi_{31}\\
@@ -404,7 +417,7 @@ They may also determine phenotypes due to functioning as hard switches[[cite:Wol
 
 **** Steady states
 :PROPERTIES:
-:CUSTOM_ID: sec:steady-states
+:custom_id: sec:ss
 :END:
 [[Glspl:ss]] are defined by $\dot{\bx} = 0 \equiv f(\bx_0)$ in ([[ref:eq:ode]]).
 The nature of the [[gls:ss]] can be elusidated by analysing the system $f(\bx_0) = 0$.
@@ -431,10 +444,14 @@ This because an equilibrium will be reach depending on the grown rate and degrad
 :PROPERTIES:
 :CUSTOM_ID: sec:lin-vs-non-lin
 :END:
-Representation of a systems is as important as learning about the system itself.
-Whether it is a mathematical description a chemical reaction description or a graphical overview, this can help fuel insight about what is being observed.
-This is especially important as the assumptions of the representation will confer information that could be inaccurate or misleading.
+Depending on what representation of the system we choose to use different properties or features of the model will follow.
+The model should be able to capture important features of the underlying system and aim to be simple to understand and interpret.
+The representation should be able to give us insite on what the system looks like and predict what kind of behaviour is expected in general or for a specific set of parameters.
+Another practical reason to consider when choosing a representative description is the possibility to evaluate or retrieve a solution either analytically or computational.
+Added complexity will often result in longer compute time or harder to evaluate solutions.
 
+The following section will detail an example of two different types of systems, one liner and one non linear.
+The non linear representation is developed to model enzyme kinetics and the linear representation is a simplifed version.
 #+CAPTION[Feedback graph]: Mutual activating feedback circuit of two genes. The ball at the end of the link is a placeholder for an unspecified interaction, if an arrowhead is put there it means an activating interaction and if a T bar is put at the end it means a repression.
 #+label: fig:two-gene-feedback
 [[file:img/feedback_graph.pdf]]
@@ -443,26 +460,40 @@ This is especially important as the assumptions of the representation will confe
 
 Figure [[ref:fig:two-gene-feedback]] is the graphical, or network, representation of a two gene mutually regulating feedback loop.
 The links depict the direction of the interaction with the balls at the end of the link serving as a placeholder for an activating (arrow) or repressing (T) interaction.
-The parameters of model are $a_{11},a_{12},a_{21}$ and $a_{22}$.
 We can mathematically describe this system as an [[gls:ode]],
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback-general}
-  \begin{array}{ccc}
-    \dot{x}_1 &= a_{12} f_{G_2}(x_2) - a_{11} x_1 &= g_{x_1} \\
-    \dot{x}_2 &= a_{21} f_{G_1}(x_1) - a_{22} x_2 &= g_{x_2} \\
+  \begin{array}{lcr}
+    \dot{x}_1 &= f_{G_1}(a_{12},a_{11},\alpha,x_1,x_2,\bK_1) &= g_{x_1}\\
+    \dot{x}_2 &= f_{G_2}(a_{21},a_{22},\alpha,x_1,x_2,\bK_2) &= g_{x_2}\\
   \end{array}
 \end{equation}
 #+end_src
 \noindent
 $f_{G_{*}}$ is a function of choice that are chosen based on modelling assumption or purpose and could be different for different interactions.
-The degradation is here explicitly modelled as linear.
-The state of the system is $x_i$ and $x_2$ which represents some quantity related to the gene $G_1$ and $G_2$ respectively.
-The rate of degradation might be considered as independent decay unless it itself is regulated.
-If auto-regulation would be incorporated in to this model then the effect that $G_1$ would have on it self would need to be incorporated separately.
+The parameters of model are $a_{11},a_{12},a_{21}, a_{22}$ and $\alpha_1$ and $\alpha_1$.
+Any other paramters in the functions $f$ are represented by $\bK_i$.
+The state of the system is $x_i$ and $x_2$ represents some quantity related to the gene $G_1$ and $G_2$ respectively.
 
-To find the [[glspl:ss]] we set set the rate $\dot{x}_1$ and $\dot{x}_2=0$ and solve for $x_1$ and $x_2$.
+To simplify somewhat lets look at activating feedback loop with degradation only.
+#+begin_src latex :exports results :results latex
+\begin{equation}\label{eq:feedback}
+  \begin{array}{lcr}
+    \dot{x}_1 &= a_{12} f_{G_2}(x_2) - \alpha_1 x_1 &= g_{x_1} \\
+    \dot{x}_2 &= a_{21} f_{G_1}(x_1) - \alpha_2 x_2 &= g_{x_2} \\
+  \end{array}
+\end{equation}
+#+end_src
+\noindent
+The degradation is here explicitly modelled as a linear effect on the gene itself.
+The rate of degradation is considered as decay of $x_i$ unless it itself is regulated by $x_i$ and are captured in the parameter $\alpha$.
+If auto-regulation would be incorporated in the model then the effect that $G_1$ would have on it self would need to be incorporated separately with the paramters $a_ii$.
 
-To find the behaviour of this system close to its [[gls:ss]] (see: section [[ref:sec:steady-states]]) we find the Jacobian matrix,
+Now we can look at some properties of this system.
+First lets look at [[gls:ss]].
+To find the [[glspl:ss]] we set the rate $\dot{x}_1$ and $\dot{x}_2=0$ and solve for $x_1$ and $x_2$.
+To find the behaviour of this system close to its [[gls:ss]]
+(see: section [[ref:sec:ss]]) we find the Jacobian matrix,
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback-jacobian}
   J = 
@@ -472,11 +503,12 @@ To find the behaviour of this system close to its [[gls:ss]] (see: section [[ref
   \end{pmatrix}
   =
   \begin{pmatrix}
-    -a_{11} & a_{12} f^\prime_{x_1}(x_2)\\
-    a_{21} f^\prime_{x_2}(x_1) & -a_{22}\\
+    -\alpha_1 & a_{12} f^\prime_{x_1}(x_2)\\
+    a_{21} f^\prime_{x_2}(x_1) & -\alpha_2\\
   \end{pmatrix}
 \end{equation}
 #+end_src
+\noindent
 and behaviour of the [[gls:ss]] is descirbed by the eigenvalues of the Jacobian.
 The eigenvalues are calculated by finding the $\lambda$ of
 #+begin_src latex :exports results :results latex
@@ -484,21 +516,22 @@ The eigenvalues are calculated by finding the $\lambda$ of
 \begin{array}{c}
   |J - \lambda \bI| = 0\\
   \\
-  (-a_{11} - \lambda)(-a_{22} - \lambda) - (a_{12} f^\prime_{x_1}(x_2)) (a_{21} f^\prime_{x_2}(x_1)) = 0\\
+  (-\alpha_1 - \lambda)(-\alpha_2 - \lambda) - (a_{12} f^\prime_{x_1}(x_2)) (a_{21} f^\prime_{x_2}(x_1)) = 0\\
 \end{array}
 \end{equation}
 #+end_src
+\noindent
 where $|.|$ is the determinant and $\bI$ is the identity matrix.
-This will evaluate to a quadratic function with two solutions for $\lambda$ one for each eigenvalue.
+This will evaluate to a quadratic function with two solutions for $\lambda$, one for each eigenvalue.
 The eigenvalues are evaluated at the [[gls:ss]], so that $f^\prime_{x_1}(x_2)$ and $f^\prime_{x_2}(x_1)$ are evaluated at the steady state[[cite:Morris2004]].
 
-Lets consider the case where $f$ is the linear function for both $G_1$ and $G_2$. 
-Then ([[ref:eq:feedback-general]]) at [[gls:ss]] would look like
+Lets consider the case where $f_x$ is the linear function for both $G_1$ and $G_2$.
+Then ([[ref:eq:feedback]]) will have four paramters $a_12,a_21$ and $\alpha_1,\alpha_2$ and the [[gls:ss]] would look like
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback-linear-ss}
   \begin{array}{ccc}
-    0 &= a_{12} x_2 - a_{11} x_1\\
-    0 &= a_{21} x_1 - a_{22} x_2\\
+    0 &= a_{12} x_2 - \alpha_1 x_1\\
+    0 &= a_{21} x_1 - \alpha_2 x_2\\
   \end{array}
 \end{equation}
 #+end_src
@@ -513,66 +546,77 @@ and the [[gls:ss]] solution is
 \]
 #+end_src
 \noindent
-and ([[ref:eq:feedback-eigenvalues]]) will, depending on the paramters $a_{ij}$, be positive, negative or complex.
-Complex eigenvalues always commes in pairs.
-The real part of the  eigenvalues $\Re(\lambda)$ determines if the system is stable (-) or unstable (+).
+and ([[ref:eq:feedback-eigenvalues]]) will, depending on the paramters $a_{ij}$ and $\alpha_i$, be positive, negative or complex.
+Complex eigenvalues always comes in pairs.
+The real part of the eigenvalues $\Re(\lambda)$ determines if the system is stable (-) or unstable (+).
 The imaginary part $\Im(\lambda)$ determines the oscillatory behaviour of the system.
 
-Now lets look at the non linear case when $f$ is the Michaelis-Menten kinetics,
-Other alternatives could be Hill kinetics or boolean functions.
-The Michaelis-Menten function
+Now lets look at the non linear case when $f_x$ is the Michaelis-Menten kinetics function.
+Other alternatives can be chosen as well, \eg Hill kinetics or boolean functions.
+The Michaelis-Menten function is
 #+begin_src latex :exports results :results latex
 \begin{equation}
-  f_{x_i}(x_j) = \frac{x_j}{x_j + k_{ji}}
+  f_{x_i}(x_j) = \frac{x_j}{x_j + K_{ji}}
 \end{equation}
 #+end_src
 \noindent
 for an activator, and
 #+begin_src latex :exports results :results latex
 \begin{equation}
-  f_{x_i}(x_j) = \frac{k_{ij}}{x_j + k_{ji}}
+  f_{x_i}(x_j) = \frac{K_{ji}}{x_j + K_{ji}}
 \end{equation}
 #+end_src
 \noindent
-for a repressor, where $j$ indicate the activator or repressor and $i$ the target. $k_{ij}$ is the activator coefficient which relates to the amount of $x_j$ needed to be present until significant activation or repression is achieved.
-For Michaelis-Menten the amount of $x_j$ needed for $50\%$ activation.
+for a repressor, where $j$ indicate the activator or repressor and $i$ the target. $K_{ij}$ is the activator coefficient which relates to the amount of $x_j$ needed to be present until significant activation or repression is achieved.
+For Michaelis-Menten the amount of $x_j$ needed for $50\%$ activation of its maximum.
 
 To simplify lets look at mutual activation.
 The [[gls:ss]] equations from ([[ref:eq:feedback-general]]) will now be,
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback-non-linear-ss}
   \begin{array}{ccc}
-    0 &= a_{12} \frac{x_2}{x_2 + k_{21}} - a_{11} x_1\\
-    0 &= a_{21} \frac{x_1}{x_1 + k_{12}} - a_{22} x_2\\
+    0 &= a_{12} \frac{x_2}{x_2 + K_{21}} - \alpha_1 x_1\\
+    0 &= a_{21} \frac{x_1}{x_1 + K_{12}} - \alpha_2 x_2\\
   \end{array}
 \end{equation}
 #+end_src
 \noindent
-We have a [[gls:ss]] at $[x_1,x_2] = [0,0]$ however in this case that is not a unique solution, and we also have a solution at
+We have a [[gls:ss]] at $[x_1,x_2] = [0,0]$ however in this case this is not a unique solution, and we also have a solution at
 #+begin_src latex :exports results :results latex
 \[
 \begin{array}{cc}
-  x_1 &= \frac{S_{x_1} S_{x_2} - k_{12} k_{21}}{S_{x_2} + k_{21}}\\
-  x_2 &= \frac{S_{x_1} S_{x_2} - k_{12} k_{21}}{S_{x_1} + k_{12}}\\
+  x_1 &= \frac{S_{x_1} S_{x_2} - K_{12} K_{21}}{S_{x_2} + K_{21}}\\
+  x_2 &= \frac{S_{x_1} S_{x_2} - K_{12} K_{21}}{S_{x_1} + K_{12}}\\
 \end{array}
 \]
 #+end_src
 \noindent
-where $S_{x_1}=a_{12}/a_{11}$ and $S_{x_2}=a_{21}/a_{12}$.
+where $S_{x_1}=a_{12}/\alpha_1$ and $S_{x_2}=a_{21}/\alpha_2$.
 
 Some notes on these observations.
 For non linear systems like the ones with Michaelis-Menten kinetics there could exist more than one [[glspl:ss]].
-To be able to find out the [[gls:ss]] behavour one needs to choose a set of paramters of the model.
+To be able to find the [[gls:ss]] behavour one needs to choose a set of paramters of the model.
 
-This perticular non linear system can not exhibit infinate growth as long as the degradation factor is considered.
+This particular non linear system can not exhibit infinate growth as long as the degradation factor is considered.
 The growth rate will eventually be balanced out by the degradation factor.
 
 Depending on if any specific combination of parameters in the equation ([[ref:eq:feedback-jacobian]]) is equal to 0 the system becomes singular and an infinate number of solutions can be found for the [[gls:ss]].
 
-For linear systems there is no differentiation between autoregulation and degradation, which is easily seen by seting up the system as in ([[ref:eq:feedback-general]]).
+The linear system that we explored had 6 paramters while the linear system had 4.
+Including auto-regulation will increase the number of parameters for the non linear system to 10.
+For the linear system there is no differentiation between auto-regulation and degradation, which is easily seen by adding auto-regulation to equation ([[ref:eq:feedback]]).
 The effects are additative and not independantly modelled.
 
+As mentioned before one need to be careful to what model to use to represent ones system.
+While some features can not be captured by the linear model, such as bi-stability, the increase in complexity and degrees of freedom for the non linear system can risk creating models that does not represent the underlying biology and by extension increase the demand for more data.
+
+In the extreme case a very simple model can fit any set of data points exactly[[cite:Andrae2010]].
+Discriminating any two model structures, \ie what paramters are interesting versus parameters that should be excluded, under these conditions would be much more difficult.
+
 **** Hierarchical systems
+:PROPERTIES:
+:CUSTOM_ID: sec:hierarchical-systems
+:END:
 Investigating hierarchies in system may help simplify further analysis.
 A dynamical system may work on several different time scales.
 The time constant $\tau$ can be derived from the eigenvalues of the jacobian, $J$, in essence estimating the size of the system changes.
@@ -620,6 +664,9 @@ The corresponding estimated interampatteness degree was $\kappa = 215$ and $\kap
 The response data and perturbation design should be related to the interampatteness of the system under investigation.
 
 ** Systems biology
+:PROPERTIES:
+:CUSTOM_ID: sec:system-biology
+:END:
 
 Systems biology mainly concerns itself with finding a description of biology that takes in to account the complex interactions that is typically found within \eg the cellular network.
 The problems sought to be solved by a systems biology approach concerns behaviours of cellular networks in the light of specific motifs.
@@ -659,7 +706,6 @@ This means that the expression of each gene needs to be discretized to determine
 #+end_src
 where $f^B$ is a boolean function and $\bx(t+1)$ is the state of the state variables (=ON= / =OFF=) at time $t+1$ as a function of the state at time $t$.
 #
-
 
 Bayesian models is by their nature probabilistic.
 The models are based on conditional probabilities.
