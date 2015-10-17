@@ -1,7 +1,7 @@
-# Time-stamp: <2015-10-14 13:58:42 andreas>
+# Time-stamp: <2015-10-17 14:38:40 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
-#+TITLE: Dynamics and Networks
+#+TITLE: Dynamical regulatory networks
 #+DATE: \today
 #+AUTHOR: Andreas Tjärnberg
 #+EMAIL: andreas.tjarnberg@scilifelab.se
@@ -14,7 +14,7 @@
 #+LATEX_CLASS: thesis-book-SU
 #+LATEX_CLASS_OPTIONS: [twoside,11pt]
 #+DESCRIPTION:
-#+LATEX_HEADER: \subtitle{Exploring the bounderies of the inference process}
+#+LATEX_HEADER: \subtitle{Exploring the bounderies of the network inference process}
 #+LATEX_HEADER_EXTRA: \hbadness=10000
 #+LATEX_HEADER_EXTRA: \hfuzz=50pt
 #+LATEX_HEADER_EXTRA: \input{glossaries-thesis}
@@ -29,8 +29,24 @@
 
 * Abstract                                                          :notitle:
 #+begin_abstracts
-Biological systems
+To understand how the details of this complex system fit together we need to collect data for several components simultaneously.
+With the data we want to infer a network that describe how the peaces fit and act together.
+The work in this thesis deals with modelling the cell, often represented as a network, with tools and concepts derived from systems biology.
+
+The first investigation dealt with network complexity and algorithm bias that can be introduced in the inference procedure.
+We derived a procedure for minimising the influence of bias in network inference algorithms to give a more accurate result and showed that it indeed minimised the bias introduced by the algorithm.
+We demonstrated the result on a number of different algorithms and \insilico data sets and showed that it helped elucidate the correct parameters to determine network complexity.
+
+To investigate how knowledge from association network could be transferred to regulatory network inference procedures we constructed an algorithm to incorporate prior knowledge and demonstrated that prior knowledge could increase performance of the network inference when the quality of the data was low.
+
+We also investigated the influence of system and data properties on the network inference procedure by exploring several different variables associated with the data and system.
+We could elucidate general principles for what conditions influenced algorithms performance.
+We associated the performance of the network inference with the properties of the data and could from that estimate the performance of algorithms on biological data.
+
+Finally we built a software package containing the code for solving problems encountered during previous investigations.
+The software package explores both network reconstruction as well as data exploration in the context of network inference.
 #+end_abstracts
+\clearpage
 
 * Document info                                                     :notitle:
 #+begin_src latex :exports results :results latex
@@ -88,15 +104,26 @@ The following papers, referred to in the text by their Roman numerals, are inclu
 \setlength{\itemsep}{3.3mm} % Set the vertical distance between the items
 
 % Suggested order
-% Author 1 surname, Author 2 first name initial., Author 1 surname, Author 2 first name
+% Author 1 surname, Author 1 first name initial., Author 2 surname, Author 2 first name
 % initial. etc. (Year of publication) Paper main title.
 % Paper subtitle. Name of journal in italics, volume(number):page rage
 % Example
 
+\item\textbf{Optimal sparsity criteria for network inference.}\\
+Tjärnberg A., Nordling T., Studham M., and Sonnhammer EL.
+ \emph{Journal of Computational Biology}, \textbf{20(5)}, 398-4089 (2013).\\
+DOI: \href{http://dx.doi.org/10.1089/cmb.2012.0268}{10.1089/cmb.2012.0268}
 
-\item\textbf{Titel}\\
-Author1, Author2, \emph{paper}, \textbf{issue}, page (YEAR).\\
-DOI: \href{}{}
+\item\textbf{Functional association networks as priors for gene regulatory network inference.}\\
+Studham M., Tjärnberg A., Nordling T., Nelander S., and Sonnhammer EL. \emph{Bioinformatics}, \textbf{30(12)}, i130–i138 (2014).\\
+DOI: \href{http://dx.doi.org/10.1093/bioinformatics/btu285}{10.1093/bioinformatics/btu285}
+
+\item\textbf{Avoiding pitfalls in l1-regularised inference of gene networks.}\\
+Tjärnberg A., Nordling T., Studham M., Nelander S., and Sonnhammer EL. \emph{Mol. BioSyst.}, \textbf{issue}, 287-296 (2015).\\
+DOI: \href{http://dx.doi.org/10.1039/C4MB00419A}{10.1039/C4MB00419A}
+
+\item\textbf{Genespider - generation and simulation package for informative data exploration.}\\
+Andreas Tjärnberg, Torbjörn Nordling, Daniel Morgan, Matthew Studham, Erik Sonnhammer \emph{unpublished, manuscript under preparation.}, \textbf{}  (2015).\\
 
 \end{enumerate}
 
@@ -155,9 +182,10 @@ I would like to acknowledge...
 * Introduction
 
 # General what is systems
-Understanding biological systems is in part motivated by the need to predict or modify the behaviour of these systems.
+Biological systems can be viewed as anything comprised of living things, whetever that definition may be.
 Whether it is the patterns of whole populations and societies, on-line communities (if considered biological or not can be questioned), the interactions of individual organisms or the cellular internal and external machinery,
-gaining mechanistic understanding of the system can help prevent the out brake of a disease, or the optimal course of action when functions within the system breaks down.
+understanding biological systems is motivated by the need to predict or modify the behaviour of these systems.
+Gaining mechanistic understanding of the system can help prevent the out brake of a disease, or the optimal course of action when functions within the system breaks down.
 If we view cancer to be an unwanted state, or a breakdown, of cellular function
 we would want to intervene and return the system to a natural functioning mode.
 Either by forcing the system to return to its original state or by selectively terminating the faulty cells without damaging healthy cells.
@@ -172,7 +200,7 @@ Emergent behaviours can be viewed as a result of placing several units in a spec
 A unit is here a cell, an organism, or a population of organisms or cells.
 A human cell, for example, cannot be grown in isolation without modifying the internal machinery,
 often to a state that would be considered faulty if it existed in the cells original environment.
-That is, the components of the system is built on is not the complete picture without also incorporating the interactions they exerts on each other and the behaviour that arises from these interactions.
+That is, the components of the system is built on is not the complete picture without also incorporating the interactions they exerts on each other and the behaviour that arises from these interactions[[cite:Barabasi2004]].
 It should be noted that a wide range of systems can be investigated with similar concepts and knowledge can be derived indirectly from other areas of research, evident by the investigation of how different systems interactions are structured[[cite:Milo2002]].
 
 # Focus on the cell
@@ -190,8 +218,10 @@ it is nearly impossible to isolate a biological system enough, on a large scale,
 All studies considering more than a few components needs to account for these effect and incorporate stochastic or noise effects in to their conclusions.
 
 The goal of systems biology is to understand the structure and behaviour of biological systems on a specific hierarchical level, where the cell is one example.
-To do this, in light of the difficulties at hand, a through study of the bounders and performance of the tools used and the properties of the experiments carried out is of prime importance.
-The focus of the work done in this thesis is the study of these things. To contribute to the possibility to infer, from data, [[glspl:grn]] with high confidence, that reflects accurately the underlying biology.
+To do this, in light of the difficulties at hand, a thorough study of the boundaries and performance of the tools used and the properties of the experiments carried out is of prime importance.
+The focus of the work done in this thesis is the study of the properties of constructing reliable models for representing biological systems.
+To contribute to the possibility to infer, from data, [[glspl:grn]] with high confidence, that accurately reflects the underlying biology.
+Where conclusions and knowledge can be derived from the models.
 
 * Background
 
@@ -214,19 +244,18 @@ The core phenomena of the cell functions is expression of bio-molecules and the 
 Regulation in biological systems means the process of how an entity (bio-molecule) control the behaviour of another entity (bio-molecule).
 In the cell this can be the process of a protein binding to DNA to regulate how much of a specific gene gets transcribed.
 The protein is referred to as a [[gls:tf]].
-
 When the [[gls:tf]]  bind to the binding site increase the expression of a gene, the interaction is activating the gene. If the [[gls:tf]] lowers or turns off the expression of a gene then the interaction is suppressing the gene.
 The [[gls:tf]] /regulates/ the gene and this then counts as a regulation.
-
-Figure [[ref:fig:central-dogma]] show the flow of expression, where gene expression is a multi step process.
+Figure [[ref:fig:central-dogma]] show the flow of expression, where gene expression is a multi step process[[cite:Brown2002]].
 First the gene gets transcribed, meaning that the DNA code gets printed in to an RNA molecule one or more times.
-Second, the RNA molecule gets translated to a string of amino acids, \ie a protein, as coded by the nucleotide sequence in the RNA molecule.
+Second, the RNA molecule gets translated to a sequence of amino acids, \ie a protein, as coded by the nucleotide sequence in the RNA molecule.
 The third step is the folding of the protein where the function of the protein get realised by its structure.
 An additional step of the central dogma of molecular biology is /DNA replication/ where the DNA replicates itself during cell division.
 This step is not directly considered here in relation to gene expression.
 
 Each of these levels of expression can get regulated by environmental factors in the cell.
 The concentration of a specific [[gls:tf]], for example, determines how saturated a [[gls:tf]] binding site is and in essence how much the regulated gene is affected.
+Each component of the system has associated with it a number of parameters that refers to specific rate constant of the biochemical reactions taking place or parameters of the model used (see: sections [[ref:sec:system-theory]] and [[ref:sec:model-formalism]]).
 
 External signalling also plays a central role in regulating internal molecular concentration and responses, as demonstrated by for example the regulatory interactions of the bacterial flagellum. The bacterial flagellum is an appendages protruding out of the bacteria, with the function to control the motion of the bacteria in response to the external environmental factors.
 In short, the bacteria senses a concentration gradient through receptors on the cell membrane, if it is moving.
@@ -236,7 +265,6 @@ The bacteria also responds to damaging chemicals by reversing the response so th
 
 The complex function displayed by the bacteria could not be achieved without predictable regulation.
 The regulatory machinery and behaviour of the flagellum can be modelled accurately and displays several different emergent systems properties, such as \eg robustness, meaning that the function of the regulatory machinery is maintained for a large range of parameters of the system, and exact adaptation, meaning that the bacteria resets the internal state to be able to respond appropriately to new changes even though the external environment is changed \ie the bacteria counter being overwhelmed by chemical stimuli[[cite:Alon2007]].
-Here parameters refers to specific rate constant of the biochemical reactions taking place or parameters of the model used (see: sections [[ref:sec:system-theory]] and [[ref:sec:model-formalism]]).
 
 The reactions taking place in the cell happens on several different time scales.
 For example in \coli the time a [[gls:tf]] takes to search and bind to a specific target location takes roughly 1-6 minutes[[cite:Elf2007]].
@@ -271,9 +299,13 @@ In the following part of this thesis, when referring to \acrlongpl{grn}, this ab
 
 Discussing the [[gls:grn]] in these terms is partly made for practical reasons.
 All nodes of the "true" [[gls:grn]] as depicted in the figure might not be observable under specific experimental setups.
-For example, the experimental setup for measuring mRNA versus protein or metabolites is very different and is not easily combined on a large scale.
+For example, the experimental setup for measuring mRNA versus protein or metabolites is very different and is not easily combined on a large scale,
+and in some cases the dynamics on one layer might not be well represented by measurements on another layer[[cite:Gygi1999]].
 The time scales of reactions for different layers or sub-networks might be substantially different.
 Some interactions might not be observed if measuring the system over several days or under just a few seconds[[cite:Elf2007]].
+When observing a collection of cells one can not assume that they are synchronised in expressing different properties or processes.
+One cell might be in the process of differentiating, displaying an expression pattern related specifically to that state, while other cells might not.
+A measurement on such a setup reflects an average over the cells in the sample and might not reflect any specific interaction pattern present in the cell.
 
 It is also common that the different layers of the networks are separated in different databases.
 For simpler organisms the [[gls:tf]] network is constructed from curated data and contains a large number of interactions. /RegulonDB/[[cite:Salgado2013]] has a large set of [[gls:tf]] binding interactions collected in a regulatory network of \coli.
@@ -297,9 +329,10 @@ The more complete this picture the better the conclusions of such a study[[cite:
 
 # [[cite:Morel2004]]
 
-One of the main goals of drug discovery is to find compounds with specific properties that can target and effect pathways with high accuracy[[cite:Schreiber2000]].
+One of the main goals of drug discovery is to find compounds with specific properties that can target and effect pathways with high accuracy with minimal side effects[[cite:Schreiber2000]].
 Generating reliable models that both predict and explain the effect of a specific perturbation generated from a drug compound will aid in creating more specific and effective drug treatments.
 
+A large amount of interest and funds of drug development are geard towards curing cancer.
 Cancer treatments are usually highly invasive, and cancer itself effects the operation of the cell.
 The signalling pathways and behaviour is altered[[cite:Weinberg1996]].
 The effects of the cancer are multi-factorial, many times different for each cancer, and related to the regulatory system of the cell.
@@ -319,20 +352,20 @@ and finally this section will give a brief description of properties associated 
 
 *** System description
 :PROPERTIES:
-:CUSTOM_ID: sec:system_description
+:CUSTOM_ID: sec:system-description
 :END:
 Representation of a systems is as important as learning about the system itself.
 Whether it is a mathematical description a chemical reaction description or a graphical overview, this can help fuel insight about what is being observed.
-This is especially important as the assumptions of the representation will confer information that could be inaccurate or misleading.
+This is especially important as the assumptions of the representation can in the worst case confer information that could be inaccurate or misleading.
 
-In general we describe a system mathematically as
+A general mathematically description of a system as
 #+begin_src latex :exports results :results latex
 \begin{equation}
-  \Phi(a) = \xi
+  \Phi(a,\xi) = 0
 \end{equation}
 which vectorised becomes
 \begin{equation}\label{eq:system}
-  \Phi(\ba) = \bxi
+  \Phi(\ba,\bxi) = 0
 \end{equation}
 #+end_src
 \noindent
@@ -343,7 +376,7 @@ For a discrete linear system ([[ref:eq:system]]) becomes a set of equations to b
 \begin{equation}\label{eq:sys_equ}
   \mPhi\ba = \bxi
 \end{equation}
-where independent variables $\phi_{ij}$ is mapped with parameter $a_j$ to the data $xi_i$.
+where independent variables $\phi_{ij}$ is mapped with parameter $a_j$ to the data $\xi_i$.
 For $n=3$ variables and $m$ data points recorded, this becomes
 \begin{equation}
   \begin{bmatrix}
@@ -368,21 +401,21 @@ The inverse problem is the problem of trying to find a set of parameters $\ba$ t
 In machine learning and supervised learning $\Phi$ is the features while $\bxi$ would be classes to be predicted by deciding the influence of each feature $\phi_{i}$ on class $\xi_j$ with $\ba$.
 
 *** Dynamical Systems
-A dynamical system can be described as a set of instructions between nodes that influences themselves or other nodes states over time.
+A dynamical system can be described as a set of instructions between nodes that influences themselves or other nodes over time.
 More specifically, the system describe the rules and inter-connections between variables and how they influence each other based based on those connections.
 We can have a general description of this definition, in the discreet time mapping
 #+begin_src latex :exports results :results latex
 \begin{equation}
-  x_{t+\tau} = f(x_t)
+  x_{t+\tau} = f(x_t,u_t,\epsilon_t)
 \end{equation}
 #+end_src
-where $x$ represent the state of the system at time $t$ and $\tau$ some discreet time step, often $\tau=1$. $f$ is here the rules that evolve the system.
+where $x$ represent the state of the system, $u_t$ outside influence on the system from the outside, $\epsilon_t$ is stochastic effects in the system efffecting the next time step, $t$ the time and $\tau$ some discreet time step, often $\tau=1$. $f$ is here the rules that evolve the system.
 This can be written as the difference eqaution,
 #+begin_src latex :exports results :results latex
 \begin{equation}
   \begin{array}{lcl}
-    \bx_{t+\tau} - \bx_t &=& f(\bx_t) - \bx_t\\
-    \Delta \bx(t) &=& g(\bx(t))
+    \bx_{t+\tau} - \bx_t &=& f(\bx_t,\bu_t) - \bx_t\\
+    \Delta \bx(t) &=& g(\bx(t),\epsilon(t))
   \end{array}
 \end{equation}
 #+end_src
@@ -496,7 +529,7 @@ To find the behaviour of this system close to its [[gls:ss]]
 (see: section [[ref:sec:ss]]) we find the Jacobian matrix,
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback-jacobian}
-  J = 
+  J =
   \begin{pmatrix}
     \frac{\partial g_{x_1}}{\partial x_1} & \frac{\partial g_{x_1}}{\partial x_2}\\
     \frac{\partial g_{x_2}}{\partial x_1} & \frac{\partial g_{x_2}}{\partial x_2}\\
@@ -617,9 +650,9 @@ Discriminating any two model structures, \ie what paramters are interesting vers
 :PROPERTIES:
 :CUSTOM_ID: sec:hierarchical-systems
 :END:
-Investigating hierarchies in system may help simplify further analysis.
+Investigating hierarchies in systems helps understaning the behaviour of the system and can simplify further analysis.
 A dynamical system may work on several different time scales.
-The time constant $\tau$ can be derived from the eigenvalues of the jacobian, $J$, in essence estimating the size of the system changes.
+The time constant $\tau$ can be derived from the eigenvalues of the jacobian, $J$, in essence estimating the scale of the effect of the system changes.
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:time-constant}
   \tau_i \equiv \frac{1}{|\Re(\lambda_i)|}
@@ -628,15 +661,15 @@ The time constant $\tau$ can be derived from the eigenvalues of the jacobian, $J
 \noindent
 where $\Re(\lambda_i)$ is the real part of eigenvalue $\lambda$ for gene $i$.
 
-Practically, the time constant is calculated for a non linear system around its [[gls:ss]]. Fast and slow modes can be separated either by eigenvalue spectral clustering or by imposing a threshold, $\tau^S$ on the time constant, so that if $\tau_i > \tau^S$, $i$  belongs to the fast modes and to the slow otherwise [[cite:Kremling2007]].
+Practically, the time constant is calculated for a non linear system around its [[gls:ss]].
+Fast and slow modes can be separated either by eigenvalue spectral clustering or by imposing a threshold, $\tau^S$ on the time constant, so that if $\tau_i > \tau^S$, $i$  belongs to the fast modes and to the slow otherwise [[cite:Kremling2007]].
 
-Hierarchical analysis of system dynamics have been usedto  reduce dimensionality of a system
-[[cite:Zagaris2003]],
-as well as being the cause of interampatte behaviour of the system[[cite:Nordling2009]].
+Hierarchical analysis of system dynamics have been used to reduce dimensionality of the system
+[[cite:Zagaris2003]]
+Time scale separation is suspected as being a cause of an interampatte behaviour of a system[[cite:Nordling2009]].
 
-Time constants dynamics can be viewed as operating on different time windows.
-Faster modes than the times observable in the window under observation can be considered as [[gls:ss]] and slower modes can be discarded.
-
+Time constants and associated dynamics can be viewed as the system operating in different time windows.
+Faster modes than the times observable in the window under observation can be considered as [[gls:ss]] and slower modes can be discarded as they are then independent on any changes in the time window.
 Analysing time dynamics could potentially help determine sampling frequency when doing [[gls:tsd]] analysis as the fast responses could be investigated while assuming slower modes are quasi stable [[cite:is_there_a_citation_for_this]].
 # [[cite:He2009]] Discusses experimental design section 5.
 
@@ -645,7 +678,7 @@ Analysing time dynamics could potentially help determine sampling frequency when
 :CUSTOM_ID: sec:iaa
 :END:
 
-Interampatteness is a property of biochemical networks that can be recognised by a high correlated response to system perturbations[[cite:Nordling2009]].
+Interampatteness is a property of biochemical networks that can be recognised by a high correlated response to system perturbations for at least parts of the system[[cite:Nordling2009]].
 The degree of interampatteness can be calculated as the condition number of the static gain matrix.
 #+begin_src latex :exports results :results latex
 \begin{equation}
@@ -655,13 +688,17 @@ The degree of interampatteness can be calculated as the condition number of the 
 \noindent
 where $\overline{\glssymbol{sigma}}$ is the largest [[gls:sigma]] and $\underline{\glssymbol{sigma}}$ is the smallest [[gls:sigma]].
 
-Several data sets have been observed to be ill-conditioned which is an effect of an interampatte system. The data obtained from perturbing a 10 gene network of the /Snf1/ pathway in \yeast[[cite:Lorenz2009]] had a condition number,$\kappa = 253$, and a data set from a 9 gene network in \coli[[cite:Gardner2003]] had a kondition number,$\kappa = 54$.
+Several data sets have been observed to be ill-conditioned.
+This is also the effect of doing measurements on an interampatte system.
+The data obtained from perturbing a 10 gene network of the /Snf1/ pathway in \yeast[[cite:Lorenz2009]] had a condition number,$\kappa = 253$, and a data set from a 9 gene network in \coli[[cite:Gardner2003]] had a condition number,$\kappa = 54$.
 The corresponding estimated interampatteness degree was $\kappa = 215$ and $\kappa= 154$ respectively.
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # Check these numbers
 
-The response data and perturbation design should be related to the interampatteness of the system under investigation.
+Considering the inverse problem [[ref:sec:inverse-problem]] it is known that the smallest signals in the system has the largest effect on the solution.
+The smallest signal are often the one most susceptable to be influenced by noise and by extension being the weak point of the inference.
+The response data and perturbation design should be related to the interampatteness of the system under investigation as some responses could be masked by attenuation effects and interactions unable to be inferred reliably.
 
 ** Systems biology
 :PROPERTIES:
@@ -682,7 +719,7 @@ First a brief overview of different model formalism, second a more focused in de
 :PROPERTIES:
 :CUSTOM_ID: sec:model-formalism
 :END:
-As described in section [[ref:sec:system_description]] we can describe a system generally as [[ref:eq:system]].
+As described in section [[ref:sec:system-description]] we can describe a system generally as [[ref:eq:system]].
 Depending on the transfer function and response we can describe several different types of system regularly used in systems biology.
 
 A whole slew of different approaches have been developed or adapted for network inference of [[glspl:grn]].
@@ -736,7 +773,7 @@ There are several review articles describing different approaches and model form
 # Citation 8 and 12 should detail that linear models have been shown to be more versatile.
 
 One should note that some care has to be take to the choice of model for fitting the data.
-For a non-linear models the degrees of freedom might not be well defined. 
+For a non-linear models the degrees of freedom might not be well defined.
 Even for very simple models with few parameters very complex patterns of data can be fitted[[cite:Andrae2010]].
 If any set of data can be fitted with the model then there is no way of discriminating between competing models or any test that can exclude a model over another.
 Something that should be required for a model to be considered descriptive.
@@ -782,6 +819,7 @@ If we collect only [[gls:ssd]] and use the common notation that each sample is r
 #+LATEX: \noindent
 when the set of experiments are considered, with $\mY$ being the observed [[gls:ss]] response matrix after applying the perturbations $\mP$ and $\mA$ is the interaction matrix \ie network.
 Linear system with steady state data have been used in several network inference projects [[cite:Tegner2003,Gardner2003,Julius2009]].
+
 
 **** Least squares estimate and prediction error
 
@@ -896,7 +934,8 @@ In [[cite:Julius2009]] a structural constraint was introduced to the \lasso pena
 An additional constraint was introduced in [[cite:Zavlanos2011]] where stability of the inferred network was ensured.
 In both cases a model similar to the one introduced in section [[ref:sec:linear_models]] was used, with a [[gls:ss]] assumption.
 
-# [[cite:Nordling2013phdthesis]]
+#
+ [[cite:Nordling2013phdthesis]]
 
 # [[cite:Tegner2003]] Don't know how to use this.
 
@@ -906,7 +945,7 @@ In both cases a model similar to the one introduced in section [[ref:sec:linear_
 
 **** Model selection
 To choose a "good" model when inferring networks is not trivial.
-\lasso produces a range of different models depending on the penalisation paramter $\zeta$.
+\lasso produces a range of different models depending on the regularisation paramter $\zeta$.
 
 As mentioned in section [[ref:sec:linear_penalty]], overfitting is an issue when the data is noisy.
 To measure the performance of a network one can calculate the weighted [[gls:rss]],
@@ -961,11 +1000,10 @@ where [[gls:chi2]] is the chi square distribution with $df$ degrees of freedom[[
 Both the [[gls:bic]] and [[gls:aic]] makes a trade of between model predictability and model complexity.
 Both methods have been shown to lack in some regards when compared to \eg [[gls:cv]] [[cite:Thorsson2005]].
 
-**** Network inference challenges                                  :noexport:
-# CHECK TORBJORNS THESIS PAGE 28!!!
-# SIC [[cite:Zhao2006]]
-
 **** Inverse problems
+:PROPERTIES:
+:CUSTOM_ID: sec:inverse-problem
+:END:
 
 [[citet:Aster2005]] describes the nature of the inverse problem, which arises when one tries to estimate model parameters based on measured data or observations related to some independent variables.
 This includes the network inference problem and relates the inference problems sensitivity to noise.
@@ -973,19 +1011,38 @@ This includes the network inference problem and relates the inference problems s
 Looking at equation [[ref:eq:ls]] we can decompose matrix $\mY =\mU \mSigma \mV^T$ which is just a linear combination of the singular values $\glssymbol{sigma}_k$ and the singular vectors, $\bv_k \bu_k^T$, where $k$ is the specific [[gls:sigma]].
 Now the inverse of $\mY$, can be written as another linear combination of these entities,
 #+begin_src latex :exports results :results latex
-\begin{equation}
+\begin{equation}\label{eq:inv-y}
   \mY^{\dagger} \equiv \sum_{k=1}^n \frac{1}{\sigma_k}\bv_k \bu_k^T
 \end{equation}
 #+end_src
 \noindent
-which means that the singular value that affects the estimate of ([[ref:eq:ls]]) is the smallest singular value of $\mY$.
+which means that the singular value that has the largest effects on the estimate of ([[ref:eq:ls]]) is the smallest singular value of $\mY$.
 The smallest singular value represents the direction in the data with the least variation and least information, meaning that the influence of the noise $\mE$ is potentially substantial as the noise corrupts the smallest variation easier.
+
+From equation ([[ref:eq:inv-y]]) we can derive a definition for an upper bound on the global [[gls:snr]], where
+#+begin_src latex :exports results :results latex
+\begin{equation}\label{eq:snr-E}
+  \SNR \equiv \frac{\underline{\sigma}(\mY)}{\overline{\sigma}(\mE)}
+\end{equation}
+#+end_src
+\noindent
+where the variables are defined as in ([[ref:eq:Linearmap]]) and $\overline{\sigma}$ represent the largest singular values and $\underline{\sigma}$ represents the smallest non zero singular value.
+This can be understood as the largest possible effect the noise can have on the smallest singlar value of the measurements.
+In practise we do not have access to $\mE$ and we then define the [[gls:snr]] based one the variance of the noise,
+#+begin_src latex :exports results :results latex
+\begin{equation}\label{eq:snr-lambda}
+  \SNR \equiv \frac{\underline{\sigma}(\mY)}{\sqrt{\chi^{-2}(\alpha,df)\lambda(\mY)}}\\
+\end{equation}
+#+end_src
+\noindent
+$\chi^{-2}$ is the inverse of the [[gls:chi2]] distribution at $\alpha$ significance level and $df$ degrees of freedom. $\lambda(\mY)$ is the variance of the noise or measurement error of $\mY$.
+
 # any citations?
 
 # discrete inverse problem = parameter estimation problem NOT model identification problem. (maybe only indirectly)
 
 ** Network inference -- community efforts
-Network inference have collected its tools from various scientific disciplines and been applied in several.
+Network inference have amassed a collection of tools from various scientific disciplines.
 A scientifically diverse group of individuals constitutes the network inference community.
 
 In this section I will describe some of the efforts,
@@ -993,8 +1050,8 @@ resources and approaches that has been built around this research field and how 
 
 *** Benchmarks
 Benchmarking can be used as a tool for evaluating the performance of algorithms or methods trying to solve specific problems.
-Usually, introducing a new algorithm, for example, demands that the claims made of its usefulness is accompanied by a benchmark,
-a test against other competing methods or algorithms[[cite:someonethatintroduceamethod]].
+Usually, introducing a new algorithm demands that the claims made of its usefulness is accompanied by a benchmark,
+a test against other competing methods or algorithms or some test of performance on data that can be compared to previous estimates citep:Margolin2006,Lauria2009,Friedman2010
 However, it might be the case that new information or better data becomes availible at a later point or that a scope or application for the method is expanded.
 Therefore, larger benchmarks are often conducted with a larger scope than provided original analysis[[cite:Bansal2007,Penfold2011]].
 These benchmark has the aim of exploring the performance of methods tested under both a realistice and wide range of conditions.
@@ -1035,7 +1092,8 @@ Even during these conditions it is shown that inferring the true network is diff
 :END:
 
 A large collection of toolboxes has been developed aimed at systems biology research.
-which focuses mainly on creating simulated [[glspl:grn]] see for example: [[cite:thispackaage_thatpackage_theotherpackage]].
+which focuses mainly on creating simulated [[glspl:grn]] see for example:cite:VandenBulcke2006,Hache2009b,Schaffter2011.
+
 This is a response to the fact that regulatory networks in biology are generally lacking in information and are one of the least available networks types[[cite:Barabasi2011]].
 This has to be paired with available data suitable for network inference under stable enough conditions so that the change in the states observed in the data is a consequence of regulatory effects and not for example the network being in a specific mode or that a part of the network is missing, which can happen if genes are deleted.
 Toy models and [[gls:insilico]] generated data have been shown to be a good proxy for estimating performance off network inference algorithms[[cite:Bansal2007]]. [[Gls:insilico]] models have been used to predict and tune optimal evolutionary growth through the metabolic network[[cite:Ibarra2002]].
@@ -1068,7 +1126,7 @@ To be able to share data and communicate results and information, common data fo
 These tools should accompany any inference method so that it can easily be evaluated.
 
 Table [[ref:tab:inference_methods]] gives an overview of inference methods.
-The list is by no means meant to be exsaustive but give a wide overview of the different appraoches available. 
+The list is by no means meant to be exsaustive but give a wide overview of the different appraoches available.
 For each method the short and long names are given, if available.
 The goal of the algorithm together with the modelling scheme is also listed.
 
@@ -1078,7 +1136,6 @@ As detailed in section [[ref:sec:data_experiments]] the demand for testing the a
 Table [[ref:tab:system_communication]] list tools and formats for sharing and communicating systems biological data and knowledge.
 
 #  [[cite:Bonneau2008]]
-
 
 #+BEGIN_LATEX
 \begin{landscape}
@@ -1321,7 +1378,7 @@ The observation here is that even when the data is informative,
 defined as in PAPER I [[ref:sec:paper1]],
 the $L_1$ penalised methods performs as if the data was only partly informative even when we act as if we had expert knowledge when selecting the optimal network produced by the inference method.
 
-The performance of these types of inference method have been investigated and been shown to be a function of the data and  networkcite:Zhao2006,Marbach2012,others,fisher_inf_matrix.
+The performance of these types of inference method have been investigated and been shown to be a function of the data and network[[cite:Zhao2006,Marbach2012]].
 The issue with these results is that they are impractical in reality as we don't know the network structure beforehand and in some cases we would arrive at the wrong conclusions if we would use the wrong network structure to calculate them.
 
 We show that a proxy for predicting the performance of an inference method is to investigate the properties of the data,
@@ -1344,7 +1401,7 @@ One aspect that is rarely incorporated in [[gls:grn]] inference algorithms is th
 Errors-in-variables models considers measurement errors in the independent variables as well as in the dependent variables.
 It is easy to imagine that not only does a perturbation experiment contain noise in the applied perturbation but the state of the system when the perturbation is applied is also unknown.
 Especially when looking at the cell.
-The effect of not considering measurement errors in the independent variables when there exist an error has, as far as I know, not been studied within systems biology and [[gls:grn]] inference. 
+The effect of not considering measurement errors in the independent variables when there exist an error has, as far as I know, not been studied within systems biology and [[gls:grn]] inference.
 
 Methods that incorporate [[gls:tls]], which considers errors in variables, oppose to a [[gls:ls]], are few and rarely used.
 
@@ -1442,6 +1499,22 @@ To answer the question; what is small world networks.
 
 
 ** Comments from specific sections now removed to here
+*** Abstract
+Systems biology deals with the problem of studying systems in a biological context, and finding patterns and rules that can not easily be inferred by the studying the individual components of the cell.
+In the end the goal is to transfer the knowledge in to general principles to describe the nature of the cell.
+
+The study of biology has for every time we have overcome a new boundary of discovery revealed an overwhelming complexity and diversity,
+and it has become more evident the deeper we have probed the rich set of properties being displayed by living systems.
+When we discovered the DNA we confirmed the existence a molecule carrying information that could be inherited and a blueprint for controlling the function of the cellular machinery.
+
+The cellular machinery is built up of tens of thousands different components within the cell alone, not counting the external influx and interactions on the outer surface.
+Some core concepts have been distilled and crystallised in to general knowledge such as the storage of genetic information in DNA and the direction of expression of different component of where the direction is depicted as going from DNA to RNA to Protein.
+This is summarised in the central dogma of molecular biology.
+These are simple distilled concepts of highly complex underlying chemical reactions.
+
+Specifically the studies involve elucidating general principles for applying systems biological models and algorithms and retrieve reliable descriptions of the cell functions.
+This means investigating the influence of system properties, as well as experimental approaches, on the quality of the inference of the networks to represent intra-cellular interactions.
+
 *** Introduction
 It was clear from early on, when the famous physicist Erwin Schrödinger asked the question "What is life"[[cite:Schrodinger1944]] that the field of biological research would gain attention from not only biologist and biochemists and could benefit from input from a diverse array of fields.
 
@@ -1528,6 +1601,10 @@ Linear model and a lot more, this is a review [[cite:DeJong2002a]]
 
 *** Network inference
 # see: Zavlanos et al for the quote "The ensemble of both classes form the so-called genetic network identification problem." first section. The following text is interesting as a reference.
+**** Network inference challenges
+# CHECK TORBJORNS THESIS PAGE 28!!!
+# SIC [[cite:Zhao2006]]
+
 
 *** Model selection
 # specifically chi2 and  f distribution and 2 and 1 norm RSS!!! Chapter 2 I think also page 13 example 1.1.
