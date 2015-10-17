@@ -1,4 +1,4 @@
-# Time-stamp: <2015-10-17 14:38:40 andreas>
+# Time-stamp: <2015-10-17 17:10:24 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Dynamical regulatory networks
@@ -1147,81 +1147,79 @@ Table [[ref:tab:system_communication]] list tools and formats for sharing and co
 #+LATEX: \centering
 #+LATEX: \adjustbox{max width=\linewidth}{
 #+ATTR_LATEX: :center nil
-| Reference                  | Short Name  | Name                                                  | Model Scheme             | Goal                                          | Directed Edges (y/n) | Uses Perturbations (y/n) |
-|----------------------------+-------------+-------------------------------------------------------+--------------------------+-----------------------------------------------+----------------------+--------------------------|
-|                            |             |                                                       |                          |                                               |                      |                          |
-| [[cite:DiBernardo2005]]        | MNI         | Mode-of-action by network identification              |                          | Determine drug targets                        | y                    | y                        |
-| [[cite:Julius2009]]            |             |                                                       | ODEs                     | GRN                                           | y                    | y                        |
-| [[cite:Greenfield2010]]        | MCZ         | Median Corrected Z-Scores                             | Information-theoretical  | GRN                                           | y                    | y                        |
-| [[cite:Pinna2010]]             |             | Graph-based method                                    | Z-score-based            | GRN                                           | y                    | y                        |
-| [[cite:Grimaldi2011]]          | RegnANN     | Reverse engineered gene networks                      | neural networks          | GRN                                           | y                    | y                        |
-|                            |             | with artificial neural networks                       |                          |                                               |                      |                          |
-| [[cite:Zavlanos2011]]          |             | Inferring stable genetic networks                     | linear dynamical systems | GRN                                           | y                    | y                        |
-|                            |             | from steady-state data                                |                          |                                               |                      |                          |
-| [[cite:Xiong2012]]             |             | Method with regression and correlation                | Info-theoretic / LDS     | GRN                                           | y                    | y                        |
-| [[cite:Gardner2003]]           | NIR         | Network identification by multiple regression         | ODEs                     | GRN & identify drug targets                   | y                    | y                        |
-| [[cite:Friedman2010]]          | Glmnet      | Lasso (L1) and elastic-net                            |                          | Linear regression                             | y                    | y                        |
-|                            |             | regularized generalised linear models                 |                          |                                               |                      |                          |
-|                            | LSCO        | least squares with cutoff                             |                          |                                               | y                    | y                        |
-| [[cite:Faith2007]]             | CLR         | Context likelihood of relatedness                     | Information-theoretical  | GRN                                           | y                    | y                        |
-| [[cite:Jornsten2011]]          | EPoC        | Endogenous perturbation analysis of cancer            |                          | GRN                                           | y                    | y                        |
-| [[cite:Shih2012]]              |             | Single source k-shortest paths algorithm              | graph theory             | GRN                                           | n                    | y                        |
-| [[cite:Menendez2010]]          | GMRF        | Graphical lasso with Gaussian Markov Random Fields    | relevance based          | GRN                                           | n                    | y                        |
-|                            |             | Adaptive lasso                                        |                          |                                               |                      |                          |
-|                            |             | SCAD penalty                                          |                          |                                               |                      |                          |
-| [[cite:Nordling2011]]          |             | Rank Reduction                                        | linear ODE               | GRN                                           | y                    | y                        |
-| [[cite:Wang2012]]              |             |                                                       |                          | GRN                                           |                      |                          |
-| [[cite:Nordling2013phdthesis]] | RNI         | Confidence based Robust Network Inference             |                          | GRN                                           | y                    | y                        |
-|                            |             | Cyclic coordinate descent Lasso solver                |                          |                                               |                      |                          |
-| [[cite:Cosgrove2008]]          | SSEM-Lasso  | Sparse simultaneous equation model – Lasso regression |                          | Determine drug targets                        | y                    | y                        |
-|                            | TSNI        | Time series network inference                         |                          |                                               |                      |                          |
-| [[cite:Oates2012]]             |             | Bayesian network using Goldbeter Koshland kinetics    | Bayesian                 | Protein-signalling network                    | y                    |                          |
-| [[cite:Lauria2009]]            | NIRest      | NIR with perturbation estimate                        | ODEs                     | estimate P, identify GRN                      | y                    | n (it estimates them)    |
-| [[cite:Margolin2006]]          | ARACNE      | Algorithm for the Reconstruction                      | Information-theoretical  | GRN                                           | n                    | n                        |
-|                            |             | of Accurate Cellular Networks                         |                          |                                               |                      |                          |
-| [[cite:Kuffner2012]]           | ANOVA       | ANOVA                                                 | ANOVA                    | GRN                                           | y                    | n                        |
-| [[cite:Huynh-Thu2010]]         | GENIE3      | Tree-based method                                     | Tree-based               | GRN                                           | y                    | n                        |
-| [[cite:Castelo2009]]           | Qp-graphs   | Q-order partial correlation graphs                    | graph theory             | GRN                                           | y                    | n                        |
-| [[cite:Ambroise2012]]          | TNIFSED     | Supervised transcriptional network inference          | supervised               | Assign probability of being target of each TF |                      | n                        |
-|                            |             | from functional similarity and expression data        |                          |                                               |                      |                          |
-| [[cite:Mordelet2008]]          | SIRENE      | Supervised inference of regulatory networks           | supervised               | Assign targets to TFs                         |                      | n                        |
-| [[cite:Sun2007]]               | TRND        | Transcriptional regulatory network discovery          | Bayesian                 | Assign targets to TFs                         |                      | n                        |
-| [[cite:DeMatos2012]]           | BC3NET      | Bootstrap aggregation ensemble C3NET                  | Information-theoretical  | GRN                                           | n                    | n                        |
-| [[cite:Altay2011]]             | C3NET       | Conservative causal core network inference            | Information-theoretical  | GRN                                           | n                    | n                        |
-| [[cite:Friedman2008]]          |             | Graphical lasso                                       |                          | Sparse inverse covariance estimation          | y                    |                          |
-| [[cite:Bonneau2006]]           | Inferelator | the Inferelator                                       | ODEs                     | GRN                                           | y                    | y                        |
-| [[cite:Gevaert2007]]           |             |                                                       | Bayesian                 | GRN                                           | y                    |                          |
-| [[cite:Husmeier2007]]          |             |                                                       | Bayesian                 | GRN                                           | y                    |                          |
-| [[cite:Lahdesmaki2008]]        | RJMCMC      | Reversible jump Markov chain Monte Carlo              | Bayesian                 | GRN                                           | y                    |                          |
-| [[cite:Nelander2008]]          | CoPIA       | Combinatorial Perturbation-based Interaction Analysis | ODEs                     | GRN                                           | y                    | y                        |
-| [[cite:Yip2010]]               |             |                                                       | ODEs                     | GRN                                           | y                    |                          |
-| [[cite:Yu2004]]                | BANJO       |                                                       | Bayesian                 | GRN                                           | y                    | y                        |
-| [[cite:Djebbari2008]]          |             | Seeded Bayesian networks                              | Bayesian                 | GRN                                           | y                    |                          |
-| [[cite:Aijo2009]]              |             | Dynamic Bayesian network inference with               | Bayesian                 | GRN                                           | y                    |                          |
-|                            |             | Guassian processes                                    |                          |                                               |                      |                          |
-| [[cite:Chai2012]]              |             | Dynamic Bayesian network inference with               | Bayesian                 | GRN                                           | y                    |                          |
-|                            |             | imputed missing values                                |                          |                                               |                      |                          |
-| [[cite:Wang2010]]              |             | [Boolean] Process-based network decomposition         | Boolean                  | GRN or motifs                                 | y                    | n                        |
-| [[cite:Schulz2012]]            | DREM        | Dynamic Regulatory Events Miner                       |                          | More TF-target and timing than GRN            |                      | n                        |
-| [[cite:Hache2007]]             | GNRevealer  | Reconstructing GNRs with neural networks              | neural networks          | GRN                                           | y                    |                          |
-| [[cite:Kabir2010]]             |             | Linear time-variant method                            |                          | GRN                                           | y                    |                          |
-|                            |             | using self-adaptive differential evolution            |                          |                                               |                      |                          |
-| [[cite:Kuffner2010]]           | PNFL        | Petri net with fuzzy logic                            | petri net                | GRN                                           | y                    | y                        |
-| [[cite:Grzegorcyck2012]]       |             | Non-homogeneous dynamic Bayesian network              | Bayesian                 | GRN                                           | y                    |                          |
-| [[cite:Wu2011]]                | SSM         | State space model w/hidden variables                  | state space model        | GRN                                           | y                    | n                        |
-| [[cite:Penfold2012]]           |             | Hierarchical non-parametric Bayesian                  | Bayesian                 | GRN                                           | y                    | y                        |
-| [[cite:Bock2012]]              |             | Hub-centered GRN inference using automatic relevance  | Bayesian                 | GRN or hubs                                   | y                    | n                        |
-| [[cite:Layek2011]]             |             | Boolean networks represented by Karnaugh maps         | Boolean                  | GRN                                           | y                    | n                        |
-| [[cite:Kimura2012]]            | LPM         | Linear program machine-based                          | S-system                 | GRN                                           | y                    | n                        |
-|                            |             | S-system GRN inference method                         |                          |                                               |                      |                          |
-| [[cite:Alakwaa2011]]           | BicAT-Plus  | Bi-clustering with Bayesian for GRN inference         | Bayesian                 | GRN                                           | y                    | n                        |
-| [[cite:Li2011]]                | DELDBN      | Differential Equation-based                           | Dynamic Bayesian         | GRN                                           | y                    |                          |
-|                            |             | Local Dynamic Bayesian Network                                                      |                          |                                               |                      |                          |
-| [[cite:Lu2011]]                |             | Delayed feedback                                      | control theory           | GRN                                           | n                    | y                        |
-| [[cite:August2009]]            |             | Linear program biochemical network inference          |                          | GRN                                           | y                    |                          |
-| [[cite:Yuan2011]]              |             | Robust network structure reconstruction               | ODE's/LDS                | GRN                                           | n                    | y                        |
-| [[cite:Zhang2012]]             | NARROMI     | Noise and redundancy reduction technique using        | Info-theoretic and ODEs  | GRN                                           | y                    | ?                        |
-|                            |             | recursive optimisation and mutual information         |                          |                                               |                      |                          |
+| Reference                  | Short Name  | Description                                           | Model Scheme             | Goal                                          |
+|----------------------------+-------------+-------------------------------------------------------+--------------------------+-----------------------------------------------|
+|                            |             |                                                       |                          |                                               |
+| [[cite:DiBernardo2005]]        | MNI         | Mode-of-action by network identification              |                          | Determine drug targets                        |
+| [[cite:Julius2009]]            |             |                                                       | ODEs                     | GRN                                           |
+| [[cite:Greenfield2010]]        | MCZ         | Median Corrected Z-Scores                             | Information-theoretical  | GRN                                           |
+| [[cite:Pinna2010]]             |             | Graph-based method                                    | Z-score-based            | GRN                                           |
+| [[cite:Grimaldi2011]]          | RegnANN     | Reverse engineered gene networks                      | neural networks          | GRN                                           |
+|                            |             | with artificial neural networks                       |                          |                                               |
+| [[cite:Zavlanos2011]]          |             | Inferring stable genetic networks                     | linear dynamical systems | GRN                                           |
+|                            |             | from steady-state data                                |                          |                                               |
+| [[cite:Xiong2012]]             |             | Method with regression and correlation                | Info-theoretic / LDS     | GRN                                           |
+| [[cite:Gardner2003]]           | NIR         | Network identification by multiple regression         | ODEs                     | GRN & identify drug targets                   |
+| [[cite:Friedman2010]]          | Glmnet      | Lasso (L1) and elastic-net                            |                          | Linear regression                             |
+|                            |             | regularized generalised linear models                 |                          |                                               |
+|                            | LSCO        | least squares with cutoff                             |                          |                                               |
+| [[cite:Faith2007]]             | CLR         | Context likelihood of relatedness                     | Information-theoretical  | GRN                                           |
+| [[cite:Jornsten2011]]          | EPoC        | Endogenous perturbation analysis of cancer            |                          | GRN                                           |
+| [[cite:Shih2012]]              |             | Single source k-shortest paths algorithm              | graph theory             | GRN                                           |
+| [[cite:Menendez2010]]          | GMRF        | Graphical lasso with Gaussian Markov Random Fields    | relevance based          | GRN                                           |
+|                            |             | Adaptive lasso                                        |                          |                                               |
+|                            |             | SCAD penalty                                          |                          |                                               |
+| [[cite:Nordling2011]]          |             | Rank Reduction                                        | linear ODE               | GRN                                           |
+| [[cite:Wang2012]]              |             |                                                       |                          | GRN                                           |
+| [[cite:Nordling2013phdthesis]] | RNI         | Confidence based Robust Network Inference             |                          | GRN                                           |
+|                            |             | Cyclic coordinate descent Lasso solver                |                          |                                               |
+| [[cite:Cosgrove2008]]          | SSEM-Lasso  | Sparse simultaneous equation model – Lasso regression |                          | Determine drug targets                        |
+|                            | TSNI        | Time series network inference                         |                          |                                               |
+| [[cite:Oates2012]]             |             | Bayesian network using Goldbeter Koshland kinetics    | Bayesian                 | Protein-signalling network                    |
+| [[cite:Lauria2009]]            | NIRest      | NIR with perturbation estimate                        | ODEs                     | estimate P, identify GRN                      |
+| [[cite:Margolin2006]]          | ARACNE      | Algorithm for the Reconstruction                      | Information-theoretical  | GRN                                           |
+|                            |             | of Accurate Cellular Networks                         |                          |                                               |
+| [[cite:Kuffner2012]]           | ANOVA       | ANOVA                                                 | ANOVA                    | GRN                                           |
+| [[cite:Huynh-Thu2010]]         | GENIE3      | Tree-based method                                     | Tree-based               | GRN                                           |
+| [[cite:Castelo2009]]           | Qp-graphs   | Q-order partial correlation graphs                    | graph theory             | GRN                                           |
+| [[cite:Ambroise2012]]          | TNIFSED     | Supervised transcriptional network inference          | supervised               | Assign probability of being target of each TF |
+|                            |             | from functional similarity and expression data        |                          |                                               |
+| [[cite:Mordelet2008]]          | SIRENE      | Supervised inference of regulatory networks           | supervised               | Assign targets to TFs                         |
+| [[cite:Sun2007]]               | TRND        | Transcriptional regulatory network discovery          | Bayesian                 | Assign targets to TFs                         |
+| [[cite:DeMatos2012]]           | BC3NET      | Bootstrap aggregation ensemble C3NET                  | Information-theoretical  | GRN                                           |
+| [[cite:Altay2011]]             | C3NET       | Conservative causal core network inference            | Information-theoretical  | GRN                                           |
+| [[cite:Friedman2008]]          |             | Graphical lasso                                       |                          | Sparse inverse covariance estimation          |
+| [[cite:Bonneau2006]]           | Inferelator | the Inferelator                                       | ODEs                     | GRN                                           |
+| [[cite:Gevaert2007]]           |             |                                                       | Bayesian                 | GRN                                           |
+| [[cite:Lahdesmaki2008]]        | RJMCMC      | Reversible jump Markov chain Monte Carlo              | Bayesian                 | GRN                                           |
+| [[cite:Nelander2008]]          | CoPIA       | Combinatorial Perturbation-based Interaction Analysis | ODEs                     | GRN                                           |
+| [[cite:Yip2010]]               |             |                                                       | ODEs                     | GRN                                           |
+| [[cite:Yu2004]]                | BANJO       |                                                       | Bayesian                 | GRN                                           |
+| [[cite:Djebbari2008]]          |             | Seeded Bayesian networks                              | Bayesian                 | GRN                                           |
+| [[cite:Aijo2009]]              |             | Dynamic Bayesian network inference with               | Bayesian                 | GRN                                           |
+|                            |             | Guassian processes                                    |                          |                                               |
+| [[cite:Chai2013]]              |             | Dynamic Bayesian network inference with               | Bayesian                 | GRN                                           |
+|                            |             | imputed missing values                                |                          |                                               |
+| [[cite:Wang2010]]              |             | [Boolean] Process-based network decomposition         | Boolean                  | GRN or motifs                                 |
+| [[cite:Schulz2012]]            | DREM        | Dynamic Regulatory Events Miner                       |                          | More TF-target and timing than GRN            |
+| [[cite:Hache2007]]             | GNRevealer  | Reconstructing GNRs with neural networks              | neural networks          | GRN                                           |
+| [[cite:Kabir2010]]             |             | Linear time-variant method                            |                          | GRN                                           |
+|                            |             | using self-adaptive differential evolution            |                          |                                               |
+| [[cite:Kuffner2010]]           | PNFL        | Petri net with fuzzy logic                            | petri net                | GRN                                           |
+| [[cite:Grzegorczyk2013]]       |             | Non-homogeneous dynamic Bayesian network              | Bayesian                 | GRN                                           |
+| [[cite:Wu2011]]                | SSM         | State space model w/hidden variables                  | state space model        | GRN                                           |
+| [[cite:Penfold2012]]           |             | Hierarchical non-parametric Bayesian                  | Bayesian                 | GRN                                           |
+| [[cite:Bock2012]]              |             | Hub-centered GRN inference using automatic relevance  | Bayesian                 | GRN or hubs                                   |
+| [[cite:Layek2011]]             |             | Boolean networks represented by Karnaugh maps         | Boolean                  | GRN                                           |
+| [[cite:Kimura2012]]            | LPM         | Linear program machine-based                          | S-system                 | GRN                                           |
+|                            |             | S-system GRN inference method                         |                          |                                               |
+| [[cite:Alakwaa2011]]           | BicAT-Plus  | Bi-clustering with Bayesian for GRN inference         | Bayesian                 | GRN                                           |
+| [[cite:Li2011]]                | DELDBN      | Differential Equation-based                           | Dynamic Bayesian         | GRN                                           |
+|                            |             | Local Dynamic Bayesian Network                        |                          |                                               |
+| [[cite:August2009]]            |             | Linear program biochemical network inference          |                          | GRN                                           |
+| [[cite:Yuan2011]]              |             | Robust network structure reconstruction               | ODE's/LDS                | GRN                                           |
+| [[cite:Zhang2012]]             | NARROMI     | Noise and redundancy reduction technique using        | Info-theoretic and ODEs  | GRN                                           |
+|                            |             | recursive optimisation and mutual information         |                          |                                               |
 #+LATEX: }
 #+end_table
 
