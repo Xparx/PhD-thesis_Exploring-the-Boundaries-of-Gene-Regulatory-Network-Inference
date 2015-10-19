@@ -1,4 +1,4 @@
-# Time-stamp: <2015-10-17 17:10:24 andreas>
+# Time-stamp: <2015-10-19 12:54:31 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Dynamical regulatory networks
@@ -119,7 +119,7 @@ Studham M., Tjärnberg A., Nordling T., Nelander S., and Sonnhammer EL. \emph{Bi
 DOI: \href{http://dx.doi.org/10.1093/bioinformatics/btu285}{10.1093/bioinformatics/btu285}
 
 \item\textbf{Avoiding pitfalls in l1-regularised inference of gene networks.}\\
-Tjärnberg A., Nordling T., Studham M., Nelander S., and Sonnhammer EL. \emph{Mol. BioSyst.}, \textbf{issue}, 287-296 (2015).\\
+Tjärnberg A., Nordling T., Studham M., Nelander S., and Sonnhammer EL. \emph{Mol. BioSyst.}, \textbf{1(11)}, 287-296 (2015).\\
 DOI: \href{http://dx.doi.org/10.1039/C4MB00419A}{10.1039/C4MB00419A}
 
 \item\textbf{Genespider - generation and simulation package for informative data exploration.}\\
@@ -182,7 +182,7 @@ I would like to acknowledge...
 * Introduction
 
 # General what is systems
-Biological systems can be viewed as anything comprised of living things, whetever that definition may be.
+Biological systems are diverse and complex and are compirsed of sub-systems that themselves could be considered living, whatever that definition may be.
 Whether it is the patterns of whole populations and societies, on-line communities (if considered biological or not can be questioned), the interactions of individual organisms or the cellular internal and external machinery,
 understanding biological systems is motivated by the need to predict or modify the behaviour of these systems.
 Gaining mechanistic understanding of the system can help prevent the out brake of a disease, or the optimal course of action when functions within the system breaks down.
@@ -192,7 +192,7 @@ Either by forcing the system to return to its original state or by selectively t
 Understanding how the parts of the system interacts help selectively target and steer the system as a whole to a desired state.
 
 # Why do we need to look at things as systems of interactions
-A common features of the above mentioned systems is that they change over time and respond to internal and external changes in non random ways.
+A common feature of the above mentioned systems is that they change over time and respond to internal and external changes in non random ways.
 Information is transferred and advanced in space and over time to other current and future individuals, or components of the systems,
 \ie the system evolves over time, as well as actively preventing their own breakdown by autonomously accumulating energy from their surroundings.
 Another common feature, or observation, of these systems is that the behaviour of the system cannot be trivially understood or predicted by knowing any single "sub-unit" alone.
@@ -200,8 +200,8 @@ Emergent behaviours can be viewed as a result of placing several units in a spec
 A unit is here a cell, an organism, or a population of organisms or cells.
 A human cell, for example, cannot be grown in isolation without modifying the internal machinery,
 often to a state that would be considered faulty if it existed in the cells original environment.
-That is, the components of the system is built on is not the complete picture without also incorporating the interactions they exerts on each other and the behaviour that arises from these interactions[[cite:Barabasi2004]].
-It should be noted that a wide range of systems can be investigated with similar concepts and knowledge can be derived indirectly from other areas of research, evident by the investigation of how different systems interactions are structured[[cite:Milo2002]].
+That is, the components of the system is built on is not the complete picture without also incorporating the interactions they exerts on each other and the behaviour that arises from these interactions[[citep:Barabasi2004]].
+It should be noted that a wide range of systems can be investigated with similar concepts and knowledge can be derived indirectly from other areas of research, evident by the investigation of how different systems interactions are structured[[citep:Milo2002]].
 
 # Focus on the cell
 The aim of this thesis and the work herein is mainly in the context of trying to understand the intracellular machinery, specifically what we will call the [[gls:grn]].
@@ -230,14 +230,14 @@ Where conclusions and knowledge can be derived from the models.
 :CUSTOM_ID: sec:bio_sys
 :END:
 Biological systems cover a wide range of different phenomena.
-In this section I will go through the specific biological system referred to in this thesis, the cell.
+In this section I will go through the specific biological system referred to in this thesis, the gene regulation in the cell.
 This will in part motivate the need of the mathematical and computational modelling used in this research area.
-The complexity and vastness of the cell is such that to manually account for all components and environmental factors is intractable.
-The core phenomena of the cell functions is expression of bio-molecules and the regulation of the amount and circumstance that these bio-molecules are expressed in.
+The vast complexity of the cell is such that to manually account for all components and environmental factors that intearct and regulat the responses in the cell is intractable.
+A core phenomena of the cell functions is expression of bio-molecules and the regulation of the amount and circumstance that these bio-molecules are expressed in.
 
 *** Gene regulation and gene regulatory networks
 
-#+CAPTION[Central dogma of molecular biology]: The central dogma of molecular biology. The flow of expression is show left to right, inspired by [[citet:Gardner2005]]
+#+CAPTION[Central dogma of molecular biology]: The central dogma of molecular biology[[citep:Brown2002]]. The flow of expression is show left to right, figure inspired by [[citet:Gardner2005]]
 #+label: fig:central-dogma
 [[file:img/central_dogma.pdf]]
 
@@ -246,12 +246,12 @@ In the cell this can be the process of a protein binding to DNA to regulate how 
 The protein is referred to as a [[gls:tf]].
 When the [[gls:tf]]  bind to the binding site increase the expression of a gene, the interaction is activating the gene. If the [[gls:tf]] lowers or turns off the expression of a gene then the interaction is suppressing the gene.
 The [[gls:tf]] /regulates/ the gene and this then counts as a regulation.
-Figure [[ref:fig:central-dogma]] show the flow of expression, where gene expression is a multi step process[[cite:Brown2002]].
-First the gene gets transcribed, meaning that the DNA code gets printed in to an RNA molecule one or more times.
+Figure [[ref:fig:central-dogma]] show the flow of expression, where gene expression is a multi step process[[citep:Brown2002]].
+First the gene gets transcribed, meaning that the DNA code gets interpreted and copied in to an RNA molecule one or more times.
 Second, the RNA molecule gets translated to a sequence of amino acids, \ie a protein, as coded by the nucleotide sequence in the RNA molecule.
 The third step is the folding of the protein where the function of the protein get realised by its structure.
 An additional step of the central dogma of molecular biology is /DNA replication/ where the DNA replicates itself during cell division.
-This step is not directly considered here in relation to gene expression.
+This step is not directly considered here in relation too gene expression.
 
 Each of these levels of expression can get regulated by environmental factors in the cell.
 The concentration of a specific [[gls:tf]], for example, determines how saturated a [[gls:tf]] binding site is and in essence how much the regulated gene is affected.
@@ -261,13 +261,13 @@ External signalling also plays a central role in regulating internal molecular c
 In short, the bacteria senses a concentration gradient through receptors on the cell membrane, if it is moving.
 If the gradient indicate that the bacteria is moving towards something nutritious the behaviour of the flagellum will change and the bacteria will propel itself towards the higher concentration of nutrients.
 If no gradient is sensed the behaviour changes and the bacteria tumbles randomly until a new signal appears.
-The bacteria also responds to damaging chemicals by reversing the response so the direction of motion is away from the higher concentration[[cite:Berg2000]].
+The bacteria also responds to damaging chemicals by reversing the response so the direction of motion is away from the higher concentration[[citep:Berg2000]].
 
 The complex function displayed by the bacteria could not be achieved without predictable regulation.
-The regulatory machinery and behaviour of the flagellum can be modelled accurately and displays several different emergent systems properties, such as \eg robustness, meaning that the function of the regulatory machinery is maintained for a large range of parameters of the system, and exact adaptation, meaning that the bacteria resets the internal state to be able to respond appropriately to new changes even though the external environment is changed \ie the bacteria counter being overwhelmed by chemical stimuli[[cite:Alon2007]].
+The regulatory machinery and behaviour of the flagellum can be modelled accurately and displays several different emergent systems properties, such as \eg robustness, meaning that the function of the regulatory machinery is maintained for a large range of parameters of the system, and exact adaptation, meaning that the bacteria resets the internal state to be able to respond appropriately to new changes even though the external environment is changed \ie the bacteria counter being overwhelmed by chemical stimuli[[citep:Alon2007]].
 
 The reactions taking place in the cell happens on several different time scales.
-For example in \coli the time a [[gls:tf]] takes to search and bind to a specific target location takes roughly 1-6 minutes[[cite:Elf2007]].
+For example in \coli the time a [[gls:tf]] takes to search and bind to a specific target location takes roughly 1-6 minutes[[citep:Elf2007]].
 This is done through diffusion through the cell.
 
 To get an overview of the interactions or regulatory machinery we can display the interactions, of [[gls:tf]] bindings or protein to protein interactions, that we can infer or observe as links in a graph. This is then a network of interactions in the cell.
@@ -277,21 +277,20 @@ This would then constitute the cellular regulatory network.
 Note that there might be interactions or links in the interaction network that has no regulatory effect.
 A protein complex formation would constitute such a case, where the proteins might not have any regulatory effect on each other but still interact.
 
-#+CAPTION[Biological network hierarchy]: Different hierarchical levels of displaying the cellular regulatory network, inspired by [[citet:Crampin2006]].
+#+CAPTION[Biological network hierarchy]: Different hierarchical levels of displaying the cellular regulatory network. The arrows indicates direction of regulation, if the head of the link is an arrow it means the interaction is activating and if the head of the link is T shaped it means the interaction is suppressing. Figure inspired by [[citet:Crampin2006]].
 #+label: fig:net-hierarchy
 [[file:img/abstract_network.pdf]]
 
 Figure [[ref:fig:net-hierarchy]] shows an hierarchical separation of different regulatory networks in the cell.
 This differentiation cannot be well defined in a real cell but is here separated by concepts, and in some regards, measuring techniques.
-We have the metabolic layer in the figure depicting the path of different metabolites or transformations of metabolites, modelled often by mass action kinetics[[cite:Jamshidi2010]].
+We have the metabolic layer in the figure depicting the path of different metabolites or transformations of metabolites, modelled often by mass action kinetics[[citep:Jamshidi2010]].
 The protein layer that details the protein to protein interaction network.
 Here we also have to deal with protein complexes.
-Protein-protein interactions are an example of a type of an interaction that might not be influencing the rate or change of any of the proteins involved but is still be an interaction.
+Protein-protein interaction is an example of a type of an interaction that might not be influencing the rate or change of any of the proteins involved but is still an interaction.
 It can be the case that the complex regulates something else and both proteins needs to be present for a regulatory interaction to occur, much like an =AND= operator in a boolean operation.
 The third layer is the gene layer.
 Here specific genes are transcribed to RNA.
 The RNA themselves have regulatory effects or they get translated in to proteins.
-The arrows indicates direction of regulation, if the head of the link is an arrow it means the interaction is activating and if the head of the link is T shaped it means the interaction is suppressing.
 
 The dashed lines on the bottom layer is the interactions you would observe if you could only observe the behaviour of the gene layer.
 It is clear that not all interactions in this layer is directly influencing the gene itself but is indirectly mediated through different layers of the network.
@@ -299,54 +298,54 @@ In the following part of this thesis, when referring to \acrlongpl{grn}, this ab
 
 Discussing the [[gls:grn]] in these terms is partly made for practical reasons.
 All nodes of the "true" [[gls:grn]] as depicted in the figure might not be observable under specific experimental setups.
-For example, the experimental setup for measuring mRNA versus protein or metabolites is very different and is not easily combined on a large scale,
-and in some cases the dynamics on one layer might not be well represented by measurements on another layer[[cite:Gygi1999]].
+For example, the experimental setup for measuring mRNA, protein and metabolites is very different and is not easily combined on a large scale,
+and in some cases the dynamics on one layer might not be well represented by measurements on another layer[[citep:Gygi1999]].
 The time scales of reactions for different layers or sub-networks might be substantially different.
-Some interactions might not be observed if measuring the system over several days or under just a few seconds[[cite:Elf2007]].
+Some interactions might not be observed if measuring the system over several days or under just a few seconds[[citep:Elf2007]].
 When observing a collection of cells one can not assume that they are synchronised in expressing different properties or processes.
 One cell might be in the process of differentiating, displaying an expression pattern related specifically to that state, while other cells might not.
 A measurement on such a setup reflects an average over the cells in the sample and might not reflect any specific interaction pattern present in the cell.
 
 It is also common that the different layers of the networks are separated in different databases.
-For simpler organisms the [[gls:tf]] network is constructed from curated data and contains a large number of interactions. /RegulonDB/[[cite:Salgado2013]] has a large set of [[gls:tf]] binding interactions collected in a regulatory network of \coli.
-Correspondingly for \yeast there is the database Yeastract[[cite:Teixeira2013]].
+For simpler organisms the [[gls:tf]] network is constructed from curated data and contains a large number of interactions. /RegulonDB/[[citep:Salgado2013]] has a large set of [[gls:tf]] binding interactions collected in a regulatory network of \coli.
+Correspondingly for \yeast there is the database Yeastract[[citep:Teixeira2013]].
 These networks aims at mapping direct binding interactions between gene and gene products, specifically [[glspl:tf]] and binding sites.
 It has also been shown that mRNA expression data can be used to construct these networks
-[[cite:Faith2007]], and that it can be used to validate or extract knowledge.
+[[citep:Faith2007]], and that it can be used to validate or extract knowledge.
 
 **** Network medicine
-One of the main areas of practical application for network view based biology is in medicine.
+One of the main areas of practical application for network biology is in medicine.
 Around $10\%$ of human genes is disease associated.
-With the vast amount of interactors and interactions it is implied that the effect of the disease associations are not isolated to those $10\%$.
+With the vast amount of interactors and interactions it is implied that the effect of the disease associations are not isolated to those $10\%$[[citep:Barabasi2011]].
 The effect of /comorbidity/ is an indication that a specific decease is not isolated in its effects.
 Comorbidity is the ability of a disease to enhance other diseases if some specific disease is already present.
 By building a network of interactions and influences of cellular components a bigger picture can emerge of a disease effects on the regulatory system.
-By overlaying implicated disease genes on the network one can draw conclusions of other would be disease associated genes.
-The more complete this picture the better the conclusions of such a study[[cite:Barabasi2011]].
+By overlaying implicated disease genes on the network one can draw conclusions of other, would be, disease associated genes.
+The more complete this picture the better the conclusions of such a study[[citep:Barabasi2011]].
 # Network medicine see notes
 
 # Predictive, personalised, preventive, participatory.
 
-# [[cite:Morel2004]]
+# [[citep:Morel2004]]
 
-One of the main goals of drug discovery is to find compounds with specific properties that can target and effect pathways with high accuracy with minimal side effects[[cite:Schreiber2000]].
+One of the main goals of drug discovery is to find compounds with specific properties that can target and effect pathways with high accuracy with minimal side effects[[citep:Schreiber2000]].
 Generating reliable models that both predict and explain the effect of a specific perturbation generated from a drug compound will aid in creating more specific and effective drug treatments.
 
 A large amount of interest and funds of drug development are geard towards curing cancer.
 Cancer treatments are usually highly invasive, and cancer itself effects the operation of the cell.
-The signalling pathways and behaviour is altered[[cite:Weinberg1996]].
+The signalling pathways and behaviour is altered[[citep:Weinberg1996]].
 The effects of the cancer are multi-factorial, many times different for each cancer, and related to the regulatory system of the cell.
 An accurate model of healthy cells would serve as a basis for finding alterations in the regulatory system on a very detailed level.
 
-Systems biology approaches and elucidating the context specific regulatory networks of the cell will aid in creating a medical approach that is, predictive, personalised and preventive[[cite:Flores2013]].
+Systems biology approaches and elucidating the context specific regulatory networks of the cell will aid in creating a medical approach that is, predictive, personalised and preventive[[citep:Flores2013]].
 
-# Medical implications and motivation [[cite:Wolkenhauer2009]]
+# Medical implications and motivation [[citep:Wolkenhauer2009]]
 
 ** System theory
 :PROPERTIES:
 :CUSTOM_ID: sec:system-theory
 :END:
-In this section I will give a general description of a system and extending it to include inter-dependent variables \ie a network.
+In this section I will give a general description of a system and extend it to include inter-dependent variables \ie a network.
 I will also introduce [[glspl:ode]] and dynamical systems as a description of how a system is changing over time,
 and finally this section will give a brief description of properties associated with systems in a [[gls:grn]] framework.
 
@@ -354,23 +353,19 @@ and finally this section will give a brief description of properties associated 
 :PROPERTIES:
 :CUSTOM_ID: sec:system-description
 :END:
-Representation of a systems is as important as learning about the system itself.
-Whether it is a mathematical description a chemical reaction description or a graphical overview, this can help fuel insight about what is being observed.
+Representation of a system is as important as learning about the system itself.
+Whether it is a mathematical description, a chemical reaction description, or a graphical overview, the description can help fuel insight about what is being observed.
 This is especially important as the assumptions of the representation can in the worst case confer information that could be inaccurate or misleading.
 
-A general mathematically description of a system as
+A mathematical description of a system is \eg
 #+begin_src latex :exports results :results latex
-\begin{equation}
-  \Phi(a,\xi) = 0
-\end{equation}
-which vectorised becomes
 \begin{equation}\label{eq:system}
   \Phi(\ba,\bxi) = 0
 \end{equation}
 #+end_src
 \noindent
 for a multivariate problem where $\ba$ is the model parameters of the model and $\Phi$ is the function that maps the independent variables,
-to the dependent variables, $\bxi$[[cite:Aster2005]].
+to the dependent variables, $\bxi$[[citep:Aster2005]].
 For a discrete linear system ([[ref:eq:system]]) becomes a set of equations to be solved
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:sys_equ}
@@ -382,16 +377,14 @@ For $n=3$ variables and $m$ data points recorded, this becomes
   \begin{bmatrix}
     \phi_{11} & \phi_{21} & \phi_{31}\\
     \phi_{12} & \phi_{22} & \phi_{32}\\
-    . & . &. \\
-    . & . &. \\
-    . & . &. \\
+    \vdots & \vdots & \vdots \\
     \phi_{1m} & \phi_{2m} & \phi_{3m}\\
   \end{bmatrix}
   \begin{bmatrix}
     a_1\\a_2\\a_3\\
   \end{bmatrix} =
   \begin{bmatrix}
-    \xi_1\\\xi_2\\.\\.\\.\\\xi_m
+    \xi_1\\ \xi_2\\ \vdots \\ \xi_m
   \end{bmatrix}
 \end{equation}
 #+end_src
@@ -402,7 +395,7 @@ In machine learning and supervised learning $\Phi$ is the features while $\bxi$ 
 
 *** Dynamical Systems
 A dynamical system can be described as a set of instructions between nodes that influences themselves or other nodes over time.
-More specifically, the system describe the rules and inter-connections between variables and how they influence each other based based on those connections.
+More specifically, the system describe the rules and inter-connections between variables and how they influence each other based on those connections.
 We can have a general description of this definition, in the discreet time mapping
 #+begin_src latex :exports results :results latex
 \begin{equation}
@@ -420,8 +413,9 @@ This can be written as the difference eqaution,
 \end{equation}
 #+end_src
 where $\Delta$ is the difference operator and $\bx$ now represent the state vector.
+
 Another way of modeling evolving systems is the [[gls:ode]] model.
-[[Glspl:ode]] relate the state of the system to its rate of instantaneous change, or gradient in time,
+[[Glspl:ode]] relate the state of the system to its rate of instantaneous change
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:ode}
   \dot{\bx} = f(\bx,\bp,t)
@@ -438,45 +432,47 @@ describes the output variables $\by$ as a function of the states $\bx$, the outp
 *** Systems properties
 
 **** Network motifs
-It is know that some specific network motifs are highly over represented in biological systems, while others are underrepresented, compared to what would be expected of random networks, which is show by investigating the transcriptional network of \coli and \yeast[[cite:Milo2002]].
+It is known that some specific network motifs are highly over represented in biological systems, while others are underrepresented, compared to what would be expected of random networks.
+This has mainly been demonstarted by investigating the transcriptional network of \coli and \yeast[[citep:Milo2002]].
 Especially the [[gls:ffl]] motif is highly over represented.
-It has been showed that this specific regulatory motives could serve specific functionality, such as delayed response, pulse, clocks, step responses and switches
-[[cite:Alon2007]].
-Another type of motifs that are often considered in system theoretic approaches is the feedback loops.
-Feedback loop can cause highly correlated responses, so called interampatte systems, section [[ref:sec:iaa]].
-They may also determine phenotypes due to functioning as hard switches[[cite:Wolkenhauer2005]]. Feedback have been shown to help describe the behaviour of bacterial chemotaxis[[cite:Yi2000]].
-
-#
+It has been showed that this specific regulatory motives could serve specific functionality, such as delayed responses, pulse response, synchronisation clocks, step responses and switches
+[[citep:Alon2007]].
+Another type of motifs that are often considered in system theoretic approaches is the [[gls:fbl]].
+[[Glspl:fbl]] can cause highly correlated responses, so called interampatte systems, section [[ref:sec:iaa]].
+They may also determine phenotypes due to functioning as hard switches[[citep:Wolkenhauer2005]]. Feedback have been shown to help describe the behaviour of bacterial chemotaxis[[citep:Yi2000]]. A few examples of modeling the [[gls:fbl]] is presented in section [[ref:sec:lin-vs-non-lin]].
 
 **** Steady states
 :PROPERTIES:
 :custom_id: sec:ss
 :END:
-[[Glspl:ss]] are defined by $\dot{\bx} = 0 \equiv f(\bx_0)$ in ([[ref:eq:ode]]).
-The nature of the [[gls:ss]] can be elusidated by analysing the system $f(\bx_0) = 0$.
-The solution to this equation, or system of equations in multivariate analysis, is the [[gls:ss]].
+
+[[Glspl:ss]] are defined by when $\dot{\bx} = 0 \equiv f(\bx_0,\bp,T)$ in ([[ref:eq:ode]]).
+The nature of the [[gls:ss]] can be elusidated by analysing the system $f(\bx_0,\bp,T) = 0$., with $T$ being a time when the system is in [[gls:ss]].
+The solution to this equation, or system of equations for $\bx_0$ in multivariate analysis, is the [[gls:ss]].
 For the system $f(\bx_0) = 0$ we can calculate the jacobian, $J$, the partial derivatives of $f$ over the states $\bx$.
 The nature of the [[glspl:ss]] can then be derived from the eigenvalues of $J$.
 If all eigenvalues real part are negative then the system trajectories will converge to a stable state.
-If any eigenvalues real part is positive then an unstable trajectory exist for that state variable that will make the system behave unstable.
+If any real part is positive an unstable trajectory exist for that state variable that will make the system behave unstable.
 A system that is unstable will not converge to a stable state where $\dot{\bx} = 0$.
-For a linear system ([[ref:eq:linearsys]]) the solution of $f(\bx_0) = 0$ is always unique, meaing that there exist only one [[gls:ss]] for any linear system. The eigenvalues of $J$ might reveal that this is an unstable [[gls:ss]] and the system will diverge away from this state.
+For a linear system ([[ref:eq:linearsys]]) the solution of $f(\bx_0) = 0$ is always unique, meaing that there exist only one [[gls:ss]] for any linear system.
+The eigenvalues of $J$ might reveal that this is an unstable [[gls:ss]] and the system will diverge away from this state.
 
 Non linear systems might have more complex descriptions of there function $f(\bx_0) = 0$, with multiple solutions.
 This means that the system has multiple [[gls:ss]], where some might correspond to converging states, while others might be unstable [[gls:ss]] that when the system is placed in this state it will naturally diverge from the state.
 
-The stable [[gls:ss]] property have been incorporated in algorithms[[cite:Zavlanos2011]] and when collecting data[[cite:steady_state_data]] for doing network inference [[ref:sec:net_inf]].
-The assumption here is that if biological systems would not be stable,
-even random variations would eventually accumulate within the system which would lead to a system collapse[[cite:Kremling2007]].
+The stable [[gls:ss]] property have been incorporated in algorithms[[citep:Zavlanos2011]] and when collecting data[[citep:Gardner2003]] for inferring [[gls:grn]].
+The assumption is that if biological systems would not be stable,
+even random variations would eventually accumulate within the system and that would lead to a system collapse[[citep:Kremling2007]].
 
 One simple mechanism in [[glspl:grn]] for maintaining stability is degradation.
-As every entity that regulates something else in the system will degrade over time an infinite growth can not be maintained.
-This because an equilibrium will be reach depending on the grown rate and degradation rates of the molecules[[cite:Alon2007]].
+As every entity that regulates something else in the system will degrade or be diluted over time as a function of the concentration, an infinite growth can not be maintained.
+This because an equilibrium will be reach depending on the grown rate and degradation rates of the molecules[[citep:Alon2007]].
 
-**** Linear vs Non-linear models
+**** Linear vs. Non-linear models
 :PROPERTIES:
 :CUSTOM_ID: sec:lin-vs-non-lin
 :END:
+
 Depending on what representation of the system we choose to use different properties or features of the model will follow.
 The model should be able to capture important features of the underlying system and aim to be simple to understand and interpret.
 The representation should be able to give us insite on what the system looks like and predict what kind of behaviour is expected in general or for a specific set of parameters.
@@ -489,9 +485,9 @@ The non linear representation is developed to model enzyme kinetics and the line
 #+label: fig:two-gene-feedback
 [[file:img/feedback_graph.pdf]]
 # Check Alon2007 page 99. also page 115. 119.
-# Also check [[cite:Sontag2005]] figure 20.
+# Also check [[citep:Sontag2005]] figure 20.
 
-Figure [[ref:fig:two-gene-feedback]] is the graphical, or network, representation of a two gene mutually regulating feedback loop.
+Figure [[ref:fig:two-gene-feedback]] is the graphical, or network, representation of a two gene mutually regulating [[gls:fbl]].
 The links depict the direction of the interaction with the balls at the end of the link serving as a placeholder for an activating (arrow) or repressing (T) interaction.
 We can mathematically describe this system as an [[gls:ode]],
 #+begin_src latex :exports results :results latex
@@ -508,7 +504,7 @@ The parameters of model are $a_{11},a_{12},a_{21}, a_{22}$ and $\alpha_1$ and $\
 Any other paramters in the functions $f$ are represented by $\bK_i$.
 The state of the system is $x_i$ and $x_2$ represents some quantity related to the gene $G_1$ and $G_2$ respectively.
 
-To simplify somewhat lets look at activating feedback loop with degradation only.
+To simplify somewhat lets look at activating [[gls:fbl]] with degradation only.
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback}
   \begin{array}{lcr}
@@ -556,10 +552,10 @@ The eigenvalues are calculated by finding the $\lambda$ of
 \noindent
 where $|.|$ is the determinant and $\bI$ is the identity matrix.
 This will evaluate to a quadratic function with two solutions for $\lambda$, one for each eigenvalue.
-The eigenvalues are evaluated at the [[gls:ss]], so that $f^\prime_{x_1}(x_2)$ and $f^\prime_{x_2}(x_1)$ are evaluated at the steady state[[cite:Morris2004]].
+The eigenvalues are evaluated at the [[gls:ss]], so that $f^\prime_{x_1}(x_2)$ and $f^\prime_{x_2}(x_1)$ are evaluated at the steady state[[citep:Morris2004]].
 
 Lets consider the case where $f_x$ is the linear function for both $G_1$ and $G_2$.
-Then ([[ref:eq:feedback]]) will have four paramters $a_12,a_21$ and $\alpha_1,\alpha_2$ and the [[gls:ss]] would look like
+Then ([[ref:eq:feedback]]) will have four paramters $a_{12},a_{21}$ and $\alpha_1,\alpha_2$ and the [[gls:ss]] would look like
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback-linear-ss}
   \begin{array}{ccc}
@@ -584,7 +580,8 @@ Complex eigenvalues always comes in pairs.
 The real part of the eigenvalues $\Re(\lambda)$ determines if the system is stable (-) or unstable (+).
 The imaginary part $\Im(\lambda)$ determines the oscillatory behaviour of the system.
 
-Now lets look at the non linear case when $f_x$ is the Michaelis-Menten kinetics function.
+Now lets look at the non linear case when $f_x$ is the Michaelis-Menten (MM) kinetics function.
+MM function have been used to model [[glspl:grn]] before[[citep:August2009]].
 Other alternatives can be chosen as well, \eg Hill kinetics or boolean functions.
 The Michaelis-Menten function is
 #+begin_src latex :exports results :results latex
@@ -643,13 +640,14 @@ The effects are additative and not independantly modelled.
 As mentioned before one need to be careful to what model to use to represent ones system.
 While some features can not be captured by the linear model, such as bi-stability, the increase in complexity and degrees of freedom for the non linear system can risk creating models that does not represent the underlying biology and by extension increase the demand for more data.
 
-In the extreme case a very simple model can fit any set of data points exactly[[cite:Andrae2010]].
+In the extreme case a very simple model can fit any set of data points exactly[[citep:Andrae2010]].
 Discriminating any two model structures, \ie what paramters are interesting versus parameters that should be excluded, under these conditions would be much more difficult.
 
-**** Hierarchical systems
+**** Time seprated hierarchical systems
 :PROPERTIES:
 :CUSTOM_ID: sec:hierarchical-systems
 :END:
+
 Investigating hierarchies in systems helps understaning the behaviour of the system and can simplify further analysis.
 A dynamical system may work on several different time scales.
 The time constant $\tau$ can be derived from the eigenvalues of the jacobian, $J$, in essence estimating the scale of the effect of the system changes.
@@ -662,23 +660,22 @@ The time constant $\tau$ can be derived from the eigenvalues of the jacobian, $J
 where $\Re(\lambda_i)$ is the real part of eigenvalue $\lambda$ for gene $i$.
 
 Practically, the time constant is calculated for a non linear system around its [[gls:ss]].
-Fast and slow modes can be separated either by eigenvalue spectral clustering or by imposing a threshold, $\tau^S$ on the time constant, so that if $\tau_i > \tau^S$, $i$  belongs to the fast modes and to the slow otherwise [[cite:Kremling2007]].
+Fast and slow modes can be separated either by eigenvalue spectral clustering or by imposing a threshold, $\tau^S$ on the time constant, so that if $\tau_i > \tau^S$, $i$  belongs to the fast modes and to the slow otherwise [[citep:Kremling2007]].
 
-Hierarchical analysis of system dynamics have been used to reduce dimensionality of the system
-[[cite:Zagaris2003]]
-Time scale separation is suspected as being a cause of an interampatte behaviour of a system[[cite:Nordling2009]].
+Hierarchical analysis of system dynamics have been used to reduce dimensionality of the system[[citep:Zagaris2003]].
+Time scale separation is implicated as being a cause of an interampatte behaviour of a system[[citep:Nordling2009]].
 
 Time constants and associated dynamics can be viewed as the system operating in different time windows.
-Faster modes than the times observable in the window under observation can be considered as [[gls:ss]] and slower modes can be discarded as they are then independent on any changes in the time window.
-Analysing time dynamics could potentially help determine sampling frequency when doing [[gls:tsd]] analysis as the fast responses could be investigated while assuming slower modes are quasi stable [[cite:is_there_a_citation_for_this]].
-# [[cite:He2009]] Discusses experimental design section 5.
+Faster modes than the times observable in the window under observation can be considered as [[gls:ss]] and slower modes can be discarded as they are then independent of any changes in the time window.
+Analysing time dynamics could potentially help determine sampling frequency when doing [[gls:tsd]] analysis as the fast responses could be investigated while assuming slower modes are quasi stable.
+# [[citep:He2009]] Discusses experimental design section 5.
 
 **** Interampatte systems
 :PROPERTIES:
 :CUSTOM_ID: sec:iaa
 :END:
 
-Interampatteness is a property of biochemical networks that can be recognised by a high correlated response to system perturbations for at least parts of the system[[cite:Nordling2009]].
+Interampatteness is a property of biochemical networks that can be recognised by a high correlated response to system perturbations[[citep:Nordling2009]].
 The degree of interampatteness can be calculated as the condition number of the static gain matrix.
 #+begin_src latex :exports results :results latex
 \begin{equation}
@@ -686,17 +683,17 @@ The degree of interampatteness can be calculated as the condition number of the 
 \end{equation}
 #+end_src
 \noindent
-where $\overline{\glssymbol{sigma}}$ is the largest [[gls:sigma]] and $\underline{\glssymbol{sigma}}$ is the smallest [[gls:sigma]].
+where $\overline{\glssymbol{sigma}}$ is the largest [[gls:sigma]] and $\underline{\glssymbol{sigma}}$ is the smallest [[gls:sigma]] of $\mG$.
 
 Several data sets have been observed to be ill-conditioned.
 This is also the effect of doing measurements on an interampatte system.
-The data obtained from perturbing a 10 gene network of the /Snf1/ pathway in \yeast[[cite:Lorenz2009]] had a condition number,$\kappa = 253$, and a data set from a 9 gene network in \coli[[cite:Gardner2003]] had a condition number,$\kappa = 54$.
+The data obtained from perturbing a 10 gene network of the /Snf1/ pathway in \yeast[[citep:Lorenz2009]] had a condition number, $\kappa = 253$, and a data set from a 9 gene network in \coli[[citep:Gardner2003]] had a condition number,$\kappa = 54$.
 The corresponding estimated interampatteness degree was $\kappa = 215$ and $\kappa= 154$ respectively.
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # Check these numbers
 
-Considering the inverse problem [[ref:sec:inverse-problem]] it is known that the smallest signals in the system has the largest effect on the solution.
+Considering the inverse problem (section [[ref:sec:inverse-problem]]) it is known that the smallest signals in the system has the largest effect on the solution when trying to recover the system.
 The smallest signal are often the one most susceptable to be influenced by noise and by extension being the weak point of the inference.
 The response data and perturbation design should be related to the interampatteness of the system under investigation as some responses could be masked by attenuation effects and interactions unable to be inferred reliably.
 
@@ -705,15 +702,16 @@ The response data and perturbation design should be related to the interampatten
 :CUSTOM_ID: sec:system-biology
 :END:
 
-Systems biology mainly concerns itself with finding a description of biology that takes in to account the complex interactions that is typically found within \eg the cellular network.
-The problems sought to be solved by a systems biology approach concerns behaviours of cellular networks in the light of specific motifs.
-Global structure of interaction networks, such as scale-free-ness or small-world properties[[cite:Vidal2009]].
-To be able to do this the structure of the network needs to be inferred.
-This involves what is commonly known as a "top down" approach, contrasting the "bottom up" approach that traditionally means investigating singular regulatory interactions or a specific bio-molecules properties. When most of the specific details of for example the biochemical reactions are known then a "bottoms up" approach can be appropriate to build up a view of the system ind investigate emergent behaviour not observed or easily infer from the parts of the system[[cite:Kremling2007]].
+Systems biology mainly concerns itself with finding a description of biology that takes in to account the complex interactions that is typically found within \eg the cellular regulatory network.
+The problems sought to be solved by a systems biology approach concerns behaviours of regulatory networks in the light of specific motifs and
+global structure of interaction networks, such as scale-free-ness or small-world properties[[citep:Vidal2009]].
+To be able to do this, the structure of the network needs to be inferred.
+This involves what is commonly known as a "top down" approach, contrasting the "bottom up" approach that traditionally means investigating singular regulatory interactions or the specific properties of a bio-molecule.
+When most of the specific details of the biochemical reactions are known then a "bottoms up" approach can be appropriate to build up a view of the system and investigate emergent behaviour not observed or easily infer from the parts of the system[[citep:Kremling2007]].
 
 This section will focus on a sub part of what is recognised as systems biology, namely the inference of causal network models describing \acrlong{grn}.
 
-First a brief overview of different model formalism, second a more focused in depth view of linear models and third its application to network inference of [[glspl:grn]].
+First a brief overview of different model formalism, second a more focused in depth view of linear dynamical models and third its application to network inference of [[glspl:grn]].
 
 *** Model formalism
 :PROPERTIES:
@@ -728,12 +726,12 @@ to be able to use correlation based method to infer a directed regulatory networ
 and not just an association network, [[gls:tsd]] needs to be used.
 # what about partial correlations?
 
-An associated approach is the information theoretic approach.
+An similar approach is the information theoretic approach.
 The information theoretic approach is based on estimating the mutual information of the variation in the expression patterns of measured genes.
 The expression space could either be discretized to simplify calculations or used as is.
-This type of model extends to non linear relationships as mutual information can describe many types behaviours.
+This type of model extends to non linear relationships as mutual information can describe many types behaviours[[citep:Margolin2006]].
 
-Boolean networks links gene expression through boolean operators such as =AND=, =OR= and =NOT= [[cite:Albert2003]].
+Boolean networks links gene expression through boolean operators such as =AND=, =OR= and =NOT= [[citep:Albert2003]].
 Boolean interactions are based on the truth table of the interactors.
 This means that the expression of each gene needs to be discretized to determine if the gene is =ON= or =OFF= and can be expressed as,
 #+begin_src latex :exports results :results latex
@@ -741,13 +739,12 @@ This means that the expression of each gene needs to be discretized to determine
   \bx(t+1) = f^B(\bx(t))
 \end{equation}
 #+end_src
-where $f^B$ is a boolean function and $\bx(t+1)$ is the state of the state variables (=ON= / =OFF=) at time $t+1$ as a function of the state at time $t$.
+where $f^B$ is a boolean function and $\bx(t+1)$ is the state  (=ON= / =OFF=) of the state variables at time $t+1$ as a function of the state at time $t$.
 #
 
-Bayesian models is by their nature probabilistic.
-The models are based on conditional probabilities.
-Due to the nature of conditional probabilities the bayesian model can not handle feedback loops.
-Not until extended to dynamic bayesian models would it be possible to model [[glspl:grn]] with feedback.
+Bayesian models are models based on conditional probabilities.
+Due to the nature of conditional probabilities the bayesian model can not handle [[glspl:fbl]].
+To be able model [[glspl:grn]] with feedback one needs to extend the bayesian model to the dynamic bayesian models.
 The Bayesian model is modelled with conditional probabilities
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:bayesian-model}
@@ -760,21 +757,23 @@ Each network model would then be a product of conditional probabilities based on
 
 Another class of models is the [[gls:ode]] models ([[ref:eq:ode]]).
 Several different models fall under this umbrella.
-An example of a non linear [[gls:ode]] is a model using Michaelis-Menten kinetics. This can be extending to include modelling with the cooperative Hill coefficients. The coefficients in the Hill function can determine the steepness of the activation curve. This could also be replaced in the extreme case with a boolean condition, where activation turns on only if the amount of some activation molecule reaches a certain concentration[[cite:Alon2007]].
+An example of a non linear [[gls:ode]] is a model using [[gls:mm]] kinetics.
+This can be extending to include modelling with the cooperative Hill coefficients. The coefficients in the Hill function determine the steepness of the activation curve.
+This could also be replaced in the extreme case with a boolean condition, where activation turns on only if the amount of some activation molecule reaches a certain concentration[[citep:Alon2007]].
 # non-linear
 
 # linear models
-the linear [[gls:ode]] is a system where the rate of change for each gene in the system is the cumulative effect of all other regulators for that gene.
+For the linear [[gls:ode]] the rate of change for each gene in the system is the cumulative effect of all other regulators for that gene.
 The linear system model will be discussed in detail in section [[ref:sec:linear_models]].
 
-There are several review articles describing different approaches and model formalism for network inference in systems biology, see \eg cite:DeJong2002a,Gardner2005,Hecker2009,Yaghoobi2012 for an overview of the main ones.
+There are several review articles describing different approaches and model formalism for network inference in systems biology, see \eg citep:DeJong2002a,Gardner2005,Hecker2009,Yaghoobi2012 for an overview of the main ones.
 
-# [[cite:Gardner2005]]
+# [[citep:Gardner2005]]
 # Citation 8 and 12 should detail that linear models have been shown to be more versatile.
 
 One should note that some care has to be take to the choice of model for fitting the data.
 For a non-linear models the degrees of freedom might not be well defined.
-Even for very simple models with few parameters very complex patterns of data can be fitted[[cite:Andrae2010]].
+Even for very simple models with few parameters very complex patterns of data can be fitted[[citep:Andrae2010]].
 If any set of data can be fitted with the model then there is no way of discriminating between competing models or any test that can exclude a model over another.
 Something that should be required for a model to be considered descriptive.
 
@@ -783,10 +782,11 @@ Something that should be required for a model to be considered descriptive.
 :CUSTOM_ID: sec:linear_models
 :END:
 
-The draw to use linear models is that they are simple and can describe various complex phenomena observed in biological system,
+The benefits to using linear models is that they are simple and can describe various complex phenomena observed in biological system,
 such as \eg feed back and feed forward motifs.
-Even if non linear, as long as the system operates close to [[gls:ss]] a linear model can be employed to describe the casual interactions.
+Even if non linear, as long as the system operates close to [[gls:ss]] a linear model can be approximated to describe the casual interactions.
 
+A mathematical description of the linear system is as follos,
 #+begin_src latex :exports results :results latex
 \begin{equation}
   \begin{array}{r c l}
@@ -798,32 +798,33 @@ Even if non linear, as long as the system operates close to [[gls:ss]] a linear 
 #+end_src
 # see \eg \citet{Yuan2011,Gardner2003,Yeung2002}.
 #+LATEX: \noindent
-If we are using the linear model in a biological systems framework then we would say that the state vector \(\bx(t)=[x_1(t),x_2(t),\ldots,x_N(t)]^T\) represents mRNA expression changes relative to the initial state we refer to as $t=0$ of the system,
-the vector \(\bp(t)=[p_1(t),p_2(t),\ldots,p_N(t)]^T\) represents the applied perturbation, which may be corrupted by the noise $\bbf(t)$.
+If we are using the linear model in a biological systems context then the state vector \(\bx(t)=[x_1(t),x_2(t),\ldots,x_N(t)]^T\) represents mRNA expression changes relative to the initial state we refer to as $t=0$ of the system
+The vector \(\bp(t)=[p_1(t),p_2(t),\ldots,p_N(t)]^T\) represents the applied perturbation, which may be corrupted by the noise $\bbf(t)$.
 The perturbations could be \eg gene knock-downs using siRNA or gene over-expressions using a plasmid with an extra copy of the gene.
 The response vector \(\by(t)=[y_1(t),y_2(t),\ldots,y_N(t)]^T\) represents the measured expression changes that differ from the true expression changes by the noise $\be(t)$.
 $a_{ij}$ represents the influence of an expression change of gene $j$ on gene $i$.
 If gene $j$ up regulates gene $i$ then $a_{ij}$ is positive and if gene $j$ down regulates gene $i$ then $a_{ij}$ is negative.
 If gene $j$ and $i$ have no interaction then $a_{ij} =0$.
 
-Linear [[gls:ode]] have been extensively used in the context of systems biology.
-It has been shown that non linear models can be linearised around a [[gls:ss]] or log-transformed to be able to make use of the properties associated with linear systems and that near [[gls:ss]] the kinetics are well described by a linear model [[cite:Crampin2006]].
+Linear [[gls:ode]] have been used extensively in the context of systems biology.
+It has been shown that non linear models can be linearised around a [[gls:ss]] or log-transformed to be able to make use of the properties associated with linear systems and that near [[gls:ss]] the kinetics are well described by a linear model [[citep:Crampin2006]].
+However that means that if we are not operating close to a [[gls:ss]] a linear model might give misleading conclusions.
+Until the quality of data is such that a clear discrimination between when a simple linear model can explain the data extra care should be taken when or if choosing a more complex model.
 
 **** Steady state data
-If we collect only [[gls:ssd]] and use the common notation that each sample is recorded in each column the system will simplify ([[ref:eq:linearsys]]) to
+If we collect only [[gls:ssd]] and use the common notation that each sample is recorded in each column we can simplify ([[ref:eq:linearsys]]) to
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:Linearmap}
   \mY = -\mA^{-1}\mP +\mA^{-1}\mF + \mE
 \end{equation}
 #+end_src
 #+LATEX: \noindent
-when the set of experiments are considered, with $\mY$ being the observed [[gls:ss]] response matrix after applying the perturbations $\mP$ and $\mA$ is the interaction matrix \ie network.
-Linear system with steady state data have been used in several network inference projects [[cite:Tegner2003,Gardner2003,Julius2009]].
-
+when the set of experiments are considered, with $\mY$ being the observed [[gls:ss]] response matrix after applying the perturbations $\mP$, and $\mA$ is the interaction matrix \ie network.
+Linear system with steady state data have been used in several network inference projects [[citep:Tegner2003,Gardner2003,Julius2009]].
 
 **** Least squares estimate and prediction error
 
-To find the ordinary least squares estimate for ([[ref:eq:Linearmap]]) one can solve for $\mA$,
+To find the ordinary least squares estimate of ([[ref:eq:Linearmap]]) we solve for $\mA$,
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:ls}
   \mA_{ls} = -\mP\mY^{\dagger}
@@ -831,10 +832,10 @@ To find the ordinary least squares estimate for ([[ref:eq:Linearmap]]) one can s
 #+end_src
 #+LATEX: \noindent
 Here $\dagger$ represent the Moore-Penrose generalised matrix inverse.
-In the above equation we assume we can find a solution for $\mA_{ls}$.
-However in general, if we have collected noisy data a solution to the above can not be guaranteed.
+IF the data does not contain any noise we assume we can find an exact solution for $\mA$.
+However in general, if we have collected noisy data a solution to the above can not be guaranteed and we need to find the least squares soluton $\mA_{ls}$.
 
-To fit the data one wants to find the parameters of the model that minimises the distance to the regression curve that relates the independent and dependent variables[[cite:Aster2005]].
+To fit the data one wants to find the parameters of the model that minimises the distance to the regression curve that relates the independent and dependent variables[[citep:Aster2005]].
 This can be expressed with the following equation,
 #+begin_src latex :exports results :results latex
 \begin{equation}
@@ -842,7 +843,8 @@ This can be expressed with the following equation,
   \label{eq:ols_L2}
 \end{equation}
 #+end_src
-If the noise in $\mF$ and $\mE$ are \iid and normally distributed, $\normall$ with mean $\mu$ and variance, $\lambda$, then the least squares estimate is also the maximum likelihood estimate[[cite:find_some_citation]].
+#+LATEX: \noindent
+If the noise in $\mF$ and $\mE$ are \iid and normally distributed, $\normall$ with mean $\mu$ and variance, $\lambda$, then the least squares estimate is also the maximum likelihood estimate[[citep:Hastie2009]].
 
 Equation ([[ref:eq:ols_L2]]) is sensitive to outliers due to the nature of the 2-norm, $\norm{.}_2$ and it might be favourable to introduce the 1-norm instead
 #+begin_src latex :exports results :results latex
@@ -851,36 +853,38 @@ Equation ([[ref:eq:ols_L2]]) is sensitive to outliers due to the nature of the 2
   \label{eq:ols_L1}
 \end{equation}
 #+end_src
+#+LATEX: \noindent
 this norm corresponds to fitting to the median rather than the mean as in ([[ref:eq:ols_L2]]).
-The issue being that while ([[ref:eq:ols_L2]]) is differentiable, ([[ref:eq:ols_L1]]) is not.
+For ([[ref:eq:ols_L2]]) the function is differentiable, but for ([[ref:eq:ols_L1]]) it is not.
 This problem can be over come by noting that ([[ref:eq:ols_L1]]) is peace-wise differentiable and convex.
-Meaning that one can search for the optimal solution by finding the peace-wise optimal solutions[[cite:Aster2005]].
+Meaning that one can search for the optimal solution by finding the peace-wise optimal solutions[[citep:Aster2005]].
 
 *** Network inference
 :PROPERTIES:
 :CUSTOM_ID: sec:net_inf
 :END:
 
-# CHECK TORBJORNS THESIS PAGE 28!!!
+# CHECK TORBJORNS THESIS PAGE 28!!! [[citep:Nordling2013phdthesis]]
 
 # Also comment on that biological systems are usually considered stable [[ref:sec:ss]]
 
 The first objective of network inference is to infer the interaction network between the nodes/genes. The links that describe the causal influence of one entity to another.
-[[citet:Gardner2005]] separated two different types of network inference types, the first or "physical" approach aims at construction the transcriptional regulatory network directly, \ie to determine the physical binding of one transcription factor to another. This strategy concerns itself with direct interactions.
-In some cases however, it may be that an intermediate step is not observed and no direct binding occurs even though change based on some regulation can be observed.
+[[citet:Gardner2005]] separated two different types of network inference types, the first or "physical" approach aims at construction the transcriptional regulatory network directly, \ie to determine the physical binding of one transcription factor to another. This strategy concerns itself with direct chemical bonding interactions.
+In some cases however, it may be that an intermediate step is not observed and no direct binding occurs even though change based on influence can be observed.
 The other approach is the influence strategy.
-Where the regulatory influences are sought.
-In this case one can model the network of interactions as in ([[ref:eq:ode]]).
+Here the regulatory influences are sought rather then physical binding.
+
 As the primary objective of network inference is to find the regulatory interactions, the problem of network inference is primarily a model identification problem and not a parameter estimation problem.
-However, this line is sometimes blurred with the introduction of algorithms such as \lasso[[cite:Tibshirani1996]] which both estimates parameters and also returns a selection of candidate models (see: [[ref:sec:linear_penalty]]).
+However, this line is sometimes blurred with the introduction of algorithms such as \lasso[[citep:Tibshirani1996]] which both estimates parameters and also returns a selection of candidate models (see: [[ref:sec:linear_penalty]]).
 
 Several studies have employed a linear dynamical systems framework.
-[[citet:Gardner2003]] used a linear model, motivated by linearisation of a non linear model around a [[gls:ss]]. Furthermore data was recorded with a [[gls:ss]] assumption on the measured mRNA expression data for 9 genes in the SOS pathway in \coli. A linear regression method was then used to estimate model parameter and a exhaustively search a subset of interactors for each gene in the network.
+[[citet:Gardner2003]] used a linear model, motivated by linearisation of a non linear model around a [[gls:ss]].
+Furthermore data was recorded with a [[gls:ss]] assumption on the measured mRNA expression data for 9 genes in the SOS pathway in \coli. A linear regression method was then used to estimate model parameter and a exhaustively search a subset of interactors for each gene in the network.
 
 A core mechanism to be able to infer a casual influence network from [[gls:ssd]] and a linear dynamical system, section [[ref:sec:linear_models]], is that specific perturbations are made to each gene that is going to be included in the network.
-This is the case for [[gls:tsd]] as well with the difference being that for [[gls:tsd]] only a single perturbation needs to be made, and it does not necessarily need to be kept constant until the system relaxes to a [[gls:ss]][[cite:Dhaeseleer1999]].
+This is the case for [[gls:tsd]] as well with the difference being that for [[gls:tsd]] only a single perturbation needs to be made, and it does not necessarily need to be kept constant until the system relaxes to a [[gls:ss]][[citep:Dhaeseleer1999]].
 
-# Parameter estimation [[cite:Aster2005]]
+# Parameter estimation [[citep:Aster2005]]
 #
 #
 
@@ -888,23 +892,26 @@ This is the case for [[gls:tsd]] as well with the difference being that for [[gl
 :PROPERTIES:
 :CUSTOM_ID: sec:linear_penalty
 :END:
+
 Looking at equation ([[ref:eq:ols_L2]]) and ([[ref:eq:ols_L1]]) it is clear that the estimate of $\check{\mA}_{ols}$ contains contributions from the noise matrices $\mE$ and $\mF$, even if assuming that the independent variable is noise free, $\mF=0$, we still have to deal with a noisy expression matrix $\check{\mY}$.
 The result of fitting the data with a noisy $\check{\mY}$, is that the estimated model $\mA_{ols}$ tends to be overfitted, meaning that the paramters of the model fitts the noise.
-Classically this have the consequence that the model fitted does not generalise to any other data.
-For network inference it means that there is a big chance that a link is inferred in the network which does not exist except for the effect of the noise.
-A network like that is hard to interpret as it usually depicts every gene interacting with every other gene[[cite:Hastie2009]].
-An early approach of dealing with overfitting was to introduce a peanalty term in the model fitting,
+This has the consequence that the model fitted to the data does not generalise to other data with different noise realisations.
+For network inference it means that a link can be is inferred in the network that does not exist except for compensating for the effect of the noise.
+A network like that is hard to interpret as it usually depicts every gene interacting with every other gene[[citep:Hastie2009]].
+An approach to dealing with overfitting is to introduce a peanalty term in the model fitting,
 #+begin_src latex :exports results :results latex
 \begin{equation}
   \hat{\mA}_{\textrm{reg}}(\tilde{\zeta}) = \arg \min_{\mA} ||\bA \bY+\bP||_{L_2}^2 + \zeta||\bA||_{L_2} .
   \label{eq:ridge-regression}
 \end{equation}
 #+end_src
-Here, $\zeta$ corresponds to a parameter that regulates the impact of the penalty term on the ordinary least squares estimate.
-The penalty term $\zeta||\bA||_{L_2}$ penalises the model parameters squared size, this has a result that large parameters will be penalised more than smaller.
-This approach smooths the parameters of the models and as a consequence performs well on ill-conditioned problems. However it does not eliminate model parameters well.
+#+LATEX: \noindent
+with $\zeta$ corresponding to a parameter that regulates the impact of the penalty term on the ordinary least squares estimate.
+The penalty term $\zeta||\bA||_{L_2}$ penalises the model parameters squared size. This has a result that large parameters will be penalised more than smaller.
+This approach smooths the parameters of the models and as a consequence performs well on ill-conditioned problems.
+However it does not eliminate model parameters well.
 
-\lasso is another penalty method[[cite:Tibshirani1996]].
+\lasso is another penalty method[[citep:Tibshirani1996]].
 The lasso problem can be written as,
 #+begin_src latex :exports results :results latex
 \begin{equation}
@@ -912,14 +919,14 @@ The lasso problem can be written as,
   \label{eq:LASSO}
 \end{equation}
 #+end_src
-the \lasso penalises model parameters absolute size.
-The difference from the ridge-regression is that \lasso produces different models depending on the penalty parameter $\zeta$.
-\lasso has become popular for network inference due to the fact that it combines model selection as well as parameter estimation.
-Due to these properties \lasso has become very popular and a lot of work have been done on the performance of \lasso and modifications of \lasso[[cite:Candes2009,Zhao2006]].
-It has been shown that \lasso performs poorly on ill-conditioned data.
+#+LATEX: \noindent
+The \lasso penalises model parameters absolute size.
+The difference from the ridge-regression is that \lasso produces different models depending on the penalty parameter \(\zeta\)[[citep:Ng2004]].
+The \lasso have the property that it combines model selection with parameter estimation.
+Due to this property \lasso has become very popular and a lot of work have been done on investigating the performance, such as its weekness on ill-condtioned data and do modifications of \lasso[[citep:Fan2001,Zhao2006,Candes2009,Jia2012]].
 
 As ridge-regression does not suffer from the same weakness as \lasso an effort to combine the both called /elastic-net/ has been made.
-The Elastic-net[[cite:Zou2005]] method combines the $L_1$ penalty from \lasso and the $L_2$ penalty from ridge regression. The influence of the penalties are then weighted by a parameter $\alpha$ such that,
+The Elastic-net[[citep:Zou2005]] method combines the $L_1$ penalty from \lasso and the $L_2$ penalty from ridge regression. The influence of the penalties are then weighted by a parameter $\alpha$ such that,
 #+begin_src latex :exports results :results latex
 \begin{equation}
   \hat{\mA}_{\textrm{reg}}(\zeta) = \arg \min_{\mA} C + \tilde{\zeta}\left(\alpha ||\bA||_{L_1} + (1-\alpha)||\bA||_{L_2}^2\right),
@@ -927,23 +934,22 @@ The Elastic-net[[cite:Zou2005]] method combines the $L_1$ penalty from \lasso an
 \end{equation}
 #+end_src
 where $C=||\bA \bY+\bP||_{L_2}^2$.
+The elasic-net been shown to be beneficial when compared to other algorithms to infer [[glspl:grn]] [[citep:Gustafsson2010]].
 
-citet:Zou2006 for example, extended the \lasso with the adaptive \lasso algorithm which introduce a weighting term for each model paramter that, if picked carefully, will overcome the shortcomings of \lasso and that the weights should be based on properties of the data.
+citet:Zou2006 extended the \lasso with the adaptive \lasso algorithm which introduce a weighting term for each model paramter that, if picked carefully, will overcome the shortcomings of \lasso and that the weights should be based on properties of the data.
 
-In [[cite:Julius2009]] a structural constraint was introduced to the \lasso penalty derived from /a priori/ knowledge where structure could be specified as being there or not there, positive or negative or uncertain.
-An additional constraint was introduced in [[cite:Zavlanos2011]] where stability of the inferred network was ensured.
+In [[citep:Julius2009]] a structural constraint was introduced to the \lasso penalty derived from /a priori/ knowledge where structure could be specified as being there or not there, positive or negative or uncertain.
+An additional constraint was introduced in [[citep:Zavlanos2011]] where stability of the inferred network was ensured.
 In both cases a model similar to the one introduced in section [[ref:sec:linear_models]] was used, with a [[gls:ss]] assumption.
 
-#
- [[cite:Nordling2013phdthesis]]
+# [[citep:Nordling2013phdthesis]]
 
-# [[cite:Tegner2003]] Don't know how to use this.
+# [[citep:Tegner2003]] Don't know how to use this.
 
-# [[cite:Goncalves2008]] Not sure why this is here.
-
-# [[cite:Ng2004]] L1 vs L2
+# [[citep:Goncalves2008]] Not sure why this is here.
 
 **** Model selection
+
 To choose a "good" model when inferring networks is not trivial.
 \lasso produces a range of different models depending on the regularisation paramter $\zeta$.
 
@@ -956,7 +962,7 @@ To measure the performance of a network one can calculate the weighted [[gls:rss
 #+end_src
 \noindent
 where $\mA_f$ denotes any network arrived at by any function, with co-variance matrix $W$ of the measurements.
-If the errors in $\by$ are \iid and normally distributed, $\normall$ with mean $\mu$ and variance, $\lambda$, then the weighted [[gls:rss]] follows a [[gls:chi2]] distribution with $df$ degrees of freedom[[cite:Aster2005,Andrae2010]].
+If the errors in $\by$ are \iid and normally distributed, $\normall$ with mean $\mu$ and variance, $\lambda$, then the weighted [[gls:rss]] follows a [[gls:chi2]] distribution with $df$ degrees of freedom[[citep:Aster2005,Andrae2010]].
 It is also possible to compare models to determine if one model is significantly better than another.
 The ratio of two reduced [[gls:chi2]] distributions with degrees of freedom, $df_1$ and $df_2$,
 #+begin_src latex :exports results :results latex
@@ -966,20 +972,20 @@ The ratio of two reduced [[gls:chi2]] distributions with degrees of freedom, $df
 #+end_src
 \noindent
 will follow another F distribution with parameters $df_1$ and $df_2$.
-And a statistical test can be made to determine how much better one model is over the other [[cite:Aster2005]].
+And a statistical test can be made to determine how much better one model is over the other [[citep:Aster2005]].
 
 To circumvent the over-fitting problem, one might employ a [[gls:cv]] approach.
-[[gls:cv]] means leaving out a part of the data, fitting the model to the remaining that and calculate ([[ref:eq:wrss]]) or simply the [[gls:rss]] on the left out data.
+[[gls:cv]] means leaving out a part of the data, fitting the model to the remaining data and calculate ([[ref:eq:wrss]]) or simply the [[gls:rss]] on the left out data.
 This procedure is repeated for different portions of the data and the error is calculated each time.
 
 # Model selection
 Due to the statistical properties of the weighted [[gls:rss]] it is suitable for goodness of fit testing.
 If the error is significantly larger than expected the model is discarded.
 
-The prediction error approach is used in the Inferelator[[cite:Bonneau2006]], a network inference framework, together with a [[gls:cv]] scheme to select a model with sufficiently good performance.
-The common assumption that [[glspl:grn]] are sparse is used and motivates a selection of a prediction error one standard deviation above the minimum prediction error for selecting the network.
+The prediction error approach is used in the Inferelator[[citep:Bonneau2006]], a network inference framework, together with a [[gls:cv]] scheme to select a model with sufficiently good performance.
+The common assumption that [[glspl:grn]] are sparse is used and motivates a selection of a prediction error one standard deviation above the minimum prediction error for selecting the network that is more sparse.
 
-Two other approaches for model selection are [[gls:bic]] and [[gls:aic]][[cite:Akaike1973_with_commentary]].
+Two other approaches for model selection are [[gls:bic]] and [[gls:aic]][[citep:Akaike1973_with_commentary]].
 Both approaches is based on the likelihood function, the [[gls:bic]],
 which can be written as
 #+begin_src latex :exports results :results latex
@@ -987,18 +993,11 @@ which can be written as
   \text{BIC} = m \ln\left(\frac{\text{RSS}}{m}\right) + k \ln(m)
 \end{equation}
 #+end_src
+#+LATEX: \noindent
 where $m$ is the number of data points, and $k$ the number of free parameters to be estimated.
-An alternative form can be written as
-#+begin_src latex :exports results :results latex
-\begin{equation}
-  \text{BIC} =  \chi^2 + df \ln(m)
-\end{equation}
-#+end_src
-\noindent
-where [[gls:chi2]] is the chi square distribution with $df$ degrees of freedom[[cite:Should_be_one_here_from_wikipedia]].
 
 Both the [[gls:bic]] and [[gls:aic]] makes a trade of between model predictability and model complexity.
-Both methods have been shown to lack in some regards when compared to \eg [[gls:cv]] [[cite:Thorsson2005]].
+Both methods have been shown to perform worse than [[gls:cv]] [[citep:Thorsson2005]].
 
 **** Inverse problems
 :PROPERTIES:
@@ -1006,7 +1005,7 @@ Both methods have been shown to lack in some regards when compared to \eg [[gls:
 :END:
 
 [[citet:Aster2005]] describes the nature of the inverse problem, which arises when one tries to estimate model parameters based on measured data or observations related to some independent variables.
-This includes the network inference problem and relates the inference problems sensitivity to noise.
+This includes the network inference problem and relates to the inference problems sensitivity to noise.
 
 Looking at equation [[ref:eq:ls]] we can decompose matrix $\mY =\mU \mSigma \mV^T$ which is just a linear combination of the singular values $\glssymbol{sigma}_k$ and the singular vectors, $\bv_k \bu_k^T$, where $k$ is the specific [[gls:sigma]].
 Now the inverse of $\mY$, can be written as another linear combination of these entities,
@@ -1015,7 +1014,7 @@ Now the inverse of $\mY$, can be written as another linear combination of these 
   \mY^{\dagger} \equiv \sum_{k=1}^n \frac{1}{\sigma_k}\bv_k \bu_k^T
 \end{equation}
 #+end_src
-\noindent
+#+LATEX: \noindent
 which means that the singular value that has the largest effects on the estimate of ([[ref:eq:ls]]) is the smallest singular value of $\mY$.
 The smallest singular value represents the direction in the data with the least variation and least information, meaning that the influence of the noise $\mE$ is potentially substantial as the noise corrupts the smallest variation easier.
 
@@ -1026,16 +1025,17 @@ From equation ([[ref:eq:inv-y]]) we can derive a definition for an upper bound o
 \end{equation}
 #+end_src
 \noindent
-where the variables are defined as in ([[ref:eq:Linearmap]]) and $\overline{\sigma}$ represent the largest singular values and $\underline{\sigma}$ represents the smallest non zero singular value.
+and the variables are defined as in ([[ref:eq:Linearmap]]) and $\overline{\sigma}$ represent the largest singular values and $\underline{\sigma}$ represents the smallest non zero singular value.
 This can be understood as the largest possible effect the noise can have on the smallest singlar value of the measurements.
-In practise we do not have access to $\mE$ and we then define the [[gls:snr]] based one the variance of the noise,
+In practise we do not have access to $\mE$ and we then define the [[gls:snr]] based one the estimated variance of the noise,
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:snr-lambda}
   \SNR \equiv \frac{\underline{\sigma}(\mY)}{\sqrt{\chi^{-2}(\alpha,df)\lambda(\mY)}}\\
 \end{equation}
 #+end_src
 \noindent
-$\chi^{-2}$ is the inverse of the [[gls:chi2]] distribution at $\alpha$ significance level and $df$ degrees of freedom. $\lambda(\mY)$ is the variance of the noise or measurement error of $\mY$.
+$\chi^{-2}$ is the inverse of the [[gls:chi2]] distribution at $\alpha$ significance level and $df$ degrees of freedom.
+$\lambda(\mY)$ is the variance of the noise or measurement error of $\mY$.
 
 # any citations?
 
@@ -1053,68 +1053,68 @@ Benchmarking can be used as a tool for evaluating the performance of algorithms 
 Usually, introducing a new algorithm demands that the claims made of its usefulness is accompanied by a benchmark,
 a test against other competing methods or algorithms or some test of performance on data that can be compared to previous estimates citep:Margolin2006,Lauria2009,Friedman2010
 However, it might be the case that new information or better data becomes availible at a later point or that a scope or application for the method is expanded.
-Therefore, larger benchmarks are often conducted with a larger scope than provided original analysis[[cite:Bansal2007,Penfold2011]].
+Therefore, larger benchmarks are often conducted with a larger scope than provided original analysis[[citep:Bansal2007,Penfold2011]].
 These benchmark has the aim of exploring the performance of methods tested under both a realistice and wide range of conditions.
 
 Two classes of data often collected in relation to [[gls:grn]] inference, [[gls:ssd]] and [[gls:tsd]]. Different assumptions follow these different perturbation types.
 For [[gls:ssd]] one needs to measured and perturb every gene to be included in the inferred network, see[[ref:eq:linearsys]].
-For [[gls:tsd]] not all genes needs to be perturbed but one needs to capture enough data points as to capture the regulatory effects in short an long term[[cite:Hecker2009]].
+For [[gls:tsd]] not all genes needs to be perturbed but one needs to capture enough data points as to capture the regulatory effects in short an long term[[citep:Hecker2009]].
 
-One can focus on one of these data types when benchmarking algorithms \eg [[gls:tsd]] cite:Ward2009,Narendra2011 or mix different approaches that use both types of data[[cite:Bansal2007,Penfold2011]].
+One can focus on one of these data types when benchmarking algorithms \eg [[gls:tsd]] citep:Ward2009,Narendra2011 or mix different approaches that use both types of data[[citep:Bansal2007,Penfold2011]].
 
 Another feature of the data is the underlying model assumptions.
 To make the data more realistic a model based more closely on the underlying theory of how the system operates might be used.
-Different model assumptions demands different types of data whether it is to simulate [[gls:insilico]] data or to decide what data needs to be collected from an [[gls:invivo]] setup[[cite:Gardner2005]]. For example, if we consider boolean networks. If the regulatory structure of the network is such that a gene can not be "turned on" one can not collect all different combinations of input required to make a truth table for the inference the more regulators the more risk that not all combinations can be realised trivially and the more data needs to be collected.
+Different model assumptions demands different types of data whether it is to simulate [[gls:insilico]] data or to decide what data needs to be collected from an [[gls:invivo]] setup[[citep:Gardner2005]]. For example, if we consider boolean networks. If the regulatory structure of the network is such that a gene can not be "turned on" one can not collect all different combinations of input required to make a truth table for the inference the more regulators the more risk that not all combinations can be realised trivially and the more data needs to be collected.
 
-The [[gls:dream]] challenge is a community effort and competition that aims at combining the previously mentioned features of benchmarking in addition to including a large cotributing community[[cite:Marbach2012]].
+The [[gls:dream]] challenge is a community effort and competition that aims at combining the previously mentioned features of benchmarking in addition to including a large cotributing community[[citep:Marbach2012]].
 The challenges goes back to 2007 and has evolved over time.
 The [[gls:dream]] challenge is split in to several different challenges where one ore more are focused on network inference, or identifying unknown regulatory interactions with the help of data and a partly complete network.
-The challenges present a mix of [[gls:insilico]] and [[gls:invivo]] data and with some exceptions makes the data available for use when the challenge have finished for use in other works[[cite:Folch-Fortuny2015]].
+The challenges present a mix of [[gls:insilico]] and [[gls:invivo]] data and with some exceptions makes the data available for use when the challenge have finished for use in other works[[citep:Folch-Fortuny2015]].
 # May be add more examples than one.
 
 Another core part of any benchmark is how to evaluating the performance of an algorithm being tested and evaluating strengths and weaknesses of methods and appraoches.
 As the core aim of network inference is to fined the regulatory structure of the [[gls:grn]] one usually test for if an algorithm can distinguish between [[gls:tp]], [[gls:fp]], [[gls:tn]] and [[gls:fn]],
 where positive represent a link and negative the absence of a link.
 True and false represents whether the classification an inference method have made of if the link should be present or not is true or false.
-These measures are usually summarised in to a more easily enterpratable form, such as a fraction of the measures that range between 0 and 1, \eg sensitivity $=\frac{TP}{TP+FN}$, precision $=\frac{TP}{TP+FP}$, specificity $=\frac{TN}{TN+FP}$ and negative prediction value $=\frac{TN}{TN+FN}$ [[cite:Bansal2007]].
+These measures are usually summarised in to a more easily enterpratable form, such as a fraction of the measures that range between 0 and 1, \eg sensitivity $=\frac{TP}{TP+FN}$, precision $=\frac{TP}{TP+FP}$, specificity $=\frac{TN}{TN+FP}$ and negative prediction value $=\frac{TN}{TN+FN}$ [[citep:Bansal2007]].
 What one would like is a single number that represents the performance and is easily compared and understood. The  [[gls:auroc]] and  [[gls:aupr]]  is used in many benchmarks, see for example,
 # Explain these more.
-[[cite:Narendra2011,Marbach2010,Marbach2012]].
-Some examples of incorporating sign of the link has been made[[cite:Hache2009]].
+[[citep:Narendra2011,Marbach2010,Marbach2012]].
+Some examples of incorporating sign of the link has been made[[citep:Hache2009]].
 Which means extending the binary classification in to a more complex structure where you take in to account a link which are inferred but with the wrong sign.
 
 [[citet:Cantone2009]] generated an [[gls:invivo]] data set from an engineered network. The network was tuned so that the interactions would be known and the network was perturbed and the response was measured both for [[gls:ss]] and [[gls:tsd]]. The purpose of this data set was to be able to benchmark methods on a realistic true model with actual measured data.
-Even during these conditions it is shown that inferring the true network is difficult[[cite:Penfold2011]].
+Even during these conditions it is shown that inferring the true network is difficult[[citep:Penfold2011]].
 
-*** Data and experiments, \insilico vs \invivo
+*** Data and experiments, \insilico vs. \invivo
 :PROPERTIES:
 :CUSTOM_ID: sec:data_experiments
 :END:
 
 A large collection of toolboxes has been developed aimed at systems biology research.
-which focuses mainly on creating simulated [[glspl:grn]] see for example:cite:VandenBulcke2006,Hache2009b,Schaffter2011.
+which focuses mainly on creating simulated [[glspl:grn]] see for example:citep:VandenBulcke2006,Hache2009b,Schaffter2011.
 
-This is a response to the fact that regulatory networks in biology are generally lacking in information and are one of the least available networks types[[cite:Barabasi2011]].
+This is a response to the fact that regulatory networks in biology are generally lacking in information and are one of the least available networks types[[citep:Barabasi2011]].
 This has to be paired with available data suitable for network inference under stable enough conditions so that the change in the states observed in the data is a consequence of regulatory effects and not for example the network being in a specific mode or that a part of the network is missing, which can happen if genes are deleted.
-Toy models and [[gls:insilico]] generated data have been shown to be a good proxy for estimating performance off network inference algorithms[[cite:Bansal2007]]. [[Gls:insilico]] models have been used to predict and tune optimal evolutionary growth through the metabolic network[[cite:Ibarra2002]].
-It is also beneficial if one can prepare or extend experimental procedures by first running simulations on a computer and many times necessary to be able to maximise the usefulness of the [[gls:invivo]] experimental output[[cite:Nordling2013phdthesis]].
+Toy models and [[gls:insilico]] generated data have been shown to be a good proxy for estimating performance off network inference algorithms[[citep:Bansal2007]]. [[Gls:insilico]] models have been used to predict and tune optimal evolutionary growth through the metabolic network[[citep:Ibarra2002]].
+It is also beneficial if one can prepare or extend experimental procedures by first running simulations on a computer and many times necessary to be able to maximise the usefulness of the [[gls:invivo]] experimental output[[citep:Nordling2013phdthesis]].
 
 Another benefit of being able to use simulated data is that it is easier to explore and examine a wider range of properties of both network and data.
-Networks with with different structure and different amounts of motifs can be generated and methods can be tested on how they perform during specific conditions[[cite:Marbach2012]].
+Networks with with different structure and different amounts of motifs can be generated and methods can be tested on how they perform during specific conditions[[citep:Marbach2012]].
 
-If some knowledge exists, even partial knowledge, one can incorporate this information to get more realistic data sets, such as known regulatory networks[[cite:Schaffter2011]].
+If some knowledge exists, even partial knowledge, one can incorporate this information to get more realistic data sets, such as known regulatory networks[[citep:Schaffter2011]].
 
 For [[gls:invivo]] generated data there is no need to worry about "realistic" models or experimental conditions, such as realistic noise models or system response patterns or network structure.
 Therefore it is desired to generate data in living systems even when testing methods.
 The drawback being that a gold standard might not exist to estimate performance.
-There has been several successful attempts of both data generation and inference including [[gls:invivo]] data and a proposed true [[gls:grn]] [[cite:Gardner2003,Cantone2009,Lorenz2009]].
+There has been several successful attempts of both data generation and inference including [[gls:invivo]] data and a proposed true [[gls:grn]] [[citep:Gardner2003,Cantone2009,Lorenz2009]].
 
-# cites Ljung1999 for identification and perturbation response setup. [[cite:Ljung1999]]
+# cites Ljung1999 for identification and perturbation response setup. [[citep:Ljung1999]]
 
 *** Tools of systems biology
 In a research field that rely heavily on computation it's unavoidable that a large number of lines of code and data is generated.
 Except the scientific knowledge generated with these tools, they are themselves a valuable contribution to the body of scientific knowledge.
-# [[cite:Schmidt2006]]
+# [[citep:Schmidt2006]]
 # A reference I haven't found yet: Schmidt 2006. "Information technology in systems biology. The paper can't be accessed"
 In this section I will try to collect a number of different tools used in system biology with the aim of helping with [[gls:grn]] inference.
 The tools needs to cover mainly three different areas.
@@ -1135,93 +1135,76 @@ As detailed in section [[ref:sec:data_experiments]] the demand for testing the a
 
 Table [[ref:tab:system_communication]] list tools and formats for sharing and communicating systems biological data and knowledge.
 
-#  [[cite:Bonneau2008]]
+#  [[citep:Bonneau2008]]
 
 #+BEGIN_LATEX
 \begin{landscape}
+\footnotesize 
 #+END_LATEX
 
-#+begin_table
-#+LATEX: \caption[Inference methods]{List of network inference methods. Short name is the name usually used to refer to the method.}
-#+LATEX: \label{tab:inference_methods}
-#+LATEX: \centering
-#+LATEX: \adjustbox{max width=\linewidth}{
-#+ATTR_LATEX: :center nil
-| Reference                  | Short Name  | Description                                           | Model Scheme             | Goal                                          |
-|----------------------------+-------------+-------------------------------------------------------+--------------------------+-----------------------------------------------|
-|                            |             |                                                       |                          |                                               |
-| [[cite:DiBernardo2005]]        | MNI         | Mode-of-action by network identification              |                          | Determine drug targets                        |
-| [[cite:Julius2009]]            |             |                                                       | ODEs                     | GRN                                           |
-| [[cite:Greenfield2010]]        | MCZ         | Median Corrected Z-Scores                             | Information-theoretical  | GRN                                           |
-| [[cite:Pinna2010]]             |             | Graph-based method                                    | Z-score-based            | GRN                                           |
-| [[cite:Grimaldi2011]]          | RegnANN     | Reverse engineered gene networks                      | neural networks          | GRN                                           |
-|                            |             | with artificial neural networks                       |                          |                                               |
-| [[cite:Zavlanos2011]]          |             | Inferring stable genetic networks                     | linear dynamical systems | GRN                                           |
-|                            |             | from steady-state data                                |                          |                                               |
-| [[cite:Xiong2012]]             |             | Method with regression and correlation                | Info-theoretic / LDS     | GRN                                           |
-| [[cite:Gardner2003]]           | NIR         | Network identification by multiple regression         | ODEs                     | GRN & identify drug targets                   |
-| [[cite:Friedman2010]]          | Glmnet      | Lasso (L1) and elastic-net                            |                          | Linear regression                             |
-|                            |             | regularized generalised linear models                 |                          |                                               |
-|                            | LSCO        | least squares with cutoff                             |                          |                                               |
-| [[cite:Faith2007]]             | CLR         | Context likelihood of relatedness                     | Information-theoretical  | GRN                                           |
-| [[cite:Jornsten2011]]          | EPoC        | Endogenous perturbation analysis of cancer            |                          | GRN                                           |
-| [[cite:Shih2012]]              |             | Single source k-shortest paths algorithm              | graph theory             | GRN                                           |
-| [[cite:Menendez2010]]          | GMRF        | Graphical lasso with Gaussian Markov Random Fields    | relevance based          | GRN                                           |
-|                            |             | Adaptive lasso                                        |                          |                                               |
-|                            |             | SCAD penalty                                          |                          |                                               |
-| [[cite:Nordling2011]]          |             | Rank Reduction                                        | linear ODE               | GRN                                           |
-| [[cite:Wang2012]]              |             |                                                       |                          | GRN                                           |
-| [[cite:Nordling2013phdthesis]] | RNI         | Confidence based Robust Network Inference             |                          | GRN                                           |
-|                            |             | Cyclic coordinate descent Lasso solver                |                          |                                               |
-| [[cite:Cosgrove2008]]          | SSEM-Lasso  | Sparse simultaneous equation model – Lasso regression |                          | Determine drug targets                        |
-|                            | TSNI        | Time series network inference                         |                          |                                               |
-| [[cite:Oates2012]]             |             | Bayesian network using Goldbeter Koshland kinetics    | Bayesian                 | Protein-signalling network                    |
-| [[cite:Lauria2009]]            | NIRest      | NIR with perturbation estimate                        | ODEs                     | estimate P, identify GRN                      |
-| [[cite:Margolin2006]]          | ARACNE      | Algorithm for the Reconstruction                      | Information-theoretical  | GRN                                           |
-|                            |             | of Accurate Cellular Networks                         |                          |                                               |
-| [[cite:Kuffner2012]]           | ANOVA       | ANOVA                                                 | ANOVA                    | GRN                                           |
-| [[cite:Huynh-Thu2010]]         | GENIE3      | Tree-based method                                     | Tree-based               | GRN                                           |
-| [[cite:Castelo2009]]           | Qp-graphs   | Q-order partial correlation graphs                    | graph theory             | GRN                                           |
-| [[cite:Ambroise2012]]          | TNIFSED     | Supervised transcriptional network inference          | supervised               | Assign probability of being target of each TF |
-|                            |             | from functional similarity and expression data        |                          |                                               |
-| [[cite:Mordelet2008]]          | SIRENE      | Supervised inference of regulatory networks           | supervised               | Assign targets to TFs                         |
-| [[cite:Sun2007]]               | TRND        | Transcriptional regulatory network discovery          | Bayesian                 | Assign targets to TFs                         |
-| [[cite:DeMatos2012]]           | BC3NET      | Bootstrap aggregation ensemble C3NET                  | Information-theoretical  | GRN                                           |
-| [[cite:Altay2011]]             | C3NET       | Conservative causal core network inference            | Information-theoretical  | GRN                                           |
-| [[cite:Friedman2008]]          |             | Graphical lasso                                       |                          | Sparse inverse covariance estimation          |
-| [[cite:Bonneau2006]]           | Inferelator | the Inferelator                                       | ODEs                     | GRN                                           |
-| [[cite:Gevaert2007]]           |             |                                                       | Bayesian                 | GRN                                           |
-| [[cite:Lahdesmaki2008]]        | RJMCMC      | Reversible jump Markov chain Monte Carlo              | Bayesian                 | GRN                                           |
-| [[cite:Nelander2008]]          | CoPIA       | Combinatorial Perturbation-based Interaction Analysis | ODEs                     | GRN                                           |
-| [[cite:Yip2010]]               |             |                                                       | ODEs                     | GRN                                           |
-| [[cite:Yu2004]]                | BANJO       |                                                       | Bayesian                 | GRN                                           |
-| [[cite:Djebbari2008]]          |             | Seeded Bayesian networks                              | Bayesian                 | GRN                                           |
-| [[cite:Aijo2009]]              |             | Dynamic Bayesian network inference with               | Bayesian                 | GRN                                           |
-|                            |             | Guassian processes                                    |                          |                                               |
-| [[cite:Chai2013]]              |             | Dynamic Bayesian network inference with               | Bayesian                 | GRN                                           |
-|                            |             | imputed missing values                                |                          |                                               |
-| [[cite:Wang2010]]              |             | [Boolean] Process-based network decomposition         | Boolean                  | GRN or motifs                                 |
-| [[cite:Schulz2012]]            | DREM        | Dynamic Regulatory Events Miner                       |                          | More TF-target and timing than GRN            |
-| [[cite:Hache2007]]             | GNRevealer  | Reconstructing GNRs with neural networks              | neural networks          | GRN                                           |
-| [[cite:Kabir2010]]             |             | Linear time-variant method                            |                          | GRN                                           |
-|                            |             | using self-adaptive differential evolution            |                          |                                               |
-| [[cite:Kuffner2010]]           | PNFL        | Petri net with fuzzy logic                            | petri net                | GRN                                           |
-| [[cite:Grzegorczyk2013]]       |             | Non-homogeneous dynamic Bayesian network              | Bayesian                 | GRN                                           |
-| [[cite:Wu2011]]                | SSM         | State space model w/hidden variables                  | state space model        | GRN                                           |
-| [[cite:Penfold2012]]           |             | Hierarchical non-parametric Bayesian                  | Bayesian                 | GRN                                           |
-| [[cite:Bock2012]]              |             | Hub-centered GRN inference using automatic relevance  | Bayesian                 | GRN or hubs                                   |
-| [[cite:Layek2011]]             |             | Boolean networks represented by Karnaugh maps         | Boolean                  | GRN                                           |
-| [[cite:Kimura2012]]            | LPM         | Linear program machine-based                          | S-system                 | GRN                                           |
-|                            |             | S-system GRN inference method                         |                          |                                               |
-| [[cite:Alakwaa2011]]           | BicAT-Plus  | Bi-clustering with Bayesian for GRN inference         | Bayesian                 | GRN                                           |
-| [[cite:Li2011]]                | DELDBN      | Differential Equation-based                           | Dynamic Bayesian         | GRN                                           |
-|                            |             | Local Dynamic Bayesian Network                        |                          |                                               |
-| [[cite:August2009]]            |             | Linear program biochemical network inference          |                          | GRN                                           |
-| [[cite:Yuan2011]]              |             | Robust network structure reconstruction               | ODE's/LDS                | GRN                                           |
-| [[cite:Zhang2012]]             | NARROMI     | Noise and redundancy reduction technique using        | Info-theoretic and ODEs  | GRN                                           |
-|                            |             | recursive optimisation and mutual information         |                          |                                               |
-#+LATEX: }
-#+end_table
+#+caption[Inference methods]: List of network inference methods. Short name is the name usually used to refer to the method.
+#+label: tab:inference_methods 
+#+attr_latex: :environment longtable :align |p{3cm}|l|p{3cm}|l|p{3cm}|
+| Reference                  | Short Name  | Description                                                                                  | Model Scheme             | Goal                                          |
+|----------------------------+-------------+----------------------------------------------------------------------------------------------+--------------------------+-----------------------------------------------|
+| [[cite:DiBernardo2005]]        | MNI         | Mode-of-action by network identification                                                     |                          | Determine drug targets                        |
+| [[cite:Julius2009]]            |             |                                                                                              | ODEs                     | GRN                                           |
+| [[cite:Greenfield2010]]        | MCZ         | Median Corrected Z-Scores                                                                    | Information-theoretical  | GRN                                           |
+| [[cite:Pinna2010]]             |             | Graph-based method                                                                           | Z-score-based            | GRN                                           |
+| [[cite:Grimaldi2011]]          | RegnANN     | Reverse engineered gene networks with artificial neural networks                             | neural networks          | GRN                                           |
+| [[cite:Zavlanos2011]]          |             | Inferring stable genetic networks from steady-state data                                     | linear dynamical systems | GRN                                           |
+| [[cite:Xiong2012]]             |             | Method with regression and correlation                                                       | Info-theoretic / LDS     | GRN                                           |
+| [[cite:Gardner2003]]           | NIR         | Network identification by multiple regression                                                | ODEs                     | GRN & identify drug targets                   |
+| [[cite:Friedman2010]]          | Glmnet      | Lasso (L1) and elastic-net regularized generalised linear models                             |                          | Linear regression                             |
+|                            | LSCO        | least squares with cutoff                                                                    |                          |                                               |
+| [[cite:Faith2007]]             | CLR         | Context likelihood of relatedness                                                            | Information-theoretical  | GRN                                           |
+| [[cite:Jornsten2011]]          | EPoC        | Endogenous perturbation analysis of cancer                                                   |                          | GRN                                           |
+| [[cite:Shih2012]]              |             | Single source k-shortest paths algorithm                                                     | graph theory             | GRN                                           |
+| [[cite:Menendez2010]]          | GMRF        | Graphical lasso with Gaussian Markov Random Fields                                           | relevance based          | GRN                                           |
+|                            |             | Adaptive lasso                                                                               |                          |                                               |
+|                            |             | SCAD penalty                                                                                 |                          |                                               |
+| [[cite:Nordling2011]]          |             | Rank Reduction                                                                               | linear ODE               | GRN                                           |
+| [[cite:Wang2012]]              |             |                                                                                              |                          | GRN                                           |
+| [[cite:Nordling2013phdthesis]] | RNI         | Confidence based Robust Network Inference                                                    |                          | GRN                                           |
+|                            |             | Cyclic coordinate descent Lasso solver                                                       |                          |                                               |
+| [[cite:Cosgrove2008]]          | SSEM-Lasso  | Sparse simultaneous equation model – Lasso regression                                        |                          | Determine drug targets                        |
+| [[cite:Oates2012]]             |             | Bayesian network using Goldbeter Koshland kinetics                                           | Bayesian                 | Protein-signalling network                    |
+| [[cite:Lauria2009]]            | NIRest      | NIR with perturbation estimate                                                               | ODEs                     | estimate P, identify GRN                      |
+| [[cite:Margolin2006]]          | ARACNE      | Algorithm for the reconstruction of accurate cellular networks                               | Information-theoretical  | GRN                                           |
+| [[cite:Kuffner2012]]           | ANOVA       | ANOVA                                                                                        | ANOVA                    | GRN                                           |
+| [[cite:Huynh-Thu2010]]         | GENIE3      | Tree-based method                                                                            | Tree-based               | GRN                                           |
+| [[cite:Castelo2009]]           | Qp-graphs   | Q-order partial correlation graphs                                                           | graph theory             | GRN                                           |
+| [[cite:Ambroise2012]]          | TNIFSED     | Supervised transcriptional network inference from functional similarity and expression data  | supervised               | Assign probability of being target of each TF |
+| [[cite:Mordelet2008]]          | SIRENE      | Supervised inference of regulatory networks                                                  | supervised               | Assign targets to TFs                         |
+| [[cite:Sun2007]]               | TRND        | Transcriptional regulatory network discovery                                                 | Bayesian                 | Assign targets to TFs                         |
+| [[cite:DeMatos2012]]           | BC3NET      | Bootstrap aggregation ensemble C3NET                                                         | Information-theoretical  | GRN                                           |
+| [[cite:Altay2011]]             | C3NET       | Conservative causal core network inference                                                   | Information-theoretical  | GRN                                           |
+| [[cite:Friedman2008]]          |             | Graphical lasso                                                                              |                          | Sparse inverse covariance estimation          |
+| [[cite:Bonneau2006]]           | Inferelator | the Inferelator                                                                              | ODEs                     | GRN                                           |
+| [[cite:Gevaert2007]]           |             |                                                                                              | Bayesian                 | GRN                                           |
+| [[cite:Lahdesmaki2008]]        | RJMCMC      | Reversible jump Markov chain Monte Carlo                                                     | Bayesian                 | GRN                                           |
+| [[cite:Nelander2008]]          | CoPIA       | Combinatorial Perturbation-based Interaction Analysis                                        | ODEs                     | GRN                                           |
+| [[cite:Yip2010]]               |             |                                                                                              | ODEs                     | GRN                                           |
+| [[cite:Yu2004]]                | BANJO       |                                                                                              | Bayesian                 | GRN                                           |
+| [[cite:Djebbari2008]]          |             | Seeded Bayesian networks                                                                     | Bayesian                 | GRN                                           |
+| [[cite:Aijo2009]]              |             | Dynamic Bayesian network inference with Guassian processes                                   | Bayesian                 | GRN                                           |
+| [[cite:Chai2013]]              |             | Dynamic Bayesian network inference with imputed missing values                               | Bayesian                 | GRN                                           |
+| [[cite:Wang2010]]              |             | [Boolean] Process-based network decomposition                                                | Boolean                  | GRN or motifs                                 |
+| [[cite:Schulz2012]]            | DREM        | Dynamic Regulatory Events Miner                                                              |                          | More TF-target and timing than GRN            |
+| [[cite:Hache2007]]             | GNRevealer  | Reconstructing GNRs with neural networks                                                     | neural networks          | GRN                                           |
+| [[cite:Kabir2010]]             |             | Linear time-variant method using self-adaptive differential evolution                        |                          | GRN                                           |
+| [[cite:Kuffner2010]]           | PNFL        | Petri net with fuzzy logic                                                                   | petri net                | GRN                                           |
+| [[cite:Grzegorczyk2013]]       |             | Non-homogeneous dynamic Bayesian network                                                     | Bayesian                 | GRN                                           |
+| [[cite:Wu2011]]                | SSM         | State space model w/hidden variables                                                         | state space model        | GRN                                           |
+| [[cite:Penfold2012]]           |             | Hierarchical non-parametric Bayesian                                                         | Bayesian                 | GRN                                           |
+| [[cite:Bock2012]]              |             | Hub-centered GRN inference using automatic relevance                                         | Bayesian                 | GRN or hubs                                   |
+| [[cite:Layek2011]]             |             | Boolean networks represented by Karnaugh maps                                                | Boolean                  | GRN                                           |
+| [[cite:Kimura2012]]            | LPM         | Linear program machine-based S-system GRN inference method                                   | S-system                 | GRN                                           |
+| [[cite:Alakwaa2011]]           | BicAT-Plus  | Bi-clustering with Bayesian for GRN inference                                                | Bayesian                 | GRN                                           |
+| [[cite:Li2011]]                | DELDBN      | Differential Equation-based Local Dynamic Bayesian Network                                   | Dynamic Bayesian         | GRN                                           |
+| [[cite:August2009]]            |             | Linear program biochemical network inference                                                 |                          | GRN                                           |
+| [[cite:Yuan2011]]              |             | Robust network structure reconstruction                                                      | ODE's/LDS                | GRN                                           |
+| [[cite:Zhang2012]]             | NARROMI     | Noise and redundancy reduction technique using recursive optimisation and mutual information | Info-theoretic and ODEs  | GRN                                           |
 
 #+BEGIN_LATEX
 \end{landscape}
@@ -1244,16 +1227,16 @@ Table [[ref:tab:system_communication]] list tools and formats for sharing and co
 
 #+CAPTION[Systems biology tools]: Tools for used in systems biology to facilitate communication and results
 #+label: tab:system_communication
-| Reference         | tool         | usage                        |
-|-------------------+--------------+------------------------------|
-|                   | SBML         | data format                  |
-|                   | CellML       | data format                  |
-|                   | SimBiology   | simulation and programming   |
-| [[cite:Schmidth2006]] | SBToolbox    | simulation and programming   |
-|                   | Copasi       | Dynamic model exploration    |
-|                   | Gepasi       | Biochemical model simulation |
-| [[cite:Bellot2015]]   | NetBenchmark | Collection of benchmarking   |
-|                   |              | tools                        |
+| Reference         | tool         | usage                            |
+|-------------------+--------------+----------------------------------|
+|                   | SBML         | data format                      |
+|                   | CellML       | data format                      |
+| [[cite:MATLAB2014]]   | SimBiology   | simulation and programming       |
+| [[cite:Schmidt2006b]] | SBToolbox    | simulation and programming       |
+| [[cite:Hoops2006]]    | Copasi       | Dynamic model exploration        |
+|                   | Gepasi       | Biochemical model simulation     |
+| [[cite:Bellot2015]]   | NetBenchmark | Collection of benchmarking tools |
+|-------------------+--------------+----------------------------------|
 
 * Present investigations
 
@@ -1262,52 +1245,50 @@ Table [[ref:tab:system_communication]] list tools and formats for sharing and co
 :CUSTOM_ID: sec:paper1
 :END:
 
-Optimal model selection problem is as of yet an open problem.
-How to properly choose a specific set of parameters for the network inference algorithms,
-to determine the sparsity, has not been solved and no optimal method has been put forward.
+Optimal model selection is as of yet an open problem.
+How to properly choose a specific set of parameters for the network inference algorithms
+to determine the sparsity has not been solved and no optimal method has been put forward.
 
 Some classical alternatives proposed are the [[gls:bic]] and [[gls:aic]] which both trade-of prediction and complexity to find an optimal model.
 as well as cross validation and select based on minimisation of the [[gls:rss]].
 
-All these methods for model selection are motivated by the fact that data is recorded with noise and that over-fitting the model then is always a risk.
-They have been shown to perform well asymptotically with \eg the number of samples[[cite:Stoica2004]]
+All these methods for model selection are motivated by the fact that data is recorded with noise and that over-fitting the model is always a risk.
+The selection methods have been shown to perform well asymptotically with \eg the number of samples[[citep:Stoica2004]]
 
-In this paper we studied the effects on model selection when the data had a varying degree of informativeness.
+In this paper we studied the effects on model selection when the data had a varying degree of informativeness and few samples, typically no higher than twice the number of variables.
 Informativeness was defined based on the optimal performance of the inference method on the data when compared to a gold standard.
-If the performance was matched the gold standard optimal then the data set was considered informative,
-if the performance was non optimal but better then random the data set was deemed partly informative and if the performance was no better than random the data was labeled uninformative. We used a specific method, [[gls:rni]],
-to determine informativeness of the data.
+If the performance matched the gold standard for the best model prduced by the method, the data set was considered informative.
+If the performance was non optimal but better then random the data set was deemed partly informative and if the performance was no better than random the data was labeled uninformative.
+We used a specific method, [[gls:rni]], to determine informativeness of the data.
 The informativeness was varied based on two factors, (i) the properties of the network and experimental design, (ii) the [[gls:snr]].
 
-The data used was generated [[gls:insilico]] as this had been utilised with success previously and been shown to be an good indication of how a method would perform on other data [[cite:Menendez2010,Bansal2007]].
+The data used was generated [[gls:insilico]] as this had been utilised with success previously and been shown to be an good indication of how a method would perform on other data [[citep:Menendez2010,Bansal2007]].
 
-We determined two additional steps that should be utilised when solving a network inference problem.
-
+We determined two additional steps that should be utilised when solving a network inference and model selection problem.
 First we showed that to be able to utilise a leave out cross validation approach, or as we employ it here, a leave one out cross optimisation (LOOCO), one needs to test for dependence of the sample on the rest of the data and only include the sample in the left out group if it is sufficiently described by the data that is going to be used to infer a network.
-The reason for this is that a network inferred from data that has know description of a sample can not make any predictions about that data.
-
+The reason for this is that a network inferred from data that has no information of a left out sample can not make any predictions about that sample.
 Secondly we introduced a step of re-estimating the parameters returned from an inference algorithm.
 Here we argued that because the consequence of introducing a bias due to the penalty used in many inference method,
 to be able to combine model selection and data fitting,
 the parameters of the model are not the maximum likelihood estimate anymore which may skew the [[gls:rss]] for the predictions.
 The algorithm for re-estimating the parameters is a [[gls:cls]] algorithm.
 [[gls:cls]] preserves the structure of the network while refitting the parameters.
-
-We showed that if the data was uninformative we can not make a useful model selection,
+We showed that if the data was uninformative we can not make a useful reliable model selection,
 while if the data was partly informative or informative,
-the model selection based on the [[gls:rss]] would maximise the true positive (TP) while minimising the false positive (FP).
+the model selection based on the [[gls:rss]] would find the model that maximised the true positive (TP) while minimising the false positive (FP).
 Giving our selection method a bound where the minimum [[gls:rss]] would not be achieved when any TP link would be removed.
 
 *** Future perspective
-We showed that conceptually our approach worked. However we did not investigate the performance in general and what the behaviour of our approach would be for a wide variety of data properties.
+We showed that conceptually our approach worked.
+However we did not investigate the performance in general and what the behaviour of our approach would be for a wide variety of data properties.
 Several technical additions to a new study would greatly benefit this investigation.
 
-We do not test the [[gls:bic]] and [[gls:aic]] selection methods.
-Both of these methods are dependent on the likelihood function and should therefore also have their performance influenced by our additional steps. Specifically the introduction of [[gls:cls]].
+We did not test the [[gls:bic]] and [[gls:aic]] selection methods.
+Both of these methods are dependent on the likelihood function and should therefore also have their performance influenced by our additional steps.
 
 The [[gls:rss]] was calculated as the mean [[gls:rss]] over all the selected leave out samples.
 A new study would greatly benefit from utilising the statistical properties of the [[gls:rss]], such as the fact that if the error of the measurements are assumed to be normal, the [[gls:rss]] will follow a [[gls:chi2]] distribution.
-With some care when estimating the degrees of freedom for each model[[cite:Andrae2010]] an exclusion step would then be done where all models not passing a goodness of fit test would be excluded as candidate networks.
+With some care when estimating the degrees of freedom for each model[[citep:Andrae2010]] an exclusion step would then be done where all models not passing a goodness of fit test would be excluded as candidate networks.
 The result would be a set of candidate networks in which we could in theory pick any of them.
 We would expect, though, that we would pick the sparsest candidate with the argument that [[glspl:grn]] are, in general, sparse.
 
@@ -1316,40 +1297,39 @@ We would expect, though, that we would pick the sparsest candidate with the argu
 :CUSTOM_ID: sec:paper3
 :END:
 
-In this paper we investigated whether or not one could improve inference methods with the help of inclusion of prior information.
+In this paper we investigated whether or not one could improve inference methods with the help of including prior information.
 
-It is often the case that when trying to solve a network inference problem within biology that the data is under-determined. Meaning that a unique solution can not be found.
-It is also of the case when dealing with biological data that the [[gls:snr]] is low or that very few replicates have been recorded.
+It is often the case that when trying to solve a network inference problem within biology, that the data is under-determined.
+Meaning that a unique solution can not be found.
+It is also the case when dealing with biological data that the [[gls:snr]] is low or that very few replicates have been recorded.
 
-In both these situations it may be beneficial to include prior information. In the first case, if we include prior structural knowledge of the regulatory interactions, we can constrain the problem to a subset of interactions so that it no longer becomes under determined.
-In the second case we might have knowledge that we are confident about of which interactions are more likely to exist and that can help guide an inference method when the data is of lower quality.
-
+In both these situations it may be beneficial to include prior information. In the first case, if we include prior structural knowledge of the regulatory interactions, we can constrain the problem to a subset of interactions so that it no longer becomes under-determined.
+In the second case we might have knowledge that we are confident about of which interactions are more likely to exist and that can help guide an inference method when the data is of poor quality.
 In this paper we investigated the latter case.
 
-Available on-line there are a number of databases containing functional associations collected from a wealth of sources with a number of different evidence types[[cite:Szklarczyk2011,Schmitt2014]].
+Available on-line there are a number of databases containing functional associations between genes, collected from a wealth of sources with a number of different evidence types[[citep:Szklarczyk2011,Schmitt2014]].
 
 Incorporating a prior in the network inference pipeline can be done in a number of ways.
 In this study we focused on incorporating functional associations which are usually presented by a number of the confidence that is associated with the link.
 These associations are by their nature undirected and it is often unknown if they are representing direct or indirect links, and if they are parallel or serial.
-Therefore we opted for including the confidence of links as weights inversely proportional to the confidence, meaning that links that have a high confidence gives a low wight to the associated penalty term giving the link a higher chance of being selected.
+Therefore we opted for including the confidence of links as weights inversely proportional to the confidence, meaning that links that have a high confidence gives a low wight to the associated penalty term, giving the link a higher chance of being selected.
 For example, if the confidence is low but the data indicates a strong link, both the effects are traded against each other.
-By incorporating the associations as weights it explicitly gives the possibility of the data to speak as well.
+By incorporating the associations as weights it gives the possibility of the data to speak as well.
 
-To test the performance of incorporating a prior in to the network inference pipeline a number of different networks and [[gls:insilico]] data sets where generated.
+To test the performance of using a prior in to the network inference pipeline a number of different networks and [[gls:insilico]] data sets where generated.
 Two different models of system and data was used,
-a linear system model and a non-linear system model[[cite:Schaffter2011]].
+a linear system model and a non-linear system model[[citep:Schaffter2011]].
 
 Priors incorporation performance were tested by changing the prior accuracy.
-Accuracy where changed by controlling whether or not the confidence for a true link was drawn from the a distribution of low confidence associations and a negative link was drawn from a distribution of high confidence links.
+Accuracy were changed by controlling whether or not the confidence for a true link was drawn from the a distribution of low confidence associations and a negative link was drawn from a distribution of high confidence links.
 
 When the data was un-informative an improvement with the prior could be observed if the prior was more correct than not.
 For data generated with the linear model the prior needed on average to be more correct than for a non-linear model.
 This also scaled with the [[gls:snr]] of the data sets which in general was higher for the linear system vs non-linear.
 
-We also wanted to test the prior incorporation on real data and used a data collected from \yeast with the gold standard network was collected from the Yestract database[[cite:Teixeira2013]].
-To estimate the performance we checked the difference over all sparsity levels the inference method returned.
+We also wanted to test the prior incorporation on real data and used a data collected from \yeast with the gold standard network collected from the Yestract database[[citep:Teixeira2013]].
+To estimate the performance we checked the overall performance for all models generated by the inference method.
 We did this to remove the factor of trying to pick the correct sparsity for the network inference method.
-
 An improvement with the prior could be observed over almost all sparsity levels with an emphasises on the sparser range of the spectrum where we would assume that the optimal network should be found.
 
 *** Future perspective
@@ -1359,15 +1339,15 @@ While the accuracy of the prior was investigated, the range of [[gls:snr]] was n
 This could serve useful when the accuracy of the prior or the nature of the prior \eg being undirected, might obstruct the inference algorithm.
 
 Due to the evidence types of the prior, the associations might be indirect.
-A modified algorithm could make use of this information and instead of inserting a confidence as a weight of an interaction the association could be incorporated in a way so that the association is preserved in the inferred network even though it is not direct, reflecting the nature of the association.
+A modified algorithm could make use of this information and instead of inserting a confidence as a weight of an interaction, the association could be incorporated in a way so that the association is preserved in the inferred network even though no direct link would exist, reflecting the nature of the association.
 
 ** Practical workarounds for the pitfalls of L1 penalised regression methods (PAPER III)
 :PROPERTIES:
 :CUSTOM_ID: sec:paper2
 :END:
 
-It is know that performance of penalised regression methods, specifically the $L_1$, penalised \eg [[gls:lasso]], algorithm perform poorly under some conditions [[cite:Xhao2006]].
-Sometimes referred to as the predictors having a high co-linearity.
+It is known that the performance of penalised regression methods, specifically the $L_1$, penalised \eg [[gls:lasso]], algorithm perform poorly under some conditions [[citep:Zhao2006]].
+Sometimes referred to as the predictors having a high co-linearity or the data being ill-conditioned.
 In systems theoretic terms this can be quantify by calculating the condition number [[gls:k]] of the data set.
 An ill conditioned matrix has in general a high degree of co-linearity.
 # Better check with Torbjorn if this is correct.
@@ -1375,8 +1355,7 @@ An ill conditioned matrix has in general a high degree of co-linearity.
 The observation here is that even when the data is informative,
 defined as in PAPER I [[ref:sec:paper1]],
 the $L_1$ penalised methods performs as if the data was only partly informative even when we act as if we had expert knowledge when selecting the optimal network produced by the inference method.
-
-The performance of these types of inference method have been investigated and been shown to be a function of the data and network[[cite:Zhao2006,Marbach2012]].
+The performance of these types of inference method have been investigated and been shown to be a function of the data and network[[citep:Zhao2006,Marbach2012]].
 The issue with these results is that they are impractical in reality as we don't know the network structure beforehand and in some cases we would arrive at the wrong conclusions if we would use the wrong network structure to calculate them.
 
 We show that a proxy for predicting the performance of an inference method is to investigate the properties of the data,
@@ -1384,11 +1363,11 @@ specifically the condition number [[gls:k]] and the [[gls:snr]].
 
 We use synthetic data to vary the properties of both network and [[gls:insilico]]  expression data.
 We constructed the data so that the properties ranged over known values of properties for real biological data sets.
-The properties of the expression data is highly dependant on the network properties but they can be tuned depending on the experimental design[[cite:Nordling2009]].
+The properties of the expression data is highly dependant on the network properties but they can be tuned depending on the experimental design[[citep:Nordling2009]].
 This is demonstrated with 3 different experimental designs.
 Two of the approaches could easily be employed in practise and show specifically that these designs made the data properties highly dependent on the network properties.
-The third approach would be more involved to implement in practise and aimed at minimising the [[gls:k]] for the expression matrix.
-It demonstrated clearly that decoupling the data and network properties and tune the input so that the data properties would approach more desired states would greatly enhance the performance of the inference and network construction.
+The third approach would be more involved to implement in practise and is aimed at minimising the [[gls:k]] for the expression matrix.
+It demonstrated clearly that decoupling the data and network properties and tuning the input so that the data properties would approach more desired states would greatly enhance the performance of the inference and network construction.
 
 While few real data set exists with sufficient data to quantify the properties used in this work and simultaneously have a reference regulatory network,
 we picked one data set derived from over expression experiment with three proposed regulatory network derived experimentally.
@@ -1397,14 +1376,13 @@ It was show that by calculating the properties of the data one could predict the
 *** Future perspective
 One aspect that is rarely incorporated in [[gls:grn]] inference algorithms is the errors-in-variables aspect.
 Errors-in-variables models considers measurement errors in the independent variables as well as in the dependent variables.
-It is easy to imagine that not only does a perturbation experiment contain noise in the applied perturbation but the state of the system when the perturbation is applied is also unknown.
+It is easy to imagine that not only does a perturbation experiment contain noise in the applied perturbation but the state of the system when the perturbation is applied as well.
 Especially when looking at the cell.
 The effect of not considering measurement errors in the independent variables when there exist an error has, as far as I know, not been studied within systems biology and [[gls:grn]] inference.
 
 Methods that incorporate [[gls:tls]], which considers errors in variables, oppose to a [[gls:ls]], are few and rarely used.
 
-A study on the effect of this could give insite on how to apprach this issue and optimize perofrmance on inference with these considerations.
-
+A study on the effect of this could give incite on how to approach this issue and optimise performance on inference with these considerations.
 
 ** GeneSPIDER, a software package for a simplified network inference pipeline (PAPER IV)
 :PROPERTIES:
@@ -1457,7 +1435,7 @@ En kort summering av avhandlingen p\r{a} svenska om avhandlingen \"ar skriven p\
 #+LATEX: \renewcommand{\bibname}{References} % changes the header from Bibliography to References
 #+LATEX: \begin{scriptsize} % tiny(5) < scriptsize(7) < footnotesize(8) < small (9)
 
-[[bibliographystyle:plainnat]]
+[[bibliographystyle:citestyle]]
 [[bibliography:~/research/bibliography.bib,./references.bib]]
 
 #+LATEX: \end{scriptsize}
@@ -1635,6 +1613,17 @@ Linear model and a lot more, this is a review [[cite:DeJong2002a]]
 
 # Observability and controllability  [[cite:Kremling2007]]
 # May be in relation to experimental design
+
+
+*** Model selection
+An alternative form can be written as
+#+begin_src latex :exports results :results latex
+\begin{equation}
+  \text{BIC} =  \chi^2 + df \ln(m)
+\end{equation}
+#+end_src
+\noindent
+where [[gls:chi2]] is the chi square distribution with $df$ degrees of freedom[[cite:Should_be_one_here_from_wikipedia]].
 
 
 ** Figures
