@@ -1,4 +1,4 @@
-# Time-stamp: <2015-10-19 18:03:27 andreas>
+# Time-stamp: <2015-10-19 18:58:25 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Dynamical regulatory networks
@@ -382,7 +382,7 @@ For $n=3$ variables and $m$ data points recorded, this becomes
     \phi_{1m} & \phi_{2m} & \phi_{3m}\\
   \end{bmatrix}
   \begin{bmatrix}
-    a_1\\a_2\\a_3\\
+    \theta_1\\\theta_2\\\theta_3\\
   \end{bmatrix} =
   \begin{bmatrix}
     \xi_1\\ \xi_2\\ \vdots \\ \xi_m
@@ -432,7 +432,7 @@ Feedback have been shown to help describe the behaviour of bacterial chemotaxis[
 :custom_id: sec:ss
 :END:
 
-[[Glspl:ss]] are defined by when $\dot{\bx} = 0 \equiv f(\bx_0,\bp,T)$ in ([[ref:eq:ode]]).
+[[Glspl:ss]] are defined when the rate of change $\dot{\bx} = 0 \equiv f(\bx_0,\bp,T)$ in ([[ref:eq:ode]]).
 The nature of the [[gls:ss]] can be elusidated by analysing the system $f(\bx_0,\bp,T) = 0$., with $T$ being a time when the system is in [[gls:ss]].
 The solution to this equation, or system of equations for $\bx_0$ in multivariate analysis, is the [[gls:ss]].
 For the system $f(\bx_0) = 0$ we can calculate the jacobian, $J$, the partial derivatives of $f$ over the states $\bx$.
@@ -441,10 +441,11 @@ If all eigenvalues real part are negative then the system trajectories will conv
 If any real part is positive an unstable trajectory exist for that state variable that will make the system behave unstable.
 A system that is unstable will not converge to a stable state where $\dot{\bx} = 0$.
 For a linear system ([[ref:eq:linearsys]]) the solution of $f(\bx_0) = 0$ is always unique, meaing that there exist only one [[gls:ss]] for any linear system.
-The eigenvalues of $J$ might reveal that this is an unstable [[gls:ss]] and the system will diverge away from this state[[cite:Khalil1996]].
+The eigenvalues of $J$ might reveal that this is an unstable [[gls:ss]] and the system will diverge away from this state[[citep:Khalil1996]].
 
-Non linear systems might have more complex descriptions of there function $f(\bx_0) = 0$, with multiple [[gls:ss]] solutions.
-This means that the system has multiple [[gls:ss]], where some might correspond to converging states, while others might be unstable [[gls:ss]] that when the system is placed in this state it will naturally diverge from the state. The determination of the behaviour of the [[gls:ss]] presented above does not generalise to all non-linear systems[[cite:Khalil1996]].
+Non linear systems might have more complex descriptions of the function $f(\bx_0) = 0$, with multiple [[gls:ss]] solutions.
+This means that the system has multiple [[gls:ss]], where some might correspond to converging states, while others might be unstable [[gls:ss]]. Unstable means that when the system is placed in this state it will naturally diverge from the state when small perturbations are introduced.
+The way to determine the behaviour of the [[gls:ss]] presented above does not generalise to all non-linear systems but to those that can be linearised around the [[gls:ss]] [[citep:Khalil1996]].
 
 The stable [[gls:ss]] property have been incorporated in algorithms[[citep:Zavlanos2011]] and when collecting data[[citep:Gardner2003]] for inferring [[gls:grn]].
 The assumption is that if biological systems would not be stable,
@@ -565,7 +566,7 @@ Complex eigenvalues always comes in pairs.
 The real part of the eigenvalues $\Re(\lambda)$ determines if the system is stable (-) or unstable (+).
 The imaginary part $\Im(\lambda)$ determines the oscillatory behaviour of the system.
 
-There is the special case when
+There is the special case when the [[gls:ss]] solution has the following form
 #+begin_src latex :exports results :results latex
 \begin{align}\label{eq:det_is_0}
 \frac{\alpha_1\alpha_2}{a_{12}a_{21}} &= 1\\
@@ -573,11 +574,12 @@ There is the special case when
 \end{align}
 #+end_src
 #+LATEX: \noindent
-Which is the case when $J$ is singular. This means that infinte number of solutions exist for the [[gls:ss]].
-This is when the determinant of the jacobian $\det(J) = 0$ and any point in the null space of the system is a [[gls:ss]] [[cite:Khalil1996]].
+This is the case when $J$ is singular.
+This means that infinte number of solutions exist for the [[gls:ss]] under these conditions.
+This is when the determinant of the jacobian $\det(J) = 0$ and any point in the null space of the system is a [[gls:ss]] [[citep:Khalil1996]].
 
-Now lets look at the non linear case when $f_x$ is the [[gls:mm]] kinetics function.
-MM function have been used to model [[glspl:grn]] before[[citep:August2009]].
+Now lets look at the non linear case when $f_G$ is the [[gls:mm]] kinetics function.
+The [[gls:mm]] function have been used to model [[glspl:grn]] before[[citep:August2009]].
 Other alternatives can be chosen as well, \eg Hill kinetics or boolean functions.
 The [[gls:mm]] function is
 #+begin_src latex :exports results :results latex
@@ -661,10 +663,9 @@ Fast and slow modes can be separated either by eigenvalue spectral clustering or
 Hierarchical analysis of system dynamics have been used to reduce dimensionality of the system[[citep:Zagaris2003]].
 Time scale separation is implicated as being a cause of an interampatte behaviour of a system[[citep:Nordling2009]].
 
-Time scale sepratation is sometimes motivating model reduction for simpler analysis.
+Time scale separation is sometimes a motivation for model reduction to facilitate a simpler representation of the model.
 When the time constants and associated dynamics can be viewed as the system operating in different time scales.
-Faster modes than the observed in the window under observation can be considered as [[gls:ss]] and slower modes can be discarded as they are then independent of any changes in the time window.
-Analysing time dynamics could potentially help determine sampling frequency when doing [[gls:tsd]] analysis as the fast responses could be investigated while assuming slower modes are quasi stable[[cite:Kremling2007]].
+Faster modes than the observed in the window under observation can be considered as [[gls:ss]] and slower modes can be discarded as they are then independent of any changes in the time window[[citep:Kremling2007]].
 # [[citep:He2009]] Discusses experimental design section 5.
 
 **** Interampatte systems
@@ -692,7 +693,7 @@ The corresponding estimated interampatteness degree was $\kappa = 215$ and $\kap
 
 Considering the inverse problem (section [[ref:sec:inverse-problem]]) it is known that the smallest signals in the system has the largest effect on the solution when trying to recover the system.
 The smallest signal are often the one most susceptable to be influenced by noise and by extension being the weak point of the inference.
-The response data and perturbation design should be related to the interampatteness of the system under investigation as some responses could be masked by attenuation effects and interactions unable to be inferred reliably.
+The perturbation design should counteract the interampatteness of the system under investigation as some responses could be masked by attenuation effects and interactions unable to be inferred reliably.
 
 ** Systems biology
 :PROPERTIES:
