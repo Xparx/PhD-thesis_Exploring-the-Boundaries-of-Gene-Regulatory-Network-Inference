@@ -1,4 +1,4 @@
-# Time-stamp: <2015-10-19 12:54:31 andreas>
+# Time-stamp: <2015-10-19 18:03:27 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Dynamical regulatory networks
@@ -29,9 +29,9 @@
 
 * Abstract                                                          :notitle:
 #+begin_abstracts
-To understand how the details of this complex system fit together we need to collect data for several components simultaneously.
-With the data we want to infer a network that describe how the peaces fit and act together.
-The work in this thesis deals with modelling the cell, often represented as a network, with tools and concepts derived from systems biology.
+To understand how the details of how complex system, like the biological cell, fit together we need to collect data for several components of the system simultaneously.
+With the data we want to infer a network that describe how the pieces fit and act together.
+The work in this thesis deals with modelling the cell regulatory system, often represented as a network, with tools and concepts derived from systems biology.
 
 The first investigation dealt with network complexity and algorithm bias that can be introduced in the inference procedure.
 We derived a procedure for minimising the influence of bias in network inference algorithms to give a more accurate result and showed that it indeed minimised the bias introduced by the algorithm.
@@ -360,18 +360,19 @@ This is especially important as the assumptions of the representation can in the
 A mathematical description of a system is \eg
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:system}
-  \Phi(\ba,\bxi) = 0
+  \Psi(\btheta,\bxi) = 0
 \end{equation}
 #+end_src
 \noindent
-for a multivariate problem where $\ba$ is the model parameters of the model and $\Phi$ is the function that maps the independent variables,
+for a multivariate problem, where $\btheta$ is the model parameters of the model and $\Psi$ is the function that connects the independent variables $\btheta$,
 to the dependent variables, $\bxi$[[citep:Aster2005]].
-For a discrete linear system ([[ref:eq:system]]) becomes a set of equations to be solved
+# For a discrete linear system ([[ref:eq:system]]) becomes a set of equations to be solved
+For example, the commonly used linear maping is of the form
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:sys_equ}
-  \mPhi\ba = \bxi
+  \mPsi\btheta = \bxi
 \end{equation}
-where independent variables $\phi_{ij}$ is mapped with parameter $a_j$ to the data $\xi_i$.
+Here independent variables $\phi_{ij}$ are mapped by the parameters $\btheta_j$ to the dependant variables $\xi_i$.
 For $n=3$ variables and $m$ data points recorded, this becomes
 \begin{equation}
   \begin{bmatrix}
@@ -390,56 +391,41 @@ For $n=3$ variables and $m$ data points recorded, this becomes
 #+end_src
 \noindent
 
-The inverse problem is the problem of trying to find a set of parameters $\ba$ to fit the data $\bxi$ given $\mPhi$.
-In machine learning and supervised learning $\Phi$ is the features while $\bxi$ would be classes to be predicted by deciding the influence of each feature $\phi_{i}$ on class $\xi_j$ with $\ba$.
+In the inverse problem (see section [[ref:sec:inverse-problem]]) one needs to find a set of parameters $\btheta$ that fits the data $(\bxi$,$\mPhi)$.
 
 *** Dynamical Systems
-A dynamical system can be described as a set of instructions between nodes that influences themselves or other nodes over time.
-More specifically, the system describe the rules and inter-connections between variables and how they influence each other based on those connections.
-We can have a general description of this definition, in the discreet time mapping
-#+begin_src latex :exports results :results latex
-\begin{equation}
-  x_{t+\tau} = f(x_t,u_t,\epsilon_t)
-\end{equation}
-#+end_src
-where $x$ represent the state of the system, $u_t$ outside influence on the system from the outside, $\epsilon_t$ is stochastic effects in the system efffecting the next time step, $t$ the time and $\tau$ some discreet time step, often $\tau=1$. $f$ is here the rules that evolve the system.
-This can be written as the difference eqaution,
-#+begin_src latex :exports results :results latex
-\begin{equation}
-  \begin{array}{lcl}
-    \bx_{t+\tau} - \bx_t &=& f(\bx_t,\bu_t) - \bx_t\\
-    \Delta \bx(t) &=& g(\bx(t),\epsilon(t))
-  \end{array}
-\end{equation}
-#+end_src
-where $\Delta$ is the difference operator and $\bx$ now represent the state vector.
+A dynamical system describes a set of variables behaviour over time.
 
-Another way of modeling evolving systems is the [[gls:ode]] model.
+A way of modeling evolving systems is the [[gls:ode]] model.
 [[Glspl:ode]] relate the state of the system to its rate of instantaneous change
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:ode}
-  \dot{\bx} = f(\bx,\bp,t)
+  \dot{\bx} = f(\bx,\bu,\bupsilon,t)
 \end{equation}
 #+end_src
-where $\dot{\bx}$ is the time derivative of the states $\bx$, $\bp$ is any input to the system, henceforth called perturbation. $f$ may be any function and $t$ the current time. Now
+#+LATEX: \noindent
+where $\dot{\bx}$ is the rate of change of the states $\bx$, $\bu$ is any input to the system, henceforth called perturbation, and $\bupsilon$ is stochastic effects, or noise affecting the evolution of the system. $f$ may be any function and $t$ the time.
+Now
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:ode-output}
-  \by = g(\bx(t))
+  \by = g(\bx(t),\bepsilon)
 \end{equation}
 #+end_src
-describes the output variables $\by$ as a function of the states $\bx$, the output variables may be the the same as the input variables.
+#+LATEX: \noindent
+describes the output variables $\by$ as a function, $g$ of the states $\bx$ and the noise term $\bepsilon$, the output variables may be the the same as the input variables.
 
 *** Systems properties
 
 **** Network motifs
 It is known that some specific network motifs are highly over represented in biological systems, while others are underrepresented, compared to what would be expected of random networks.
-This has mainly been demonstarted by investigating the transcriptional network of \coli and \yeast[[citep:Milo2002]].
+This has been demonstarted by investigating the transcriptional network of \coli and \yeast[[citep:Milo2002]].
 Especially the [[gls:ffl]] motif is highly over represented.
-It has been showed that this specific regulatory motives could serve specific functionality, such as delayed responses, pulse response, synchronisation clocks, step responses and switches
+One motivation for the under or over representation of specific regulatory motives is that they could serve specific functions, such as delayed responses, pulse response, synchronisation clocks, step responses and switches
 [[citep:Alon2007]].
-Another type of motifs that are often considered in system theoretic approaches is the [[gls:fbl]].
-[[Glspl:fbl]] can cause highly correlated responses, so called interampatte systems, section [[ref:sec:iaa]].
-They may also determine phenotypes due to functioning as hard switches[[citep:Wolkenhauer2005]]. Feedback have been shown to help describe the behaviour of bacterial chemotaxis[[citep:Yi2000]]. A few examples of modeling the [[gls:fbl]] is presented in section [[ref:sec:lin-vs-non-lin]].
+Another type of motifs that are often considered in system theoretic approaches is [[glspl:fbl]].
+[[Glspl:fbl]] can cause highly correlated responses, so called interampatte systems[[cite:Nordling2009]], section [[ref:sec:iaa]].
+Motives may also explain phenotype, when functioning as biological switches[[citep:Wolkenhauer2005]].
+Feedback have been shown to help describe the behaviour of bacterial chemotaxis[[citep:Yi2000]]. A few examples of modelling the [[gls:fbl]] is presented in section [[ref:sec:lin-vs-non-lin]].
 
 **** Steady states
 :PROPERTIES:
@@ -450,15 +436,15 @@ They may also determine phenotypes due to functioning as hard switches[[citep:Wo
 The nature of the [[gls:ss]] can be elusidated by analysing the system $f(\bx_0,\bp,T) = 0$., with $T$ being a time when the system is in [[gls:ss]].
 The solution to this equation, or system of equations for $\bx_0$ in multivariate analysis, is the [[gls:ss]].
 For the system $f(\bx_0) = 0$ we can calculate the jacobian, $J$, the partial derivatives of $f$ over the states $\bx$.
-The nature of the [[glspl:ss]] can then be derived from the eigenvalues of $J$.
+The nature of the [[glspl:ss]] can then be derived from the eigenvalues of $J$ for linera time invariant systems such as the ones studied here.
 If all eigenvalues real part are negative then the system trajectories will converge to a stable state.
 If any real part is positive an unstable trajectory exist for that state variable that will make the system behave unstable.
 A system that is unstable will not converge to a stable state where $\dot{\bx} = 0$.
 For a linear system ([[ref:eq:linearsys]]) the solution of $f(\bx_0) = 0$ is always unique, meaing that there exist only one [[gls:ss]] for any linear system.
-The eigenvalues of $J$ might reveal that this is an unstable [[gls:ss]] and the system will diverge away from this state.
+The eigenvalues of $J$ might reveal that this is an unstable [[gls:ss]] and the system will diverge away from this state[[cite:Khalil1996]].
 
-Non linear systems might have more complex descriptions of there function $f(\bx_0) = 0$, with multiple solutions.
-This means that the system has multiple [[gls:ss]], where some might correspond to converging states, while others might be unstable [[gls:ss]] that when the system is placed in this state it will naturally diverge from the state.
+Non linear systems might have more complex descriptions of there function $f(\bx_0) = 0$, with multiple [[gls:ss]] solutions.
+This means that the system has multiple [[gls:ss]], where some might correspond to converging states, while others might be unstable [[gls:ss]] that when the system is placed in this state it will naturally diverge from the state. The determination of the behaviour of the [[gls:ss]] presented above does not generalise to all non-linear systems[[cite:Khalil1996]].
 
 The stable [[gls:ss]] property have been incorporated in algorithms[[citep:Zavlanos2011]] and when collecting data[[citep:Gardner2003]] for inferring [[gls:grn]].
 The assumption is that if biological systems would not be stable,
@@ -474,9 +460,9 @@ This because an equilibrium will be reach depending on the grown rate and degrad
 :END:
 
 Depending on what representation of the system we choose to use different properties or features of the model will follow.
-The model should be able to capture important features of the underlying system and aim to be simple to understand and interpret.
+The model should be able to capture important features of the underlying system and at the same time be simple to understand and interpret.
 The representation should be able to give us insite on what the system looks like and predict what kind of behaviour is expected in general or for a specific set of parameters.
-Another practical reason to consider when choosing a representative description is the possibility to evaluate or retrieve a solution either analytically or computational.
+Another practical reason to consider when choosing a representative description is the possibility to evaluate or retrieve a solution either analytically or computationally.
 Added complexity will often result in longer compute time or harder to evaluate solutions.
 
 The following section will detail an example of two different types of systems, one liner and one non linear.
@@ -488,21 +474,20 @@ The non linear representation is developed to model enzyme kinetics and the line
 # Also check [[citep:Sontag2005]] figure 20.
 
 Figure [[ref:fig:two-gene-feedback]] is the graphical, or network, representation of a two gene mutually regulating [[gls:fbl]].
-The links depict the direction of the interaction with the balls at the end of the link serving as a placeholder for an activating (arrow) or repressing (T) interaction.
 We can mathematically describe this system as an [[gls:ode]],
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback-general}
   \begin{array}{lcr}
-    \dot{x}_1 &= f_{G_1}(a_{12},a_{11},\alpha,x_1,x_2,\bK_1) &= g_{x_1}\\
-    \dot{x}_2 &= f_{G_2}(a_{21},a_{22},\alpha,x_1,x_2,\bK_2) &= g_{x_2}\\
+    \dot{x}_1 &= f_{G_1}(a_{11},a_{12},\alpha_1,x_1,x_2,\bK_1) &= g_{x_1}\\
+    \dot{x}_2 &= f_{G_2}(a_{21},a_{22},\alpha_2,x_1,x_2,\bK_2) &= g_{x_2}\\
   \end{array}
 \end{equation}
 #+end_src
 \noindent
 $f_{G_{*}}$ is a function of choice that are chosen based on modelling assumption or purpose and could be different for different interactions.
-The parameters of model are $a_{11},a_{12},a_{21}, a_{22}$ and $\alpha_1$ and $\alpha_1$.
+The parameters of model are $a_{11},a_{12},a_{21}, a_{22}$ and $\alpha_1$ and $\alpha_2$.
 Any other paramters in the functions $f$ are represented by $\bK_i$.
-The state of the system is $x_i$ and $x_2$ represents some quantity related to the gene $G_1$ and $G_2$ respectively.
+The state of the system is $x_1$ and $x_2$ represents some quantity related to the gene $G_1$ and $G_2$ respectively.
 
 To simplify somewhat lets look at activating [[gls:fbl]] with degradation only.
 #+begin_src latex :exports results :results latex
@@ -515,8 +500,8 @@ To simplify somewhat lets look at activating [[gls:fbl]] with degradation only.
 #+end_src
 \noindent
 The degradation is here explicitly modelled as a linear effect on the gene itself.
-The rate of degradation is considered as decay of $x_i$ unless it itself is regulated by $x_i$ and are captured in the parameter $\alpha$.
-If auto-regulation would be incorporated in the model then the effect that $G_1$ would have on it self would need to be incorporated separately with the paramters $a_ii$.
+The rate of degradation is considered as decay of $x_i$ and captured in the parameter $\alpha_i$.
+If we incorporated auto-regulation in the model, meaning that \eg $G_1$ would regulate its on expression we would need to be incorporated the paramter $a_{11}$.
 
 Now we can look at some properties of this system.
 First lets look at [[gls:ss]].
@@ -532,8 +517,8 @@ To find the behaviour of this system close to its [[gls:ss]]
   \end{pmatrix}
   =
   \begin{pmatrix}
-    -\alpha_1 & a_{12} f^\prime_{x_1}(x_2)\\
-    a_{21} f^\prime_{x_2}(x_1) & -\alpha_2\\
+    -\alpha_1 & a_{12} f^\prime_{G_1}(x_2)\\
+    a_{21} f^\prime_{G_2}(x_1) & -\alpha_2\\
   \end{pmatrix}
 \end{equation}
 #+end_src
@@ -549,7 +534,7 @@ The eigenvalues are calculated by finding the $\lambda$ of
 \end{array}
 \end{equation}
 #+end_src
-\noindent
+#+LATEX: \noindent
 where $|.|$ is the determinant and $\bI$ is the identity matrix.
 This will evaluate to a quadratic function with two solutions for $\lambda$, one for each eigenvalue.
 The eigenvalues are evaluated at the [[gls:ss]], so that $f^\prime_{x_1}(x_2)$ and $f^\prime_{x_2}(x_1)$ are evaluated at the steady state[[citep:Morris2004]].
@@ -574,31 +559,42 @@ and the [[gls:ss]] solution is
 \end{array}
 \]
 #+end_src
-\noindent
+#+LATEX: \noindent
 and ([[ref:eq:feedback-eigenvalues]]) will, depending on the paramters $a_{ij}$ and $\alpha_i$, be positive, negative or complex.
 Complex eigenvalues always comes in pairs.
 The real part of the eigenvalues $\Re(\lambda)$ determines if the system is stable (-) or unstable (+).
 The imaginary part $\Im(\lambda)$ determines the oscillatory behaviour of the system.
 
-Now lets look at the non linear case when $f_x$ is the Michaelis-Menten (MM) kinetics function.
+There is the special case when
+#+begin_src latex :exports results :results latex
+\begin{align}\label{eq:det_is_0}
+\frac{\alpha_1\alpha_2}{a_{12}a_{21}} &= 1\\
+\alpha_1\alpha_2 &= a_{12}a_{21}
+\end{align}
+#+end_src
+#+LATEX: \noindent
+Which is the case when $J$ is singular. This means that infinte number of solutions exist for the [[gls:ss]].
+This is when the determinant of the jacobian $\det(J) = 0$ and any point in the null space of the system is a [[gls:ss]] [[cite:Khalil1996]].
+
+Now lets look at the non linear case when $f_x$ is the [[gls:mm]] kinetics function.
 MM function have been used to model [[glspl:grn]] before[[citep:August2009]].
 Other alternatives can be chosen as well, \eg Hill kinetics or boolean functions.
-The Michaelis-Menten function is
+The [[gls:mm]] function is
 #+begin_src latex :exports results :results latex
 \begin{equation}
-  f_{x_i}(x_j) = \frac{x_j}{x_j + K_{ji}}
+  f_{G_i}(x_j) = \frac{x_j}{x_j + K_{ji}}
 \end{equation}
 #+end_src
 \noindent
 for an activator, and
 #+begin_src latex :exports results :results latex
 \begin{equation}
-  f_{x_i}(x_j) = \frac{K_{ji}}{x_j + K_{ji}}
+  f_{G_i}(x_j) = \frac{K_{ji}}{x_j + K_{ji}}
 \end{equation}
 #+end_src
 \noindent
 for a repressor, where $j$ indicate the activator or repressor and $i$ the target. $K_{ij}$ is the activator coefficient which relates to the amount of $x_j$ needed to be present until significant activation or repression is achieved.
-For Michaelis-Menten the amount of $x_j$ needed for $50\%$ activation of its maximum.
+For [[gls:mm]] the amount of $x_j$ needed for $50\%$ activation of its maximum.
 
 To simplify lets look at mutual activation.
 The [[gls:ss]] equations from ([[ref:eq:feedback-general]]) will now be,
@@ -624,23 +620,23 @@ We have a [[gls:ss]] at $[x_1,x_2] = [0,0]$ however in this case this is not a u
 where $S_{x_1}=a_{12}/\alpha_1$ and $S_{x_2}=a_{21}/\alpha_2$.
 
 Some notes on these observations.
-For non linear systems like the ones with Michaelis-Menten kinetics there could exist more than one [[glspl:ss]].
-To be able to find the [[gls:ss]] behavour one needs to choose a set of paramters of the model.
+For non linear systems like the ones with [[gls:mm]] kinetics there could exist more than one [[gls:ss]].
+To be able to find the [[gls:ss]] behavour one needs to choose a set of parameters of the model.
 
 This particular non linear system can not exhibit infinate growth as long as the degradation factor is considered.
 The growth rate will eventually be balanced out by the degradation factor.
 
-Depending on if any specific combination of parameters in the equation ([[ref:eq:feedback-jacobian]]) is equal to 0 the system becomes singular and an infinate number of solutions can be found for the [[gls:ss]].
+Depending on if a specific combination of parameters in the equation ([[ref:eq:feedback-jacobian]]) fulfils ([[ref:eq:det_is_0]]) the system becomes singular and an infinate number of solutions can be found for the [[gls:ss]].
 
-The linear system that we explored had 6 paramters while the linear system had 4.
+The non-linear system that we explored had 6 parameters while the linear system had 4.
 Including auto-regulation will increase the number of parameters for the non linear system to 10.
 For the linear system there is no differentiation between auto-regulation and degradation, which is easily seen by adding auto-regulation to equation ([[ref:eq:feedback]]).
-The effects are additative and not independantly modelled.
+For the linear system the effects are additative and not independantly modelled and no differentiation can be made except that degradation has a suppressing (-) effect and auto-regulation can have a activating effect.
 
-As mentioned before one need to be careful to what model to use to represent ones system.
+As mentioned before one need to take some care for what model to use to represent ones system.
 While some features can not be captured by the linear model, such as bi-stability, the increase in complexity and degrees of freedom for the non linear system can risk creating models that does not represent the underlying biology and by extension increase the demand for more data.
 
-In the extreme case a very simple model can fit any set of data points exactly[[citep:Andrae2010]].
+In the extreme case a very simple non linear model can fit any set of data points exactly[[citep:Andrae2010]].
 Discriminating any two model structures, \ie what paramters are interesting versus parameters that should be excluded, under these conditions would be much more difficult.
 
 **** Time seprated hierarchical systems
@@ -665,9 +661,10 @@ Fast and slow modes can be separated either by eigenvalue spectral clustering or
 Hierarchical analysis of system dynamics have been used to reduce dimensionality of the system[[citep:Zagaris2003]].
 Time scale separation is implicated as being a cause of an interampatte behaviour of a system[[citep:Nordling2009]].
 
-Time constants and associated dynamics can be viewed as the system operating in different time windows.
-Faster modes than the times observable in the window under observation can be considered as [[gls:ss]] and slower modes can be discarded as they are then independent of any changes in the time window.
-Analysing time dynamics could potentially help determine sampling frequency when doing [[gls:tsd]] analysis as the fast responses could be investigated while assuming slower modes are quasi stable.
+Time scale sepratation is sometimes motivating model reduction for simpler analysis.
+When the time constants and associated dynamics can be viewed as the system operating in different time scales.
+Faster modes than the observed in the window under observation can be considered as [[gls:ss]] and slower modes can be discarded as they are then independent of any changes in the time window.
+Analysing time dynamics could potentially help determine sampling frequency when doing [[gls:tsd]] analysis as the fast responses could be investigated while assuming slower modes are quasi stable[[cite:Kremling2007]].
 # [[citep:He2009]] Discusses experimental design section 5.
 
 **** Interampatte systems
@@ -676,10 +673,10 @@ Analysing time dynamics could potentially help determine sampling frequency when
 :END:
 
 Interampatteness is a property of biochemical networks that can be recognised by a high correlated response to system perturbations[[citep:Nordling2009]].
-The degree of interampatteness can be calculated as the condition number of the static gain matrix.
+The degree of interampatteness can for liner systems be calculated as the condition number of the static gain matrix.
 #+begin_src latex :exports results :results latex
 \begin{equation}
-  \glssymbol{k}(\mG) = \frac{\overline{\sigma}}{\underline{\sigma}}
+  \glssymbol{k}(\mG) = \frac{\overline{\sigma}(G)}{\underline{\sigma}(G)}
 \end{equation}
 #+end_src
 \noindent
@@ -739,7 +736,7 @@ This means that the expression of each gene needs to be discretized to determine
   \bx(t+1) = f^B(\bx(t))
 \end{equation}
 #+end_src
-where $f^B$ is a boolean function and $\bx(t+1)$ is the state  (=ON= / =OFF=) of the state variables at time $t+1$ as a function of the state at time $t$.
+where $f^B$ is a boolean function and $\bx(t+1)$ is the state  (=ON= / =OFF=) of the state variables at time $t+1$ as a function of the state, $\bx$ at time $t$.
 #
 
 Bayesian models are models based on conditional probabilities.
@@ -868,7 +865,8 @@ Meaning that one can search for the optimal solution by finding the peace-wise o
 
 # Also comment on that biological systems are usually considered stable [[ref:sec:ss]]
 
-The first objective of network inference is to infer the interaction network between the nodes/genes. The links that describe the causal influence of one entity to another.
+Network inference is the art form of trying to infer the [[gls:grn]] and its paramters from given data with the main objective of trying to retrieve the interactions between the nodes/genes.
+The links that describe the causal influence of one entity to another.
 [[citet:Gardner2005]] separated two different types of network inference types, the first or "physical" approach aims at construction the transcriptional regulatory network directly, \ie to determine the physical binding of one transcription factor to another. This strategy concerns itself with direct chemical bonding interactions.
 In some cases however, it may be that an intermediate step is not observed and no direct binding occurs even though change based on influence can be observed.
 The other approach is the influence strategy.
