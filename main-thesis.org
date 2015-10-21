@@ -1435,10 +1435,102 @@ Further work on how to formulate and implement different details of experimental
 
 * Sammanfattning
 #+LATEX: \selectlanguage{swedish}
-En kort summering av avhandlingen p\r{a} svenska om avhandlingen \"ar skriven p\r{a}  ett annat spr\r{a}k.
+Systembiologi studerar biolog ur ett system perspektiv.
+Vad detta innbeär är att, utöver att undersöka detaljer i biologiska system, så som en specifik gen, en cell eller en individs beteende, undersöker man hur dessa komponenter interagerar med varanrdra i ett större perspektiv.
+Tittar vi på individer i en population försöker vi skapa oss en bild av hur populationen fungerar utfrån hur individerna interagerar i populationene och inte hur individen fungerar isolerad.
+Studerar vi gener, så tittar vi på hur uttrycket av dessa gener i cellen, i kombination med utrucket av andra gener reglarar hur cellen fungearar och vilka functioner som cellen kan uttrycka och använda sig av på grund av hur generana påverkar varandra.
 
-\r{a} \"a \"o
+Det klassiska tillvägagångsättet som använts för att studera fenomen som dessa, att bryta ner systemet i sina beståndsdelar och studera dessa ingående för att sedan kunna dra slutsatser om hela systemet, har visat sig svårt när man studerar complexa levande system.
+Egenskaper som inte kunnat förutsägas genom att studera compnenterna har endast kunnat förklaras när man placerat componenterna i en specifik kontext.
+För gener så är denna kontext den biologiska cellen.
+Där till kommer antalet komponenter och antalet möjliga interaktioner mellan dessa.
+Den mänskliga cellen har omkring $\approx 20000$ proteinkodande gener.
+Antalet möjliga interaktioner mellan dessa är $\approx 400000000$.
+Inkluderar vi molekyler som kommer utifrån cellen och de olika steg som en gen can uttryckas i och därför regleras på, ökar snabbt detta tal i storlek.
+Att sudera all dessa komponenter i detalj är inte enkelt, och att sedan kunna ge en informativ bild av hur systemet fungearar när dessa komponenter påverkar varandra gör problemet änn mer svårforcerat.
+
+Verktygen och teorierna från systembiologin är speciellt framtagna och utvecklade för att kunna generera kunskap under dessa förutsättningarna.
+Både att kunna rekonstruera och skapa modeller av dessa interaktionerna och att kunna dra hållbara slutsatser utifrån dessa modeller om det underliggande biologiska systemet, faller under systembiologins forskningsfält.
+
+För att kunna skapa interaktions- och reglerande gennätverk krävs experiment designade för att kunna generera sådana modeler.
+Vi måste kunna mäta koncentrationen av flera specifica biologiska molekyler, så som mRNA och protein, samtidig och med hög precision.
+För att kunna generera nätverk där vi vet vilken gen som påverkar vilken annan gen och med vilken styrka krävs att vi utför specifika förändringar på cellen som gör att cellen ändrar mängden av biomolekyler som uttrycks som svar på dessa störningar.
+Att skapa sådant data är inte trivialt och medför flera problem när målet är att kunna rekonstruera ett nätverk som kan beskriva interaktionerna.
+Data av den här typen har ofta lågt signal till brus förhållanden.
+Detta betyder att vi har effekter, både mätningsfel och slumpmässiga förändringar i cellen, som gör att de förändringar som cellen gör i svar på våra störningar inte går att observera helt tydligt.
+Ofta är det denna typ av data som måste användas för att kunna rekonstruera modeller för reglerande gennätverk i cellen.
+
+Arbetet som denna avhandling är baserad på fokuserar i stor del på hur man ska gå tillväga när man försöker generera reglerande gennätverk med uttrycksdata av varierande kvallitet, och vilken effect brus har på olika typer av algoritmer som används för detta ändamål.
+
+I den första studien undersökte vi hur väl man kan återskapa det underliggande nätvkeret när datat har olika kvallitet.
+I första hand försökte vi lösa problemnet om hur valet av parametrar som ingår i många algoritmer, och som avgör nätverkets densitet, skall sättas.
+Vi undersökte dessutom vad det innebär att sätta dessa parametrar fel, och visade att detta kan medföra att vi kan få model som inte är bättre än om vi valt ett nätverk utan länkar att representera våra interaktioner.
+Problemet som vi försöker lösa handlar om hur man ska välja om två gener har en reglerande effect mellan sig eller inte.
+Detta är inte trivialt när vi endast har data med brus.
+Effekten av brus i data är att vi ofta inte kan skilja på om en länk faktiskt existerar mellan två gener eller om vi ser en länk på grund av att bruset har den effekten.
+Detta kallas överanpassning och uppstår under dessa förhållanden.
+För att överkomma detta problem introducerade vi två steg i den process som används för nätverks rekonstruktion.
+Steg ett är att selektivt välja experiment som ska ingå i en så kallad korsvalideringsprocedur där vi konstruerar en nätverksmodel för ett sub-set av experiment och sen test hur väl vi kan förutsäga hur de utelämnade experiment kan återskapas av vår model.
+Experiment som kan ingå i en korsvalideringsprocedur måste innehålla information från de övriga experimenten, av en anledning att om det inte gjorde det så skulle en model som var konstruerad från den datain inte kunna säga något om dessa experiment.
+Det andra steget är hur man kan överkomma algoritmlutning av det resulterande nätverkets parametrar.
+Algoritmlutning är en effekt av hur dessa algoritmer fungerar och har som resultat att parametrar i nätverkar inte har optimala värden.
+Vi löste detta problem genom att introducera in maximal sannolikhets om-estimering av parametrarna vilket tar bort vinklingen introducert av algoritmen för bara de parametrar vi är intresserade av.
+
+Vi demonsterrade detta på data som var av olika informationsgrad.
+För data med hög informationsgrad så kunde vi återska våra nätverk exakt genom att välja rätt parametrar i algoritmen.
+Även för delvist informativt data kunde vi hitta en bra model, dock inte optimal, för ett bra val av parametrar.
+För låg informationsgrad demonstrerade vi att det inte är möjligt med den typ av tillvägagångsätt vi valt här att hitta en model som är bättre än ett nätverk utan interaktioner.
+
+I vår andra studie undersökte vi om problemet med ett lågt signal till brus förhållande kunde överkommas med hjälp av evidens från andra datakäller, specifikt evidens från genassociationsnätverk.
+Genassociationsnätverk är byggda på statistiskt grunder från data av flera olika typer, och beskriver hur mycket förtroende som finns för att två gener har någon typ av relation.
+En association är inte av samma typ som en reglerande interaktion men om det existerar starka evidens för att två gener är associerade så kan det vara evidens för att de ingår i samma regleringsnätverk.
+
+Vi ville använda denna observation till att komplementera genuttrycksdata med associationsevidens och skapade en algoritm för att inkorporera dessa två typer av data.
+För data av låg kvallitet, med lågt signal till brus förhållande bidrog inkludering av associationsevidens med en ökning av antal korrekt antagna länkar som vi kunde rekonstruera och när signal till brus fårrhållandet ökade så minskade de possitiva effkterna av att inkludera associationsevidens något.
+
+
 #+LATEX: \selectlanguage{english}
+
+# To understand how the components of a complex system like the biological cell interact and regulate each other, we need to collect data under various conditions and the components respond to perturbations of the system.
+# Such data can then be used to solve the inverse problem of inferring a network that describes how the pieces influence each other.
+# The work in this thesis deals with modelling the cell regulatory system, often represented as a network, with tools and concepts derived from systems biology.
+
+# The first investigation focus on network sparsity and algorithmic biases introduced by penalised network inference procedures.
+# Many contemporary network inference methods rely on a sparsity parameter and a penalty term like the $L_1$ based penalty used in the \lasso.
+# A poor choice of the sparsity parameter can give worse network estimates than if the empty network is chosen.
+# In order to avoid such poor choices, we propose a method for
+# optimisation of the sparsity parameter, which maximises the accuracy of the inferred network for any sparsity.
+# We devised a procedure for minimising the influence of bias in network inference algorithms to give a more accurate result and showed that it is effective when implemented for \insilico data set of varying degree of informativeness and demonstrated that accurate prediction of network sparsity is key to elucidate the correct network parameters.
+
+# The second investigation focus on how we can transfer knowledge from functional association network to be used in regulatory network inference procedures.
+# It is common that the quality of expression data is inadequate for reliable [[gls:grn]] inference.
+# We constructed an algorithm to incorporate prior knowledge from functional association databases and demonstrated that the accuracy was increased for the network when the quality of the data is low.
+
+# The third investigation was aimed at understanding the influence of system and data properties on network inference accuracy. $L_1$ regularisation methods commonly produce poor network estimates when the data used for inference is ill-conditioned, even when the signal to noise ratio is so high that all links in the network can be proven to exist for the given significance.
+# We elucidated some general principles for under what conditions we expect strongly degraded accuracy.
+# Moreover, it allowed us to estimate expected accuracy from conditions of simulated data, which was used to predict the performance of inference algorithms on biological data.
+
+# Finally, we built a software package \gs for solving problems encountered during previous investigations.
+# The software package supports highly controllable network and data generation as well as data analysis and exploration in the context of network inference.
+#
+# ==========================================================
+#
+# Systems biology deals with the problem of studying systems in a biological context, and finding patterns and rules that can not easily be inferred by the studying the individual components of the cell.
+# In the end the goal is to transfer the knowledge in to general principles to describe the nature of the cell.
+
+# The study of biology has for every time we have overcome a new boundary of discovery revealed an overwhelming complexity and diversity,
+# and it has become more evident the deeper we have probed the rich set of properties being displayed by living systems.
+# When we discovered the DNA we confirmed the existence a molecule carrying information that could be inherited and a blueprint for controlling the function of the cellular machinery.
+
+# The cellular machinery is built up of tens of thousands different components within the cell alone, not counting the external influx and interactions on the outer surface.
+# Some core concepts have been distilled and crystallised in to general knowledge such as the storage of genetic information in DNA and the direction of expression of different component of where the direction is depicted as going from DNA to RNA to Protein.
+# This is summarised in the central dogma of molecular biology.
+# These are simple distilled concepts of highly complex underlying chemical reactions.
+
+# Specifically the studies involve elucidating general principles for applying systems biological models and algorithms and retrieve reliable descriptions of the cell functions.
+# This means investigating the influence of system properties, as well as experimental approaches, on the quality of the inference of the networks to represent intra-cellular interactions.
+
+
 * References                                                        :notitle:
 #+LATEX: \renewcommand{\bibname}{References} % changes the header from Bibliography to References
 #+LATEX: \begin{scriptsize} % tiny(5) < scriptsize(7) < footnotesize(8) < small (9)
