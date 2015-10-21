@@ -42,7 +42,8 @@ colorlinks = true,  % was true
 % citecolor = red,
 % anchorcolor = green,
 hyperindex = true,
-hyperfigures
+hyperfigures,
+hidelinks
 ]{hyperref}
 
 \DeclareGraphicsExtensions{.png, .jpg, .jpeg, .pdf} % GIF doesn't work
@@ -63,6 +64,7 @@ colorlinks = true,  % was true
 % citecolor = red,
 % anchorcolor = green,
 hyperindex = true,
+hidelinks
 ]{hyperref}
 \fi
 \pdfcompresslevel=9
@@ -137,8 +139,9 @@ hyperindex = true,
   \cleardoublepage
   \edef\x{\endgroup
     \noexpand\mainmatter
-    \setcounter{page}{\the\value{page}}%
-    \setcounter{secnumdepth}{-2}
+    \setcounter{page}{1}%
+    %\setcounter{page}{\the\value{page}}%
+    %\setcounter{secnumdepth}{-2}
   }%
   \x
 
@@ -196,7 +199,7 @@ hyperindex = true,
 {
 \thispagestyle{empty}
     \noindent
-     {\large \@title~-- \@subtitle\\}\\
+     {\large \@title~ \@subtitle\\}\\
      \noindent
      {\Large\@author}
 \cleardoublepage
