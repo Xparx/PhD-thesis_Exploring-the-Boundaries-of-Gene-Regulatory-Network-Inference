@@ -1,4 +1,4 @@
-# Time-stamp: <2015-10-21 14:48:00 andreas>
+# Time-stamp: <2015-10-21 16:52:33 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -33,12 +33,17 @@ To understand how the components of a complex system like the biological cell in
 Such data can then be used to solve the inverse problem of inferring a network that describes how the pieces influence each other.
 The work in this thesis deals with modelling the cell regulatory system, often represented as a network, with tools and concepts derived from systems biology.
 
-The first investigation focuses on network sparsity and algorithmic biases introduced by penalised network inference procedures.
-Many contemporary network inference methods rely on a sparsity parameter and a penalty term like the $L_1$ based penalty used in the \lasso.
-A poor choice of the sparsity parameter can give worse network estimates than if the empty network is chosen.
-In order to avoid such poor choices, we propose a method for
-optimisation of the sparsity parameter, which maximises the accuracy of the inferred network for any sparsity.
-We devised a procedure for minimising the influence of bias in network inference algorithms to give a more accurate result and showed that it is effective when implemented for \insilico data sets with varying degree of informativeness and demonstrated that accurate prediction of network sparsity is key to elucidate the correct network parameters.
+The first investigation focuses on network sparsity and algorithmic
+biases introduced by penalised network inference procedures.
+Many contemporary network inference methods rely on a sparsity parameter
+such as the $L_1$ penalty term used in the \lasso.
+However, a poor choice of the sparsity parameter can give highly incorrect network estimates.
+In order to avoid such poor choices,
+we devised a method to optimise the sparsity parameter, which
+maximises the accuracy of the inferred network.
+We showed that it is effective on \insilico data sets with a reasonable level of
+informativeness and demonstrated that accurate prediction of network
+sparsity is key to elucidate the correct network parameters.
 
 The second investigation focuses on how knowledge from association networks can be transferred to regulatory network inference procedures.
 It is common that the quality of expression data is inadequate for reliable [[gls:grn]] inference.
@@ -678,15 +683,15 @@ Interampatteness is a property of biochemical networks that can be recognised by
 The degree of interampatteness can for liner systems be calculated as the condition number of the static gain matrix.
 #+begin_src latex :exports results :results latex
 \begin{equation}
-  \glssymbol{k}(\mG) = \frac{\overline{\sigma}(G)}{\underline{\sigma}(G)}
+  \glssymbol{k}(\mG) = \frac{\overline{\sigma}(\mG)}{\underline{\sigma}(\mG)}
 \end{equation}
 #+end_src
 \noindent
-where $\overline{\glssymbol{sigma}}$ is the largest [[gls:sigma]] and $\underline{\glssymbol{sigma}}$ is the smallest [[gls:sigma]] of $\mG$.
+where $\overline{\glssymbol{sigma}}(\mG)$ is the largest [[gls:sigma]] and $\underline{\glssymbol{sigma}}(\mG)$ is the smallest [[gls:sigma]] of $\mG$.
 
 Several data sets have been observed to be ill-conditioned.
 This is also the effect of doing measurements on an interampatte system.
-The data obtained from perturbing a 10 gene network of the /Snf1/ pathway in \yeast[[citep:Lorenz2009]] had a condition number, $\kappa = 253$, and a data set from a 9 gene network in \coli[[citep:Gardner2003]] had a condition number,$\kappa = 54$.
+The data obtained from perturbing a 10 gene network of the /Snf1/ pathway in \yeast[[citep:Lorenz2009]] had a condition number, $\kappa = 253$, and a data set from a 9 gene network in \coli[[citep:Gardner2003]] had a condition number, $\kappa = 54$.
 The corresponding estimated interampatteness degree was $\kappa = 215$ and $\kappa= 154$ respectively.
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -758,7 +763,8 @@ Each network model would then be a product of conditional probabilities based on
 Another class of models is the [[gls:ode]] models ([[ref:eq:ode]]).
 Several different models fall under this umbrella.
 An example of a non linear [[gls:ode]] is a model using [[gls:mm]] kinetics.
-This can be extending to include modelling with the cooperative Hill coefficients. The coefficients in the Hill function determine the steepness of the activation curve.
+This can be extending to include modelling with the cooperative Hill coefficients.
+The coefficients in the Hill function determine the steepness of the activation curve.
 This could also be replaced in the extreme case with a boolean condition, where activation turns on only if the amount of some activation molecule reaches a certain concentration[[citep:Alon2007]].
 # non-linear
 
@@ -1460,7 +1466,7 @@ Data av den här typen har ofta lågt signal till brus förhållanden.
 Detta betyder att vi har effekter, både mätningsfel och slumpmässiga förändringar i cellen, som gör att de förändringar som cellen gör i svar på våra störningar inte går att observera helt tydligt.
 Ofta är det denna typ av data som måste användas för att kunna rekonstruera modeller för reglerande gennätverk i cellen.
 
-Arbetet som denna avhandling är baserad på fokuserar i stor del på hur man ska gå tillväga när man försöker generera reglerande gennätverk med uttrycksdata av varierande kvallitet, och vilken effect brus har på olika typer av algoritmer som används för detta ändamål.
+Arbetet som denna avhandling fokuserar i stor del på hur man ska gå tillväga när man försöker generera reglerande gennätverk med uttrycksdata av varierande kvallitet, och vilken effect brus har på olika typer av algoritmer som används för detta ändamål.
 
 I den första studien undersökte vi hur väl man kan återskapa det underliggande nätvkeret när datat har olika kvallitet.
 I första hand försökte vi lösa problemnet om hur valet av parametrar som ingår i många algoritmer, och som avgör nätverkets densitet, skall sättas.

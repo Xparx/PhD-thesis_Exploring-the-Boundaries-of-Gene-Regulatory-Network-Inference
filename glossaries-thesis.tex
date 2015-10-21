@@ -4,10 +4,11 @@
 % or if running emacs: C-c ? glossaries-user RET
 %
 %:-------------------------- Glossary/Abbrev./Symbols -----------------------
-\usepackage[toc,acronym]{glossaries} % https://en.wikibooks.org/wiki/LaTeX/Glossary
+\usepackage[style=super,nogroupskip,toc,acronym]{glossaries} % https://en.wikibooks.org/wiki/LaTeX/Glossary
 % \renewcommand{\nomlabel}[1]{\textbf{#1}} % make abbreviations bold
 \makeglossaries
 \newcommand{\g}{\footnote{For all abbreviations see the glossary on page \pageref{nom}.}} % type "\g" to refer to glossary
+\renewcommand{\glsnamefont}[1]{\textbf{#1}}
 
 % Dual entries with reference to a glosssary entry from an acronym
 \usepackage{xparse} % for dual entry simplification
@@ -25,8 +26,8 @@
 % {The time a packet uses through a network from one host to another} % description
 
 % Acronyms
-\newacronym{grn}{GRN}{Gene Regulatory Network}
-\newacronym{snr}{SNR}{Signal to Noise Ratio}
+\newacronym{grn}{GRN}{gene regulatory network}
+\newacronym{snr}{SNR}{signal to noise ratio}
 \newacronym{bic}{BIC}{Bayesian information criterion}
 \newacronym{aic}{AIC}{Akaike information criterion}
 \newacronym{rss}{RSS}{residual sum of squares}
@@ -47,7 +48,8 @@
 \newacronym{ls}{LS}{least squares}
 \newacronym{tls}{TLS}{total least squares}
 \newacronym{mm}{MM}{Michaelis-Menten}
-
+\newacronym{lasso}{LASSO}{least absolute shrinkage and selection operator}
+\newacronym{rni}{RNI}{robust network inference}
 
 % Glossaries
 \newglossaryentry{dream}
@@ -90,16 +92,16 @@
   description={From latin meaning ``in the living'', meaning experimentation done on living systems},
 }
 
-% Dual entries
-\newdualentry{lasso}
-{LASSO}
-{Least Absolute Shrinkage and Selection Operator}
-{A regression method that penalizes the absolute values of the model parameters.\cite{Tibshirani1996}}
+% % Dual entries
+% \newdualentry{lasso}
+% {LASSO}
+% {Least Absolute Shrinkage and Selection Operator}
+% {A regression method that penalizes the absolute values of the model parameters.\cite{Tibshirani1996}}
 
-\newdualentry{rni}
-{RNI}
-{Robust Network Inference}
-{A conservative network inference approach that tests all possible networks and selects parameters based on if the parameter is included in all networks that can explain the data with a given confidence\cite{Nordling2013phdthesis}.}
+% \newdualentry{rni}
+% {RNI}
+% {Robust Network Inference}
+% {A conservative network inference approach that tests all possible networks and selects parameters based on if the parameter is included in all networks that can explain the data with a given confidence\cite{Nordling2013phdthesis}.}
 
 % Symbols
 \newglossaryentry{chi2}
