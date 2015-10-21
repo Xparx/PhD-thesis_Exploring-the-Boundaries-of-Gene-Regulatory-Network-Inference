@@ -1,7 +1,7 @@
-# Time-stamp: <2015-10-20 06:39:10 andreas>
+# Time-stamp: <2015-10-21 14:48:00 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
-#+TITLE: Dynamical regulatory networks
+#+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
 #+DATE: \today
 #+AUTHOR: Andreas Tjärnberg
 #+EMAIL: andreas.tjarnberg@scilifelab.se
@@ -14,7 +14,7 @@
 #+LATEX_CLASS: thesis-book-SU
 #+LATEX_CLASS_OPTIONS: [twoside,11pt]
 #+DESCRIPTION:
-#+LATEX_HEADER: \subtitle{Exploring the bounderies of the network inference process}
+#+LATEX_HEADER: \subtitle{}
 #+LATEX_HEADER_EXTRA: \hbadness=10000
 #+LATEX_HEADER_EXTRA: \hfuzz=50pt
 #+LATEX_HEADER_EXTRA: \input{glossaries-thesis}
