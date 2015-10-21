@@ -29,23 +29,25 @@
 
 * Abstract                                                          :notitle:
 #+begin_abstracts
-To understand how the components of a complex system like the biological cell interact and regulate each other, we need to collect data for various conditions of these components and how they respond to system perturbations.
+To understand how the components of a complex system like the biological cell interact and regulate each other, we need to collect data for how the components respond to system perturbations.
 Such data can then be used to solve the inverse problem of inferring a network that describes how the pieces influence each other.
 The work in this thesis deals with modelling the cell regulatory system, often represented as a network, with tools and concepts derived from systems biology.
 
-The first investigation focus on network sparsity and algorithmic biases introduced by penalised network inference procedures.
+The first investigation focuses on network sparsity and algorithmic biases introduced by penalised network inference procedures.
 Many contemporary network inference methods rely on a sparsity parameter and a penalty term like the $L_1$ based penalty used in the \lasso.
 A poor choice of the sparsity parameter can give worse network estimates than if the empty network is chosen.
 In order to avoid such poor choices, we propose a method for
 optimisation of the sparsity parameter, which maximises the accuracy of the inferred network for any sparsity.
-We devised a procedure for minimising the influence of bias in network inference algorithms to give a more accurate result and showed that it is effective when implemented for \insilico data set of varying degree of informativeness and demonstrated that accurate prediction of network sparsity is key to elucidate the correct network parameters.
+We devised a procedure for minimising the influence of bias in network inference algorithms to give a more accurate result and showed that it is effective when implemented for \insilico data sets with varying degree of informativeness and demonstrated that accurate prediction of network sparsity is key to elucidate the correct network parameters.
 
-The second investigation focus on how we can transfer knowledge from functional association network to be used in regulatory network inference procedures.
+The second investigation focuses on how knowledge from association networks can be transferred to regulatory network inference procedures.
 It is common that the quality of expression data is inadequate for reliable [[gls:grn]] inference.
-We constructed an algorithm to incorporate prior knowledge from functional association databases and demonstrated that the accuracy was increased for the network when the quality of the data is low.
+Therefore, we constructed an algorithm to incorporate prior knowledge and demonstrated that it increases the accuracy of network inference when the quality of the data is low.
 
-The third investigation was aimed at understanding the influence of system and data properties on network inference accuracy. $L_1$ regularisation methods commonly produce poor network estimates when the data used for inference is ill-conditioned, even when the signal to noise ratio is so high that all links in the network can be proven to exist for the given significance.
-We elucidated some general principles for under what conditions we expect strongly degraded accuracy.
+The third investigation aimed to understand the influence of system and data properties on network inference accuracy.
+$L_1$ regularisation methods commonly produce poor network estimates when the data used for inference is ill-conditioned,
+even when the signal to noise ratio is so high that all links in the network can be proven to exist for the given significance.
+In this study we elucidated some general principles for under what conditions we expect strongly degraded accuracy.
 Moreover, it allowed us to estimate expected accuracy from conditions of simulated data, which was used to predict the performance of inference algorithms on biological data.
 
 Finally, we built a software package \gs for solving problems encountered during previous investigations.
