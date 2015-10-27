@@ -1,4 +1,4 @@
-# Time-stamp: <2015-10-25 17:30:02 andreas>
+# Time-stamp: <2015-10-27 01:24:14 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -25,6 +25,34 @@
 %: ----------------------- Cover page back side ------------------------
 \newpage
 \thispagestyle{empty}
+#+end_src
+
+* Document info                                                     :notitle:
+#+begin_src latex :exports results :results latex
+\clearpage
+
+\phantom{.}
+
+\vspace{\stretch{1}}
+
+{\fontfamily{verdana}\selectfont
+{\scriptsize
+\noindent
+\copyright Andreas Tjärnberg, Stockholms universitet 2015 % Name of author, location year
+
+\vspace{5mm}
+\noindent
+ISBN 978-91-7649-299-4 % Provided by the library
+
+\vspace{5mm}
+\noindent
+Tryck: Holmbergs, Malmö 2015 % name of printing company
+
+\noindent
+Distributor: Department of Biochemistry and Biophysics % name of department
+}
+}
+\cleardoublepage
 #+end_src
 
 * Abstract                                                          :notitle:
@@ -58,34 +86,6 @@ Moreover, it allowed us to estimate expected accuracy from conditions of simulat
 Finally, we built a software package \gs for solving problems encountered during previous investigations.
 The software package supports highly controllable network and data generation as well as data analysis and exploration in the context of network inference.
 #+end_abstracts
-
-* Document info                                                     :notitle:
-#+begin_src latex :exports results :results latex
-\cleardoublepage
-
-\phantom{.}
-
-\vspace{\stretch{1}}
-
-{\fontfamily{verdana}\selectfont
-{\scriptsize
-\noindent
-\copyright Andreas Tjärnberg, Stockholms universitet 2015 % Name of author, location year
-
-\vspace{5mm}
-\noindent
-ISBN 978-91-7649-299-4 % Provided by the library
-
-\vspace{5mm}
-\noindent
-Tryck: Holmbergs, Malmö 2015 % name of printing company
-
-\noindent
-Distributor: Department of Biochemistry and Biophysics % name of department
-}
-}
-\cleardoublepage
-#+end_src
 
 * Dedication                                                        :notitle:
 
