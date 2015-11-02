@@ -1,4 +1,4 @@
-# Time-stamp: <2015-10-27 01:47:37 andreas>
+# Time-stamp: <2015-11-02 13:38:14 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -86,7 +86,7 @@ Moreover, it allowed us to estimate expected accuracy from conditions of simulat
 Finally, we built a software package \gs for solving problems encountered during previous investigations.
 The software package supports highly controllable network and data generation as well as data analysis and exploration in the context of network inference.
 #+end_abstracts
-
+\cleardoublepage
 * Dedication                                                        :notitle:
 
 #+begin_dedication
@@ -171,7 +171,7 @@ Reprints were made with permission from the publishers.
 % \markboth{\MakeUppercase{\nomname}}{\MakeUppercase{\nomname}}
 
 \begin{footnotesize} % scriptsize(7) < footnotesize(8) < small (9) < normal (10)
-\printacronyms[title=Abbreviations]
+\printacronyms[title=Abbreviations,nonumberlist]
 % \printglossary[type=\acronymtype,title=Abbreviations]
 \label{nom} % target name for links to glossary
 \end{footnotesize}
@@ -179,8 +179,8 @@ Reprints were made with permission from the publishers.
 
 * Figures and tables                                                :notitle:
 #+begin_src latex :exports results :results latex
-\listoffigures	% print list of figures
-\listoftables     % print list of tables
+% \listoffigures	% print list of figures
+% \listoftables     % print list of tables
 #+end_src
 
 * Mainmatter                                                        :notitle:
@@ -352,7 +352,7 @@ Systems biology approaches and elucidating the context specific regulatory netwo
 :END:
 In this section I will give a general description of a system.
 I will also introduce [[glspl:ode]] and dynamical systems as a description of how a system is changing over time,
-and finally in this section I will give a brief description of properties associated with systems in a [[gls:grn]] framework.
+and finally I will give a brief description of properties associated with systems in a [[gls:grn]] context.
 
 *** System description
 :PROPERTIES:
@@ -1436,53 +1436,6 @@ Further work on how to formulate and implement different details of experimental
 * Backmatter                                                        :notitle:
 #+LATEX: \backmatterSU
 
-* Sammanfattning
-#+LATEX: \selectlanguage{swedish}
-
-# Systembiologi
-Systembiologi studerar biolog ur ett system perspektiv.
-Vad detta innebär är att, utöver att undersöka detaljer i biologiska system, så som en specifik gen, en cell eller en individs beteende, undersöker man hur dessa komponenter interagerar med varandra i ett större perspektiv.
-Tittar vi på individer i en population försöker vi skapa oss en bild av hur populationen fungerar utifrån hur individerna interagerar i populationen och inte hur individen fungerar isolerad.
-Studerar vi gener tittar vi på hur uttrycket av dessa gener i cellen, i kombination med uttrycket av andra gener, reglarar hur cellen fungerar och vilka funktioner som cellen kan uttrycka och använda sig av på grund av hur generana påverkar varandra.
-
-# Klassiskt tillvägagångsätt
-Det klassiska tillvägagångsättet som använts för att studera fenomen som dessa, att bryta ner systemet i sina beståndsdelar och studera dessa ingående för att sedan kunna dra slutsatser om hela systemet, har visat sig svårt när man studerar komplexa levande system.
-Egenskaper som inte kunnat förutsägas genom att studera komponenterna har endast kunnat förklaras när man placerat komponenterna i en specifik kontext.
-För gener så är denna kontext den biologiska cellen.
-Där till kommer antalet komponenter och antalet möjliga interaktioner mellan dessa.
-Den mänskliga cellen har omkring $\approx 20000$ proteinkodande gener.
-Antalet möjliga interaktioner mellan dessa är $\approx 400000000$.
-Inkluderar vi molekyler som kommer utifrån cellen och de olika steg som en gen kan uttryckas i och därför regleras på, ökar snabbt detta tal i storlek.
-Att studera all dessa komponenter i detalj är inte enkelt, och att sedan kunna ge en informativ bild av hur systemet fungerar när dessa komponenter interagerar med varandra gör problemet än mer svårforcerat.
-
-# Systembiologiskt tillvägagångsätt
-Verktygen och teorierna från systembiologin är speciellt framtagna och utvecklade för att kunna generera kunskap under dessa förutsättningarna.
-Både att kunna rekonstruera och skapa modeller av dessa interaktionerna och att kunna dra hållbara slutsatser och få en mekanistisk förståelse av dessa modeller om det underliggande biologiska systemet, faller under systembiologins forskningsfält.
-
-# Experiment
-För att kunna skapa interaktions- och reglerande gennätverk krävs experiment designade för att kunna generera sådana modeler.
-Vi måste kunna mäta koncentrationen av flera specifika biologiska molekyler, så som mRNA och protein, samtidig och med hög precision.
-Detta är olika sätt att se hur mycket en gen är uttryckt.
-För att kunna generera nätverk där vi vet vilken gen som påverkar vilken annan gen och hur mycket den påverkar de gener den interagerar med krävs att vi utför specifika störningar på cellen som cellen måste svara på.
-Dessa svar är en konsekvens av hur cellens reglerande gennätverk är uppbyggt.
-Att skapa sådant data är inte trivialt och medför flera problem när målet är att kunna rekonstruera ett nätverk som kan beskriva de underliggande funktionerna och interaktionerna som cellen utför.
-Data av den här typen har ofta högt brus som gör att de förändringar som cellen gör i svar på våra störningar inte går att observera helt tydligt.
-Detta är olika egenskaper som datat och även systemet vi tittar på har.
-Till exemple, hur mycket brus och mätfel kan vi räkna med, och hur cellens gennätverk påverkar våra mätningar.
-Det är denna typ av data som måste användas för att kunna rekonstruera modeller för reglerande gennätverk i cellen.
-
-# Mitt bidrag
-Arbetet som är underlaget för denna avhandling fokuserar på de begränsningar som dessa egenskapar hos data och egenskaper hos systemet vi observerar ger när vi tar fram en modell av interaktionsnätverket, och hur det påverkar hur bra vi kan förvänta oss att olika metoder kommer vara på att återskapa reglerande gennätvker.
-Vi tittar också på vad vi måste ta hänsyn till för att olika metoder ska prestera så bra som möjligt och vilka egenskaper som avgör detta.
-För att kunna avgöra hur egenskaperna påverka prestanda hos metoderna som används behöver vi också veta vilka egenskaper som är viktiga att titta på, vilket är det andra viktiga bidraget som behandlas i underlaget till denna avhandling.
-Det tredje bidraget försöker svara på frågan om går det att inkludera information som inte finns i datan som framtagits på annat håll för att öka effektivitet hos metoderna som används.
-Slutligen så delar vi med oss av de lösningar och den mjukvara som framtagits under tiden vi studera och löst olika problem i förhoppningen att den kan vara användbar för andra.
-#+LATEX: \selectlanguage{english}
-
-* Acknowledgements
-
-I would like to acknowledge...
-
 * References                                                        :notitle:
 #+LATEX: \renewcommand{\bibname}{References} % changes the header from Bibliography to References
 #+LATEX: \begin{scriptsize} % tiny(5) < scriptsize(7) < footnotesize(8) < small (9)
@@ -1491,6 +1444,61 @@ I would like to acknowledge...
 [[bibliography:~/research/bibliography.bib,./references.bib]]
 
 #+LATEX: \end{scriptsize}
+
+* Acknowledgements
+
+I would like to acknowledge...
+
+* Sammanfattning
+#+LATEX: \selectlanguage{swedish}
+
+# Systembiologi
+Systembiologi studerar biologi ur ett systemperspektiv.
+Detta innebär att utöver att undersöka detaljer i biologiska system, så som en specifik gen, en cell eller en individs beteende, undersöker man hur de här komponenterna interagerar med varandra i ett större perspektiv.
+Tittar vi på individer i en population försöker vi skapa oss en bild av hur populationen fungerar utifrån hur individerna interagerar i populationen och inte hur individens specifika egenskaper fungerar när den är isolerad.
+Studerar vi gener tittar vi på hur uttrycket av generna, i kombination med uttrycket av andra gener, reglarar hur cellen fungerar och vilka funktioner som cellen kan utföra och använda sig av på grund av hur generana påverkar varandra.
+
+# Klassiskt tillvägagångsätt
+Målet är att kunna beskriva hur systemet, i det här fallet cellen, fungerar och att kunna förutsäga vad som kommer hända när olika förändringar sker i eller runt cellen.
+Det klassiska tillvägagångsättet som använts för att vetenskapligt studera fenomen, att bryta ner systemet i sina beståndsdelar och studera dem ingående för att sedan kunna dra slutsatser om hela systemet, har visat sig svårt när man studerar komplexa levande system.
+Egenskaper hos systemet som är svåra att förutsäga genom att studera enskilda komponenters egenskaper har kunnat förklaras när man placerat komponenterna i en specifik kontext.
+För gener så är denna kontext den biologiska cellen.
+\\
+Den mänskliga cellen har omkring $20~000$ proteinkodande gener.
+Antalet möjliga interaktioner mellan dem är $400~000~000$.
+Inkluderar vi molekyler som kommer utifrån cellen och de olika steg som en gen kan uttryckas i och därför regleras på ökar snabbt detta tal i storlek.
+Att studera alla komponenter i detalj är inte enkelt och att sedan kunna ge en informativ bild av hur systemet fungerar när komponenterna interagerar med varandra blir problemet än mer svårforcerat.
+
+# Systembiologiskt tillvägagångsätt
+Verktygen och teorierna från systembiologin är framtagna och utvecklade för att kunna generera kunskap under de här förutsättningarna.
+Både att kunna rekonstruera och skapa modeller av interaktionerna, så kallade genreglernätverk
+och att kunna dra hållbara slutsatser och få en mekanistisk förståelse om det underliggande biologiska systemet, faller under systembiologins forskningsfält.
+
+# Experiment
+För att kunna skapa genreglernätverk krävs experiment designade för att kunna generera modeller av genreglernätverk.
+Vi måste kunna mäta koncentrationen av flera specifika biologiska molekyler, så som mRNA och protein, samtidig och med hög precision.
+Beroende på vad vi mäter får vi olika sätt att se hur mycket en gen är uttryckt.
+För att kunna generera nätverk där vi vet vilken gen som påverkar vilken annan gen krävs att vi utför specifika störningar på cellen som cellen måste svara på.
+Hur cellen svarar är en konsekvens av hur cellens reglernätverk är uppbyggt.
+Att skapa sådan data är inte trivialt och medför flera problem när målet är att kunna rekonstruera ett nätverk som kan beskriva de underliggande funktionerna och interaktionerna som cellen utför.
+Data av den här typen har ofta högt brus som gör att de förändringar som cellen gör i svar på våra störningar inte går att observera helt tydligt.
+Systemets uppbyggnad och brus är exempel på egenskaper som datan och även systemet vi tittar på har.
+Det vi vill veta är till exempel hur mycket brus och mätfel vi ska ta hänsyn till och hur cellens genreglernätverk påverkar våra mätningar.
+Den här typ av data är den typ som måste användas för att kunna konstruera modeller för genreglernätverk i celler.
+
+# Mitt bidrag
+Arbetet som är underlag för denna avhandling fokuserar på de begränsningar som egenskaperna hos data och egenskaper hos systemet vi observerar ger när vi försöker ta fram en modell av cellens genreglernätverk.
+Dessutom tittar vi på hur det påverkar hur bra vi kan förvänta oss att olika metoder kommer vara på att återskapa interaktioner mellan generna.
+\\
+Vi tittar också på vad vi måste ta hänsyn till för att olika metoder ska prestera så bra som möjligt och vilka egenskaper som avgör detta.
+För att kunna avgöra hur egenskaperna påverkar prestandan hos metoderna som används, behöver vi också veta vilka egenskaper som är viktiga att titta på, vilket är det andra viktiga bidraget som behandlas i underlaget till denna avhandling.
+Vi visar att specifika egenskaper som vi kan mäta kan leda till slutsatser om hur vi ska analysera den tillgängliga datan.
+\\
+Det tredje bidraget försöker svara på frågan om det går att inkludera information och evidens som framtagits på annat håll för att öka effektivitet hos metoderna som används.
+Här demonstrerar vi att för data av låg kvallite kan inkludering av evidens av annat slag hjälpa för att rekonstruera genreglernätvker.
+\\
+Slutligen så delar vi med oss av de lösningar som tagits fram under tiden vi studerat och löst olika problem genom ett mjukvarupaket i förhoppningen att den kan vara användbar för andra och visar på specifika analysmetoder som borde ingå när man försöker modellera gennätverk.
+#+LATEX: \selectlanguage{english}
 
 * Glossaries                                               :notitle:noexport:
 #+begin_src latex :exports results :results latex
