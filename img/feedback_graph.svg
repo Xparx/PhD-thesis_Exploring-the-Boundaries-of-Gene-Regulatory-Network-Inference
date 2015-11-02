@@ -18,6 +18,19 @@
   <defs
      id="defs5669">
     <marker
+       inkscape:stockid="DotL"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="DotL"
+       style="overflow:visible">
+      <path
+         id="path4275"
+         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.8) translate(7.4, 1)" />
+    </marker>
+    <marker
        inkscape:stockid="DotM"
        orient="auto"
        refY="0.0"
@@ -94,15 +107,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4142136"
-     inkscape:cx="306.78834"
-     inkscape:cy="94.632035"
+     inkscape:cx="366.18531"
+     inkscape:cy="128.57316"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1101"
+     inkscape:window-width="1766"
      inkscape:window-height="1028"
-     inkscape:window-x="815"
-     inkscape:window-y="24"
+     inkscape:window-x="1748"
+     inkscape:window-y="189"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata5672">
@@ -123,7 +136,7 @@
      transform="translate(0,-722.36218)">
     <path
        sodipodi:type="arc"
-       style="fill:#289a21;fill-opacity:1;stroke:#001a00;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#289a21;fill-opacity:1;stroke:#001a00;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="path5694"
        sodipodi:cx="188.57143"
        sodipodi:cy="648.07648"
@@ -139,7 +152,7 @@
        sodipodi:cy="648.07648"
        sodipodi:cx="188.57143"
        id="path6204"
-       style="fill:#289a21;fill-opacity:1;stroke:#001a00;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#289a21;fill-opacity:1;stroke:#001a00;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        sodipodi:type="arc" />
     <text
        xml:space="preserve"
@@ -212,7 +225,7 @@
              y="698.16113">2</tspan></text>
       </g>
       <path
-         style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#DotS)"
+         style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#DotM);fill-opacity:1"
          d="M 272.80871,617.17278 C 221.90597,537.42641 67.563204,537.80535 1.563527,615.92218"
          id="path6264"
          inkscape:connector-curvature="0"
@@ -222,9 +235,9 @@
          inkscape:connector-curvature="0"
          id="path6450"
          d="m -17.826205,749.96252 c 46.490548,70.4759 201.178825,73.4102 273.366515,4.78614"
-         style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#DotS)" />
+         style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#DotM)" />
       <path
-         style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#DotS)"
+         style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#DotM)"
          d="m 351.85786,740.14773 c 155.72155,114.35225 148.88741,-227.90827 2.0295,-113.86861"
          id="path6264-2"
          inkscape:connector-curvature="0"
@@ -234,7 +247,7 @@
          inkscape:connector-curvature="0"
          id="path6664"
          d="M -98.71239,626.39643 C -254.43394,512.04418 -247.5998,854.3047 -100.74189,740.26504"
-         style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#DotS)" />
+         style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#DotM)" />
     </g>
     <g
        id="g6228-9"
