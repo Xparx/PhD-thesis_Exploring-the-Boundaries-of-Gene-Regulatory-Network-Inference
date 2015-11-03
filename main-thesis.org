@@ -1,4 +1,4 @@
-# Time-stamp: <2015-11-03 02:37:51 andreas>
+# Time-stamp: <2015-11-03 02:59:28 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -1253,7 +1253,7 @@ Table [[ref:tab:system_communication]] lists tools and formats for sharing and c
 
 * Present investigations
 
-** Model selection based on minimum prediction error (PAPER I)
+** Model sparsity selection based on minimum prediction error (PAPER I)
 :PROPERTIES:
 :CUSTOM_ID: sec:paper1
 :END:
@@ -1262,8 +1262,8 @@ Optimal model selection is as of yet an open problem.
 How to properly choose a specific set of parameters for the network inference algorithms
 to determine the sparsity has not been solved and no optimal method has been put forward.
 
-Some classical alternatives proposed are the [[gls:bic]] and [[gls:aic]] which both trade-of prediction and complexity to find an optimal model.
-as well as cross validation and select based on minimisation of the [[gls:rss]].
+Some classical alternatives proposed are the [[gls:bic]] and [[gls:aic]], which both trade-off prediction and complexity to find an optimal model,
+as well as [[gls:cv]] and selection based on minimisation of the [[gls:rss]].
 
 All these methods for model selection are motivated by the fact that data is recorded with noise and that over-fitting the model is always a risk.
 The selection methods have been shown to perform well asymptotically with \eg the number of samples [[citep:Stoica2004]]
@@ -1271,25 +1271,25 @@ The selection methods have been shown to perform well asymptotically with \eg th
 In this paper we studied the effects on model selection when the data had a varying degree of information and few samples, typically no higher than twice the number of variables.
 Information in the data was defined based on the optimal performance of the inference method on the data when compared to a gold standard.
 If the performance matched the gold standard for the best model produced by the method, the data set would be considered informative.
-If the performance were non optimal, but better than random the data set was deemed partly informative, and if the performance were no better than random the data was labelled uninformative.
+When the performance was nonoptimal, but better than random the data set was deemed partly informative, and if the performance was no better than random the data was labelled uninformative.
 We used a specific method, [[gls:rni]], to determine informativeness of the data.
 The informativeness was varied based on two factors, (i) the properties of the network and experimental design, (ii) the [[gls:snr]].
 
 The data used was generated [[gls:insilico]] as this had been utilised with success previously and been shown to be an good indication of how a method would perform on other data [[citep:Menendez2010,Bansal2007]].
 
 We determined two additional steps that should be utilised when solving a network inference and model selection problem.
-First, we showed that to be able to utilise a leave out cross validation approach, or as we employ it here, a leave one out cross optimisation (LOOCO), one need to test for dependence of the sample on the rest of the data and only include the sample in the left out group if it is sufficiently described by the data that is going to be used to infer a network.
+First, we showed that to be able to utilise a leave out cross validation approach, or as we employ it here, a leave /one/ out cross optimisation (LOOCO), one needs to test for dependence of the sample on the rest of the data and only include the sample in the left out group if it is sufficiently described by the data that is going to be used to infer a network.
 The reason for this is that a network inferred from data with no information of a left out sample cannot make any predictions about that sample.
 Secondly we introduced a step of re-estimating the parameters returned from an inference algorithm.
-Here we argued that because the consequence of introducing a bias due to the penalty used in many inference method,
+Here we argued that because the consequence of introducing a bias due to the penalty used in many inference methods,
 to be able to combine model selection and data fitting,
 the parameters of the model are not the maximum likelihood estimate anymore which may skew the [[gls:rss]] for the predictions.
 The algorithm for re-estimating the parameters are a [[gls:cls]] algorithm.
 [[gls:cls]] preserves the structure of the network while refitting the parameters.
-We showed that if the data was uninformative we cannot make a useful reliable model selection.
-If the data were partly informative or informative,
-the model selection based on the [[gls:rss]] would find the model that maximised the true positive (TP) while minimising the false positive (FP).
-Giving our selection method a bound where the minimum [[gls:rss]] would not be achieved when any TP link would be removed.
+We showed that if the data was uninformative we could not make a useful reliable model selection.
+If the data was partly informative or informative,
+the model selection based on the [[gls:rss]] would find the model that maximised the [[glspl:tp]], while minimising the [[glspl:fp]].
+Giving our selection method a bound where the minimum [[gls:rss]] would not be achieved when any [[gls:tp]] link would be removed.
 
 *** Future perspective
 We showed that conceptually our approach worked.
@@ -1301,7 +1301,7 @@ Both of these methods are dependent on the likelihood function and should theref
 
 The [[gls:rss]] was calculated as the mean [[gls:rss]] over all the selected leave out samples.
 A new study would greatly benefit from utilising the statistical properties of the [[gls:rss]], such as if the error of the measurements are assumed to be normal, the [[gls:rss]] will follow a [[gls:chi2]] distribution.
-With some care when estimating the degrees of freedom for each model [[citep:Andrae2010]] an exclusion step would then be done where all models not passing a goodness of fit test would be excluded as candidate networks.
+With some care when estimating the degrees of freedom for each model [[citep:Andrae2010]] an exclusion step could then be made where all models not passing a goodness of fit test would be excluded as candidate networks.
 The result would be a set of candidate networks in which we could in theory pick any of them.
 We would expect, though, that we would pick the sparsest candidate with the argument that [[glspl:grn]] are, in general, sparse.
 
@@ -1323,11 +1323,11 @@ In this paper we investigated the latter case.
 Available on-line there are a number of databases containing functional associations between genes, collected from a wealth of sources with a number of different evidence types [[citep:Szklarczyk2011,Schmitt2014]].
 
 Incorporating a prior in the network inference pipeline can be done in a number of ways.
-In this study we focused on incorporating functional associations which are usually represented by a number of the confidence that is associated with a link.
+In this study we focused on incorporating functional associations, which are usually represented by a number of the confidence that is associated with a link.
 These associations are by their nature undirected.
 It is often unknown if they are representing direct or indirect links, and if they are parallel or serial.
 Therefore, we opted for including the confidence of links as weights inversely proportional to the confidence, meaning that links that have a high confidence give a low weight to the associated penalty term, giving the link a higher chance of being selected.
-For example, if the confidence is low but the data indicates a strong link, both the effects are traded against each other.
+For example, if the confidence is low but the data indicates a strong link, both effects are traded against each other.
 By incorporating the associations as weights it gives the possibility of the data to speak as well.
 
 To test the performance of using a prior in to the network inference pipeline a number of different networks and [[gls:insilico]] data sets where generated.
@@ -1337,7 +1337,7 @@ a linear system model and a non-linear system model [[citep:Schaffter2011]].
 Prior incorporation performance was tested by changing the prior accuracy.
 Accuracy was changed by controlling if the confidence for a true link was drawn from a distribution of low confidence associations and a negative link was drawn from a distribution of high confidence links.
 
-When the data was uninformative an improvement with the prior could be observed if the prior were more correct than not.
+When the data was uninformative an improvement with the prior could be observed if the prior was more correct than not.
 For data generated with the linear model the prior needed on average to be more correct than for a non-linear model.
 This also scaled with the [[gls:snr]] of the data sets which in general was higher for the linear system vs non-linear.
 
@@ -1362,12 +1362,12 @@ A modified algorithm could make use of this information and instead of inserting
 
 It is known that the performance of penalised regression methods, specifically the $L_1$, penalised \eg [[gls:lasso]], algorithm perform poorly under some conditions [[citep:Zhao2006]].
 Sometimes referred to as the predictors having a high co-linearity or the data being ill-conditioned.
-In systems theoretic terms this can be quantified by calculating the condition number [[gls:k]] of the data set.
+In systems theoretic terms this can be quantified by calculating the [[gls:k]] of the data set.
 An ill-conditioned matrix has a high degree of co-linearity.
 # Better check with Torbjorn if this is correct.
 
 The observation here is that even when the data is informative,
-defined as in PAPER I [[ref:sec:paper1]],
+defined as in PAPER I, section [[ref:sec:paper1]],
 the $L_1$ penalised methods perform as if the data were only partly informative even when we act as if we had expert knowledge when selecting the optimal network produced by the inference method.
 The performance of these types of inference method have been investigated and been shown to be a function of the data and network [[citep:Zhao2006,Marbach2012]].
 The issue with these results is that they are impractical in reality as we do not know the network structure beforehand and in some cases we would arrive at the wrong conclusions if we used the wrong network structure to calculate them.
@@ -1380,7 +1380,7 @@ We constructed the data so that the properties ranged over known values of prope
 The properties of the expression data is highly dependant on the network properties but they can be tuned depending on the experimental design [[citep:Nordling2009]].
 This is demonstrated with 3 different experimental designs.
 Two of the approaches could easily be employed in practise and show specifically that these designs made the data properties highly dependent on the network properties.
-The third approach would be more involved to implement in practise and is aimed at minimising the [[gls:k]] for the expression matrix.
+The third approach would be more complex and costly to implement in practise and is aimed at minimising the [[gls:k]] for the expression matrix.
 It demonstrated clearly that de-coupling the data and network properties and tuning the input so that the data properties would approach more desired states would greatly enhance the performance of the inference and network construction.
 
 While few real data set exists with sufficient data to quantify the properties used in this work and simultaneously have a reference regulatory network,
@@ -1390,8 +1390,8 @@ It was shown that by calculating the properties of the data one could predict th
 *** Future perspective
 One aspect that is rarely incorporated in [[gls:grn]] inference algorithms is the errors-in-variables aspect.
 Errors-in-variable models consider measurement errors in the independent variables as well as in the dependent variables.
-It is easy to imagine that not only does a perturbation experiment contain noise in the applied perturbation, but in the state of the system when the perturbation is applied as well, especially when looking at the cell.
-The effect of not considering measurement errors in the independent variables when an error exist has, as far as I know, not been studied within systems biology and [[gls:grn]] inference.
+It is easy to imagine that not only does a perturbation experiment contain noise in the applied perturbation, but in the state of the system when the perturbation is applied as well, especially when studying the cell.
+The effect of not considering measurement errors in the independent variables when an error exists has, as far as I know, not been studied within systems biology and [[gls:grn]] inference.
 
 Methods that incorporate [[gls:tls]], which considers errors in variables, opposed to [[gls:ls]] methods, are few and rarely used.
 
@@ -1413,15 +1413,15 @@ However, it has been shown that network inference algorithms perform sub-optimal
 This problem is related to experimental design and can be investigated by using simpler models.
 
 Clearly the network inference community has vast knowledge of network properties.
-\gs take the approach that it is as important to find out why network inference methods fail as it is creating realistic models.
+\gs takes the approach that it is as important to find out why network inference methods fail as it is creating realistic models.
 Models aimed at being realistic are usually very complex, meaning that it can be hard to elucidate or isolate variables that have a direct effect on the performance of the inference.
-It is also unclear if a more complex model give qualitatively better simulations, where simpler models could not give insight.
+It is also unclear if a more complex model gives qualitatively better simulations, where simpler models could not give insight.
 In the lab the researcher often has very little control over the network and network properties.
 However, the experimental design is under the researchers control to a larger extent than the hidden system under investigation.
-Therefore, it makes sense to also investigate what experiments gives the most informative data.
+Therefore, it makes sense to also investigate what experiments give the most informative data.
 This has been done to a large extent in the systems theory field, but it has not been extensively incorporated in benchmarking toolboxes related to [[glspl:grn]].
 
-\gs aim to provide a platform to bridge this gap, with the possibility of investigating optimal perturbation design being as accessible as model simulation.
+\gs aims to provide a platform to bridge this gap, with the possibility of investigating optimal perturbation design being as accessible as model simulation.
 It is built on previous work and as such provides functionality to solve the problems encountered therein.
 
 *** Future perspective
