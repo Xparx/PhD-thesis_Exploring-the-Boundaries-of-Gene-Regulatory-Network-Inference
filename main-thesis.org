@@ -1,4 +1,4 @@
-# Time-stamp: <2015-11-03 02:59:28 andreas>
+# Time-stamp: <2015-11-03 21:48:50 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -136,7 +136,7 @@ Tjärnberg A., Nordling T., Studham M., Nelander S., and Sonnhammer EL. \emph{Mo
 DOI: \href{http://dx.doi.org/10.1039/C4MB00419A}{10.1039/C4MB00419A}
 
 \item\textbf{Genespider - generation and simulation package for informative data exploration.}\\
-Andreas Tjärnberg, Torbjörn Nordling, Daniel Morgan, Matthew Studham, Erik Sonnhammer \emph{unpublished, manuscript under preparation.}, \textbf{}  (2015).\\
+Andreas Tjärnberg, Torbjörn Nordling, Daniel Morgan, Matthew Studham, Erik Sonnhammer \emph{unpublished, manuscript.}, \textbf{}  (2015).\\
 
 \end{enumerate}
 
@@ -191,41 +191,39 @@ Reprints were made with permission from the publishers.
 * Introduction
 
 # General what is systems
-Biological systems are diverse and complex and can be divided in to sub-systems and components.
+Biological systems are diverse and complex.
 Whether it is the patterns of whole populations and societies, the interactions of individual organisms or the cellular, internal, and external machinery,
 understanding biological systems are motivated by the need to predict, modify or enhance the behaviour or functions of these systems.
-Gaining mechanistic understanding of the system can help prevent the outbreak of a disease, or the optimal course of action when functions within the system break down.
-If we view cancer to be an unwanted state, or a breakdown, of cellular function we would like to intervene and return the system to a natural functioning mode.
-Either by forcing the system to return to its original state or by selectively terminating the faulty cells without damaging healthy cells.
-Understanding how the parts of the system interact helps selectively target and steer the system as a whole to a desired state.
+Gaining a mechanistic understanding of the system can help prevent outbreak of systemic failure (disease), as well as present the optimal course of action to restore base level functioning.
+Thus, if cancer is viewed as an unwanted state, or a breakdown of cellular function we would like to intervene and return the system to its natural state.
+This could be done either by forcing the system to return to its original state or by selectively terminating the faulty cells without damaging healthy cells.
+Understanding how the parts of the system interact helps to selectively target and steer the system as a whole to a desired state.
 
 # Why do we need to look at things as systems of interactions
-Common features of the systems mentioned above are that they change over time and that they respond to internal and external inputs in nonrandom ways, as well as the ability to transfer information between components of the system.
-Another common feature, or observation, of these systems is that the behaviour of the system cannot be trivially understood or predicted by knowing any single component's properties.
-Emergent behaviours can be viewed as a result of placing several components in a specific context.
-A component can be a gene, a cell, an organism, or a population of organisms or cells.
-A human cell, for example, cannot easily be grown in isolation without modifying the internal machinery.
-Often to a state that would be considered faulty if it existed in the cell's original environment.
-That is, the components that the system is composed of is not the complete picture without also incorporating the interactions they exerts on each other and the behaviour that arises from these interactions [[citep:Barabasi2004]].
-It should be noted that a wide range of systems can be investigated with similar concepts and knowledge can be derived indirectly from other areas of research, evident by the investigation of how different system interactions are structured, showing both common and different traits when compared to each other [[citep:Milo2002]].
+Components of these systems are capable of changing over time, responding to internal and external inputs in non-random ways, as well as transferring information among themselves.
+A key observation of these systems is that their behaviour cannot be trivially understood or predicted by knowing any single component's properties.
+However, emergent behaviours can be viewed as a result of placing several components in a specific context.
+A component can be a anything from a gene or cell, to a population of cells or entire organisms.
+A human cell, for example, cannot easily be grown in isolation without modifying its internal machinery to some state dissimilar from that which it exhibited \emph{in vivo}.
+That is, the composition of the system is not complete without incorporating the interactions the components exert among themselves and the resultant behaviour that arises [[citep:Barabasi2004]].
+It should be noted that a wide range of systems can be investigated using similar, contextually relevant concepts, and that knowledge can be derived indirectly from other areas of research, evidenced by comparisons between the structuring of different system interactions that display both common and disparate traits [[citep:Milo2002]].
 
 # Focus on the cell
-The aim of this thesis and the work herein is mainly in the context of trying to understand the intracellular machinery, specifically what we will call the
-\acrfull{grn}.
+This thesis and the work herein aims to understand the intracellular machinery, specifically what we will call the \acrfull{grn}.
 
 # Motivation for this work
-As explained above, the intracellular system cannot be viewed as isolated from the environment, and if it were to be isolated we could not assume that the behaviour would be the same as in its natural environment.
+The intracellular system cannot be accurately described isolated from its environment, and if it were, we could not assume that the behaviour would reflect that in its natural environment.
 This observation makes studying these systems non-trivial.
-Specific changes to the system are not easily induced and isolated or even measured.
+Specific changes to the system are not easily induced, isolated or even measured.
 
-Classically, if we want to study some phenomena of nature, we would try to isolate it to the best of our ability and selectively change variables to build a picture of how the phenomena can best be described.
-For the reasons mentioned above and for the cheer number of components of the system, with around \mbox{20\,000} protein coding genes giving around \mbox{400\,000\,000} possible interactors within a single cell,
-it is nearly impossible to isolate a biological system enough, on a large scale, as to be confident that there are no disruptive unobserved variables in play.
-All studies considering more than a few components need to account for this effect and incorporate noise effects in to their conclusions.
+Classically, if we want to study some phenomena of nature, we isolate it to the best of our ability and selectively change variables to build a picture of how the phenomena can best be described.
+For the reasons mentioned above, compounded by the cheer number of components of the system, with around \mbox{20\,000} protein coding genes giving around \mbox{400\,000\,000} possible interactors within a single cell,
+it is nearly impossible to isolate a biological system to such a degree yet on a large scale as to be confident that there are no disruptive unknown variables in play.
+All studies considering more than a few components need to account for this effect and incorporate noise in to their conclusions.
 
-One aim of systems biology is to understand the structure and behaviour of biological systems on a specific hierarchical level, where the cell is one example.
-To do this, considering the difficulties at hand, a thorough study of the boundaries and performance of the tools used and the properties of the experiments carried out is of prime importance.
-The focus of the work done in this thesis is the study of the properties of constructing reliable models for representing biological systems.
+One aim of systems biology is to understand the structure and behaviour of biological systems on a specific hierarchical level, where the cell is but one example.
+A thorough understanding of the boundaries and performance of the tools used and the properties of the experiments carried out are of prime importance.
+The focus of the work done in this thesis is the study of the properties for constructing reliable models for representing biological systems.
 To contribute to the possibility of inferring, from data, [[glspl:grn]] with high confidence, that accurately reflects the underlying biology,
 where conclusions and knowledge can be derived from the models.
 
@@ -236,10 +234,10 @@ where conclusions and knowledge can be derived from the models.
 :CUSTOM_ID: sec:bio_sys
 :END:
 Biological systems cover a wide range of different phenomena.
-In this section I will go through the specific biological system referred to in this thesis, the gene regulation in the cell.
-This will in part motivate the need of the mathematical and computational modelling used in this research area.
-The vast complexity of the cell is such that to manually account for all components and environmental factors that interact and regulate the responses in the cell is intractable.
-A core phenomenon of the cell functions is expression of biomolecules and the regulation of the amount and circumstance that these biomolecules are expressed in.
+In this section I will go through the specific biological system referred to in this thesis, gene regulation in the cell.
+This will, in part, motivate the need of the mathematical and computational modelling used in this research area.
+The vast complexity of the cell is such that to account for all components and environmental factors that interact and regulate response in the cell is an intractable problem.
+A core phenomenon of the cellular function is expression, \ie the regulation of when and how much of any given biomolecules are expressed.
 
 *** Gene regulation and gene regulatory networks
 
@@ -248,23 +246,22 @@ A core phenomenon of the cell functions is expression of biomolecules and the re
 [[file:img/central_dogma.pdf]]
 
 Regulation in biological systems means the process of how an entity (biomolecule) controls the behaviour of another entity (biomolecule).
-In the cell this can be the process of a protein binding to DNA to regulate how much of a specific gene becomes transcribed.
-The protein is referred to as a [[gls:tf]].
-If the [[gls:tf]] binds to the binding site and increase expression of a gene, the interaction is activating the gene. If the [[gls:tf]] lowers or turns off the expression of a gene, then the interaction is suppressing the gene.
+In the cell this can be the process of a protein binding to DNA to regulate how much of a specific gene becomes transcribed, where the protein is referred to as a [[gls:tf]].
+When the [[gls:tf]]  binds to the gene-specific binding site, the interaction activates expression of the gene. If the [[gls:tf]] lowers or turns off the expression of a gene, the interaction is suppressing the gene.
 The [[gls:tf]] /regulates/ the gene and this then counts as a regulation.
-Figure [[ref:fig:central-dogma]] shows the flow of expression, where gene expression is a multi step process [[citep:Brown2002]].
-First the gene is transcribed, meaning that the DNA code becomes interpreted and copied in to an RNA molecule one or more times.
-Second, the RNA molecule becomes translated to a sequence of amino acids, \ie a protein, as coded by the nucleotide sequence in the RNA molecule.
-The third step is the folding of the protein where the function of the protein get realised by its structure.
+Figure [[ref:fig:central-dogma]] shows the flow of expression, where gene expression is a multistep process [[citep:Brown2002]].
+First the gene is transcribed, converting a double stranded DNA nucleotide base sequence into a single stranded RNA molecule one or more times.
+Second, the RNA molecule's nucleotide sequence is translated to a sequence of amino acids, \ie a protein.
+The third step folds this amino acid sequence, imparting further functionality to a now fully realised protein.
 An additional step of the central dogma of molecular biology is /DNA replication/, where the DNA replicates itself during cell division.
-This step is not directly considered here when considering gene expression.
+This perpetuation step is not directly considered here when considering gene expression.
 
 Each of these levels of expression can be regulated by environmental factors in the cell.
 The concentration of a specific [[gls:tf]], for example, determines how saturated a [[gls:tf]] binding site is and in essence how much the regulated gene is affected.
-Each component of the system is associated with a number of parameters that refers to specific rate constants of the biochemical reactions taking place or parameters of the model used (see: sections [[ref:sec:system-theory]] and [[ref:sec:model-formalism]]).
+Each component of the system has an associated number of parameters that refer to specific rate constants of biochemical reactions taking place or parameters of the model used (see: sections [[ref:sec:system-theory]] and [[ref:sec:model-formalism]]).
 
-External signalling also plays a central role in regulating internal molecular concentrations and responses, as demonstrated by for example the regulatory interactions of the bacterial flagellum.
-The bacterial flagellum is an appendage protruding from the bacteria, with the function to move the bacteria in response to the external environmental factors.
+External signalling also plays a central role in regulating internal molecular concentrations and responses, as demonstrated by for example, the regulatory interactions of the bacterial flagellum.
+The bacterial flagellum is an appendage protruding from the bacteria, with the function to move the bacteria in response to external environmental factors.
 \\
 In short, the bacterium senses a concentration gradient through receptors on the cell membrane, if it is moving.
 If the gradient indicates that the bacteria is moving towards something nutritious the behaviour of the flagellum will change and the bacteria will propel itself towards the higher concentration of nutrients.
@@ -272,51 +269,50 @@ If no gradient is sensed the behaviour changes and the bacterium tumbles randoml
 The bacteria also responds to damaging chemicals by reversing the response so the direction of motion is away from the higher concentration [[citep:Berg2000]].
 
 The complex function displayed by the bacteria could not be achieved without predictable regulation.
-The regulatory machinery and behaviour of the flagellum can be modelled accurately and displays several different emergent systems properties, such as \eg robustness, meaning that the function of the regulatory machinery is maintained for a wide range of parameters of the system, and exact adaptation, meaning that the bacteria resets the internal state to be able to respond appropriately to new changes even though the external environment is changed \ie the bacteria counteracts being overwhelmed by chemical stimuli [[citep:Alon2007]].
+The regulatory machinery and behaviour of the flagellum can be modelled accurately, and displays several different emergent systems properties.
+These include \eg robustness, the function of the regulatory machinery to maintain its function for a wide range of parameters of the system, and exact adaptation, meaning that the bacteria can reset the internal state to be able to respond appropriately to new changes even though the external environment is changed \ie the bacteria counteracts being overwhelmed by chemical stimuli [[citep:Alon2007]].
 
-Reactions' taking place in the cell works on several different time scales.
+Reactions taking place in the cell works on several different time scales.
 For example in \Coli the time a [[gls:tf]] takes to find and bind to a specific target location takes roughly 1-6 minutes [[citep:Elf2007]].
-This is done through diffusion through the cell. For larger cells or for faster reactions the cell has to rely on different mechanisms for regulation [[citep:Alon2007]].
-
-To get an overview of the interactions or regulatory machinery we can display the interactions, of [[gls:tf]] bindings or protein to protein interactions that we can infer or observe as links in a graph. This is then a network of interactions in the cell.
-If we include metabolites the network is describing not only interactions of gene products but also other cell signalling phenomena.
-We can also model the network of interactions with a direction of influence, and if the interaction is increasing or decreasing the activity or expression of the target.
+This is done through diffusion through the cell.
+For larger cells or for faster reactions the cell has to rely on different mechanisms for regulation [[citep:Alon2007]].
+To get an overview of the interactions or regulatory machinery we can display the interactions, of [[gls:tf]] bindings or protein to protein interactions that we can infer or observe as links in a graph. This is then a network representation of the interactions in the cell.
+Including metabolites into the network expands the description beyond the interactions of genes to encompass other cell signalling phenomena.
+We can also model a cellular regulatory network by quantifying the interactions with a direction of influence, \ie if the interaction is increasing or decreasing the activity or expression of the target.
 This would then constitute the cellular regulatory network.
 
-#+CAPTION[Biological network hierarchy]: Different hierarchical levels of displaying the cellular regulatory network. The arrows indicates direction of regulation, if the head of the link is an arrow it means the interaction is activating and if the head of the link is T shaped it means the interaction is suppressing. Figure inspired by [[citet:Crampin2006]].
+#+CAPTION[Biological network hierarchy]: Different hierarchical levels of displaying the cellular regulatory network. The arrows indicates direction of regulation; if the head of the link is an arrow it means the interaction is activating and if the head of the link is T shaped it means the interaction is suppressing. Figure inspired by [[citet:Crampin2006]].
 #+label: fig:net-hierarchy
 [[file:img/abstract_network.pdf]]
 
 Figure [[ref:fig:net-hierarchy]] shows a hierarchical separation of different regulatory networks in the cell.
-This differentiation cannot be well defined in a real cell but is here separated by concepts, and in some regards, measuring techniques.
-We have the metabolic layer in the figure depicting the path of different metabolites or transformations of metabolites, modelled often by mass action kinetics [[citep:Jamshidi2010]].
-The protein layer that details the protein to protein interaction network.
-Here we also have to deal with protein complexes.
-The formation of a protein complex would constitute a case where the proteins might not have any regulatory effect on each other and might not be influencing the rate or change of any of the proteins involved but is still considered an interaction.
+The interconnected nature of these intercellular components does not lend itself to differentiation and thus many of these relationships cannot be well defined in a real cell. Here, however, they are separated by concepts, and in some regards, measuring techniques.
+In the figure we have the metabolic layer, depicting the path of different metabolites or transformations of metabolites, modelled often by mass action kinetics [[citep:Jamshidi2010]].
+We also have the protein layer that details the protein to protein interaction network as well as protein complexes.
+The formation of a protein complex would constitute a case where the proteins might not have any regulatory effect on each other, or they might not be influencing the rate or change of any of the proteins involved. However, they are still considered an interaction here.
 It can be that the complex regulates something else and that all involved proteins need to be present for a regulatory interaction to occur, much like an =AND= operator in a Boolean operation.
-The third layer is the gene layer where  genes are transcribed to RNA.
-The RNA themselves can have regulatory effects or they become translated in to proteins.
+The third layer is the gene layer where DNA sequence is transcribed to RNA.
+The RNA themselves can have regulatory effects alone, they can become translated in to proteins or both.
 
 The dashed lines on the bottom layer are interactions shown to be directly influences between genes themselves.
 In reality this can not be the case.
 Instead this is a representation of the interactions when the gene products and their cumulative effects through different layers are condensed to a description of interactions between genes.
 \\
-In the following part of this thesis, when referring to \acrfullpl{grn}, this abstract layer is what is referred to and gene interactions are commulative effects of interactions between gene and gene products, if not stated otherwise.
+In the following part of this thesis this abstract layer is what is referred to as the \acrfullpl{grn} and /gene interactions/ should be interpreted as the cumulative effects of the influences of gene products on other gene products, if not stated otherwise.
 
-Discussing the [[gls:grn]] in these terms is partly made for practical reasons.
+Discussing the [[gls:grn]] in these terms is partially made for practical reasons.
 All nodes of the "true" [[gls:grn]] as depicted in the figure might not be observable under specific experimental setups.
 For example, the experimental setup for measuring mRNA, protein and metabolites is very different and is not easily combined on a large scale,
-and in some cases the dynamics on one layer might not be well represented by measurements on another layer [[citep:Gygi1999]].
-The time scales of reactions for different layers or sub-networks might be substantially different.
-Some interactions might not be observed if measuring the system over several days or under just a few seconds [[citep:Elf2007]].
-When observing a collection of cells, one can not assume that they are synchronised in expressing different properties or processes.
+and in some cases the dynamics of one layer might not be representative of those in another layer [[citep:Gygi1999]].
+The time scales of reactions for different layers or sub-networks may also vary substantially.
+Some interactions may not be observed if measuring the system over several days or under just a few seconds [[citep:Elf2007]].
+One can not assume that any given collection of cells being observed are synchronised in expressing different properties or processes.
 One cell might be in the process of differentiating, displaying an expression pattern related specifically to that state, while other cells might not be in that state.
-A measurement on such a setup reflects an average over the cells in the sample and might not reflect any specific interaction pattern present in one cell.
+A measurement on such a setup reflects an average over the cells in the sample and might not reflect any specific interaction pattern present in any of the individual cells.
 
 It is also common that the different layers of the networks are separated into different databases.
 For simpler organisms the [[gls:tf]] network is constructed from curated data and contains a large number of interactions.
-/RegulonDB/ [[citep:Salgado2013]] has a large set of [[gls:tf]] binding interactions collected in a regulatory network of \coli.
-Correspondingly for \Yeast there is the database Yeastract [[citep:Teixeira2013]].
+/RegulonDB/ [[citep:Salgado2013]] has a large set of [[gls:tf]] binding interactions collected in a regulatory network of \coli, while Yeastract [[citep:Teixeira2013]] hosts a similar database corresponding to \Yeast.
 These networks aim at mapping direct binding interactions between gene and gene products, specifically [[glspl:tf]] and binding sites.
 It has also been shown that mRNA expression data can be used to construct these networks
 [[citep:Faith2007]], and that it can be used to validate or extract knowledge.
@@ -340,12 +336,11 @@ One of the main goals of drug discovery is to find compounds with specific prope
 Generating reliable models that both predict and explain the effect of a specific perturbation generated from a drug compound will aid in creating more specific and effective drug treatments.
 
 Great interest and funds for drug development are geared towards curing cancer.
-Cancer treatments are usually highly invasive.
-The signalling pathways and behaviour of the cell are altered [[citep:Weinberg1996]].
+Cancer treatments are usually highly invasive as cancer affects the regulatory operations of the cell itself, altering the signalling pathways and behaviour [[citep:Weinberg1996]].
 The effects of cancer are multi-factorial, many times different for each type of cancer, and related to the regulatory system of the cell.
 An accurate model of healthy cells would serve as a basis for finding alterations in the regulatory system on a very detailed level.
 
-Systems biology approaches and elucidating the context specific regulatory networks of the cell will aid in creating a medical approach that is, predictive, personalised and preventive [[citep:Flores2013]].
+Systems biology approaches for elucidating the context specific regulatory networks of the cell will aid in creating a medical approach that is, predictive, personalised and preventive[[citep:Flores2013]].
 
 # Medical implications and motivation [[citep:Wolkenhauer2009]]
 
@@ -483,6 +478,7 @@ The non-linear representation is developed to model enzyme kinetics and the line
 # Check Alon2007 page 99. also page 115. 119.
 # Also check [[citep:Sontag2005]] figure 20.
 
+\noindent
 Figure [[ref:fig:two-gene-feedback]] is the graphical, or network, representation of a two gene mutually regulating [[gls:fbl]].
 We can mathematically describe this system as an [[gls:ode]],
 #+begin_src latex :exports results :results latex
@@ -499,7 +495,7 @@ The parameters of model are $a_{11},a_{12},a_{21}, a_{22}$ and $\alpha_1$ and $\
 Any other parameters in the functions $f$ are represented by $\bK_i$.
 The state of the system is $x_1$ and $x_2$ represents some quantity related to the gene $G_1$ and $G_2$ respectively.
 
-To simplify somewhat lets look at activating [[gls:fbl]] with degradation only and make $f(G)$ independent of the model paramters $a_{ij}$ and $\alpha_i$, then
+To simplify somewhat, lets look at activating [[gls:fbl]] with degradation only and make $f(G)$ independent of the model paramters $a_{ij}$ and $\alpha_i$, then
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback}
   \begin{array}{lcr}
@@ -1451,6 +1447,28 @@ Further work on how to formulate and implement different details of experimental
 * Acknowledgements
 
 I would like to acknowledge...
+
+# Erik
+
+# Torbjorn
+
+# Christoph
+
+# Daniel
+
+# Mateusz
+
+# Dimitri
+
+# Mom
+
+# Dad
+
+# Mari
+
+# Marie with family Sthlm
+
+
 
 * Sammanfattning
 #+LATEX: \selectlanguage{swedish}
