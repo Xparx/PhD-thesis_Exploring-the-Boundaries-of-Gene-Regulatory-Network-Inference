@@ -1,4 +1,4 @@
-# Time-stamp: <2015-11-04 23:09:37 andreas>
+# Time-stamp: <2015-11-05 00:13:59 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -46,7 +46,7 @@ ISBN 978-91-7649-299-4 % Provided by the library
 
 \vspace{5mm}
 \noindent
-Tryck: Holmbergs, Malmö 2015 % name of printing company
+Print: Holmbergs, Malmö 2015 % name of printing company
 
 \noindent
 Distributor: Department of Biochemistry and Biophysics % name of department
@@ -136,7 +136,8 @@ Tjärnberg A., Nordling T., Studham M., Nelander S., and Sonnhammer EL. \emph{Mo
 DOI: \href{http://dx.doi.org/10.1039/C4MB00419A}{10.1039/C4MB00419A}
 
 \item\textbf{GeneSPIDER - generation and simulation package for informative data exploration.}\\
-Andreas Tjärnberg, Torbjörn Nordling, Daniel Morgan, Matthew Studham, Erik Sonnhammer \emph{manuscript.}, \textbf{}  (2015).\\
+Tjärnberg A., Nordling T., Morgan D., Studham M., and Sonnhammer EL.
+\emph{manuscript.}, \textbf{}  (2015).\\
 
 \end{enumerate}
 
