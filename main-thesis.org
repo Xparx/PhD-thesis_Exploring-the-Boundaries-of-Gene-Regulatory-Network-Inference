@@ -492,7 +492,7 @@ We can mathematically describe this system as an [[gls:ode]],
 #+end_src
 \noindent
 $f_{G_{*}}$ is a function of choice that are chosen based on modelling assumption or purpose and could be different for different interactions.
-The parameters of model are $a_{11},a_{12},a_{21}, a_{22}$ and $\alpha_1$ and $\alpha_2$.
+The parameters of model are $a_{11},a_{12},a_{21}, a_{22}$, $\alpha_1$ and $\alpha_2$.
 Any other parameters in the functions $f$ are represented by $\bK_i$.
 The state of the system is $x_1$ and $x_2$ represents some quantity related to the gene $G_1$ and $G_2$ respectively.
 
@@ -1461,13 +1461,13 @@ I would also like to take this opportunity to thank my past self for not giving 
 
 \noindent
 Mari, I could not have done this without you.
-Your constant support and positive attitude made this process much simpler than it would have been without you; Jimmy and Britt-Mari thank you for all the good times during my holidays.
+Your constant support and positive attitude made this process much simpler than it would have been without you; Jimmy and Britt-Mari, thank you for all the good times during my holidays.
 
 \noindent
 Pierre, our history require no words. We never did put Abstras in his final resting place though...
 
 \noindent
-Patrik I'm not sure I would be where I am today if it wasn't for you introducing me to programming and all things computer related.
+Patrik, I'm not sure I would be where I am today if it wasn't for you introducing me to programming and all things computer related.
 
 \noindent
 Julien and Emma, crazy, smart, deep. No ideas are to wild to be examined in your presence. My time back in good old Göteborg have been much more exciting thanks to you. I look forward to every time we can sit down over a fika and chat for hours.
@@ -1479,23 +1479,24 @@ Stockholms Marie, Göte and Evy, who welcomed me with open arms when I needed a 
 # Sonnhammer group
 \noindent
 I would also like to give /cred/ to the members of the Sonnhammer group, both past and present --
-Christoph for always being a friend.
+Christoph for always being a friend. I will always be ready for another Zombie raid!
 Lizzy make sure to be nice to Christoph when it's his turn to graduate;
-Dimitri for your interesting conversations and for always inviting me when there was an event where we could share our common nerd interests;
-Mateusz I'm glad that you are on your path to becoming a true emacs guru. At least I got to convert one person!;
+Dimitri for your interesting conversations, and for always inviting me when there was an event where we could share our common nerd interests;
+Mateusz, I'm glad that you are on your path to becoming a true emacs guru. At least I got to convert one person!;
 Daniel, don't doubt yourself, just rewrite the code!;
-Stefanie for our little talks;
-Gabe, for some reason I always felt that you where the only other swede in the group even though your "north" Swedish was many times nothing I could understand;
-Matt, thanks for removing all the "asses", it was needed;
+Stefanie, for our little talks;
+Gabe, for some reason I always felt that you where the only other swede in the group even though your "northern" Swedish words was many times nothing I could understand;
+Matt, thanks for removing all those "asses";
+\\
 To all of you, I hope that we can still find the time to continue with our researchathons, our retro-gaming evenings and all the other goodness that we have enjoyed together.
 
 # Torbjorn
 \noindent
-I would also like to thank my co-supervisor Torbjörn for introducing me to the world of signal processing, but foremost for always providing support and insight to life as a person and as a scientist and for being a person that I can look up to.
+I would also like to thank my co-supervisor Torbjörn for introducing me to the world of signal processing, but foremost I would like to thank you for always providing support and insight to life as a person and as a scientist, and for being a person that I can look up to.
 
 # Erik
 \noindent
-Finally I would like to thank my supervisor Erik Sonnhammer for giving me this opportunity and for guiding me through my education, for having patience with all my missteps, and for giving me the freedom to explore my own interests.
+Finally, I would like to thank my supervisor Erik Sonnhammer for giving me this opportunity and for guiding me through my education, for having patience with all my missteps, and for giving me the freedom to explore my own interests.
 
 * Sammanfattning
 \parskip=0pt
@@ -1517,7 +1518,7 @@ För gener så är denna kontext den biologiska cellen.
 Den mänskliga cellen har omkring \mbox{20\,000} proteinkodande gener.
 Antalet möjliga interaktioner mellan dem är \mbox{400\,000\,000}.
 Inkluderar vi molekyler som kommer utifrån cellen och de olika steg som en gen kan uttryckas i och därför regleras på ökar snabbt detta tal i storlek.
-Att studera alla komponenter i detalj är inte enkelt och att sedan kunna ge en informativ bild av hur systemet fungerar när komponenterna interagerar med varandra blir problemet än mer svårforcerat.
+Att studera alla komponenter i detalj är inte enkelt och att sedan kunna ge en informativ bild av hur systemet fungerar när komponenterna interagerar med varandra är än mer svårforcerat.
 
 # Systembiologiskt tillvägagångsätt
 Verktygen och teorierna från systembiologin är framtagna och utvecklade för att kunna generera kunskap under de här förutsättningarna.
