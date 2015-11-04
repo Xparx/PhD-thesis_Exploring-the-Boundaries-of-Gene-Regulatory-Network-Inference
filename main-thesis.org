@@ -1713,6 +1713,26 @@ where [[gls:chi2]] is the chi square distribution with $df$ degrees of freedom[[
 1. Based on figure 2 in [[cite:Gardner2005]]
 2. Abstract network model based on [[cite:Crampin2006]]
    [[cite:Brazhnik2002]] is what it is baesed on.
+
+* Thesis back text                                                 :noexport:
+** Main body
+This thesis focuses on limitations of data and system properties that we observe when we want to develop models of the cellular gene regulatory network.
+Additionally, we look at how these properties affect how well we can expect different methods to perform when trying to recreate the interactions between genes.
+\\
+We also look at what we have to take into account for different methods to perform optimally and how the properties of the data determine this.
+In order to determine how the properties affect the performance of the methods used, we investigate which properties are important, a second major contribution covered in the material for this thesis.
+Here we show that the specific measurable properties could lead to conclusions for how to analyse available data.
+\\
+The third contribution tries to answer the question whether it is possible to include information and evidence which have been developed elsewhere to increase the efficiency of the methods used.
+Here we demonstrate that if the data is of low quality we can include evidence from other sources to help reconstruct gene regulatory networks.
+\\
+We share the solutions developed while resolving these issues through a software package in the hope that it can be useful to others and demonstrate how they should be included when trying to model gene networks.
+
+** Photo text
+Hi, My name is Andreas Tjärnberg.
+I did my bachelor in physics and contined with a master in physics with the focus on Complex Adaptive Systems at Gothenburg University.
+I always had an interest in biology but my interest was intensified by my studies.
+
 * Setup code                                                       :noexport:
 Code used when exporting to latex
 #+name: setup
