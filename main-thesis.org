@@ -1,4 +1,4 @@
-# Time-stamp: <2015-11-03 21:48:50 andreas>
+# Time-stamp: <2015-11-04 23:09:37 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -94,7 +94,7 @@ The software package supports highly controllable network and data generation as
 {\fontfamily{calligra}\selectfont
 {\Large
 
-This thesis is dedicated to...
+To my grandmother Mildred
 
 }
 }
@@ -135,8 +135,8 @@ DOI: \href{http://dx.doi.org/10.1093/bioinformatics/btu285}{10.1093/bioinformati
 Tjärnberg A., Nordling T., Studham M., Nelander S., and Sonnhammer EL. \emph{Mol. BioSyst.}, \textbf{1(11)}, 287-296 (2015).\\
 DOI: \href{http://dx.doi.org/10.1039/C4MB00419A}{10.1039/C4MB00419A}
 
-\item\textbf{Genespider - generation and simulation package for informative data exploration.}\\
-Andreas Tjärnberg, Torbjörn Nordling, Daniel Morgan, Matthew Studham, Erik Sonnhammer \emph{unpublished, manuscript.}, \textbf{}  (2015).\\
+\item\textbf{GeneSPIDER - generation and simulation package for informative data exploration.}\\
+Andreas Tjärnberg, Torbjörn Nordling, Daniel Morgan, Matthew Studham, Erik Sonnhammer \emph{manuscript.}, \textbf{}  (2015).\\
 
 \end{enumerate}
 
@@ -1446,31 +1446,59 @@ Further work on how to formulate and implement different details of experimental
 
 * Acknowledgements
 
-I would like to acknowledge...
+\parskip=6pt
+I am not really the person that spreads his net wide when it comes to social interactions. Even so, I find myself struggling to fit all the people in these few pages that I owe my thanks to for supporting me on this journey.
 
-# Erik
-
-# Torbjorn
-
-# Christoph
-
-# Daniel
-
-# Mateusz
-
-# Dimitri
-
+\noindent
+# Family
+First I would like to thank my family, we are truly a big family and while I don't meet most of you often enough you are always in my thoughts.
 # Mom
+I especially would like to thank my mother for always fighting to provide me with the best, and for being a rock where I could always find support.
 
-# Dad
+\noindent
+I would also like to take this opportunity to thank my past self for not giving up on me. I will keep in touch, just out of reach.
 
-# Mari
+\noindent
+Mari, I could not have done this without you.
+Your constant support and positive attitude made this process much simpler than it would have been without you; Jimmy and Britt-Mari thank you for all the good times during my holidays.
+
+\noindent
+Pierre, our history require no words. We never did put Abstras in his final resting place though...
+
+\noindent
+Patrik I'm not sure I would be where I am today if it wasn't for you introducing me to programming and all things computer related.
+
+\noindent
+Julien and Emma, crazy, smart, deep. No ideas are to wild to be examined in your presence. My time back in good old Göteborg have been much more exciting thanks to you. I look forward to every time we can sit down over a fika and chat for hours.
 
 # Marie with family Sthlm
+\noindent
+Stockholms Marie, Göte and Evy, who welcomed me with open arms when I needed a place to live when arriving in Stockholm.
 
+# Sonnhammer group
+\noindent
+I would also like to give /cred/ to the members of the Sonnhammer group, both past and present --
+Christoph for always being a friend.
+Lizzy make sure to be nice to Christoph when it's his turn to graduate;
+Dimitri for your interesting conversations and for always inviting me when there was an event where we could share our common nerd interests;
+Mateusz I'm glad that you are on your path to becoming a true emacs guru. At least I got to convert one person!;
+Daniel, don't doubt yourself, just rewrite the code!;
+Stefanie for our little talks;
+Gabe, for some reason I always felt that you where the only other swede in the group even though your "north" Swedish was many times nothing I could understand;
+Matt, thanks for removing all the "asses", it was needed;
+To all of you, I hope that we can still find the time to continue with our researchathons, our retro-gaming evenings and all the other goodness that we have enjoyed together.
 
+# Torbjorn
+\noindent
+I would also like to thank my co-supervisor Torbjörn for introducing me to the world of signal processing, but foremost for always providing support and insight to life as a person and as a scientist and for being a person that I can look up to.
+
+# Erik
+\noindent
+Finally I would like to thank my supervisor Erik Sonnhammer for giving me this opportunity and for guiding me through my education, for having patience with all my missteps, and for giving me the freedom to explore my own interests.
 
 * Sammanfattning
+\parskip=0pt
+
 #+LATEX: \selectlanguage{swedish}
 
 # Systembiologi
@@ -1714,24 +1742,25 @@ where [[gls:chi2]] is the chi square distribution with $df$ degrees of freedom[[
 2. Abstract network model based on [[cite:Crampin2006]]
    [[cite:Brazhnik2002]] is what it is baesed on.
 
-* Thesis back text                                                 :noexport:
+* Thesis back cover text                                           :noexport:
 ** Main body
-This thesis focuses on limitations of data and system properties that we observe when we want to develop models of the cellular gene regulatory network.
+This thesis focuses on limitations of data and system properties that we observe in data we want to use for developing models of the cellular gene regulatory network.
 Additionally, we look at how these properties affect how well we can expect different methods to perform when trying to recreate the interactions between genes.
 \\
-We also look at what we have to take into account for different methods to perform optimally and how the properties of the data determine this.
+Additionally we look at what we have to take into account for different methods to perform optimally and how the properties of the data determine this.
 In order to determine how the properties affect the performance of the methods used, we investigate which properties are important, a second major contribution covered in the material for this thesis.
 Here we show that the specific measurable properties could lead to conclusions for how to analyse available data.
 \\
-The third contribution tries to answer the question whether it is possible to include information and evidence which have been developed elsewhere to increase the efficiency of the methods used.
+The third contribution tries to answer the question whether it is possible to include information and evidence which have been inferred elsewhere to increase the efficiency of the methods used.
 Here we demonstrate that if the data is of low quality we can include evidence from other sources to help reconstruct gene regulatory networks.
 \\
-We share the solutions developed while resolving these issues through a software package in the hope that it can be useful to others and demonstrate how they should be included when trying to model gene networks.
+We share the solutions developed while resolving these issues through a software package in the hope that it can be useful to others and demonstrate how they should be incorporated when trying to model gene networks.
 
 ** Photo text
 Hi, My name is Andreas Tjärnberg.
-I did my bachelor in physics and contined with a master in physics with the focus on Complex Adaptive Systems at Gothenburg University.
-I always had an interest in biology but my interest was intensified by my studies.
+I did my bachelor in physics and continued with a master in physics with the focus on Complex Adaptive Systems at Gothenburg University.
+I always had an interest in biology and my interest was intensified by my studies.
+This led me to apply for a PhD in the field of Systems Biology.
 
 * Setup code                                                       :noexport:
 Code used when exporting to latex
