@@ -191,11 +191,11 @@ Reprints were made with permission from the publishers.
 * Introduction
 
 # General what is systems
-Biological systems are diverse and complex.
+Biological systems are diverse and complex and not easily described by simple rules.
 Whether it is the patterns of whole populations and societies, the interactions of individual organisms or the cellular, internal, and external machinery,
 understanding biological systems are motivated by the need to predict, modify or enhance the behaviour or functions of these systems.
 Gaining a mechanistic understanding of the system can help prevent outbreak of systemic failure (disease), as well as present the optimal course of action to restore base level functioning.
-Thus, if cancer is viewed as an unwanted state, or a breakdown of cellular function we would like to intervene and return the system to its natural state.
+Thus, if cancer for example, is viewed as an unwanted state, or a breakdown of cellular function we would like to intervene and return the system to its natural state.
 This could be done either by forcing the system to return to its original state or by selectively terminating the faulty cells without damaging healthy cells.
 Understanding how the parts of the system interact helps to selectively target and steer the system as a whole to a desired state.
 
@@ -885,7 +885,7 @@ Several studies have employed a linear dynamical systems framework.
 Furthermore data was recorded with a [[gls:ss]] assumption on the measured mRNA expression data for 9 genes in the SOS pathway in \coli. A linear regression method was then used to estimate model parameters for an exhaustive search of subsets of interactors for each gene in the network.
 
 A core mechanism to be able to infer a casual influence network from [[gls:ssd]] and a linear dynamical system, section [[ref:sec:linear_models]], is that specific perturbations are made to each gene that is going to be included in the network.
-This is the case for [[gls:tsd]] as well with the difference being that for [[gls:tsd]] only a single perturbation needs to be made, and it does not necessarily need to be kept constant until the system relaxes to a [[gls:ss]] 
+This is the case for [[gls:tsd]] as well with the difference being that for [[gls:tsd]] only a single perturbation needs to be made, and it does not necessarily need to be kept constant until the system relaxes to a [[gls:ss]]
 [[citep:Dhaeseleer1999]].
 
 # Parameter estimation [[citep:Aster2005]]
