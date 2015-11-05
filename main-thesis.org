@@ -1,4 +1,4 @@
-# Time-stamp: <2015-11-05 00:13:59 andreas>
+# Time-stamp: <2015-11-05 12:29:06 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -1746,16 +1746,21 @@ where [[gls:chi2]] is the chi square distribution with $df$ degrees of freedom[[
 
 * Thesis back cover text                                           :noexport:
 ** Main body
-This thesis focuses on limitations of data and system properties that we observe in data we want to use for developing models of the cellular gene regulatory network.
-Additionally, we look at how these properties affect how well we can expect different methods to perform when trying to recreate the interactions between genes.
-\\
-Additionally we look at what we have to take into account for different methods to perform optimally and how the properties of the data determine this.
+Systems biology studies biology from a systems perspective.
+This means that in addition to examining the details of biological mechanisms, i.e. a gene, a cell or an individual's behavior, systems biology examines how these components interact with each other in a larger perspective.
+
+The goal is to describe how the system works and be able to predict what will happen when various changes take place in or around the cell, for example.
+
+The work underlying this thesis focuses on limitations of data and system properties observed in data we use for developing models of the cellular gene regulatory network.
+Additionally, we look at how these properties affect how well different methods perform when trying to recreate the interactions between genes.
+
+The second contribution aims to define data properties crucial to accounting for different methods' performance and how they determine this.
 In order to determine how the properties affect the performance of the methods used, we investigate which properties are important, a second major contribution covered in the material for this thesis.
-Here we show that the specific measurable properties could lead to conclusions for how to analyse available data.
-\\
-The third contribution tries to answer the question whether it is possible to include information and evidence which have been inferred elsewhere to increase the efficiency of the methods used.
-Here we demonstrate that if the data is of low quality we can include evidence from other sources to help reconstruct gene regulatory networks.
-\\
+Here we show that specific measurable properties could lead to an understanding of how to analyse available data.
+
+The third contribution tries to answer the question whether it is possible to include information and evidence which has been inferred elsewhere to increase the efficiency of the methods used.
+Here we demonstrate that if the data is of low quality we can include evidence from other sources to enable reconstruction of gene regulatory networks.
+
 We share the solutions developed while resolving these issues through a software package in the hope that it can be useful to others and demonstrate how they should be incorporated when trying to model gene networks.
 
 ** Photo text
