@@ -1,4 +1,4 @@
-# Time-stamp: <2015-11-05 12:29:06 andreas>
+# Time-stamp: <2015-11-05 15:01:21 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -1749,19 +1749,13 @@ The work underlying this thesis focuses on limitations of data and system proper
 Additionally, we look at how these properties affect how well different methods perform when trying to recreate the interactions between genes.
 
 The second contribution aims to define data properties crucial to accounting for different methods' performance and how they determine this.
-In order to determine how the properties affect the performance of the methods used, we investigate which properties are important, a second major contribution covered in the material for this thesis.
+In order to determine how the properties affect the performance of the methods used, we investigate which properties are important.
 Here we show that specific measurable properties could lead to an understanding of how to analyse available data.
 
 The third contribution tries to answer the question whether it is possible to include information and evidence which has been inferred elsewhere to increase the efficiency of the methods used.
 Here we demonstrate that if the data is of low quality we can include evidence from other sources to enable reconstruction of gene regulatory networks.
 
 We share the solutions developed while resolving these issues through a software package in the hope that it can be useful to others and demonstrate how they should be incorporated when trying to model gene networks.
-
-** Photo text
-Hi, My name is Andreas Tjärnberg.
-I did my bachelor in physics and continued with a master in physics with the focus on Complex Adaptive Systems at Gothenburg University.
-I always had an interest in biology and my interest was intensified by my studies.
-This led me to apply for a PhD in the field of Systems Biology.
 
 * Setup code                                                       :noexport:
 Code used when exporting to latex
