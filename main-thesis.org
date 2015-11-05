@@ -351,15 +351,15 @@ Systems biology approaches for elucidating the context specific regulatory netwo
 :END:
 In this section I will give a general description of a system.
 I will also introduce [[glspl:ode]] and dynamical systems as a description of how a system is changing over time,
-and finally I will give a brief description of properties associated with systems in a [[gls:grn]] context.
+and finally in this section I will give a brief description of properties associated with systems in a [[gls:grn]] framework.
 
 *** System description
 :PROPERTIES:
 :CUSTOM_ID: sec:system-description
 :END:
 The representation of a system is as important as learning about the system itself.
-Whether it is a mathematical description, a chemical reaction description, or a graphical overview, the description can help fuel insight about what is being observed.
-This is especially important as the assumptions of the representation can in the worst case confer information that could be inaccurate or misleading.
+Whether mathematical, chemical, graphical or other, an accurate description can help fuel insight into what is being observed.
+This is especially important because assumptions of the representation have the potential to confer inaccurate or misleading information.
 
 A mathematical description of a system is \eg
 #+begin_src latex :exports results :results latex
@@ -399,9 +399,8 @@ In the inverse problem (see section [[ref:sec:inverse-problem]]) one needs to fi
 
 *** Dynamical systems
 A dynamical system describes a set of variables behaviour over time.
-\\
-A way of modeling evolving systems is the \acrfull{ode} model.
-[[Glspl:ode]] relate the state of the system to its rate of instantaneous change
+
+A popular method of describing evolving systems is the [[gls:ode]] model, which relates the state of the system to its rate of instantaneous change
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:ode}
   \dot{\bx} = f(\bx,\bu,\bupsilon,t)
@@ -417,19 +416,17 @@ Now
 \end{equation}
 #+end_src
 #+LATEX: \noindent
-describes the output variables $\by$ as a function, $g$ of the states $\bx$ and the noise term $\bepsilon$, the output variables may be the the same as the input variables.
+describes the output variables $\by$ as a function, $g$, of the states $\bx$ and the noise term $\bepsilon$, the output variables may be the the same as the input variables.
 
 *** System properties
 
 **** Network motifs
-It is known that some specific network motifs are over represented in biological systems, while others are underrepresented, compared to what would be expected of random networks.
-This has been demonstrated by investigating the transcriptional network of \coli and \yeast [[citep:Milo2002]].
-Especially the [[gls:ffl]] motif is highly over represented.
-One motivation for the under or over representation of specific regulatory motives is that they could serve specific functions, such as delayed responses, pulse response, synchronisation clocks, step responses and switches [[citep:Alon2007]].
-Another type of motifs that are often considered in system theoretic approaches is [[glspl:fbl]].
-[[Glspl:fbl]] can cause highly correlated responses, so called interampatte systems [[citep:Nordling2009]], section [[ref:sec:iaa]].
-Motives may also explain phenotype, when functioning as biological switches [[citep:Wolkenhauer2005]].
-Feedback have been shown to help describe the behaviour of bacterial chemotaxis [[citep:Yi2000]]. A few examples of modelling the [[gls:fbl]] is presented in section [[ref:sec:lin-vs-non-lin]].
+Some specific network motifs have been shown to be over represented in biological systems,as demonstrated by investigating the transcriptional network of \coli and \yeast [[citep:Milo2002]], while others are underrepresented, compared to what would be expected of random networks.
+Of special note is the [[gls:ffl]] motif, which is highly over represented.
+One hypothetical reason for evolution of the under- or over- representation of specific regulatory motifs is that they serve specific functions, such as delayed responses, pulse response, synchronisation clocks, step responses and switches [[citep:Alon2007]].
+The [[Glspl:fbl]] motif are often considered in system theoretic approaches, capable of causing highly correlated responses, so called interampatte systems[[cite:Nordling2009]], section [[ref:sec:iaa]].
+Motifs may also explain phenotype, when functioning as biological switches [[citep:Wolkenhauer2005]].
+Feedback has been shown to help describe the behaviour of bacterial chemotaxis [[citep:Yi2000]]. A few examples of modelling the [[gls:fbl]] are presented in section [[ref:sec:lin-vs-non-lin]].
 
 **** Steady states
 :PROPERTIES:
@@ -438,40 +435,38 @@ Feedback have been shown to help describe the behaviour of bacterial chemotaxis 
 
 [[Glspl:ss]] are defined when the rate of change $\dot{\bx} = 0 \equiv f(\bx_0,\bp,T)$ in ([[ref:eq:ode]]).
 The nature of the [[gls:ss]] can be elucidated by analysing the system $f(\bx_0,\bp,T) = 0$., with $T$ being a time when the system is in [[gls:ss]] and $\bx_0$ is the state of the system at [[gls:ss]].
-The solution to this equation, or system of equations for $\bx_0$ in multivariate analysis, is the [[gls:ss]].
+The solution to the system of equations for $\bx_0$ in multivariate analysis, is the [[gls:ss]].
 For the system $f(\bx_0) = 0$ we can calculate the jacobian, $J$, the partial derivatives of $f$ over the states $\bx$.
 The nature of the [[glspl:ss]] can then be derived from the eigenvalues of $J$ for linear time invariant systems such as the ones studied here.
 If the real part of all eigenvalues are negative, then the system trajectories will converge to a stable state.
-If any real part is positive an unstable trajectory exists for that state variable that will make the system behave unstable.
-A system that is unstable will not converge to a stable state where $\dot{\bx} = 0$.
+If any real part is positive an unstable trajectory exists for that state variable that will make the system unstable.
+An unstable system will not converge to a stable state where $\dot{\bx} = 0$.
 For a linear system ([[ref:eq:linearsys]]) the solution of $f(\bx_0) = 0$ is always unique, meaning only one [[gls:ss]] exists for any linear system.
 The eigenvalues of $J$ might reveal that this is an unstable [[gls:ss]] and the system will diverge away from this state [[citep:Khalil1996]].
 
 Non-linear systems might have more complex descriptions of the function $f(\bx_0) = 0$, with multiple [[gls:ss]] solutions.
-This means that the system has multiple [[glspl:ss]] where some might correspond to converging states, while others might be unstable [[gls:ss]]. Unstable means that when the system is placed in this state it will naturally diverge from the state when small perturbations are introduced.
-The way to determine the behaviour of the [[gls:ss]] presented above does not generalise to all non-linear systems but to those that can be linearised around the [[gls:ss]] [[citep:Khalil1996]].
+This means that the system has multiple [[glspl:ss]], where some might correspond to converging states, while others might be unstable [[gls:ss]]. Here, \emph{unstable} means that the system will naturally diverge from its [[gls:ss]] when small perturbations are introduced.
+This way of determining the behaviour of the [[gls:ss]] does not generalise to all non-linear systems, but can be used for those that can be linearised around the [[gls:ss]] [[citep:Khalil1996]].
 
 The stable [[gls:ss]] property has been incorporated in algorithms [[citep:Zavlanos2011]] and when collecting data [[citep:Gardner2003]] for inferring [[gls:grn]].
 The assumption is that if biological systems would not be stable,
-even random variations would eventually accumulate within the system and that would lead to a system collapse [[citep:Kremling2007]].
+even random variations would eventually accumulate within the system leading to a system collapse[[citep:Kremling2007]].
 
 One simple mechanism in [[glspl:grn]] for maintaining stability is degradation.
-As every entity that regulates something else in the system will be degraded or diluted over time as a function of the concentration, an infinite growth can not be maintained.
-Because of this an equilibrium will be reached depending on the grown rates and degradation rates of the molecules [[citep:Alon2007]].
+As every entity that regulates something else in the system will degrade or be diluted over time as a function of the concentration, an infinite growth can not be maintained.
+This is because an equilibrium will be reach depending on the growth rate and degradation rates of the molecules[[citep:Alon2007]].
 
 **** Linear vs. Non-linear models
 :PROPERTIES:
 :CUSTOM_ID: sec:lin-vs-non-lin
 :END:
 
-Depending on what representation of the system we choose to use different properties or features of the model will follow.
-The model should be able to capture important features of the underlying system and at the same time be simple to understand and interpret.
-A representation of a sytem should be able to give us insight about what the system looks like and predict what kind of behaviour is expected in general, or for a specific set of parameters.
-Another practical reason to consider when choosing a representative description is the possibility of evaluating or retrieve a solution either analytically or computationally.
-Added complexity will often result in longer compute time or harder to evaluate solutions.
+Correct system representation is crutial, as different models will directly propogate unique properties and features.
+The model should capture important features of the underlying system while remaining intelligible, giving insight into how the system is assembled and predictions of behaviour under given conditions.
+Another practical consideration when choosing a representation is prediction, the possibility of evaluating or retrieving a solution, either analytically or computationally.
+Added complexity will often result in longer compute time or harder solution evaluation.
 
-The following section will detail an example of two types of systems, one liner and one non-linear.
-The non-linear representation is developed to model enzyme kinetics and the linear representation is a simplified version.
+The following section will detail an example of two types of systems, a non-linear representation developed to model enzyme kinetics and a linear representation as a simplified version of the non-linear.
 
 #+CAPTION[Feedback graph]: An abstract graphical representation of a mutual activating feedback circuit of two genes. The ball at the end of the link is a placeholder for an unspecified interaction, if an arrowhead is put there it means an activating interaction and if a T bar is put at the end it means a repression.
 #+label: fig:two-gene-feedback
@@ -886,8 +881,7 @@ Several studies have employed a linear dynamical systems framework.
 Furthermore data was recorded with a [[gls:ss]] assumption on the measured mRNA expression data for 9 genes in the SOS pathway in \coli. A linear regression method was then used to estimate model parameters for an exhaustive search of subsets of interactors for each gene in the network.
 
 A core mechanism to be able to infer a casual influence network from [[gls:ssd]] and a linear dynamical system, section [[ref:sec:linear_models]], is that specific perturbations are made to each gene that is going to be included in the network.
-This is the case for [[gls:tsd]] as well with the difference being that for [[gls:tsd]] only a single perturbation needs to be made, and it does not necessarily need to be kept constant until the system relaxes to a [[gls:ss]]
-[[citep:Dhaeseleer1999]].
+This is the case for [[gls:tsd]] as well with the difference being that for [[gls:tsd]] only a single perturbation needs to be made, and it does not necessarily need to be kept constant until the system relaxes to a [[gls:ss]] [[citep:Dhaeseleer1999]].
 
 # Parameter estimation [[citep:Aster2005]]
 #
