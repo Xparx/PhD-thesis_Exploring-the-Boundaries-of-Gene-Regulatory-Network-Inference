@@ -1,4 +1,4 @@
-# Time-stamp: <2015-11-05 15:01:21 andreas>
+# Time-stamp: <2015-11-05 16:37:38 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -242,7 +242,7 @@ A core phenomenon of the cellular function is expression, \ie the regulation of 
 
 *** Gene regulation and gene regulatory networks
 
-#+CAPTION[Central dogma of molecular biology]: The central dogma of molecular biology [[citep:Brown2002]]. The flow of expression is show left to right, figure inspired by [[citet:Gardner2005]]
+#+CAPTION[Central dogma of molecular biology]: The central dogma of molecular biology [[citep:Brown2002]]. The flow of expression is shown left to right, figure inspired by [[citet:Gardner2005]]
 #+label: fig:central-dogma
 [[file:img/central_dogma.pdf]]
 
@@ -320,9 +320,9 @@ It has also been shown that mRNA expression data can be used to construct these 
 
 **** Network medicine
 One of the main areas of practical application for network biology is in medicine.
-Roughly $2239$ of human genes are disease associated [[citep:Amberger2009]].
+Roughly $2000$ of human genes are disease associated [[citep:Amberger2009]].
 With the high amount of interactors and interactions it is implied that the effects of the disease associations are not isolated to those genes [[citep:Barabasi2011]].
-The effect of /comorbidity/ is an indication that a specific decease is not isolated in its effects.
+The effect of /comorbidity/ is an indication that a specific disease is not isolated in its effects.
 Comorbidity is the ability of a disease to enhance other diseases if some specific disease is already present.
 By building a network of interactions and influences of cellular components a bigger picture can emerge of disease effects on the regulatory system.
 By overlaying implicated disease genes on the network one can draw conclusions of other disease associated genes.
@@ -333,8 +333,8 @@ The more complete this picture the better the conclusions of such a study [[cite
 
 # [[citep:Morel2004]]
 
-One of the main goals of drug discovery is to find compounds with specific properties that can target and effect pathways with high accuracy with minimal side effects [[citep:Schreiber2000]].
-Generating reliable models that both predict and explain the effect of a specific perturbation generated from a drug compound will aid in creating more specific and effective drug treatments.
+One of the main goals of drug discovery is to find compounds with specific properties that can target and affect pathways with high accuracy with minimal side effects [[citep:Schreiber2000]].
+Generating reliable models that predict the effect of a specific perturbation from a drug compound will aid in creating more specific and effective drug treatments.
 
 Great interest and funds for drug development are geared towards curing cancer.
 Cancer treatments are usually highly invasive as cancer affects the regulatory operations of the cell itself, altering the signalling pathways and behaviour [[citep:Weinberg1996]].
@@ -407,7 +407,7 @@ A popular method of describing evolving systems is the [[gls:ode]] model, which 
 \end{equation}
 #+end_src
 #+LATEX: \noindent
-where $\dot{\bx}$ is the rate of change of the states $\bx$ representing some measurable quantity, in the context of [[glspl:grn]] this is typically mRNA expresion or protein abundance.
+where $\dot{\bx}$ is the rate of change of the states $\bx$ representing some measurable quantity, in the context of [[glspl:grn]] this is typically mRNA expression or protein abundance.
 $\bu$ is any input to the system, henceforth called perturbation, and $\bupsilon$ is stochastic effects, or noise affecting the evolution of the system. $f$ may be any function and $t$ the time.
 Now
 #+begin_src latex :exports results :results latex
@@ -461,7 +461,7 @@ This is because an equilibrium will be reach depending on the growth rate and de
 :CUSTOM_ID: sec:lin-vs-non-lin
 :END:
 
-Correct system representation is crutial, as different models will directly propogate unique properties and features.
+Correct system representation is crucial, as different models will directly propagate unique properties and features.
 The model should capture important features of the underlying system while remaining intelligible, giving insight into how the system is assembled and predictions of behaviour under given conditions.
 Another practical consideration when choosing a representation is prediction, the possibility of evaluating or retrieving a solution, either analytically or computationally.
 Added complexity will often result in longer compute time or harder solution evaluation.
@@ -491,7 +491,7 @@ The parameters of model are $a_{11},a_{12},a_{21}, a_{22}$, $\alpha_1$ and $\alp
 Any other parameters in the functions $f$ are represented by $\bK_i$.
 The state of the system is $x_1$ and $x_2$ represents some quantity related to the gene $G_1$ and $G_2$ respectively.
 
-To simplify somewhat, lets look at activating [[gls:fbl]] with degradation only and make $f(G)$ independent of the model paramters $a_{ij}$ and $\alpha_i$, then
+To simplify somewhat, lets look at activating [[gls:fbl]] with degradation only and make $f(G)$ independent of the model parameters $a_{ij}$ and $\alpha_i$, then
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback}
   \begin{array}{lcr}
@@ -525,7 +525,7 @@ To find the behaviour of this system close to its [[gls:ss]]
 \end{equation}
 #+end_src
 \noindent
-and behaviour of the [[gls:ss]] is descirbed by the eigenvalues of the Jacobian.
+and behaviour of the [[gls:ss]] is described by the eigenvalues of the Jacobian.
 The eigenvalues are calculated by finding the $\lambda$ of
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback-eigenvalues}
@@ -703,7 +703,7 @@ A problem sought to be solved by a systems biology approach is to give an qualit
 
 The primary step to achieve this is to infer the structure of the network.
 This involves what is commonly known as a "top down" approach, contrasting the "bottom up" approach that traditionally means investigating singular regulatory interactions or the specific properties of a biomolecule.
-When most of the specific details of the biochemical reactions are known then a "bottoms up" approach can be appropriate to build up a view of the system and investigate emergent behaviour not observed or easily infered from the parts of the system [[citep:Kremling2007]].
+When most of the specific details of the biochemical reactions are known then a "bottoms up" approach can be appropriate to build up a view of the system and investigate emergent behaviour not observed or easily inferred from the parts of the system [[citep:Kremling2007]].
 
 This section will focus on a part of systems biology, namely the inference of causal network models describing \acrfullpl{grn}.
 
@@ -729,7 +729,7 @@ This type of model extends to non linear relationships as mutual information can
 
 Boolean networks links gene expression through boolean operators such as =AND=, =OR= and =NOT= [[citep:Albert2003]].
 Boolean interactions are based on the truth table of the interactors.
-This means that the expression of each gene needs to be discretized to determine if the gene is =ON= or =OFF= and can be expressed as,
+This means that the expression of each gene needs to be discretised to determine if the gene is =ON= or =OFF= and can be expressed as,
 #+begin_src latex :exports results :results latex
 \begin{equation}
   \bx(t+1) = f^B(\bx(t))
@@ -857,24 +857,20 @@ For ([[ref:eq:ols_L2]]) the function is differentiable, but for ([[ref:eq:ols_L1
 This problem can be over come by noting that ([[ref:eq:ols_L1]]) is peace-wise differentiable and convex.
 Meaning that one can search for the optimal solution by finding the peace-wise optimal solutions [[citep:Aster2005]].
 
-*** Network inference
+*** Gene Regulatory Network inference
 :PROPERTIES:
 :CUSTOM_ID: sec:net_inf
 :END:
 
-# CHECK TORBJORNS THESIS PAGE 28!!! [[citep:Nordling2013phdthesis]]
-
 # Also comment on that biological systems are usually considered stable [[ref:sec:ss]]
 
-Network inference is the artform of trying to infer the [[gls:grn]] and its parameters from given data with the main objective of trying to retrieve the interactions between the nodes/genes.
-The links that describe the causal influence of one entity to another.
 [[citet:Gardner2005]] separated two types of network inference types, the first or "physical" approach aims at construction the transcriptional regulatory network directly, \ie to determine the physical binding of one transcription factor to another. This strategy concerns itself with direct chemical bonding interactions.
 In some cases however, it may be that an intermediate step is not observed and no direct binding occurs even though a change based on influence can be observed.
-The other approach is the influence strategy.
-For this approach the regulatory influences are sought rather then physical bindings.
+The second approach is the influence strategy.
+For this approach the regulatory influences are sought rather than physical bindings.
 
-As one of the primary objectives of network inference is to find the regulatory interactions, the problem of network inference is primarily a model identification problem and not a parameter estimation problem.
-However, this line is sometimes blurred with the introduction of algorithms such as \lasso [[citep:Tibshirani1996]], which both estimates parameters and returns a selection of candidate models (see: [[ref:sec:linear_penalty]]).
+As one of the primary objectives of network inference is to find the regulatory interactions, network inference is primarily a model identification problem and not a parameter estimation problem.
+However, this line is sometimes blurred with the introduction of algorithms, such as \lasso [[citep:Tibshirani1996]], which both estimate parameters and return a selection of candidate models (see: [[ref:sec:linear_penalty]]).
 
 Several studies have employed a linear dynamical systems framework.
 [[citet:Gardner2003]] used a linear model, motivated by linearisation of a nonlinear model around a [[gls:ss]].
@@ -921,8 +917,8 @@ The lasso problem can be written as,
 #+LATEX: \noindent
 The \lasso penalises the absolute size of model parameters.
 The difference from the ridge-regression is that \lasso produces different models depending on the penalty parameter \(\zeta\) [[citep:Ng2004]].
-The \lasso have the property that it combines model selection with parameter estimation.
-Due to this property \lasso has become very popular and a lot of work has been done on investigating the performance, such as its weekness on ill-condtioned data and make modifications of \lasso [[citep:Fan2001,Zhao2006,Candes2009,Jia2012]].
+The \lasso has the property that it combines model selection with parameter estimation.
+Due to this property \lasso has become very popular and a lot of work has been done on investigating the performance, such as its weakness on ill-conditioned data and make modifications of \lasso [[citep:Fan2001,Zhao2006,Candes2009,Jia2012]].
 
 As ridge-regression does not suffer from the same weakness as \lasso, an effort to combine both of these penalties called /elastic-net/ has been made.
 The Elastic-net [[citep:Zou2005]] method combines the $L_1$ penalty from \lasso and the $L_2$ penalty from ridge regression. The influence of the penalties are then weighted by a parameter $\alpha$ such that,
@@ -1476,7 +1472,7 @@ I would also like to give /cred/ to the members of the Sonnhammer group, both pa
 Christoph for always being a friend. I will always be ready for another Zombie raid!
 Lizzy make sure to be nice to Christoph when it's his turn to graduate;
 Dimitri for your interesting conversations, and for always inviting me when there was an event where we could share our common nerd interests;
-Mateusz, I'm glad that you are on your path to becoming a true emacs guru. At least I got to convert one person!;
+Mateusz, I'm glad that you are on your path to becoming a true Emacs guru. At least I got to convert one person!;
 Daniel, don't doubt yourself, just rewrite the code!;
 Stefanie, for our little talks;
 Gabe, for some reason I always felt that you where the only other swede in the group even though your "northern" Swedish words was many times nothing I could understand;
@@ -1667,7 +1663,7 @@ the "The Path Forward" section in [[cite:Rao2001]]
 
 
 *** Linear models
-linear models should not be discarded until they are not suficiently well describing the data, ref model selection, where if the statistical test of RSS(?) is not fitting the data while the data quality is high, high \eg SNR then can one discard a simple model.
+linear models should not be discarded until they are not sufficiently well describing the data, ref model selection, where if the statistical test of RSS(?) is not fitting the data while the data quality is high, high \eg SNR then can one discard a simple model.
 
 # What citation!
 [[cite:Crampin2006]]
@@ -1741,7 +1737,7 @@ where [[gls:chi2]] is the chi square distribution with $df$ degrees of freedom[[
 * Thesis back cover text                                           :noexport:
 ** Main body
 Systems biology studies biology from a systems perspective.
-This means that in addition to examining the details of biological mechanisms, i.e. a gene, a cell or an individual's behavior, systems biology examines how these components interact with each other in a larger perspective.
+This means that in addition to examining the details of biological mechanisms, i.e. a gene, a cell or an individual's behaviour, systems biology examines how these components interact with each other in a larger perspective.
 
 The goal is to describe how the system works and be able to predict what will happen when various changes take place in or around the cell, for example.
 
