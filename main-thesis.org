@@ -1483,50 +1483,50 @@ Finally, I would like to thank my supervisor Erik Sonnhammer for giving me this 
 
 # Systembiologi
 Systembiologi studerar biologi ur ett systemperspektiv.
-Detta innebär att utöver att undersöka detaljer i biologiska system, så som en specifik gen, en cell eller en individs beteende, undersöker man hur de här komponenterna interagerar med varandra i ett större perspektiv.
-Tittar vi på individer i en population försöker vi skapa oss en bild av hur populationen fungerar utifrån hur individerna interagerar i populationen och inte hur individens specifika egenskaper fungerar när den är isolerad.
-Studerar vi gener tittar vi på hur uttrycket av generna, i kombination med uttrycket av andra gener, reglarar hur cellen fungerar och vilka funktioner som cellen kan utföra och använda sig av på grund av hur generana påverkar varandra.
+Detta innebär att förutom att undersöka detaljer, så som en specifik gen, en cell eller en individs beteende, i biologiska system undersöker man hur de här komponenterna interagerar med varandra i ett större sammanhang.
+När det gäller individer i en population försöker vi skapa oss en bild av hur populationen fungerar utifrån hur individerna interagerar i populationen och inte utifrån individens specifika egenskaper fungerar när denne är isolerad.
+Studerar vi gener tittar vi på hur uttrycket av generna, i kombination med uttrycket av andra gener, reglarar hur cellen fungerar och vilka funktioner som cellen kan utföra och använda sig av beroende på hur generana påverkar varandra.
 
 # Klassiskt tillvägagångsätt
-Målet är att kunna beskriva hur systemet, i det här fallet cellen, fungerar och att kunna förutsäga vad som kommer hända när olika förändringar sker i eller runt cellen.
-Det klassiska tillvägagångsättet som använts för att vetenskapligt studera fenomen, att bryta ner systemet i sina beståndsdelar och studera dem ingående för att sedan kunna dra slutsatser om hela systemet, har visat sig svårt när man studerar komplexa levande system.
-Egenskaper hos systemet som är svåra att förutsäga genom att studera enskilda komponenters egenskaper har kunnat förklaras när man placerat komponenterna i en specifik kontext.
-För gener så är denna kontext den biologiska cellen.
+Målet är att kunna beskriva hur systemet, i det här fallet cellen, fungerar och att kunna förutsäga vad som kommer hända när olika förändringar sker i och runt cellen.
+Det klassiska tillvägagångsättet som använts för att vetenskapligt studera fenomen, att bryta ner ett system i dess beståndsdelar och studera dem ingående för att sedan kunna dra slutsatser om hela systemet har visat sig svårt när man studerar komplexa levande system.
+Egenskaper hos systemet som är svåra att förutsäga genom att studera enskilda komponenters egenskaper, har kunnat förklaras när man placerat komponenterna i en specifik kontext.
+För gener är denna kontext den biologiska cellen.
 \\
 Den mänskliga cellen har omkring \mbox{20\,000} proteinkodande gener.
 Antalet möjliga interaktioner mellan dem är \mbox{400\,000\,000}.
-Inkluderar vi molekyler som kommer utifrån cellen och de olika steg som en gen kan uttryckas i och därför regleras på ökar snabbt detta tal i storlek.
+Inkluderar vi molekyler som kommer utifrån cellen och de olika steg som en gen kan uttryckas i och därför regleras på, ökar snabbt detta tal i storlek.
 Att studera alla komponenter i detalj är inte enkelt och att sedan kunna ge en informativ bild av hur systemet fungerar när komponenterna interagerar med varandra är än mer svårforcerat.
 
 # Systembiologiskt tillvägagångsätt
 Verktygen och teorierna från systembiologin är framtagna och utvecklade för att kunna generera kunskap under de här förutsättningarna.
-Både att kunna rekonstruera och skapa modeller av interaktionerna, så kallade genreglernätverk
-och att kunna dra hållbara slutsatser och få en mekanistisk förståelse om det underliggande biologiska systemet, faller under systembiologins forskningsfält.
+Både att kunna rekonstruera och skapa modeller av interaktionerna, så kallade genreglernätverk,
+och att kunna dra hållbara slutsatser samt få en mekanistisk förståelse om det underliggande biologiska systemet, faller inom systembiologins forskningsfält.
 
 # Experiment
 För att kunna skapa genreglernätverk krävs experiment designade för att kunna generera modeller av genreglernätverk.
-Vi måste kunna mäta koncentrationen av flera specifika biologiska molekyler, så som mRNA och protein, samtidig och med hög precision.
+Vi måste kunna mäta koncentrationen av flera specifika biologiska molekyler, såsom mRNA och protein, samtidig och med hög precision.
 Beroende på vad vi mäter får vi olika sätt att se hur mycket en gen är uttryckt.
 För att kunna generera nätverk där vi vet vilken gen som påverkar vilken annan gen krävs att vi utför specifika störningar på cellen som cellen måste svara på.
 Hur cellen svarar är en konsekvens av hur cellens reglernätverk är uppbyggt.
 Att skapa sådan data är inte trivialt och medför flera problem när målet är att kunna rekonstruera ett nätverk som kan beskriva de underliggande funktionerna och interaktionerna som cellen utför.
-Data av den här typen har ofta högt brus som gör att de förändringar som cellen gör i svar på våra störningar inte går att observera helt tydligt.
+Data av den här typen är ofta brusigt vilket gör att de förändringar som cellen gör i svar på våra störningar inte går att observera helt tydligt.
 Systemets uppbyggnad och brus är exempel på egenskaper som datan och även systemet vi tittar på har.
 Det vi vill veta är till exempel hur mycket brus och mätfel vi ska ta hänsyn till och hur cellens genreglernätverk påverkar våra mätningar.
-Den här typ av data är den typ som måste användas för att kunna konstruera modeller för genreglernätverk i celler.
+Den här typen av data är den typ som behövs för att kunna konstruera modeller för genreglernätverk i celler.
 
 # Mitt bidrag
-Arbetet som är underlag för denna avhandling fokuserar på de begränsningar som egenskaperna hos data och egenskaper hos systemet vi observerar ger när vi försöker ta fram en modell av cellens genreglernätverk.
-Dessutom tittar vi på hur det påverkar hur bra vi kan förvänta oss att olika metoder kommer vara på att återskapa interaktioner mellan generna.
+Arbetet som är underlag för denna avhandling fokuserar på de begränsningar som egenskaperna hos data och hos systemet vi observerar, ger när vi försöker ta fram en modell av cellens genreglernätverk.
+Dessutom tittar vi på hur egenskaperna hos datan påverkar hur bra vi kan förvänta oss att olika metoder kommer vara på att återskapa interaktioner mellan generna.
 \\
 Vi tittar också på vad vi måste ta hänsyn till för att olika metoder ska prestera så bra som möjligt och vilka egenskaper som avgör detta.
-För att kunna avgöra hur egenskaperna påverkar prestandan hos metoderna som används, behöver vi också veta vilka egenskaper som är viktiga att titta på, vilket är det andra viktiga bidraget som behandlas i underlaget till denna avhandling.
+För att kunna avgöra hur egenskaperna påverkar prestandan hos metoderna som används, behöver vi också veta vilka egenskaper som är viktiga att studera. Detta är det andra viktiga bidraget som behandlas i underlaget till denna avhandling.
 Vi visar att specifika egenskaper som vi kan mäta kan leda till slutsatser om hur vi ska analysera den tillgängliga datan.
 \\
-Det tredje bidraget försöker svara på frågan om det går att inkludera information och evidens som framtagits på annat håll för att öka effektivitet hos metoderna som används.
-Här demonstrerar vi att för data av låg kvallite kan inkludering av evidens av annat slag hjälpa för att rekonstruera genreglernätvker.
+Det tredje bidraget försöker svara på frågan om det går att inkludera information och evidens som framtagits med annan data för att öka effektiviteten hos metoderna som används.
+Här demonstrerar vi att för data av låg kvallite kan inkludering av evidens av annat slag öka effektiviteten hos metoderna.
 \\
-Slutligen så delar vi med oss av de lösningar som tagits fram under tiden vi studerat och löst olika problem genom ett mjukvarupaket i förhoppningen att den kan vara användbar för andra och visar på specifika analysmetoder som borde ingå när man försöker modellera gennätverk.
+Slutligen delar vi med oss av de lösningar som tagits fram under tiden vi studerat och löst olika problem genom ett mjukvarupaket i förhoppningen att det kan vara användbart för andra och visar på specifika analysmetoder som borde ingå när man försöker modellera gennätverk.
 #+LATEX: \selectlanguage{english}
 
 * Glossaries                                               :notitle:noexport:
