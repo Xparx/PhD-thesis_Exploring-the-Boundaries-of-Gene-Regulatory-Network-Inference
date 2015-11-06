@@ -1,4 +1,4 @@
-# Time-stamp: <2015-11-05 22:42:03 andreas>
+# Time-stamp: <2015-11-06 03:07:18 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -364,19 +364,19 @@ This is especially important because assumptions of the representation have the 
 A mathematical description of a system is \eg
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:system}
-  \Psi(\btheta,\bxi) = 0
+  \Psi(\bphi_j,\bxi) = 0
 \end{equation}
 #+end_src
 \noindent
-for a multivariate problem, where $\btheta$ is the model parameters of the model and $\Psi$ is the function that connects the independent variables $\btheta$,
-to the dependent variables, $\bxi$[[citep:Aster2005]].
+for a multivariate problem, where $\btheta$ is the model parameters of the model and $\Psi$ is the function that connects the independent variables $\bphi_j$,
+to the dependent variables, $\bxi$ [[citep:Aster2005]].
 # For a discrete linear system ([[ref:eq:system]]) becomes a set of equations to be solved
 For example, the commonly used linear mapping is of the form
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:sys_equ}
-  \mPsi\btheta = \bxi
+  \mPhi\btheta = \bxi
 \end{equation}
-Here independent variables $\phi_{ij}$ are mapped by the parameters $\btheta_j$ to the dependant variables $\xi_i$.
+Here independent variables $\phi_{ij}$ are mapped by the parameters $\btheta$ to the dependant variables $\xi_i$.
 For $n=3$ variables and $m$ data points recorded, this becomes
 \begin{equation}
   \begin{bmatrix}
@@ -403,12 +403,12 @@ A dynamical system describes a set of variables behaviour over time.
 A popular method of describing evolving systems is the [[gls:ode]] model, which relates the state of the system to its rate of instantaneous change
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:ode}
-  \dot{\bx} = f(\bx,\bu,\bupsilon,t)
+  \dot{\bx} = f(\bx,\bp,\bupsilon,t)
 \end{equation}
 #+end_src
 #+LATEX: \noindent
 where $\dot{\bx}$ is the rate of change of the states $\bx$ representing some measurable quantity, in the context of [[glspl:grn]] this is typically mRNA expression or protein abundance.
-$\bu$ is any input to the system, henceforth called perturbation, and $\bupsilon$ is stochastic effects, or noise affecting the evolution of the system. $f$ may be any function and $t$ the time.
+$\bp$ is any input to the system, henceforth called perturbation, and $\bupsilon$ is stochastic effects, or noise affecting the evolution of the system. $f$ may be any function and $t$ the time.
 Now
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:ode-output}
@@ -434,13 +434,12 @@ Feedback has been shown to help describe the behaviour of bacterial chemotaxis [
 :END:
 
 [[Glspl:ss]] are defined when the rate of change $\dot{\bx} = 0 \equiv f(\bx_0,\bp,T)$ in ([[ref:eq:ode]]).
-The nature of the [[gls:ss]] can be elucidated by analysing the system $f(\bx_0,\bp,T) = 0$., with $T$ being a time when the system is in [[gls:ss]] and $\bx_0$ is the state of the system at [[gls:ss]].
+The nature of the [[gls:ss]] can be elucidated by analysing the system in the vicinity of $f(\bx_0,\bp,T) = 0$, with $T$ being a time when the system is in [[gls:ss]] and $\bx_0$ is the state of the system at [[gls:ss]].
 The solution to the system of equations for $\bx_0$ in multivariate analysis, is the [[gls:ss]].
 For the system $f(\bx_0) = 0$ we can calculate the jacobian, $J$, the partial derivatives of $f$ over the states $\bx$.
 The nature of the [[glspl:ss]] can then be derived from the eigenvalues of $J$ for linear time invariant systems such as the ones studied here.
-If the real part of all eigenvalues are negative, then the system trajectories will converge to a stable state.
-If any real part is positive an unstable trajectory exists for that state variable that will make the system unstable.
-An unstable system will not converge to a stable state where $\dot{\bx} = 0$.
+If the real part of all eigenvalues are negative, then the system trajectories will converge to a stable state if placed in the vicinity of that state.
+If any real part is positive an unstable trajectory exists for that state and the system will diverge if placed in the vicinity of that state and will not converge to a stable state where $\dot{\bx} = 0$.
 For a linear system ([[ref:eq:linearsys]]) the solution of $f(\bx_0) = 0$ is always unique, meaning only one [[gls:ss]] exists for any linear system.
 The eigenvalues of $J$ might reveal that this is an unstable [[gls:ss]] and the system will diverge away from this state [[citep:Khalil1996]].
 
@@ -448,7 +447,7 @@ Non-linear systems might have more complex descriptions of the function $f(\bx_0
 This means that the system has multiple [[glspl:ss]], where some might correspond to converging states, while others might be unstable [[gls:ss]]. Here, \emph{unstable} means that the system will naturally diverge from its [[gls:ss]] when small perturbations are introduced.
 This way of determining the behaviour of the [[gls:ss]] does not generalise to all non-linear systems, but can be used for those that can be linearised around the [[gls:ss]] [[citep:Khalil1996]].
 
-The stable [[gls:ss]] property has been incorporated in algorithms [[citep:Zavlanos2011]] and when collecting data [[citep:Gardner2003]] for inferring [[gls:grn]].
+The stability property has been incorporated in algorithms [[citep:Zavlanos2011]] and when collecting data [[citep:Gardner2003]] for inferring [[gls:grn]].
 The assumption is that if biological systems would not be stable,
 even random variations would eventually accumulate within the system leading to a system collapse[[citep:Kremling2007]].
 
@@ -476,7 +475,7 @@ The following section will detail an example of two types of systems, a non-line
 
 \noindent
 Figure [[ref:fig:two-gene-feedback]] is the graphical, or network, representation of a two gene mutually regulating [[gls:fbl]].
-We can mathematically describe this system as an [[gls:ode]],
+We can mathematically describe this system as a system of first-order [[glspl:ode]],
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback-general}
   \begin{array}{lcr}
@@ -489,9 +488,9 @@ We can mathematically describe this system as an [[gls:ode]],
 $f_{G_{*}}$ is a function of choice that are chosen based on modelling assumption or purpose and could be different for different interactions.
 The parameters of model are $a_{11},a_{12},a_{21}, a_{22}$, $\alpha_1$ and $\alpha_2$.
 Any other parameters in the functions $f$ are represented by $\bK_i$.
-The state of the system is $x_1$ and $x_2$ represents some quantity related to the gene $G_1$ and $G_2$ respectively.
+The states of the system is $x_1$ and $x_2$ represents some quantity related to the gene $G_1$ and $G_2$ respectively.
 
-To simplify somewhat, lets look at activating [[gls:fbl]] with degradation only and make $f(G)$ independent of the model parameters $a_{ij}$ and $\alpha_i$, then
+To simplify somewhat, lets look an activating [[gls:fbl]] with degradation without autoregulation and make $f(G)$ independent of the model parameters $a_{ij}$ and $\alpha_i$, then
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback}
   \begin{array}{lcr}
@@ -503,7 +502,7 @@ To simplify somewhat, lets look at activating [[gls:fbl]] with degradation only 
 \noindent
 The degradation is here explicitly modelled as a linear effect on the measured quantity representing the gene itself.
 The rate of degradation is considered as decay of $x_i$ and captured in the parameter $\alpha_i$.
-If we incorporated auto-regulation in the model, meaning that \eg $G_1$ would through its gene products regulate its on expression we would need to incorporated the parameter $a_{11}$.
+If we incorporated autoregulation in the model, meaning that \eg $G_1$ would regulate its own expression, with its gene products, we would need to incorporate the parameter $a_{11}$.
 
 Now we can look at some properties of this system.
 First lets look at [[gls:ss]].
@@ -532,16 +531,16 @@ The eigenvalues are calculated by finding the $\lambda$ of
 \begin{array}{c}
   |J - \lambda \bI| = 0\\
   \\
-  (-\alpha_1 - \lambda)(-\alpha_2 - \lambda) - (a_{12} f^\prime_{x_1}(x_2)) (a_{21} f^\prime_{x_2}(x_1)) = 0\\
+  (-\alpha_1 - \lambda)(-\alpha_2 - \lambda) - (a_{12} f^\prime_{G_1}(x_2)) (a_{21} f^\prime_{G_2}(x_1)) = 0\\
 \end{array}
 \end{equation}
 #+end_src
 #+LATEX: \noindent
 where $|.|$ is the determinant and $\bI$ is the identity matrix.
 This will evaluate to a quadratic function with two solutions for $\lambda$, one for each eigenvalue.
-The eigenvalues are evaluated at the [[gls:ss]], so that $f^\prime_{x_1}(x_2)$ and $f^\prime_{x_2}(x_1)$ are evaluated at the steady state [[citep:Morris2004]].
+The eigenvalues are evaluated at the [[gls:ss]], so that $f^\prime_{G_1}(x_2)$ and $f^\prime_{G_2}(x_1)$ are evaluated at the steady state [[citep:Morris2004]].
 
-Lets consider the case where $f_x$ is the linear function for both $G_1$ and $G_2$.
+Lets consider the case where $f_G$ is the linear function for both $G_1$ and $G_2$.
 Then ([[ref:eq:feedback]]) will have four parameters $a_{12},a_{21}$ and $\alpha_1,\alpha_2$ and the [[gls:ss]] would look like
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback-linear-ss}
@@ -662,8 +661,7 @@ Hierarchical analysis of system dynamics have been used to reduce dimensionality
 Time scale separation is implicated as being a cause of an interampatte behaviour of a system [[citep:Nordling2009]].
 
 Time scale separation is sometimes a motivation for model reduction to facilitate a simpler model representation.
-When the time constants and associated dynamics can be viewed as the system operating in different time scales
-faster modes than the observed in the window under observation can be considered as [[gls:ss]] and slower modes can be discarded as they are then independent of any changes in the time window [[citep:Kremling2007]].
+When the time constants and associated dynamics can be viewed as the system operating in different time scales faster modes than the ones under observation can be considered as [[gls:ss]] and slower modes can be discarded as they are then independent of any changes in the time window [[citep:Kremling2007]].
 # [[citep:He2009]] Discusses experimental design section 5.
 
 **** Interampatte systems
@@ -671,7 +669,7 @@ faster modes than the observed in the window under observation can be considered
 :CUSTOM_ID: sec:iaa
 :END:
 
-Interampatteness is a property of biochemical networks that can be recognised by a high correlated response to system perturbations [[citep:Nordling2009]].
+Interampatteness is a property of biochemical networks that can be recognised by a highly correlated response to system perturbations [[citep:Nordling2009]].
 The degree of interampatteness can for liner systems be calculated as the condition number of the static gain matrix.
 #+begin_src latex :exports results :results latex
 \begin{equation}
@@ -690,30 +688,28 @@ The corresponding estimated interampatteness degree was $\kappa = 215$ and $\kap
 # Check these numbers
 
 Considering the inverse problem (section [[ref:sec:inverse-problem]]) it is known that the smallest signals in the system has the largest effect on the solution when trying to recover the system.
-The smallest signal is often the one most susceptible to be influenced of noise and by extension it is the weak point of the inference.
-The perturbation design should counteract the interampatteness of the system under investigation as some responses could be masked by attenuation effects and interactions unable to be inferred reliably.
+The smallest signal is often the one most susceptible to noise corruption and by extension is the weak point of the inference.
+The perturbation design should counteract the interampatteness of the system under investigation as some responses could be masked by attenuation effects.
 
 ** Systems biology
 :PROPERTIES:
 :CUSTOM_ID: sec:system-biology
 :END:
 
-Systems biology aims to find a descriptions of biological systems that takes in to account the complex interactions that are typically found within \eg the cellular regulatory network.
-A problem sought to be solved by a systems biology approach is to give an qualitative and quantitative understanding of the biological systems as a whole. Sub-problems concerning finding the behaviour and structure of regulatory networks need to be solved and taken in to account to reach this understanding.
+Systems biology aims to find descriptions of biological systems that takes in to account the complex interactions that are typically found within \eg the cellular regulatory network.
+A problem sought to be solved by a systems biology approach is to give a qualitative and quantitative understanding of the biological systems as a whole. Sub-problems concerning finding the behaviour and structure of regulatory networks need to be solved and taken in to account to reach this understanding.
 
 The primary step to achieve this is to infer the structure of the network.
 This involves what is commonly known as a "top down" approach, contrasting the "bottom up" approach that traditionally means investigating singular regulatory interactions or the specific properties of a biomolecule.
 When most of the specific details of the biochemical reactions are known then a "bottoms up" approach can be appropriate to build up a view of the system and investigate emergent behaviour not observed or easily inferred from the parts of the system [[citep:Kremling2007]].
-
 This section will focus on a part of systems biology, namely the inference of causal network models describing \acrfullpl{grn}.
-
-First a brief overview of different model formalism, second a more focused in depth view of linear dynamical models and third its application to network inference of [[glspl:grn]].
+First a brief overview of different model formalism will be given, second a more focused in depth view of linear dynamical models, and third its application to network inference of [[glspl:grn]].
 
 *** Model formalism
 :PROPERTIES:
 :CUSTOM_ID: sec:model-formalism
 :END:
-As described in section [[ref:sec:system-description]] we can describe a system generally as [[ref:eq:system]].
+As described in section [[ref:sec:system-description]] we can describe a system generally as ([[ref:eq:system]]).
 Depending on the transfer function and response we can describe several different types of systems regularly used in systems biology.
 A whole slew of different approaches have been developed or adapted for network inference of [[glspl:grn]].
 
@@ -735,18 +731,20 @@ This means that the expression of each gene needs to be discretised to determine
   \bx(t+1) = f^B(\bx(t))
 \end{equation}
 #+end_src
+\noindent
 where $f^B$ is a boolean function and $\bx(t+1)$ is the state  (=ON= / =OFF=) of the state variables at time $t+1$ as a function of the state, $\bx$ at time $t$.
 #
 
 Bayesian models are models based on conditional probabilities.
 Due to the nature of conditional probabilities the bayesian model can not handle [[glspl:fbl]].
-To be able model [[glspl:grn]] with feedback one needs to extend the bayesian model to the dynamic bayesian models.
+To be able to model [[glspl:grn]] with feedback one need to extend the bayesian model to the dynamic bayesian models.
 The Bayesian network is modelled with conditional probabilities
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:bayesian-model}
   \Prob(X_i=x_i|X_j=x_j) = f(x_i|x_j)
 \end{equation}
 #+end_src
+\noindent
 where $x$ represent the specific value of the random variable $X$.
 For a network one would evaluate the probability of a structure of relationships.
 Each network model would then be a product of conditional probabilities based on the structure of the network.
@@ -817,7 +815,7 @@ For [[gls:ssd]] we can simplify ([[ref:eq:linearsys]]) to
 #+end_src
 #+LATEX: \noindent
 in matrix notation, when the set of experiments are considered.
-$\mY$ is the observed [[gls:ss]] response matrix after applying the perturbations $\mP$, and $\mA$ is the network represented as a matrix where each element defines an interaction.
+$\mY$ is the observed [[gls:ss]] response matrix with measurement error $\mE$, after applying the perturbations $\mP$ differing from the true perturbation by the noise $\mF$, and $\mA$ is the network represented as a matrix where each element represent an interaction.
 Linear systems with steady state data have been used in several network inference projects [[citep:Tegner2003,Gardner2003,Julius2009]].
 
 **** Least squares estimate and prediction error
@@ -837,7 +835,7 @@ To fit the data one wants to find the parameters of the model that minimises the
 This can be expressed with the following equation,
 #+begin_src latex :exports results :results latex
 \begin{equation}
-  \hat{\mA} = \arg \min_{\mA} ||\mA (\mY-\mE)+(\mP-\mF)||_{L_2}^2
+  \hat{\mA} = \arg \min_{\mA} ||\mA \mY + \mP||_{L_2}^2
   \label{eq:ols_L2}
 \end{equation}
 #+end_src
@@ -847,7 +845,7 @@ If the noise in $\mF$ and $\mE$ are \iid and normally distributed, $\normall$ wi
 Equation ([[ref:eq:ols_L2]]) is sensitive to outliers due to the nature of the 2-norm, $\norm{.}_2$ and it might be favourable to introduce the 1-norm instead
 #+begin_src latex :exports results :results latex
 \begin{equation}
-  \hat{\mA} = \arg \min_{\mA} ||\mA (\mY-\mE)+(\mP-\mF)||_{L_1}
+  \hat{\mA} = \arg \min_{\mA} ||\mA \mY + \mP||_{L_1}
   \label{eq:ols_L1}
 \end{equation}
 #+end_src
@@ -864,20 +862,20 @@ Meaning that one can search for the optimal solution by finding the peace-wise o
 
 # Also comment on that biological systems are usually considered stable [[ref:sec:ss]]
 
-[[citet:Gardner2005]] separated two types of network inference types, the first or "physical" approach aims at construction the transcriptional regulatory network directly, \ie to determine the physical binding of one transcription factor to another. This strategy concerns itself with direct chemical bonding interactions.
+[[citet:Gardner2005]] separated two types of network inference types, the first or "physical" approach aims at constructing the transcriptional regulatory network directly, \ie to determine the physical binding of one transcription factor to another. This strategy concerns itself with direct chemical bonding interactions.
 In some cases however, it may be that an intermediate step is not observed and no direct binding occurs even though a change based on influence can be observed.
 The second approach is the influence strategy.
 For this approach the regulatory influences are sought rather than physical bindings.
 
-As one of the primary objectives of network inference is to find the regulatory interactions, network inference is primarily a model identification problem and not a parameter estimation problem.
+As one of the primary objectives of network inference is to find the regulatory interactions, network inference is primarily a model selection problem and not a parameter estimation problem.
 However, this line is sometimes blurred with the introduction of algorithms, such as \lasso [[citep:Tibshirani1996]], which both estimate parameters and return a selection of candidate models (see: [[ref:sec:linear_penalty]]).
 
 Several studies have employed a linear dynamical systems framework.
 [[citet:Gardner2003]] used a linear model, motivated by linearisation of a nonlinear model around a [[gls:ss]].
 Furthermore data was recorded with a [[gls:ss]] assumption on the measured mRNA expression data for 9 genes in the SOS pathway in \coli. A linear regression method was then used to estimate model parameters for an exhaustive search of subsets of interactors for each gene in the network.
 
-A core mechanism to be able to infer a casual influence network from [[gls:ssd]] and a linear dynamical system, section [[ref:sec:linear_models]], is that specific perturbations are made to each gene that is going to be included in the network.
-This is the case for [[gls:tsd]] as well with the difference being that for [[gls:tsd]] only a single perturbation needs to be made, and it does not necessarily need to be kept constant until the system relaxes to a [[gls:ss]] [[citep:Dhaeseleer1999]].
+A necessary condition to be able to infer a casual influence network from [[gls:ssd]] and a linear dynamical system, section [[ref:sec:linear_models]], is that specific perturbations are made to each gene that is going to be included in the network.
+This is the case for [[gls:tsd]] as well with the difference being that for [[gls:tsd]] a single perturbation might be sufficient, and it does not necessarily need to be kept constant until the system relaxes to a [[gls:ss]] [[citep:Dhaeseleer1999]].
 
 # Parameter estimation [[citep:Aster2005]]
 #
@@ -888,23 +886,22 @@ This is the case for [[gls:tsd]] as well with the difference being that for [[gl
 :CUSTOM_ID: sec:linear_penalty
 :END:
 
-Based on equation ([[ref:eq:ols_L2]]) and ([[ref:eq:ols_L1]]) we can see that the estimate of $\check{\mA}_{ols}$ contains contributions from the noise matrices $\mE$ and $\mF$, even when assuming that the independent variable is noise free, $\mF=0$, we still have to deal with a noisy expression matrix $\check{\mY}$.
-The result of fitting the data with a noisy $\check{\mY}$, is that the estimated model $\mA_{ols}$ tends to be overfitted, meaning that the parameters of the model fits the noise.
+Based on equation ([[ref:eq:ols_L2]]) and ([[ref:eq:ols_L1]]) we can see that the estimate of $\tilde{\mA}_{ols}$ contains contributions from the noise matrices $\mE$ and $\mF$, even when assuming that the independent variable is noise free, $\mF=0$, we still have to deal with a noisy expression matrix $\tilde{\mY}$.
+The result of fitting the data with a noisy $\tilde{\mY}$, is that the estimated model $\mA_{ols}$ tends to be overfitted, meaning that the parameters of the model fits the noise.
 This has the consequence that the model fitted to the data does not generalise well to other data with different noise realisations.
 For network inference it means that a link can be inferred in the network compensating for the effect of noise.
 A network like that is hard to interpret as it usually depicts every gene interacting with every other gene [[citep:Hastie2009]].
 An approach to dealing with overfitting is to introduce a penalty term to the model fitting,
 #+begin_src latex :exports results :results latex
 \begin{equation}
-  \hat{\mA}_{\textrm{reg}}(\tilde{\zeta}) = \arg \min_{\mA} ||\bA \bY+\bP||_{L_2}^2 + \zeta||\bA||_{L_2} .
+  \hat{\mA}_{\textrm{reg}}(\tilde{\zeta}) = \arg \min_{\mA} ||\bA \bY+\bP||_{L_2}^2 + \zeta||\bA||_{L_2}
   \label{eq:ridge-regression}
 \end{equation}
 #+end_src
 #+LATEX: \noindent
 with $\zeta$ corresponding to a parameter that regulates the impact of the penalty term on the ordinary least squares estimate.
 The penalty term $\zeta||\bA||_{L_2}$ penalises the model parameters squared size. This has a result that large parameters will be penalised more than smaller.
-This approach smooths the parameters of the models and as a consequence performs well on ill-conditioned problems.
-However it does not eliminate model parameters well.
+This approach smooths the parameters of the models, however it does not eliminate model parameters well.
 
 \lasso is another penalty method [[citep:Tibshirani1996]].
 The lasso problem can be written as,
@@ -918,9 +915,9 @@ The lasso problem can be written as,
 The \lasso penalises the absolute size of model parameters.
 The difference from the ridge-regression is that \lasso produces different models depending on the penalty parameter \(\zeta\) [[citep:Ng2004]].
 The \lasso has the property that it combines model selection with parameter estimation.
-Due to this property \lasso has become very popular and a lot of work has been done on investigating the performance, such as its weakness on ill-conditioned data and make modifications of \lasso [[citep:Fan2001,Zhao2006,Candes2009,Jia2012]].
+Due to this property \lasso has become very popular and a lot of work has been done on investigating the performance, such as its weakness on ill-conditioned data [[citep:Fan2001,Zhao2006,Candes2009,Jia2012]].
 
-As ridge-regression does not suffer from the same weakness as \lasso, an effort to combine both of these penalties called /elastic-net/ has been made.
+As ridge-regression does not suffer the same weaknesses as \lasso, an effort to combine both of these penalties called /elastic-net/ has been made.
 The Elastic-net [[citep:Zou2005]] method combines the $L_1$ penalty from \lasso and the $L_2$ penalty from ridge regression. The influence of the penalties are then weighted by a parameter $\alpha$ such that,
 #+begin_src latex :exports results :results latex
 \begin{equation}
@@ -929,10 +926,9 @@ The Elastic-net [[citep:Zou2005]] method combines the $L_1$ penalty from \lasso 
 \end{equation}
 #+end_src
 where $C=||\bA \bY+\bP||_{L_2}^2$.
-The elasic-net been shown to be beneficial when compared to other algorithms to infer [[glspl:grn]] [[citep:Gustafsson2010]].
+The elasic-net has been shown to be beneficial when compared to other algorithms to infer [[glspl:grn]] [[citep:Gustafsson2010]].
 
-citet:Zou2006 extended the \lasso with the adaptive \lasso algorithm, which introduce a weighting term for each model parameter that, if picked carefully, will overcome the shortcomings of \lasso.
-The weights should be based on properties of the data and picked carefully.
+citet:Zou2006 extended the \lasso with the adaptive \lasso algorithm, which introduce a weighting term for each model parameter. These weights should be picked carefully and based on properties of the data, and should in theory be able to overcome the shortcomings of \lasso.
 
 In [[citep:Julius2009]] a structural constraint was introduced to the \lasso penalty derived from /a priori/ knowledge where structure could be specified as being there or not there, positive or negative or uncertain.
 An additional constraint was introduced by [[citet:Zavlanos2011]] where the stability of the inferred network was ensured.
@@ -1038,12 +1034,10 @@ $\lambda(\mY)$ is the variance of the noise or measurement error of $\mY$.
 # discrete inverse problem = parameter estimation problem NOT model identification problem. (maybe only indirectly)
 
 ** Network inference -- community efforts
-Network inference have amassed a collection of tools from various scientific disciplines.
-A scientifically diverse group of individuals constitutes the network inference community.
+The field of network inference has amassed a collection of tools from various scientific disciplines and a scientifically diverse group of individuals constitutes the network inference community.
 
 In this section I will describe some of the efforts,
-resources and approaches that has been built around this research field and how they are connected.
-I will also give detail a reference list of different tools that have been developed in the systems biology field.
+resources and approaches that has been built around this research field and how they are connected, as well as giving a reference list of different tools that have been developed in the systems biology field.
 
 *** Benchmarks
 Benchmarking can be used as a tool for evaluating the performance of algorithms or methods trying to solve specific problems.
@@ -1055,7 +1049,7 @@ These benchmarks have the aim of exploring the performance of methods tested und
 
 Two classes of data are often collected in relation to [[gls:grn]] inference, [[gls:ssd]] and [[gls:tsd]]. Different assumptions follow these different data types.
 For [[gls:ssd]] one needs to measure and perturb every gene to be included in the inferred network, see ([[ref:eq:linearsys]]).
-For [[gls:tsd]] not all genes needs to be perturbed but enough data needs to capture the regulatory effects in short an long term [[citep:Hecker2009]].
+For [[gls:tsd]] not all genes needs to be perturbed but enough data needs to capture the regulatory effects in short and long term [[citep:Hecker2009]].
 
 One can focus on one of these data types when benchmarking algorithms \eg [[gls:tsd]] citep:Ward2009,Narendra2011 or mix different approaches that use both types of data [[citep:Bansal2007,Penfold2011]]. The advantage of mixing data is that one can evaluate if any data approach is more informative and if any method approach are to be preferred. The advantage of not mixing data types is that one can more easily isolate specific factors that can influence a specific algorithms performance for a specific data type.
 
@@ -1071,9 +1065,9 @@ The challenges present a mix of [[gls:insilico]] and [[gls:invivo]] data and wit
 # May be add more examples than one.
 
 Another core part of any benchmark is how to evaluate the performance of an algorithm being tested and evaluating strengths and weaknesses of methods and approaches.
-As a primary aim of network inference is to find the regulatory structure of the [[gls:grn]] one usually tests for if an algorithm can distinguish between [[gls:tp]], [[gls:fp]], [[gls:tn]] and [[gls:fn]],
+As a primary aim of network inference is to find the regulatory structure of the [[gls:grn]] one usually tests [[gls:tp]], [[gls:fp]], [[gls:tn]] and [[gls:fn]],
 where positive represents a link and negative the absence of a link.
-True and false represent whether the classification an inference method has made of a whether or not a link should be present is true or false.
+True and false represent the classification an inference method has made if a link should be present or not given that it exist in the gold standard network.
 These measures are usually summarised in to a more easily interpretable form, such as a fraction of the measures that range between 0 and 1, \eg sensitivity $=\frac{TP}{TP+FN}$, precision $=\frac{TP}{TP+FP}$, specificity $=\frac{TN}{TN+FP}$ and negative prediction value $=\frac{TN}{TN+FN}$ [[citep:Bansal2007]].
 What one would like is a single number that represents the performance and is easily compared and understood. The  [[gls:auroc]] and the [[gls:aupr]] are used in many benchmarks, see for example,
 # Explain these more.
@@ -1102,7 +1096,7 @@ Networks with different structure and different number of motifs can be generate
 
 If some knowledge exists, even partial knowledge, one can incorporate this information to get more realistic data sets, such as known regulatory networks [[citep:Schaffter2011]].
 
-For [[gls:invivo]] generated data there is no need to worry about "realistic" models or experimental conditions, such as realistic noise models or system response patterns or network structure.
+For [[gls:invivo]] generated data the concern about "realistic" models or experimental conditions, such as realistic noise models, system response patterns or network structure are taken care of.
 Therefore it is desired to generate data in living systems even when testing methods.
 For these systems a gold standard network might not exist to estimate network inference performance.
 There has been several successful attempts of both data generation and inference including [[gls:invivo]] data and proposed true [[gls:grn]] [[citep:Gardner2003,Cantone2009,Lorenz2009]].
@@ -1116,7 +1110,7 @@ In addition to the scientific knowledge generated with these tools, they are the
 # [[citep:Schmidt2006]]
 # "Information technology in systems biology."
 In this section I will try to collect a number of different tools used in systems biology with the aim of helping with [[gls:grn]] inference.
-The tools needs to cover mainly three different areas.
+The tools cover mainly three different areas.
 (i) Algorithms and methods for inferring networks, which is the main area of tool development.
 Without them the goals of systems biology could not be reached.
 (ii) Data formats and communications.
@@ -1132,7 +1126,7 @@ The goal of the algorithm together with the modelling scheme is also listed.
 Table [[ref:tab:insilico_modelling]] lists a number of tools used for \insilico simulation and modelling.
 As detailed in section [[ref:sec:data_experiments]], the demand for testing the array of network inference methods is facilitated by tools that can generate simulated data and networks.
 
-Table [[ref:tab:system_communication]] lists tools and formats for sharing and communicating systems biological data and knowledge.
+Table [[ref:tab:system_communication]] lists tools and formats for sharing and communicating systems biology data and knowledge.
 
 #  [[citep:Bonneau2008]]
 
@@ -1245,9 +1239,9 @@ Table [[ref:tab:system_communication]] lists tools and formats for sharing and c
 :CUSTOM_ID: sec:paper1
 :END:
 
-Optimal model selection is as of yet an open problem.
+Optimal model selection is an open problem.
 How to properly choose a specific set of parameters for the network inference algorithms
-to determine the sparsity has not been solved and no optimal method has been put forward.
+to determine the optimal sparsity has not been solved.
 
 Some classical alternatives proposed are the [[gls:bic]] and [[gls:aic]], which both trade-off prediction and complexity to find an optimal model,
 as well as [[gls:cv]] and selection based on minimisation of the [[gls:rss]].
@@ -1256,10 +1250,9 @@ All these methods for model selection are motivated by the fact that data is rec
 The selection methods have been shown to perform well asymptotically with \eg the number of samples [[citep:Stoica2004]]
 
 In this paper we studied the effects on model selection when the data had a varying degree of information and few samples, typically no higher than twice the number of variables.
-Information in the data was defined based on the optimal performance of the inference method on the data when compared to a gold standard.
-If the performance matched the gold standard for the best model produced by the method, the data set would be considered informative.
+Information in the data was defined based on the optimal performance of the inference method [[gls:rni]] on the data when compared to the true network.
+If the performance matched the true network for the best model produced by the method, the data set would be considered informative.
 When the performance was nonoptimal, but better than random the data set was deemed partly informative, and if the performance was no better than random the data was labelled uninformative.
-We used a specific method, [[gls:rni]], to determine informativeness of the data.
 The informativeness was varied based on two factors, (i) the properties of the network and experimental design, (ii) the [[gls:snr]].
 
 The data used was generated [[gls:insilico]] as this had been utilised with success previously and been shown to be an good indication of how a method would perform on other data [[citep:Menendez2010,Bansal2007]].
@@ -1268,15 +1261,15 @@ We determined two additional steps that should be utilised when solving a networ
 First, we showed that to be able to utilise a leave out cross validation approach, or as we employ it here, a leave /one/ out cross optimisation (LOOCO), one needs to test for dependence of the sample on the rest of the data and only include the sample in the left out group if it is sufficiently described by the data that is going to be used to infer a network.
 The reason for this is that a network inferred from data with no information of a left out sample cannot make any predictions about that sample.
 Secondly we introduced a step of re-estimating the parameters returned from an inference algorithm.
-Here we argued that because the consequence of introducing a bias due to the penalty used in many inference methods,
-to be able to combine model selection and data fitting,
-the parameters of the model are not the maximum likelihood estimate anymore which may skew the [[gls:rss]] for the predictions.
+Here we argued that because of the penalty used in many inference methods,
+to combine model selection and data fitting,
+the parameters of the model are not the maximum likelihood estimates, which may skew the [[gls:rss]] for the predictions.
 The algorithm for re-estimating the parameters are a [[gls:cls]] algorithm.
 [[gls:cls]] preserves the structure of the network while refitting the parameters.
 We showed that if the data was uninformative we could not make a useful reliable model selection.
 If the data was partly informative or informative,
-the model selection based on the [[gls:rss]] would find the model that maximised the [[glspl:tp]], while minimising the [[glspl:fp]].
-Giving our selection method a bound where the minimum [[gls:rss]] would not be achieved when any [[gls:tp]] link would be removed.
+the model selection based on the [[gls:rss]] would find the model that minimised the [[glspl:fp]] conditioned on the [[glspl:tp]] being maximised.
+In practice, giving our selection method a boundery where the minimum [[gls:rss]] could only be achieved when all [[glspl:tp]] were present.
 
 *** Future perspective
 We showed that conceptually our approach worked.
@@ -1299,9 +1292,9 @@ We would expect, though, that we would pick the sparsest candidate with the argu
 
 In this paper we investigated if one could improve inference methods with the help of including prior information.
 
-It is often the case that when trying to solve a network inference problem within biology, that the data is under-determined.
+It is often the case that when trying to solve a network inference problem within biology, the data is under-determined.
 This means that a unique solution can not be found for regression models.
-It is also the case when dealing with biological data that the [[gls:snr]] is low, or that very few replicates have been recorded.
+It is also usually the case when dealing with biological data that the [[gls:snr]] is low, or that very few replicates have been recorded.
 
 In both these situations it may be beneficial to include prior information. In the first case, if we include prior structural knowledge of the regulatory interactions, we can constrain the problem to a subset of interactions so that it no longer becomes under-determined.
 In the second case we might have knowledge that we are confident about of which interactions are more likely to exist and that can help guide an inference method when the data is of poor quality.
@@ -1317,21 +1310,21 @@ Therefore, we opted for including the confidence of links as weights inversely p
 For example, if the confidence is low but the data indicates a strong link, both effects are traded against each other.
 By incorporating the associations as weights it gives the possibility of the data to speak as well.
 
-To test the performance of using a prior in to the network inference pipeline a number of different networks and [[gls:insilico]] data sets where generated.
-Two different models of system and data was used,
+To test the performance of using a prior in to the network inference pipeline a number of different networks and [[gls:insilico]] data sets were generated.
+Two different models of system and data were used,
 a linear system model and a non-linear system model [[citep:Schaffter2011]].
 
 Prior incorporation performance was tested by changing the prior accuracy.
-Accuracy was changed by controlling if the confidence for a true link was drawn from a distribution of low confidence associations and a negative link was drawn from a distribution of high confidence links.
+Accuracy of the prior was controlling how true links were drawn from distributions of low and high confidence associations.
 
 When the data was uninformative an improvement with the prior could be observed if the prior was more correct than not.
 For data generated with the linear model the prior needed on average to be more correct than for a non-linear model.
 This also scaled with the [[gls:snr]] of the data sets which in general was higher for the linear system vs non-linear.
 
-We also wanted to test the prior incorporation on real data and used a data collected from \yeast with the gold standard network collected from the Yestract database [[citep:Teixeira2013]].
+We also wanted to test the prior incorporation on real data and used a data collected from \yeast with the gold standard network collected from the Yeastract database [[citep:Teixeira2013]].
 To estimate the performance, we checked the overall performance for all models generated by the inference method.
 We did this to remove the factor of trying to pick the correct sparsity for the network inference method.
-An improvement with the prior could be observed over almost all sparsity levels with an emphasises on the sparser range of the spectrum where we would assume that the optimal network should be found.
+An improvement with the prior could be observed over almost all sparsity levels with an emphasis on the sparser range of the spectrum where we would assume that the optimal network should be found.
 
 *** Future perspective
 
@@ -1360,7 +1353,7 @@ The performance of these types of inference method have been investigated and be
 The issue with these results is that they are impractical in reality as we do not know the network structure beforehand and in some cases we would arrive at the wrong conclusions if we used the wrong network structure to calculate them.
 
 We show that a proxy for predicting the performance of an inference method is to investigate the properties of the data,
-specifically the condition number [[gls:k]] and the [[gls:snr]].
+specifically the [[gls:k]] and the [[gls:snr]].
 
 We use synthetic data to vary the properties of both network and [[gls:insilico]]  expression data.
 We constructed the data so that the properties ranged over known values of properties for real biological data sets.
@@ -1368,16 +1361,16 @@ The properties of the expression data is highly dependant on the network propert
 This is demonstrated with 3 different experimental designs.
 Two of the approaches could easily be employed in practise and show specifically that these designs made the data properties highly dependent on the network properties.
 The third approach would be more complex and costly to implement in practise and is aimed at minimising the [[gls:k]] for the expression matrix.
-It demonstrated clearly that de-coupling the data and network properties and tuning the input so that the data properties would approach more desired states would greatly enhance the performance of the inference and network construction.
+It demonstrated clearly that de-coupling the data and network properties and tuning the input so that the data properties would approach more desired states greatly enhanced the performance of the inference and network construction.
 
 While few real data set exists with sufficient data to quantify the properties used in this work and simultaneously have a reference regulatory network,
-we picked one data set derived from over expression experiment with three proposed regulatory networks derived experimentally.
-It was shown that by calculating the properties of the data one could predict the performance of the inference methods based on the [[gls:insilico]] data.
+we picked one data set derived from over expression experiments with three proposed regulatory networks derived experimentally.
+From the properties of the data we could reasonably well predict the performance of the inference methods, by comparing to the performance on the [[gls:insilico]] data.
 
 *** Future perspective
 One aspect that is rarely incorporated in [[gls:grn]] inference algorithms is the errors-in-variables aspect.
-Errors-in-variable models consider measurement errors in the independent variables as well as in the dependent variables.
-It is easy to imagine that not only does a perturbation experiment contain noise in the applied perturbation, but in the state of the system when the perturbation is applied as well, especially when studying the cell.
+Errors-in-variable models consider measurement errors perturbations, as well as in the measurements.
+It is easy to imagine that not only does a perturbation experiment contain noise in the measurement, but in the state of the system when the perturbation is applied as well.
 The effect of not considering measurement errors in the independent variables when an error exists has, as far as I know, not been studied within systems biology and [[gls:grn]] inference.
 
 Methods that incorporate [[gls:tls]], which considers errors in variables, opposed to [[gls:ls]] methods, are few and rarely used.
@@ -1390,19 +1383,18 @@ A study on the effect of this could give insight on how to approach this issue a
 :END:
 
 \gs is a software package developed in the computer language and environment [[citet:MATLAB2014]].
-The goal of \gs is to provide a simple interface for testing algorithms for network inference of [[glspl:grn]], as well as being able analyse data acquired from experiments to gain insight in to how to proceed with an investigation.
+The goal of \gs is to provide a simple interface for testing algorithms for network inference of [[glspl:grn]], as well as being able to analyse data acquired from experiments to gain insight into how to proceed with an investigation.
 
-In that sense \gs is two pronged in that it provides functionality for benchmarking network inference methods by generating artificial toy networks and simulating perturbation experiments on those networks and measure performance.
-\gs also provide functionality to analyse real world data and guide experimental design.
+\gs provides functionality for benchmarking network inference methods by generating artificial networks and simulating perturbation experiments on those networks and for measuring performance.
+\gs also provides functionality to analyse real world data and guide experimental design.
 These two concepts are tightly connected.
 Previous benchmark packages have often focused on generating complex models aimed at being as realistic as possible while simulating standard perturbation experiments, like single gene knockout or knockdown.
-However, it has been shown that network inference algorithms perform sub-optimal on data generated from simple models with noise levels similar to those found in real data.
+However, it has been shown that network inference algorithms perform poorly on data generated from simple models with noise levels similar to those found in real data.
 This problem is related to experimental design and can be investigated by using simpler models.
 
-Clearly the network inference community has vast knowledge of network properties.
 \gs takes the approach that it is as important to find out why network inference methods fail as it is creating realistic models.
 Models aimed at being realistic are usually very complex, meaning that it can be hard to elucidate or isolate variables that have a direct effect on the performance of the inference.
-It is also unclear if a more complex model gives qualitatively better simulations, where simpler models could not give insight.
+It is also unclear if a more complex model gives qualitatively better simulations, where simpler models do not give any insight.
 In the lab the researcher often has very little control over the network and network properties.
 However, the experimental design is under the researchers control to a larger extent than the hidden system under investigation.
 Therefore, it makes sense to also investigate what experiments give the most informative data.
@@ -1412,16 +1404,12 @@ This has been done to a large extent in the systems theory field, but it has not
 It is built on previous work and as such provides functionality to solve the problems encountered therein.
 
 *** Future perspective
-Due to the nature of software, there is always the possibility of extending even in the most minor details.
-As more and more research is incorporated in easily available software packages in languages that are free to use and acquire, it becomes a strong incentive to be fallible in those languages.
-\gs could easily, although one has to invest some time, be converted to a language like R or python and in so doing become more accessible to a wider scientific community.
-
-In a more practical sense, \gs could be extended to incorporate more variations of expression data \eg [[gls:tsd]] experiments.
+\gs could be extended to incorporate more variations of expression data \eg [[gls:tsd]] experiments.
 This kind of data is also available to the network inference community and suffer many of the same shortcomings as [[gls:ssd]] when considering experimental design toolboxes.
 
-Many functions of \gs are theoretically under development, such as optimal perturbation design, and therefore programmatically not optimally implemented.
-This is simply because the problem formulation is not finalised.
-Further work on how to formulate and implement different details of experimental designs and error estimation of both input and output variables and incorporating that in to \gs is on the TODO list  for the software package.
+Many functions of \gs are under development, such as optimal perturbation design, and therefore programmatically not optimally implemented.
+This is partly because the problem formulation is not finalised.
+Further work on how to formulate and implement different details of experimental designs and error estimation of both input and output variables and incorporating that in to \gs is on the TODO list for the software package.
 
 * Backmatter                                                        :notitle:
 #+LATEX: \backmatterSU
