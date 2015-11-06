@@ -1,4 +1,4 @@
-# Time-stamp: <2015-11-06 03:07:18 andreas>
+# Time-stamp: <2015-11-06 06:24:36 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -57,13 +57,13 @@ Distributor: Department of Biochemistry and Biophysics % name of department
 
 * Abstract                                                          :notitle:
 #+begin_abstracts
-To understand how the components of a complex system like the biological cell interact and regulate each other, we need to collect data for how the components respond to system perturbations.
+To understand how the components of a complex system like a living cell interact and regulate each other, we need to collect data about how the components respond to system perturbations.
 Such data can then be used to solve the inverse problem of inferring a network that describes how the pieces influence each other.
-The work in this thesis deals with modelling the cell regulatory system, often represented as a network, with tools and concepts derived from systems biology.
+The work in this thesis concerns modelling of the regulatory system of a cell, often represented as a network. Common tools and concepts in systems biology are used.
 
 The first investigation focuses on network sparsity and algorithmic
 biases introduced by penalised network inference procedures.
-Many contemporary network inference methods rely on a sparsity parameter
+Many contemporary network inference methods rely on a sparsity parameter,
 such as the $L_1$ penalty term used in the \lasso.
 However, a poor choice of the sparsity parameter can give highly incorrect network estimates.
 In order to avoid such poor choices,
@@ -73,18 +73,18 @@ We showed that it is effective on \insilico data sets with a reasonable level of
 informativeness and demonstrated that accurate prediction of network
 sparsity is key to elucidate the correct network parameters.
 
-The second investigation focuses on how knowledge from association networks can be transferred to regulatory network inference procedures.
-It is common that the quality of expression data is inadequate for reliable [[gls:grn]] inference.
+The second investigation focuses on how knowledge from association networks can be used in regulatory network inference procedures.
+The quality of expression data is typically inadequate for reliable [[gls:grn]] inference.
 Therefore, we constructed an algorithm to incorporate prior knowledge and demonstrated that it increases the accuracy of network inference when the quality of the data is low.
 
 The third investigation aimed to understand the influence of system and data properties on network inference accuracy.
-$L_1$ regularisation methods commonly produce poor network estimates when the data used for inference is ill-conditioned,
-even when the signal to noise ratio is so high that all links in the network can be proven to exist for the given significance.
-In this study we elucidated some general principles for under what conditions we expect strongly degraded accuracy.
-Moreover, it allowed us to estimate expected accuracy from conditions of simulated data, which was used to predict the performance of inference algorithms on biological data.
+$L_1$ regularisation methods commonly produce poor network estimates when the data is ill-conditioned,
+even when the signal to noise ratio is so high that all links in the network can be proven to exist at the common significance level of 0.01.
+In this study we elucidated general principles about the conditions for which we expect degraded accuracy.
+Moreover, it allowed us to estimate the expected accuracy from observable properties of simulated data, that can be used to predict the performance of inference algorithms on biological data.
 
 Finally, we built a software package \gs for solving problems encountered during previous investigations.
-The software package supports highly controllable network and data generation as well as data analysis and exploration in the context of network inference.
+The software package supports highly controllable network and data generation, as well as data analysis and exploration in the context of network inference.
 #+end_abstracts
 \cleardoublepage
 * Dedication                                                        :notitle:
@@ -135,7 +135,7 @@ DOI: \href{http://dx.doi.org/10.1093/bioinformatics/btu285}{10.1093/bioinformati
 Tjärnberg A., Nordling T., Studham M., Nelander S., and Sonnhammer EL. \emph{Mol. BioSyst.}, \textbf{1(11)}, 287-296 (2015).\\
 DOI: \href{http://dx.doi.org/10.1039/C4MB00419A}{10.1039/C4MB00419A}
 
-\item\textbf{GeneSPIDER - generation and simulation package for informative data exploration.}\\
+\item\textbf{GeneSPIDER - Generation and Simulation Package for Informative Data ExploRation.}\\
 Tjärnberg A., Nordling T., Morgan D., Studham M., and Sonnhammer EL.
 \emph{manuscript.}, \textbf{}  (2015).\\
 
@@ -242,7 +242,7 @@ A core phenomenon of the cellular function is expression, \ie the regulation of 
 
 *** Gene regulation and gene regulatory networks
 
-#+CAPTION[Central dogma of molecular biology]: The central dogma of molecular biology [[citep:Brown2002]]. The flow of expression is shown left to right, figure inspired by [[citet:Gardner2005]]
+#+CAPTION[Central dogma of molecular biology]: The central dogma of molecular biology [[citep:Brown2002]]. The flow of expression is shown left to right. Figure inspired by [[citet:Gardner2005]]
 #+label: fig:central-dogma
 [[file:img/central_dogma.pdf]]
 
@@ -341,7 +341,7 @@ Cancer treatments are usually highly invasive as cancer affects the regulatory o
 The effects of cancer are multi-factorial, many times different for each type of cancer, and related to the regulatory system of the cell.
 An accurate model of healthy cells would serve as a basis for finding alterations in the regulatory system on a very detailed level.
 
-Systems biology approaches for elucidating the context specific regulatory networks of the cell will aid in creating a medical approach that is, predictive, personalised and preventive[[citep:Flores2013]].
+Systems biology approaches for elucidating the context specific regulatory networks of the cell will aid in creating a medical approach that is, predictive, personalised and preventive [[citep:Flores2013]].
 
 # Medical implications and motivation [[citep:Wolkenhauer2009]]
 
@@ -424,7 +424,7 @@ describes the output variables $\by$ as a function, $g$, of the states $\bx$ and
 Some specific network motifs have been shown to be over represented in biological systems,as demonstrated by investigating the transcriptional network of \coli and \yeast [[citep:Milo2002]], while others are underrepresented, compared to what would be expected of random networks.
 Of special note is the [[gls:ffl]] motif, which is highly over represented.
 One hypothetical reason for evolution of the under- or over- representation of specific regulatory motifs is that they serve specific functions, such as delayed responses, pulse response, synchronisation clocks, step responses and switches [[citep:Alon2007]].
-The [[Glspl:fbl]] motif are often considered in system theoretic approaches, capable of causing highly correlated responses, so called interampatte systems[[cite:Nordling2009]], section [[ref:sec:iaa]].
+The [[Glspl:fbl]] motif are often considered in system theoretic approaches, capable of causing highly correlated responses, so called interampatte systems [[citep:Nordling2009]], section [[ref:sec:iaa]].
 Motifs may also explain phenotype, when functioning as biological switches [[citep:Wolkenhauer2005]].
 Feedback has been shown to help describe the behaviour of bacterial chemotaxis [[citep:Yi2000]]. A few examples of modelling the [[gls:fbl]] are presented in section [[ref:sec:lin-vs-non-lin]].
 
@@ -449,11 +449,11 @@ This way of determining the behaviour of the [[gls:ss]] does not generalise to a
 
 The stability property has been incorporated in algorithms [[citep:Zavlanos2011]] and when collecting data [[citep:Gardner2003]] for inferring [[gls:grn]].
 The assumption is that if biological systems would not be stable,
-even random variations would eventually accumulate within the system leading to a system collapse[[citep:Kremling2007]].
+even random variations would eventually accumulate within the system leading to a system collapse [[citep:Kremling2007]].
 
 One simple mechanism in [[glspl:grn]] for maintaining stability is degradation.
 As every entity that regulates something else in the system will degrade or be diluted over time as a function of the concentration, an infinite growth can not be maintained.
-This is because an equilibrium will be reach depending on the growth rate and degradation rates of the molecules[[citep:Alon2007]].
+This is because an equilibrium will be reach depending on the growth rate and degradation rates of the molecules [[citep:Alon2007]].
 
 **** Linear vs. Non-linear models
 :PROPERTIES:
@@ -635,7 +635,7 @@ Including auto-regulation will increase the number of parameters for the non lin
 For the linear system there is no differentiation between auto-regulation and degradation, which is easily seen by adding auto-regulation to equation ([[ref:eq:feedback]]).
 The effects are additive and not independently modelled and no differentiation can be made except that the degradation has a suppressing (-) effect and auto-regulation can have an activating effect switching the sign of the interaction to be positive.
 
-As mentioned before one needs to take some care when deciding what model to use to represent ones system.
+As mentioned before, some care needs to be taken when deciding what model to use to represent the system.
 While some features can not be captured by the linear model, such as bi-stability, the increase in complexity and degrees of freedom for the non-linear system can risk creating models that do not represent the underlying biology and by extension increase the demand for more data.
 
 **** Time separated hierarchical systems
@@ -815,7 +815,7 @@ For [[gls:ssd]] we can simplify ([[ref:eq:linearsys]]) to
 #+end_src
 #+LATEX: \noindent
 in matrix notation, when the set of experiments are considered.
-$\mY$ is the observed [[gls:ss]] response matrix with measurement error $\mE$, after applying the perturbations $\mP$ differing from the true perturbation by the noise $\mF$, and $\mA$ is the network represented as a matrix where each element represent an interaction.
+$\mY$ is the observed [[gls:ss]] response matrix with measurement error $\mE$, when applying the perturbations $\mP$. $\mF$ is the difference between the true perturbations $\check{\mP}$ and the observed perturbations $\mP$, and $\mA$ is the network represented as a matrix where each element represent an interaction.
 Linear systems with steady state data have been used in several network inference projects [[citep:Tegner2003,Gardner2003,Julius2009]].
 
 **** Least squares estimate and prediction error
@@ -1026,7 +1026,7 @@ In practise we do not have access to $\mE$ and we then define the [[gls:snr]] ba
 \end{equation}
 #+end_src
 \noindent
-$\chi^{-2}$ is the inverse of the [[gls:chi2]] distribution at $\alpha$ significance level and $df$ degrees of freedom.
+$\chi^{-2}(\alpha,df)$ is the inverse of the [[gls:chi2]] distribution at $\alpha$ significance level and $df$ degrees of freedom.
 $\lambda(\mY)$ is the variance of the noise or measurement error of $\mY$.
 
 # any citations?
@@ -1138,6 +1138,7 @@ Table [[ref:tab:system_communication]] lists tools and formats for sharing and c
 #+caption[Inference methods]: List of network inference methods. Short name is the name usually used to refer to the method.
 #+label: tab:inference_methods
 #+attr_latex: :environment longtable :align |p{4cm}|l|p{5cm}|p{3cm}|p{3cm}|
+|----------------------------+-------------+----------------------------------------------------------------------------------------------+------------------------------+-----------------------------------------------|
 | Reference                  | Short Name  | Description                                                                                  | Model Scheme                 | Goal                                          |
 |----------------------------+-------------+----------------------------------------------------------------------------------------------+------------------------------+-----------------------------------------------|
 | [[cite:DiBernardo2005]]        | MNI         | Mode-of-action by network identification                                                     |                              | Determine drug targets                        |
@@ -1204,7 +1205,7 @@ Table [[ref:tab:system_communication]] lists tools and formats for sharing and c
 \end{landscape}
 #+END_LATEX
 
-#+CAPTION[Dataset generation tools]: Simulation and benchmark data generation tools used for network inference
+#+CAPTION[Dataset generation tools]: Simulation and benchmark data generation tools used for network inference.
 #+label: tab:insilico_modelling
 #+attr_latex: :align |l|l|p{3cm}|
 |-----------------------+-----------------+--------------------------------|
@@ -1218,7 +1219,7 @@ Table [[ref:tab:system_communication]] lists tools and formats for sharing and c
 |-----------------------+-----------------+--------------------------------|
 
 
-#+CAPTION[Systems biology tools]: Tools for used in systems biology to facilitate communication and results
+#+CAPTION[Systems biology tools]: Tools for used in systems biology to facilitate communication and results.
 #+label: tab:system_communication
 #+attr_latex: :align |l|l|p{3cm}|
 |-------------------+--------------+-------------------------------------------|
@@ -1712,7 +1713,7 @@ An alternative form can be written as
 \end{equation}
 #+end_src
 \noindent
-where [[gls:chi2]] is the chi square distribution with $df$ degrees of freedom[[cite:Should_be_one_here_from_wikipedia]].
+where [[gls:chi2]] is the chi square distribution with $df$ degrees of freedom [[cite:Should_be_one_here_from_wikipedia]].
 
 *** Tools
 |   | Gepasi | Biochemical model simulation |
