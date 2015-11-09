@@ -1,4 +1,4 @@
-# Time-stamp: <2015-11-09 11:12:49 andreas>
+# Time-stamp: <2015-11-09 12:16:01 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -740,7 +740,7 @@ The Bayesian network is modelled with conditional probabilities
 #+end_src
 \noindent
 where $x$ represent the specific value of the random variable $X$.
-For a network one would evaluate the probability of a structure of relationships.
+For a network, one would evaluate the probability of a structure of relationships.
 Each network model would then be a product of conditional probabilities based on the structure of the network.
 
 Another class of models is the [[gls:ode]] models ([[ref:eq:ode]]).
