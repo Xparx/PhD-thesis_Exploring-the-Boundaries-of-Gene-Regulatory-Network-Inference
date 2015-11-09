@@ -91,13 +91,7 @@ The software package supports highly controllable network and data generation, a
 
 #+begin_dedication
 #+BEGIN_LaTeX
-{\fontfamily{calligra}\selectfont
-{\Large
-
-To my grandmother Mildred
-
-}
-}
+{\Large {\calligra To my grandmother Mildred}}
 #+END_LaTeX
 #+end_dedication
 
