@@ -1,4 +1,4 @@
-# Time-stamp: <2015-11-09 15:46:57 andreas>
+# Time-stamp: <2015-11-09 16:29:05 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -845,7 +845,7 @@ Equation ([[ref:eq:ols_L2]]) is sensitive to outliers due to the nature of the 2
 #+LATEX: \noindent
 this norm corresponds to fitting to the median rather than the mean as in ([[ref:eq:ols_L2]]).
 For ([[ref:eq:ols_L2]]) the function is differentiable, but for ([[ref:eq:ols_L1]]) it is not.
-This problem can be over come by noting that ([[ref:eq:ols_L1]]) is peace-wise differentiable and convex.
+This problem can be overcome by noting that ([[ref:eq:ols_L1]]) is peace-wise differentiable and convex.
 Meaning that one can search for the optimal solution by finding the peace-wise optimal solutions [[citep:Aster2005]].
 
 *** Gene Regulatory Network inference
@@ -861,13 +861,13 @@ The second approach is the influence strategy.
 For this approach the regulatory influences are sought rather than physical bindings.
 
 As one of the primary objectives of network inference is to find the regulatory interactions, network inference is primarily a model selection problem and not a parameter estimation problem.
-However, this line is sometimes blurred with the introduction of algorithms, such as \lasso [[citep:Tibshirani1996]], which both estimate parameters and return a selection of candidate models (see: [[ref:sec:linear_penalty]]).
+However, this line is sometimes blurred with the introduction of algorithms, such as \lasso [[citep:Tibshirani1996]], which both estimate parameters and return a selection of candidate models.
 
 Several studies have employed a linear dynamical systems framework.
 [[citet:Gardner2003]] used a linear model, motivated by linearisation of a nonlinear model around a [[gls:ss]].
 Furthermore data was recorded with a [[gls:ss]] assumption on the measured mRNA expression data for 9 genes in the SOS pathway in \coli. A linear regression method was then used to estimate model parameters for an exhaustive search of subsets of interactors for each gene in the network.
 
-A necessary condition to be able to infer a casual influence network from [[gls:ssd]] and a linear dynamical system, section [[ref:sec:linear_models]], is that specific perturbations are made to each gene that is going to be included in the network.
+A necessary condition to be able to infer a casual influence network from [[gls:ssd]] and a linear dynamical system, such as those in section [[ref:sec:linear_models]], is that specific perturbations are made to each gene that is going to be included in the network.
 This is the case for [[gls:tsd]] as well with the difference being that for [[gls:tsd]] a single perturbation might be sufficient, and it does not necessarily need to be kept constant until the system relaxes to a [[gls:ss]] [[citep:Dhaeseleer1999]].
 
 # Parameter estimation [[citep:Aster2005]]
@@ -923,7 +923,7 @@ The elasic-net has been shown to be beneficial when compared to other algorithms
 
 citet:Zou2006 extended the \lasso with the adaptive \lasso algorithm, which introduce a weighting term for each model parameter. These weights should be picked carefully and based on properties of the data, and should in theory be able to overcome the shortcomings of \lasso.
 
-In [[citep:Julius2009]] a structural constraint was introduced to the \lasso penalty derived from /a priori/ knowledge where structure could be specified as being there or not there, positive or negative or uncertain.
+In [[citep:Julius2009]] a structural constraint was introduced to the \lasso penalty derived from /a priori/ knowledge where a link could be specified as being present or not present, positive, negative or uncertain.
 An additional constraint was introduced by [[citet:Zavlanos2011]] where the stability of the inferred network was ensured.
 In both cases a model similar to the one introduced in section [[ref:sec:linear_models]] was used, with a [[gls:ss]] assumption.
 
@@ -938,7 +938,7 @@ In both cases a model similar to the one introduced in section [[ref:sec:linear_
 To choose a "good" model when inferring networks is not trivial.
 \lasso produces a range of different models depending on the regularisation parameter $\zeta$.
 
-As mentioned in section [[ref:sec:linear_penalty]] overfitting is an issue when the data is noisy.
+As mentioned in section [[ref:sec:linear_penalty]], overfitting is an issue when the data is noisy.
 The predictive performance of a network estimate can be calculated with the weighted [[gls:rss]],
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:wrss}
@@ -971,8 +971,7 @@ The prediction error approach is used in the Inferelator [[citep:Bonneau2006]], 
 The common assumption that [[glspl:grn]] are sparse is used and motivates a selection of a prediction error one standard deviation above the minimum prediction error for selecting the network that is more sparse.
 
 Two other approaches for model selection are the [[gls:bic]] and the [[gls:aic]] [[citep:Akaike1973_with_commentary]].
-Both approaches is based on the likelihood function, the [[gls:bic]],
-which can be written as
+Both approaches is based on the likelihood function, the [[gls:bic]] can be written as
 #+begin_src latex :exports results :results latex
 \begin{equation}
   \text{BIC} = m \ln\left(\frac{\text{RSS}}{m}\right) + k \ln(m)
@@ -981,8 +980,7 @@ which can be written as
 #+LATEX: \noindent
 where $m$ is the number of data points, and $k$ the number of free parameters to be estimated.
 
-Both [[gls:bic]] and [[gls:aic]] makes a trade off between model predictability and model complexity,
-and both methods have been shown to perform worse than [[gls:cv]] [[citep:Thorsson2005]].
+Both [[gls:bic]] and [[gls:aic]] makes a trade off between a models prediction capability on the training data and model complexity, and both methods have in some cases been shown to perform worse than [[gls:cv]] [[citep:Thorsson2005]].
 
 **** Inverse problems
 :PROPERTIES:
@@ -992,7 +990,7 @@ and both methods have been shown to perform worse than [[gls:cv]] [[citep:Thorss
 [[citet:Aster2005]] describes the nature of the inverse problem, which arises when one tries to estimate model parameters based on measured data or observations related to some independent variables.
 This includes the network inference problem and relates to the inference problem's sensitivity to noise.
 
-Looking at equation [[ref:eq:ls]] we can decompose the matrix $\mY =\mU \mSigma \mV^T$, which is just a linear combination of the singular values $\glssymbol{sigma}_k$ and the singular vectors, $\bv_k \bu_k^T$, where $k$ is the specific [[gls:sigma]].
+Looking at equation ([[ref:eq:ls]]) we can decompose the matrix $\mY =\mU \mSigma \mV^T$, which is just a linear combination of the singular values $\glssymbol{sigma}_k$ and the singular vectors, $\bv_k \bu_k^T$, where $k$ is the specific [[gls:sigma]].
 Now the inverse of $\mY$, can be written as another linear combination of these entities,
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:inv-y}
@@ -1010,7 +1008,7 @@ From equation ([[ref:eq:inv-y]]) we can derive a definition for an upper bound o
 \end{equation}
 #+end_src
 \noindent
-and the variables are defined as in ([[ref:eq:Linearmap]]) and $\overline{\sigma}$ represent the largest singular values and $\underline{\sigma}$ represents the smallest non zero singular value.
+and the variables are defined as in ([[ref:eq:Linearmap]]) with $\overline{\sigma}$ representing the largest singular values and $\underline{\sigma}$ representing the smallest non zero singular value.
 This can be understood as the largest possible effect the noise can have on the smallest singular value of the measurements.
 In practise we do not have access to $\mE$ and we then define the [[gls:snr]] based one the estimated variance of the noise,
 #+begin_src latex :exports results :results latex
@@ -1047,8 +1045,8 @@ For [[gls:tsd]] not all genes needs to be perturbed but enough data needs to cap
 One can focus on one of these data types when benchmarking algorithms \eg [[gls:tsd]] citep:Ward2009,Narendra2011 or mix different approaches that use both types of data [[citep:Bansal2007,Penfold2011]]. The advantage of mixing data is that one can evaluate if any data approach is more informative and if any method approach are to be preferred. The advantage of not mixing data types is that one can more easily isolate specific factors that can influence a specific algorithms performance for a specific data type.
 
 Another feature of the data is the underlying model assumptions.
-To make the data more realistic a model based more closely on the underlying theory of how the system operates might be used.
-Different model assumptions demand different types of data whether it is to simulate [[gls:insilico]] data or to decide what data needs to be collected from an [[gls:invivo]] setup [[citep:Gardner2005]]. For example, if we consider Boolean networks. If the regulatory structure of the network is such that a gene can not be "turned on" one can not collect all different combinations of inputs required to make a truth table for the inference.
+To make the data more realistic, a model based more closely on the underlying theory of how the system operates might be used.
+Different model assumptions demand different types of data, whether it is to simulate [[gls:insilico]] data or to decide what data needs to be collected from an [[gls:invivo]] setup [[citep:Gardner2005]]. For example, when considering Boolean networks, if the regulatory structure of the network is such that a gene can not be "turned on" one can not collect all different combinations of inputs required to make a truth table for the inference.
 The more regulators the more risk that not all combinations can be realised trivially, and the more data needs to be collected.
 
 The [[gls:dream]] challenge is a community effort and competition that aims at combining the previously mentioned features of benchmarking in addition to including a large contributing community [[citep:Marbach2012]].
@@ -1459,8 +1457,8 @@ Lizzy make sure to be nice to Christoph when it's his turn to graduate;
 Dimitri for your interesting conversations, and for always inviting me when there was an event where we could share our common nerd interests;
 Mateusz, I'm glad that you are on your path to becoming a true Emacs guru. At least I got to convert one person!;
 Daniel, don't doubt yourself, just rewrite the code!;
-Stefanie, for our little talks;
-Gabe, for some reason I always felt that you where the only other swede in the group even though your "northern" Swedish words was many times nothing I could understand;
+Stefanie, for our little talks. We have a saying in Sweden "Simma lugnt";
+Gabe, for some reason I always felt that you where the only other swede in the group, even though your "northern" Swedish words was many times nothing I could understand;
 Matt, thanks for removing all those "asses";
 \\
 To all of you, I hope that we can still find the time to continue with our researchathons, our retro-gaming evenings and all the other goodness that we have enjoyed together.
