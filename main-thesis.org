@@ -1,4 +1,4 @@
-# Time-stamp: <2015-11-06 06:24:36 andreas>
+# Time-stamp: <2015-11-09 11:12:49 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -188,7 +188,7 @@ Reprints were made with permission from the publishers.
 # General what is systems
 Biological systems are diverse and complex and not easily described by simple rules.
 Whether it is the patterns of whole populations and societies, the interactions of individual organisms or the cellular, internal, and external machinery,
-understanding biological systems are motivated by the need to predict, modify or enhance the behaviour or functions of these systems.
+understanding biological systems is motivated by the need to predict, modify or enhance the behaviour or functions of these systems.
 Gaining a mechanistic understanding of the system can help prevent outbreak of systemic failure (disease), as well as present the optimal course of action to restore base level functioning.
 Thus, if cancer for example, is viewed as an unwanted state, or a breakdown of cellular function we would like to intervene and return the system to its natural state.
 This could be done either by forcing the system to return to its original state or by selectively terminating the faulty cells without damaging healthy cells.
@@ -214,13 +214,13 @@ Specific changes to the system are not easily induced, isolated or even measured
 Classically, if we want to study some phenomena of nature, we isolate it to the best of our ability and selectively change variables to build a picture of how the phenomena can best be described.
 For the reasons mentioned above, compounded by the cheer number of components of the system, with around \mbox{20\,000} protein coding genes giving around \mbox{400\,000\,000} possible interactors within a single cell,
 it is nearly impossible to isolate a biological system to such a degree yet on a large scale as to be confident that there are no disruptive unknown variables in play.
-All studies considering more than a few components need to account for this effect and incorporate noise in to their conclusions.
+All studies considering more than a few components need to account for this effect and incorporate noise into their conclusions.
 
 One aim of systems biology is to understand the structure and behaviour of biological systems on a specific hierarchical level, where the cell is but one example.
-A thorough understanding of the boundaries and performance of the tools used and the properties of the experiments carried out are of prime importance.
-The focus of the work done in this thesis is the study of the properties for constructing reliable models for representing biological systems.
-To contribute to the possibility of inferring, from data, [[glspl:grn]] with high confidence, that accurately reflects the underlying biology,
-where conclusions and knowledge can be derived from the models.
+A thorough understanding of the boundaries and performance of the tools used and the properties of the experiments carried out is of prime importance.
+The focus of the work done in this thesis is the study of properties of algorithms and data for constructing reliable models for representing biological systems.
+To contribute to the possibility of inferring, from data, [[glspl:grn]] with high confidence, that accurately reflects the underlying biology, in order to
+allow conclusions and knowledge to be derived from these models.
 
 * Background
 
@@ -287,10 +287,10 @@ We also have the protein layer that details the protein to protein interaction n
 The formation of a protein complex would constitute a case where the proteins might not have any regulatory effect on each other, or they might not be influencing the rate or change of any of the proteins involved. However, they are still considered an interaction here.
 It can be that the complex regulates something else and that all involved proteins need to be present for a regulatory interaction to occur, much like an =AND= operator in a Boolean operation.
 The third layer is the gene layer where DNA sequence is transcribed to RNA.
-The RNA themselves can have regulatory effects alone, they can become translated in to proteins or both.
+The RNA themselves can have regulatory effects alone, they can become translated into proteins or both.
 
-The dashed lines on the bottom layer are interactions shown to be directly influences between genes themselves.
-In reality this can not be the case.
+The dashed lines on the bottom layer are interactions shown as direct influences between genes themselves.
+In reality, this can not be the case.
 Instead this is a representation of the interactions when the gene products and their cumulative effects through different layers are condensed to a description of interactions between genes.
 \\
 In the following part of this thesis this abstract layer is what is referred to as the \acrfullpl{grn} and /gene interactions/ should be interpreted as the cumulative effects of the influences of gene products on other gene products, if not stated otherwise.
@@ -415,10 +415,10 @@ describes the output variables $\by$ as a function, $g$, of the states $\bx$ and
 *** System properties
 
 **** Network motifs
-Some specific network motifs have been shown to be over represented in biological systems,as demonstrated by investigating the transcriptional network of \coli and \yeast [[citep:Milo2002]], while others are underrepresented, compared to what would be expected of random networks.
+Some specific network motifs have been shown to be over represented in biological systems, as demonstrated by investigating the transcriptional network of \coli and \yeast [[citep:Milo2002]], while others are underrepresented, compared to what would be expected of random networks.
 Of special note is the [[gls:ffl]] motif, which is highly over represented.
 One hypothetical reason for evolution of the under- or over- representation of specific regulatory motifs is that they serve specific functions, such as delayed responses, pulse response, synchronisation clocks, step responses and switches [[citep:Alon2007]].
-The [[Glspl:fbl]] motif are often considered in system theoretic approaches, capable of causing highly correlated responses, so called interampatte systems [[citep:Nordling2009]], section [[ref:sec:iaa]].
+The [[Glspl:fbl]] motif is often considered in system theoretic approaches, capable of causing highly correlated responses, so called interampatte systems [[citep:Nordling2009]], section [[ref:sec:iaa]].
 Motifs may also explain phenotype, when functioning as biological switches [[citep:Wolkenhauer2005]].
 Feedback has been shown to help describe the behaviour of bacterial chemotaxis [[citep:Yi2000]]. A few examples of modelling the [[gls:fbl]] are presented in section [[ref:sec:lin-vs-non-lin]].
 
@@ -572,7 +572,7 @@ This is the case when $J$ is singular.
 This means that infinte number of solutions exist for the [[gls:ss]] under these conditions.
 This is when the determinant of the jacobian $\det(J) = 0$ and any point in the null space of the system is a [[gls:ss]] [[citep:Khalil1996]].
 
-Now lets look at the non linear case when $f_G$ is the [[gls:mm]] kinetics function.
+Now lets look at the nonlinear case when $f_G$ is the [[gls:mm]] kinetics function.
 The [[gls:mm]] function has been used to model [[glspl:grn]] before [[citep:August2009]].
 Other alternatives can be chosen as well, \eg Hill kinetics or boolean functions.
 The [[gls:mm]] function is
@@ -616,16 +616,16 @@ We have a [[gls:ss]] at $[x_1,x_2] = [0,0]$ however in this case this is not a u
 where $S_{x_1}=a_{12}/\alpha_1$ and $S_{x_2}=a_{21}/\alpha_2$.
 
 Some notes on these observations.
-For non linear systems like the ones with [[gls:mm]] kinetics there could exist more than one [[gls:ss]].
+For nonlinear systems like the ones with [[gls:mm]] kinetics there could exist more than one [[gls:ss]].
 To be able to find the [[gls:ss]] behaviour a set of parameters for the model needs to be chosen.
 
-This particular non linear system can not exhibit infinite growth as long as the degradation factor is considered.
+This particular nonlinear system can not exhibit infinite growth as long as the degradation factor is considered.
 The growth rate will eventually be balanced out by the degradation factor.
 
 Depending on if a specific combination of parameters in the equation ([[ref:eq:feedback-jacobian]]) fulfils ([[ref:eq:det_is_0]]) the system becomes singular and an infinite number of solutions can be found for the [[gls:ss]].
 
 The non-linear system that we explored had 6 parameters while the linear system had 4.
-Including auto-regulation will increase the number of parameters for the non linear system to 10.
+Including auto-regulation will increase the number of parameters for the nonlinear system to 10.
 For the linear system there is no differentiation between auto-regulation and degradation, which is easily seen by adding auto-regulation to equation ([[ref:eq:feedback]]).
 The effects are additive and not independently modelled and no differentiation can be made except that the degradation has a suppressing (-) effect and auto-regulation can have an activating effect switching the sign of the interaction to be positive.
 
@@ -648,7 +648,7 @@ The time constant $\tau$ can be derived from the eigenvalues of the jacobian, $J
 \noindent
 where $\Re(\lambda_i)$ is the real part of eigenvalue $\lambda$ for gene $i$.
 
-Practically, the time constant is calculated for a non linear system around its [[gls:ss]].
+Practically, the time constant is calculated for a nonlinear system around its [[gls:ss]].
 Fast and slow modes can be separated either by eigenvalue spectral clustering or by imposing a threshold, $\tau^S$ on the time constant, so that if $\tau_i > \tau^S$, $i$  belongs to the fast modes and to the slow otherwise [[citep:Kremling2007]].
 
 Hierarchical analysis of system dynamics have been used to reduce dimensionality of the system [[citep:Zagaris2003]].
@@ -715,7 +715,7 @@ and not just an association network, [[gls:tsd]] needs to be used.
 A similar approach is the information theoretic approach.
 The information theoretic approach is based on estimating the mutual information of the variation in the expression patterns of measured genes.
 The expression space could either be discretised to simplify calculations or used as is.
-This type of model extends to non linear relationships as mutual information can describe many types behaviours [[citep:Margolin2006]].
+This type of model extends to nonlinear relationships as mutual information can describe many types behaviours [[citep:Margolin2006]].
 
 Boolean networks links gene expression through boolean operators such as =AND=, =OR= and =NOT= [[citep:Albert2003]].
 Boolean interactions are based on the truth table of the interactors.
@@ -796,7 +796,7 @@ If gene $j$ up regulates gene $i$ then $a_{ij}$ is positive and if gene $j$ down
 If gene $j$ and $i$ have no interaction then $a_{ij} =0$.
 
 Linear [[glspl:ode]] have been used extensively in the context of systems biology.
-It has been shown that non linear models can be linearised around a [[gls:ss]] or log-transformed to be able to make use of the properties associated with linear systems and that near [[gls:ss]] the kinetics are well described by a linear model [[citep:Crampin2006]].
+It has been shown that nonlinear models can be linearised around a [[gls:ss]] or log-transformed to be able to make use of the properties associated with linear systems and that near [[gls:ss]] the kinetics are well described by a linear model [[citep:Crampin2006]].
 However, that means that if we are not operating close to a [[gls:ss]] a linear model might give misleading conclusions.
 Until the quality of data is such that a clear discrimination between when a simple linear model can explain the data and when it cannot, extra care should be taken when, or if, choosing a more complex model.
 
@@ -1062,7 +1062,7 @@ Another core part of any benchmark is how to evaluate the performance of an algo
 As a primary aim of network inference is to find the regulatory structure of the [[gls:grn]] one usually tests [[gls:tp]], [[gls:fp]], [[gls:tn]] and [[gls:fn]],
 where positive represents a link and negative the absence of a link.
 True and false represent the classification an inference method has made if a link should be present or not given that it exist in the gold standard network.
-These measures are usually summarised in to a more easily interpretable form, such as a fraction of the measures that range between 0 and 1, \eg sensitivity $=\frac{TP}{TP+FN}$, precision $=\frac{TP}{TP+FP}$, specificity $=\frac{TN}{TN+FP}$ and negative prediction value $=\frac{TN}{TN+FN}$ [[citep:Bansal2007]].
+These measures are usually summarised in a more easily interpretable form, such as a fraction of the measures that range between 0 and 1, \eg sensitivity $=\frac{TP}{TP+FN}$, precision $=\frac{TP}{TP+FP}$, specificity $=\frac{TN}{TN+FP}$ and negative prediction value $=\frac{TN}{TN+FN}$ [[citep:Bansal2007]].
 What one would like is a single number that represents the performance and is easily compared and understood. The  [[gls:auroc]] and the [[gls:aupr]] are used in many benchmarks, see for example,
 # Explain these more.
 [[citep:Narendra2011,Marbach2010,Marbach2012]].
@@ -1305,7 +1305,7 @@ Therefore, we opted for including the confidence of links as weights inversely p
 For example, if the confidence is low but the data indicates a strong link, both effects are traded against each other.
 By incorporating the associations as weights it gives the possibility of the data to speak as well.
 
-To test the performance of using a prior in to the network inference pipeline a number of different networks and [[gls:insilico]] data sets were generated.
+To test the performance of using a prior in the network inference pipeline, a number of different networks and [[gls:insilico]] data sets were generated.
 Two different models of system and data were used,
 a linear system model and a non-linear system model [[citep:Schaffter2011]].
 
