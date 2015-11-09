@@ -1,4 +1,4 @@
-# Time-stamp: <2015-11-09 15:41:28 andreas>
+# Time-stamp: <2015-11-09 15:46:57 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -456,7 +456,7 @@ This is because an equilibrium will be reach depending on the growth rate and de
 
 Correct system representation is crucial, as different models will directly propagate unique properties and features.
 The model should capture important features of the underlying system while remaining intelligible, giving insight into how the system is assembled and predictions of behaviour under given conditions.
-Another practical consideration when choosing a representation is prediction, the possibility of evaluating or retrieving a solution, either analytically or computationally.
+Another practical consideration when choosing a representation is the possibility of evaluating or retrieving a solution, either analytically or computationally, of a model.
 Added complexity will often result in longer compute time or harder solution evaluation.
 
 The following section will detail an example of two types of systems, a nonlinear representation developed to model enzyme kinetics and a linear representation as a simplified version of the nonlinear.
