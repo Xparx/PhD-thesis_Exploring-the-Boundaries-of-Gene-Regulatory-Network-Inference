@@ -1,4 +1,4 @@
-# Time-stamp: <2015-11-09 12:16:01 andreas>
+# Time-stamp: <2015-11-09 15:41:28 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -418,9 +418,9 @@ describes the output variables $\by$ as a function, $g$, of the states $\bx$ and
 Some specific network motifs have been shown to be over represented in biological systems, as demonstrated by investigating the transcriptional network of \coli and \yeast [[citep:Milo2002]], while others are underrepresented, compared to what would be expected of random networks.
 Of special note is the [[gls:ffl]] motif, which is highly over represented.
 One hypothetical reason for evolution of the under- or over- representation of specific regulatory motifs is that they serve specific functions, such as delayed responses, pulse response, synchronisation clocks, step responses and switches [[citep:Alon2007]].
-The [[Glspl:fbl]] motif is often considered in system theoretic approaches, capable of causing highly correlated responses, so called interampatte systems [[citep:Nordling2009]], section [[ref:sec:iaa]].
+The [[Glspl:fbl]] motif is often considered in system theoretic approaches, capable of causing highly correlated responses, so called interampatte systems [[citep:Nordling2009]] (see: section [[ref:sec:iaa]] (Interampatte systems)).
 Motifs may also explain phenotype, when functioning as biological switches [[citep:Wolkenhauer2005]].
-Feedback has been shown to help describe the behaviour of bacterial chemotaxis [[citep:Yi2000]]. A few examples of modelling the [[gls:fbl]] are presented in section [[ref:sec:lin-vs-non-lin]].
+Feedback has been shown to help describe the behaviour of bacterial chemotaxis [[citep:Yi2000]]. A few examples of modelling the [[gls:fbl]] are presented in section [[ref:sec:lin-vs-non-lin]] (Linear vs. nonlinear models).
 
 **** Steady states
 :PROPERTIES:
@@ -439,7 +439,7 @@ The eigenvalues of $J$ might reveal that this is an unstable [[gls:ss]] and the 
 
 Non-linear systems might have more complex descriptions of the function $f(\bx_0) = 0$, with multiple [[gls:ss]] solutions.
 This means that the system has multiple [[glspl:ss]], where some might correspond to converging states, while others might be unstable [[gls:ss]]. Here, \emph{unstable} means that the system will naturally diverge from its [[gls:ss]] when small perturbations are introduced.
-This way of determining the behaviour of the [[gls:ss]] does not generalise to all non-linear systems, but can be used for those that can be linearised around the [[gls:ss]] [[citep:Khalil1996]].
+This way of determining the behaviour of the [[gls:ss]] does not generalise to all nonlinear systems, but can be used for those that can be linearised around the [[gls:ss]] [[citep:Khalil1996]].
 
 The stability property has been incorporated in algorithms [[citep:Zavlanos2011]] and when collecting data [[citep:Gardner2003]] for inferring [[gls:grn]].
 The assumption is that if biological systems would not be stable,
@@ -449,7 +449,7 @@ One simple mechanism in [[glspl:grn]] for maintaining stability is degradation.
 As every entity that regulates something else in the system will degrade or be diluted over time as a function of the concentration, an infinite growth can not be maintained.
 This is because an equilibrium will be reach depending on the growth rate and degradation rates of the molecules [[citep:Alon2007]].
 
-**** Linear vs. Non-linear models
+**** Linear vs. nonlinear models
 :PROPERTIES:
 :CUSTOM_ID: sec:lin-vs-non-lin
 :END:
@@ -459,7 +459,7 @@ The model should capture important features of the underlying system while remai
 Another practical consideration when choosing a representation is prediction, the possibility of evaluating or retrieving a solution, either analytically or computationally.
 Added complexity will often result in longer compute time or harder solution evaluation.
 
-The following section will detail an example of two types of systems, a non-linear representation developed to model enzyme kinetics and a linear representation as a simplified version of the non-linear.
+The following section will detail an example of two types of systems, a nonlinear representation developed to model enzyme kinetics and a linear representation as a simplified version of the nonlinear.
 
 #+CAPTION[Feedback graph]: An abstract graphical representation of a mutual activating feedback circuit of two genes. The ball at the end of the link is a placeholder for an unspecified interaction, if an arrowhead is put there it means an activating interaction and if a T bar is put at the end it means a repression.
 #+label: fig:two-gene-feedback
@@ -502,7 +502,7 @@ Now we can look at some properties of this system.
 First lets look at [[gls:ss]].
 To find the [[glspl:ss]] we set the rate $\dot{x}_1$ and $\dot{x}_2=0$ and solve for $x_1$ and $x_2$.
 To find the behaviour of this system close to its [[gls:ss]]
-(see: section [[ref:sec:ss]]) we find the Jacobian matrix,
+(see: section [[ref:sec:ss]] (Steady states)) we find the Jacobian matrix,
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback-jacobian}
   J =
@@ -624,13 +624,13 @@ The growth rate will eventually be balanced out by the degradation factor.
 
 Depending on if a specific combination of parameters in the equation ([[ref:eq:feedback-jacobian]]) fulfils ([[ref:eq:det_is_0]]) the system becomes singular and an infinite number of solutions can be found for the [[gls:ss]].
 
-The non-linear system that we explored had 6 parameters while the linear system had 4.
+The nonlinear system that we explored had 6 parameters while the linear system had 4.
 Including auto-regulation will increase the number of parameters for the nonlinear system to 10.
 For the linear system there is no differentiation between auto-regulation and degradation, which is easily seen by adding auto-regulation to equation ([[ref:eq:feedback]]).
 The effects are additive and not independently modelled and no differentiation can be made except that the degradation has a suppressing (-) effect and auto-regulation can have an activating effect switching the sign of the interaction to be positive.
 
 As mentioned before, some care needs to be taken when deciding what model to use to represent the system.
-While some features can not be captured by the linear model, such as bi-stability, the increase in complexity and degrees of freedom for the non-linear system can risk creating models that do not represent the underlying biology and by extension increase the demand for more data.
+While some features can not be captured by the linear model, such as bi-stability, the increase in complexity and degrees of freedom for the nonlinear system can risk creating models that do not represent the underlying biology and by extension increase the demand for more data.
 
 **** Time separated hierarchical systems
 :PROPERTIES:
@@ -749,7 +749,6 @@ An example of a nonlinear [[gls:ode]] is a model using \acrfull{mm} kinetics.
 This can be extended to include modelling with the cooperative Hill coefficients.
 The coefficients in the Hill function determine the steepness of the activation curve.
 This could also be replaced in the extreme case with a boolean condition, where activation turns on only if the concentration of some activation molecule reaches a certain level [[citep:Alon2007]].
-# non-linear
 
 # linear models
 For the linear [[gls:ode]] the rate of change for each gene in the system is the cumulative effect of all other regulators for that gene.
@@ -761,7 +760,7 @@ There are several review articles describing different approaches and model form
 # Citation 8 and 12 should detail that linear models have been shown to be more versatile.
 
 One should note that some care has to be taken to the choice of model for fitting the data.
-For a non-linear model the degrees of freedom might not be well defined.
+For a nonlinear model the degrees of freedom might not be well defined.
 Even for very simple models with few parameters very complex patterns of data can be fitted [[citep:Andrae2010]].
 If any set of data can be fitted with the model there is no way of discriminating between competing models, and there is no test that can exclude a model over another,
 which should be required for a model to be considered descriptive.
@@ -1190,7 +1189,7 @@ Table [[ref:tab:system_communication]] lists tools and formats for sharing and c
 | [[cite:Kimura2012]]            | LPM         | Linear program machine-based S-system GRN inference method                                   | S-system                     | GRN                                           |
 | [[cite:Alakwaa2011]]           | BicAT-Plus  | Bi-clustering with Bayesian for GRN inference                                                | Bayesian                     | GRN                                           |
 | [[cite:Li2011]]                | DELDBN      | Differential Equation-based Local Dynamic Bayesian Network                                   | Dynamic Bayesian             | GRN                                           |
-| [[cite:August2009]]            |             | Linear convex solver program for biochemical non-linear network inference                    | ODE                          | GRN                                           |
+| [[cite:August2009]]            |             | Linear convex solver program for biochemical nonlinear network inference                    | ODE                          | GRN                                           |
 | [[cite:Yuan2011]]              |             | Robust network structure reconstruction                                                      | ODE's/LDS                    | GRN                                           |
 | [[cite:Zhang2012]]             | NARROMI     | Noise and redundancy reduction technique using recursive optimisation and mutual information | Info-theoretic and ODEs      | GRN                                           |
 |----------------------------+-------------+----------------------------------------------------------------------------------------------+------------------------------+-----------------------------------------------|
@@ -1307,14 +1306,14 @@ By incorporating the associations as weights it gives the possibility of the dat
 
 To test the performance of using a prior in the network inference pipeline, a number of different networks and [[gls:insilico]] data sets were generated.
 Two different models of system and data were used,
-a linear system model and a non-linear system model [[citep:Schaffter2011]].
+a linear system model and a nonlinear system model [[citep:Schaffter2011]].
 
 Prior incorporation performance was tested by changing the prior accuracy.
 Accuracy of the prior was controlling how true links were drawn from distributions of low and high confidence associations.
 
 When the data was uninformative an improvement with the prior could be observed if the prior was more correct than not.
-For data generated with the linear model the prior needed on average to be more correct than for a non-linear model.
-This also scaled with the [[gls:snr]] of the data sets which in general was higher for the linear system vs non-linear.
+For data generated with the linear model the prior needed on average to be more correct than for a nonlinear model.
+This also scaled with the [[gls:snr]] of the data sets which in general was higher for the linear system vs nonlinear.
 
 We also wanted to test the prior incorporation on real data and used a data collected from \yeast with the gold standard network collected from the Yeastract database [[citep:Teixeira2013]].
 To estimate the performance, we checked the overall performance for all models generated by the inference method.
@@ -1785,7 +1784,14 @@ This is untested.
 (add-to-list 'org-export-filter-headline-functions 'sa-ignore-headline)
 #+end_src
 
-** File Local variables                                            :noexport:
+Convert to [[https://askubuntu.com/questions/82634/how-to-convert-tex-into-odt][odt from tex]]. Last command does not give the right ouput (no output is given)
+#+begin_src sh
+latex2html main-thesis.tex -split 0 -no_navigation -info "" -address "" -html_version 4.0,Unicode
+libreoffice --headless --convert-to odt:"OpenDocument Text Flat XML" main-thesis/index.html
+#+end_src
+
+
+* File Local variables                                             :noexport:
 ### Local Variables:
 ### ispell-local-dictionary: "british"
 ### End:
