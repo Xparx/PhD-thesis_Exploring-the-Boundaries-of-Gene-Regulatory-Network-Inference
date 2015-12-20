@@ -1,0 +1,6 @@
+* Exploring the Boundaries of Gene Regulatory Network Inference
+
+This is my PhD thesis in Biochemistry towards Bioinformatics.
+The official version published [[http://su.diva-portal.org/smash/record.jsf?pid=diva2%3A865190&dswid=-5139][here]].
+
+The main document is contained in [[file:main-thesis.org][main-thesis.org]].
