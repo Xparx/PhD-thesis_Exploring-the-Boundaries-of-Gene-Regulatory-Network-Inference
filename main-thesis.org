@@ -1,4 +1,4 @@
-# Time-stamp: <2015-11-09 16:29:05 andreas>
+# Time-stamp: <2015-12-20 19:45:45 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -1411,7 +1411,7 @@ Further work on how to formulate and implement different details of experimental
 #+LATEX: \begin{scriptsize} % tiny(5) < scriptsize(7) < footnotesize(8) < small (9)
 
 [[bibliographystyle:citestyle]]
-[[bibliography:~/research/bibliography.bib,./references.bib]]
+[[bibliography:references.bib]]
 
 #+LATEX: \end{scriptsize}
 
@@ -1753,7 +1753,8 @@ Code used when exporting to latex
   ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
 #+end_src
 
-[[https://emacs.stackexchange.com/questions/9492/is-it-possible-to-export-content-of-subtrees-without-their-headings][source]]. This is currently incompatible with the latest org-mode
+[[https://emacs.stackexchange.com/questions/9492/is-it-possible-to-export-content-of-subtrees-without-their-headings][source]]. This is currently incompatible with the latest org-mode.
+I used this version Org-mode version 8.3 (release_8.3-3-gb5f5d6) to compile.
 #+name: test1
 #+begin_src emacs-lisp :results silent :exports none
 (defun org-remove-headlines (backend)
