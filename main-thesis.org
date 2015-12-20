@@ -1,4 +1,4 @@
-# Time-stamp: <2015-12-20 20:24:23 andreas>
+# Time-stamp: <2015-12-20 20:34:56 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -1524,7 +1524,7 @@ Här demonstrerar vi att för data av låg kvallite kan inkludering av evidens a
 Slutligen delar vi med oss av de lösningar som tagits fram under tiden vi studerat och löst olika problem genom ett mjukvarupaket i förhoppningen att det kan vara användbart för andra och visar på specifika analysmetoder som borde ingå när man försöker modellera gennätverk.
 #+LATEX: \selectlanguage{english}
 
-* Glossaries                                               :notitle:noexport:
+* Glossaries                                                        :notitle:
 #+begin_src latex :exports results :results latex
 \printglossary
 #+end_src
