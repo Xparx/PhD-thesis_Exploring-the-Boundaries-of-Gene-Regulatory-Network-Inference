@@ -1,4 +1,4 @@
-# Time-stamp: <2015-12-20 19:45:45 andreas>
+# Time-stamp: <2015-12-20 20:24:23 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -447,7 +447,7 @@ even random variations would eventually accumulate within the system leading to 
 
 One simple mechanism in [[glspl:grn]] for maintaining stability is degradation.
 As every entity that regulates something else in the system will degrade or be diluted over time as a function of the concentration, an infinite growth can not be maintained.
-This is because an equilibrium will be reach depending on the growth rate and degradation rates of the molecules [[citep:Alon2007]].
+This is because an equilibrium will be reached depending on the growth rate and degradation rates of the molecules [[citep:Alon2007]].
 
 **** Linear vs. nonlinear models
 :PROPERTIES:
@@ -484,7 +484,7 @@ The parameters of model are $a_{11},a_{12},a_{21}, a_{22}$, $\alpha_1$ and $\alp
 Any other parameters in the functions $f$ are represented by $\bK_i$.
 The states of the system is $x_1$ and $x_2$ represents some quantity related to the gene $G_1$ and $G_2$ respectively.
 
-To simplify somewhat, lets look an activating [[gls:fbl]] with degradation without autoregulation and make $f(G)$ independent of the model parameters $a_{ij}$ and $\alpha_i$, then
+To simplify somewhat, lets look at an activating [[gls:fbl]] with degradation without autoregulation and make $f(G)$ independent of the model parameters $a_{ij}$ and $\alpha_i$, then
 #+begin_src latex :exports results :results latex
 \begin{equation}\label{eq:feedback}
   \begin{array}{lcr}
@@ -625,9 +625,9 @@ The growth rate will eventually be balanced out by the degradation factor.
 Depending on if a specific combination of parameters in the equation ([[ref:eq:feedback-jacobian]]) fulfils ([[ref:eq:det_is_0]]) the system becomes singular and an infinite number of solutions can be found for the [[gls:ss]].
 
 The nonlinear system that we explored had 6 parameters while the linear system had 4.
-Including auto-regulation will increase the number of parameters for the nonlinear system to 10.
-For the linear system there is no differentiation between auto-regulation and degradation, which is easily seen by adding auto-regulation to equation ([[ref:eq:feedback]]).
-The effects are additive and not independently modelled and no differentiation can be made except that the degradation has a suppressing (-) effect and auto-regulation can have an activating effect switching the sign of the interaction to be positive.
+Including autoregulation will increase the number of parameters for the nonlinear system to 10.
+For the linear system there is no differentiation between autoregulation and degradation, which is easily seen by adding autoregulation to equation ([[ref:eq:feedback]]).
+The effects are additive and not independently modelled and no differentiation can be made except that the degradation has a suppressing (-) effect and autoregulation can have an activating effect switching the sign of the interaction to be positive.
 
 As mentioned before, some care needs to be taken when deciding what model to use to represent the system.
 While some features can not be captured by the linear model, such as bi-stability, the increase in complexity and degrees of freedom for the nonlinear system can risk creating models that do not represent the underlying biology and by extension increase the demand for more data.
@@ -690,7 +690,7 @@ The perturbation design should counteract the interampatteness of the system und
 :CUSTOM_ID: sec:system-biology
 :END:
 
-Systems biology aims to find descriptions of biological systems that takes in to account the complex interactions that are typically found within \eg the cellular regulatory network.
+Systems biology aims to find descriptions of biological systems that takes into account the complex interactions that are typically found within \eg the cellular regulatory network.
 A problem sought to be solved by a systems biology approach is to give a qualitative and quantitative understanding of the biological systems as a whole. Sub-problems concerning finding the behaviour and structure of regulatory networks need to be solved and taken in to account to reach this understanding.
 
 The primary step to achieve this is to infer the structure of the network.
