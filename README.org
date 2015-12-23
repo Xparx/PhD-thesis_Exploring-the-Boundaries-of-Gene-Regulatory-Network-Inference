@@ -1,6 +1,9 @@
 * Exploring the Boundaries of Gene Regulatory Network Inference
 
 This is my PhD thesis in Biochemistry towards Bioinformatics.
-The official version published [[http://su.diva-portal.org/smash/record.jsf?pid=diva2%3A865190&dswid=-5139][here]].
+The official version is published [[http://su.diva-portal.org/smash/record.jsf?pid=diva2%3A865190&dswid=-5139][here]].
 
 The main document is contained in [[file:main-thesis.org][main-thesis.org]].
+The document is written in org-mode [[http://orgmode.org/][org-mode]] with citation management done with [[https://github.com/jkitchin/org-ref/blob/master/org-ref.org][org-ref]].
+
+To compile the document, take a look at [[file:my_phd_thesis/main-thesis.org::*Setup%20code][Setup code]] section for the latex class and some extra code needed. Due to some bugs in the code for adding =notitle= tags i can only compile with org-mode version =release_8.3-3-gb5f5d6=.
