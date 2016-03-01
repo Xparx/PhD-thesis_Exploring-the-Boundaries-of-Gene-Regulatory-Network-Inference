@@ -1,4 +1,4 @@
-# Time-stamp: <2015-12-20 20:34:56 andreas>
+# Time-stamp: <2016-03-01 23:03:26 andreas>
 #+OPTIONS: title:t toc:nil todo:t |:t email:nil H:4
 #+BIND: org-latex-title-command "\\selectlanguage{english}\n\\frontmatterSU\n\\halftitlepage\n\\maketitle"
 #+TITLE: Exploring the Boundaries of Gene Regulatory Network Inference
@@ -20,14 +20,14 @@
 #+LATEX_HEADER_EXTRA: \input{glossaries-thesis}
 #+LATEX_HEADER: \newcommand{\gs}{GeneSPIDER\xspace}
 
-* Empty page                                                        :notitle:
+* Empty page                                                        :ignore:
 #+begin_src latex :exports results :results latex
 %: ----------------------- Cover page back side ------------------------
 \newpage
 \thispagestyle{empty}
 #+end_src
 
-* Document info                                                     :notitle:
+* Document info                                                     :ignore:
 #+begin_src latex :exports results :results latex
 \clearpage
 
@@ -55,7 +55,7 @@ Distributor: Department of Biochemistry and Biophysics % name of department
 \cleardoublepage
 #+end_src
 
-* Abstract                                                          :notitle:
+* Abstract                                                          :ignore:
 #+begin_abstracts
 To understand how the components of a complex system like a living cell interact and regulate each other, we need to collect data about how the components respond to system perturbations.
 Such data can then be used to solve the inverse problem of inferring a network that describes how the pieces influence each other.
@@ -87,7 +87,7 @@ Finally, we built a software package \gs for solving problems encountered during
 The software package supports highly controllable network and data generation, as well as data analysis and exploration in the context of network inference.
 #+end_abstracts
 \cleardoublepage
-* Dedication                                                        :notitle:
+* Dedication                                                        :ignore:
 
 #+begin_dedication
 #+BEGIN_LaTeX
@@ -144,7 +144,7 @@ Tjärnberg A., Nordling T., Morgan D., Studham M., and Sonnhammer EL.
 Reprints were made with permission from the publishers.
 #+end_src
 
-* Table of content                                                  :notitle:
+* Table of content                                                  :ignore:
 #+begin_src latex :exports results :results latex
 %: ----------------------- Table of contents ------------------------
 
@@ -154,7 +154,7 @@ Reprints were made with permission from the publishers.
 % levels are: 0 - chapter, 1 - section, 2 - subsection, 3 - subsubsection
 #+end_src
 
-* Abbreviations                                                     :notitle:
+* Abbreviations                                                     :ignore:
 #+begin_src latex :exports results :results latex
 % To create the glossary run the command
 % $ makeglossaries main-thesis
@@ -172,13 +172,13 @@ Reprints were made with permission from the publishers.
 \end{footnotesize}
 #+end_src
 
-* Figures and tables                                                :notitle:
+* Figures and tables                                                :ignore:
 #+begin_src latex :exports results :results latex
 % \listoffigures	% print list of figures
 % \listoftables     % print list of tables
 #+end_src
 
-* Mainmatter                                                        :notitle:
+* Mainmatter                                                        :ignore:
 #+begin_src latex :exports results :results latex
 \mainmatterSU
 #+end_src
@@ -1403,10 +1403,10 @@ Many functions of \gs are under development, such as optimal perturbation design
 This is partly because the problem formulation is not finalised.
 Further work on how to formulate and implement different details of experimental designs and error estimation of both input and output variables and incorporating that in to \gs is on the TODO list for the software package.
 
-* Backmatter                                                        :notitle:
+* Backmatter                                                        :ignore:
 #+LATEX: \backmatterSU
 
-* References                                                        :notitle:
+* References                                                        :ignore:
 #+LATEX: \renewcommand{\bibname}{References} % changes the header from Bibliography to References
 #+LATEX: \begin{scriptsize} % tiny(5) < scriptsize(7) < footnotesize(8) < small (9)
 
@@ -1524,7 +1524,7 @@ Här demonstrerar vi att för data av låg kvallite kan inkludering av evidens a
 Slutligen delar vi med oss av de lösningar som tagits fram under tiden vi studerat och löst olika problem genom ett mjukvarupaket i förhoppningen att det kan vara användbart för andra och visar på specifika analysmetoder som borde ingå när man försöker modellera gennätverk.
 #+LATEX: \selectlanguage{english}
 
-* Glossaries                                                        :notitle:
+* Glossaries                                                        :ignore:
 #+begin_src latex :exports results :results latex
 \printglossary
 #+end_src
@@ -1753,42 +1753,11 @@ Code used when exporting to latex
   ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
 #+end_src
 
-[[https://emacs.stackexchange.com/questions/9492/is-it-possible-to-export-content-of-subtrees-without-their-headings][source]]. This is currently incompatible with the latest org-mode.
-I used this version Org-mode version 8.3 (release_8.3-3-gb5f5d6) to compile.
-#+name: test1
-#+begin_src emacs-lisp :results silent :exports none
-(defun org-remove-headlines (backend)
-  "Remove headlines with :notitle: tag."
-  (org-map-entries (lambda () (let ((beg (point)))
-                                (outline-next-visible-heading 1)
-                                (backward-char)
-                                (delete-region beg (point))))
-                   "noexport" tree)
-  (org-map-entries (lambda () (delete-region (point-at-bol) (point-at-eol)))
-                   "notitle"))
-
-(add-hook 'org-export-before-processing-hook #'org-remove-headlines)
-#+end_src
-
-This is untested.
-#+name: test2
-#+begin_src emacs-lisp :results silent :exports none
-(defun sa-ignore-headline (contents backend info)
-  "Ignore headlines with tag `ignoreheading'."
-  (when (and (org-export-derived-backend-p backend 'latex 'html 'ascii)
-          (string-match "\\`.*nononotitle.*\n"
-                (downcase contents)))
-    (replace-match "" nil nil contents)))
-
-(add-to-list 'org-export-filter-headline-functions 'sa-ignore-headline)
-#+end_src
-
 Convert to [[https://askubuntu.com/questions/82634/how-to-convert-tex-into-odt][odt from tex]]. Last command does not give the right ouput (no output is given)
 #+begin_src sh
 latex2html main-thesis.tex -split 0 -no_navigation -info "" -address "" -html_version 4.0,Unicode
 libreoffice --headless --convert-to odt:"OpenDocument Text Flat XML" main-thesis/index.html
 #+end_src
-
 
 * File Local variables                                             :noexport:
 ### Local Variables:
